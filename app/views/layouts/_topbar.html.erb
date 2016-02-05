@@ -1,8 +1,6 @@
 <div class="top">
   <div class="container">
     <ul class="loginbar pull-right">
-      <li><%= link_to(fa_icon('calendar'), calendars_path, data: { no_turbolink: false }) %></li>
-      <li class="devider"></li>
       <% if user_signed_in? %>
         <% if current_user.permissions.count > 0 %>
           <%= render 'layouts/admin_dropdown' %>

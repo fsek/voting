@@ -5,10 +5,7 @@ FactoryGirl.define do
     password '12345678'
     firstname
     lastname
-    phone
-    stil_id
     confirmed_at { 10.days.ago }
-    member_at { 10.days.ago }
 
     trait :admin do
       password '12345678'
@@ -21,17 +18,12 @@ FactoryGirl.define do
     password '12345678'
     firstname
     lastname
-    phone
-    stil_id
     confirmed_at { Time.zone.now }
-    member_at { Time.zone.now }
     with_admin_post
   end
 
   trait :with_admin_post do
-    after(:create) do |user|
-      create(:post_user, post: create(:post, :with_admin_permissions), user: user)
-    end
+    ##
   end
 
   trait :unconfirmed do
@@ -43,9 +35,5 @@ FactoryGirl.define do
   trait :reset_password do
     reset_password_token 'resetmypassword'
     reset_password_sent_at { Time.zone.now }
-  end
-
-  trait :not_member do
-    member_at nil
   end
 end

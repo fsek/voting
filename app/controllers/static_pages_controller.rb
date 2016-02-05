@@ -8,12 +8,6 @@ class StaticPagesController < ApplicationController
   def cookies_information
   end
 
-  def company_offer
-  end
-
-  def company_about
-  end
-
   def index
     @start_page = StartPage.new
   end
