@@ -20,18 +20,6 @@ RSpec.describe StartPage do
     end
   end
 
-  describe '#events' do
-    it 'lists events for the nearest week' do
-      create(:event, title: 'First', starts_at: 2.days.from_now)
-      create(:event, title: 'Second', starts_at: 3.days.from_now)
-      create(:event, title: 'Third', starts_at: 8.days.from_now)
-
-      start = StartPage.new
-
-      start.events.map(&:title).should eq(['First', 'Second'])
-    end
-  end
-
   describe '#notices' do
     it 'lists public published notices' do
       create(:notice, title: 'First',

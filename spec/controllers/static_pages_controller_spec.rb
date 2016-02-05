@@ -23,20 +23,6 @@ RSpec.describe StaticPagesController, type: :controller do
     end
   end
 
-  describe 'GET #company_offer' do
-    it 'renders page with status 200' do
-      get(:company_offer)
-      response.status.should eq(200)
-    end
-  end
-
-  describe 'GET #company_about' do
-    it 'renders page with status 200' do
-      get(:company_about)
-      response.status.should eq(200)
-    end
-  end
-
   describe 'GET #index' do
     it 'not signed in, renders page with status 200' do
       get(:index)

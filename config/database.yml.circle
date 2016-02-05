@@ -1,8 +1,8 @@
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
+development:
   adapter: mysql2
-  database: circle_test
+  database: fsek_voting
   username: ubuntu
   encoding: utf8

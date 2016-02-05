@@ -6,6 +6,7 @@ class Ability
 
     # Abilities that everyone get.
     can :read, Document, public: true
+    can :read, News
     can [:mail, :read], Contact, public: true
     can [:display, :image], Notice
     can [:new, :create, :read], Faq
