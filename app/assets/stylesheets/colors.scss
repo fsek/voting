@@ -1,0 +1,48 @@
+// See http://sachagreif.com/sass-color-variables
+
+// Color definitions
+$fsek-orange: #eb7125;
+$fsek-orange-hover: #eb7125;
+$fsek-nano-green: #4e9d2d;
+$fsek-pi-silver: #bebebe;
+
+$black: #000;
+$white: #fff;
+$gray-text: #777;
+$gray-headline: #555;
+$light-gray-text: #eee;
+$dark-gray: #585f69;
+$link-hover-color: #f82805;
+$light-gray: #fcfcfc;
+$footer-gray: #333;
+
+
+$highlight: 0 1px 0 $white;
+$orange-highlight: #fc9800;
+$green-highlight: #00b819;
+
+// Function definitions
+$border: #ccc;
+$text-color: $black;
+$border-color: $black;
+$box-color: $fsek-orange;
+
+$main-color: $fsek-orange;
+
+
+// Unify
+$unify-red: #e74c3c;
+$unify-sea: #1abc9c;
+$unify-blue: #3498db;
+$unify-grey: #555;
+$unify-yellow: #f1c40f;
+$unify-orange: $fsek-orange;
+$unify-green: $fsek-nano-green;
+
+$unify-red-hover: #c0392b;
+$unify-sea-hover: #1abc9c;
+$unify-blue-hover: #3498db;
+$unify-grey-hover: #333;
+$unify-yellow-hover: #f39c12;
+$unify-orange-hover: #d35400;
+$unify-green-hover: $fsek-nano-green;

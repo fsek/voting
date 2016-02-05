@@ -1,0 +1,8 @@
+sv:
+  activerecord:
+    models:
+      vote: Votering
+    attributes:
+      vote:
+        title: Namn
+        open: Öppen

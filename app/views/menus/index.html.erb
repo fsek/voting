@@ -1,0 +1,55 @@
+<div class="col-md-12">
+  <div class="panel panel-orange margin-bottom-40">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <%= fa_icon('tasks') %> <%= models_name(Menu) %>
+      </h3>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th><%= Menu.human_attribute_name(:name) %></th>
+          <th><%= Menu.human_attribute_name(:location) %></th>
+          <th><%= Menu.human_attribute_name(:visible) %></th>
+          <th><%= Menu.human_attribute_name(:turbolinks) %></th>
+          <th><%= Menu.human_attribute_name(:blank_p) %></th>
+          <th><%= Menu.human_attribute_name(:link) %></th>
+          <th><%= Menu.human_attribute_name(:updated_at) %></th>
+          <th>
+            <%= link_to(t(:new_attr, attr: model_name(Menu)),
+                        new_menu_path, class: 'btn primary small') %>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @menues.each do |menu| %>
+          <tr>
+            <td><%= menu.id %></td>
+            <td><%= menu.name %></td>
+            <td><%= t(%(menu.#{menu.location})) %></td>
+            <td><%= menu.visible ? t(:yes) : t(:no) %></td>
+            <td><%= menu.turbolinks ? t(:yes) : t(:no) %></td>
+            <td><%= menu.blank_p ? t(:yes) : t(:no) %></td>
+            <td>
+              <%= link_to(menu.link) do %>
+                <%= truncate(menu.link, length: 10) %>
+              <% end %>
+            </td>
+            <td>
+              <% if menu.updated_at.present? %>
+                <%= l(menu.updated_at) %>
+              <% else %>
+                -
+              <% end %>
+            </td>
+            <td>
+              <%= link_to(t(:edit), edit_menu_path(menu),
+                          class: 'btn secondary small') %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

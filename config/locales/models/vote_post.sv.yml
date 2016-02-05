@@ -1,0 +1,8 @@
+sv:
+  activerecord:
+    models:
+      vote_post: VotePost
+    attributes:
+      vote_post:
+        votecode: Valkod
+        vote_option_id: Alternativ

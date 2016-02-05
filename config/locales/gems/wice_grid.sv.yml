@@ -1,0 +1,47 @@
+sv:
+  date:
+    order:
+      - :day
+      - :month
+      - :year
+  wice_grid:
+    show_filter_tooltip: Visa filter
+    hide_filter_tooltip: Dölj filter
+    csv_export_tooltip: Exportera som CSV
+    filter_tooltip: Filter
+    reset_filter_tooltip: Återställ
+    boolean_filter_true_label: "ja"
+    boolean_filter_false_label: "nej"
+    previous_label: «
+    next_label: »
+    # Title of the icon clicking on which will show the calendar to set the FROM date.
+    date_selector_tooltip_from: Från
+    # Title of the icon clicking on which will show the calendar to set the TO date.
+    date_selector_tooltip_to: Till
+    # The title of the checkox to turn on negation
+    negation_checkbox_title: Uteslut
+    # link to switch to show all records
+    show_all_records_label: visa alla
+    # tooltip for the link to switch to show all records
+    show_all_records_tooltip: Visa alla poster
+    # Warning message shown when the user wants to switch to all-records mode
+    all_queries_warning: Är du säker på att du vill visa alla uppgifter?
+    # link to paginated view
+    switch_back_to_paginated_mode_label: Tillbaka till sidvy
+    # tooltip for the link to paginated view
+    switch_back_to_paginated_mode_tooltip: Byt tillbaka till vy med sidor
+    # Title of the date string.
+    date_string_tooltip: Klicka för att radera
+    saved_query_panel_title: Sparade förfrågningar
+    save_query_button_label: Spara filter
+    saved_query_deletion_confirmation: Är du säker?
+    saved_query_deletion_link_title: Radera förfrågan
+    saved_query_link_title: Ladda förfrågan
+    validates_uniqueness_error: En förfrågan med detta namn finns redan.
+    validates_presence_error: Vänligen skicka i namnet för förfrågan.
+    query_deleted_message: Sparad förfrågan raderad.
+    query_saved_message: Förfrågan sparad.
+    select_all: Välj alla
+    deselect_all: Ta bort urval
+    expand: Expandera
+    collapse: Kollapsa

@@ -1,0 +1,15 @@
+.faq-accordion {
+  > a {
+    &:focus,
+    &:visited {
+      color: $main-color;
+      text-decoration: none;
+    }
+
+    &:hover,
+    &:active {
+      color: $fsek-pi-silver;
+      text-decoration: underline;
+    }
+  }
+}

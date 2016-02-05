@@ -1,0 +1,25 @@
+// Importing Bootstrap
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "bootstrap-datetimepicker";
+@import "bootstrap-datepicker3";
+
+// Include colors and mixins
+@import "colors";
+@import "mixins";
+@import "fonts";
+@import "media-queries";
+
+// Include partials
+@import "partials/*";
+@import "style/*";
+@import "plugins/*";
+
+// Include gems
+@import "fancybox";
+@import "font-awesome";
+@import "fullcalendar";
+@import "fotorama";
+@import "select2";
+@import "select2-bootstrap";
+@import "cookies_eu";

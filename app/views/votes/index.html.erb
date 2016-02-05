@@ -1,0 +1,13 @@
+<div class="headline">
+  <h2><%= t('vote.title') %></h2>
+</div>
+<div class="col-md-12">
+  <%= grid(@votes_grid) do |grid|
+    grid.blank_slate do
+      t('vote.no_votes_open')
+    end
+    grid.column name: t('attributes.name'), attribute: 'title', filter: false do |v|
+      link_to v.title, new_vote_vote_post_path(vote_id: v.id)
+    end
+  end -%>
+</div>

@@ -1,0 +1,15 @@
+sv:
+  activerecord:
+    models:
+      news:
+        one: Nyhet
+        other: Nyheter
+    attributes:
+      news:
+        content: Text
+        created_at: Skapad
+        image: Bild
+        remove_image: Ta bort bild
+        title: Titel
+        updated_at: Uppdaterad
+        user: Upplagd av

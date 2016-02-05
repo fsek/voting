@@ -1,0 +1,17 @@
+<%= simple_form_for [:admin, @vote] do |f| %>
+  <%= f.input :title %>
+  <%= f.input :open, as: :boolean, default: true %>
+  <div class="panel panel-default">
+    <div class="panel-heading"><%= t('vote.options') %></div>
+    <div class="panel-body">
+      <%= f.simple_fields_for :vote_options do |v| %>
+        <%= render 'vote_option_fields', :f => v %>
+      <% end %>
+      <%= link_to_add_association t('vote.add_option'), f, :vote_options, class: 'btn secondary' %>
+    </div>
+  </div>
+  <div class="table">
+    <%= f.button :submit, class: 'btn primary' %>
+    <%= link_to t('vote.admin_votes'), admin_votes_path, class: 'btn secondary' %>
+  </div>
+<% end %>

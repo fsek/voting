@@ -1,0 +1,13 @@
+<div class="col-md-8 col-md-offset-2 col-xs-12 reg-page">
+  <div class="headline">
+    <h2><%= t('devise.passwords.reset') %></h2>
+  </div>
+  <%= simple_form_for(resource, as: resource_name,
+                      url: password_path(resource_name), method: :post) do |f| %>
+    <%= f.input :email %>
+    <%= f.button :submit, t('devise.passwords.confirm_instructions'),
+                 id: 'users-submit' %>
+  <% end %>
+  <hr>
+  <%= render "devise/shared/links" %>
+</div>

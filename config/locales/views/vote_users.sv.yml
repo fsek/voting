@@ -1,0 +1,17 @@
+sv:
+  vote_user:
+    title: Mötesanvändare
+    manage: Hantera mötesanvändare
+    administrate: Administrera mötesanvändare
+    new: Ny användare
+    new2: Ny mötesanvändare
+    edit: Redigera användare
+    edit2: Redigera mötesanvändare
+    votecode: Valkod
+    present: Injusterad
+    make_present: Justera in
+    make_not_present: Justera ut
+    make_all_not_present: Justera ut alla användare
+    change_state: Justera in/ut
+    confirm_remove: "Är du säker på att du vill ta bort "
+    confirm_all_not_present: "Är du säker på att du vill justera ut ALLA användare?"

@@ -1,0 +1,9 @@
+<%= simple_form_for [:admin, @vote_user] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :present, as: :boolean, default: true %>
+  <%= f.input :votecode, readonly: true %>
+  <div class="table">
+    <%= f.button :submit, class: 'btn primary' %>
+    <%= link_to t('vote_user.manage'), admin_vote_users_path, class: 'btn secondary' %>
+  </div>
+<% end %>

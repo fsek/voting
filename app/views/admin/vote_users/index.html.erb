@@ -1,0 +1,31 @@
+<div class="headline">
+  <h2><%= t('vote_user.administrate') %></h2>
+</div>
+<div class="col-md-12">
+  <%= link_to t('vote_user.new'), new_admin_vote_user_path, class: 'btn primary' %>
+  <%= link_to t('vote.manage'), admin_votes_path, class: 'btn secondary' %>
+  <%= link_to t('vote_user.make_all_not_present'), make_all_not_present_admin_vote_users_path, class: 'btn secondary',
+                                                  data: {confirm: t('vote_user.confirm_all_not_present')} %>
+</div>
+<div class="col-md-12">
+  <%= grid(@vote_users_grid) do |grid|
+    grid.column name: t('attributes.name'), attribute: 'name' do |v|
+      link_to v.name, admin_vote_user_path(v)
+    end
+    grid.column name: t('vote_user.votecode'), attribute: 'votecode'
+    grid.column name: t('vote_user.present'), attribute: 'present' do |v|
+      v.present ? t('yes') : t('no')
+    end
+    grid.column name: t('vote_user.change_state') do |v|
+      link_to (v.present ? t('vote_user.make_not_present') : t('vote_user.make_present')),
+                            change_state_admin_vote_user_path(v)
+    end
+    grid.column name: t('edit') do |v|
+      link_to t('edit'), edit_admin_vote_user_path(v)
+    end
+    grid.column name: t('remove') do |v|
+      link_to t('remove'), admin_vote_user_path(v), method: :delete, data:
+                            {confirm: t('vote_user.confirm_remove') + v.name + '?'}
+    end
+  end -%>
+</div>

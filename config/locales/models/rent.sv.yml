@@ -1,0 +1,37 @@
+sv:
+  activerecord:
+    models:
+      rent:
+        one: Bilbokning
+        other: Bilbokningar
+    attributes:
+      rent:
+        aktiv: Aktiv
+        comment: Kommentar
+        council_id: Utskott
+        created_at: Skapad
+        date: Datum
+        d_from: Startdatum
+        d_til: Slutdatum
+        disclaimer: Bilbokningsavtal
+        email: E-post
+        purpose: Syfte
+        renter: Hyrs av
+        service: Service
+        status: Status
+        updated_at: Redigerad
+        user_id: Användare
+  rent:
+    validation:
+      future: måste vara i framtiden
+      ascending: måste vara efter startdatumet
+      duration: får inte vara längre än 48 h
+      overlap: överlappar med en annan bokning
+      overlap_council: överlappar med en annan utskottsbokning
+      overlap_overbook: överlappar med en bokning som det är mindre än 5 dagar till
+    denied_comment: Orsak vid nekad bokning
+    confirmed: bekräftad
+    unconfirmed: ej bekräftad
+    denied: nekad
+    active: aktiv
+    inactive: inaktiv

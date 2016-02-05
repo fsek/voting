@@ -1,0 +1,22 @@
+sv:
+  vote:
+    title: Voteringar
+    show_title: Votering
+    admin_votes: Administrera voteringar
+    new_vote: Ny votering
+    edit_vote: Redigera votering
+    open: Öppen
+    closed: Stängd
+    open_close: Öppna/stäng
+    do_open: Öppna
+    do_close: Stäng
+    confirm_remove: "Är du säker på att du vill ta bort "
+    status: Status
+    still_open: Voteringen är fortfarande öppen. Resultatet kommer att visas här när voteringen har stängts. Följande alternativ finns
+    results: Resultat
+    options: Alternativ
+    add_option: Lägg till
+    manage: Hantera voteringar
+    no_votes_open: "Just nu finns det tyvärr inga voteringar som är öppna :("
+    submit: Rösta!
+    count: Antal

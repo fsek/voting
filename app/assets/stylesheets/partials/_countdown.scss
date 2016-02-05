@@ -1,0 +1,31 @@
+.countdown {
+  margin: 10px 0;
+  overflow: hidden;
+  width: 100%;
+
+  span {
+    &.countdown_row {
+      overflow: hidden;
+
+      span {
+        display: inline-block;
+        font-size: 16px;
+        line-height: 20px;
+        margin-right: 2px;
+        text-align: center;
+      }
+    }
+
+    &.countdown_section {
+      color: $black;
+      margin-bottom: 2px;
+      padding: 30px 45px;
+      text-align: center;
+    }
+
+    &.countdown_amount {
+      font-size: 50px;
+      padding: 15px;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+sv:
+  activerecord:
+    models:
+      image:
+        one: Bild
+        other: Bilder
+    attributes:
+      image:
+        album_id: Album
+        created_at: Skapad
+        dimensions: Dimensioner
+        file: Bild
+        photographer: Fotograf

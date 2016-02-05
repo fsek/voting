@@ -1,0 +1,9 @@
+<p>
+  <%= t('welcome')%> <%= @email %>
+</p>
+
+<%= simple_format(t('devise.mailer.confirmation_instructions.description_link')) %>
+<p>
+<%= link_to(t('devise.mailer.confirmation_instructions.link'),
+            user_confirmation_url(confirmation_token: @token)) %>
+</p>

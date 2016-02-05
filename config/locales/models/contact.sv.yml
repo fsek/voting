@@ -1,0 +1,16 @@
+sv:
+  activerecord:
+    models:
+      contact:
+        one: Kontakt
+        other: Kontakter
+    attributes:
+      contact:
+        name: Namn
+        email: E-post
+        public: Publik
+        text: Beskrivning
+        council_id: Utskott
+        sender_name: Ditt namn
+        sender_email: Din e-post
+        sender_message: Meddelande

@@ -1,0 +1,21 @@
+sv:
+  activerecord:
+    models:
+      post:
+        one: Post
+        other: Poster
+    attributes:
+      post:
+        title: Titel
+        limit: Gräns
+        description: Beskrivning
+        council_id: Utskott
+        elected_by: Väljs av
+        elected_at: Väljs på
+        styrelse: Styrelsepost
+        recLimit: Rekommenderad gräns
+        car_rent: Får hyra bil
+  post:
+    added: "%{u} tilldelades %{p}"
+    add_error: "Tilldelningen gick inte: %{errors}"
+    user_removed: "%{u} har inte längre posten %{p}"

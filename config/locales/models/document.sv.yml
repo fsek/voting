@@ -1,0 +1,14 @@
+sv:
+  activerecord:
+    models:
+      document: Dokument
+    attributes:
+      document:
+        pdf: Pdf
+        title: Titel
+        public: Publik
+        category: Kategori
+        download: Nerladdning
+        user_id: Uppladdad av
+        created_at: Skapad
+        updated_at: Uppdaterad

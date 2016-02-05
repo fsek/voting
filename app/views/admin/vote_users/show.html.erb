@@ -1,0 +1,17 @@
+<div class="col-md-6 col-md-offset-3 col-sm-12 reg-page">
+  <div class="headline">
+    <h2><%= t('vote_user.title') %></h2>
+  </div>
+  <table class="table">
+    <tr>
+      <td><%= t('attributes.name') %></td>
+      <td><%= @vote_user.name %></td>
+    </tr>
+    <tr>
+      <td><%= t('vote_user.votecode') %></td>
+      <td><%= @vote_user.votecode %></td>
+    </tr>
+  </table>
+  <%= link_to t('vote_user.edit'), edit_admin_vote_user_path(@vote_user), class: 'btn primary' %>
+  <%= link_to t('vote_user.administrate'), admin_vote_users_path, class: 'btn secondary' %>
+</div>

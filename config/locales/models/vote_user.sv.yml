@@ -1,0 +1,9 @@
+sv:
+  activerecord:
+    models:
+      vote_user: mötesanvändare
+    attributes:
+      vote_user:
+        name: Namn
+        votecode: Valkod
+        present: Injusterad

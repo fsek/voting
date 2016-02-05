@@ -1,0 +1,22 @@
+.accordion {
+  .panel-heading {
+    box-shadow: none;
+    padding: 0;
+
+    a {
+      background: $white;
+      display: block;
+      font-size: 14px;
+      padding: 5px 15px;
+
+      &.accordion-toggle {
+        color: $unify-orange;
+        margin-right: 8px;
+
+        &:hover {
+          color: $unify-orange-hover;
+        }
+      }
+    }
+  }
+}

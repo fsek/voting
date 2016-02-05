@@ -1,0 +1,16 @@
+sv:
+  unauthorized:
+    default: Någonting blev fel (rättigheter)
+    manage:
+      all: Inte auktoriserad för att %{action} %{subject}.
+      user: "Inte auktoriserad för att hantera användarkonton."
+    update:
+      project: "Inte tillåten att uppdatera projektet."
+    new:
+      nomination: Du måste logga in för att kunna nominera.
+      candidate: Du måste logga in för att kunna kandidera.
+      vote_post: Du måste vara medlem för att få rösta
+    show:
+      album: Bildgalleriet är endast till för sektionens medlemmar.
+    index:
+      vote: Du måste vara medlem för att få rösta
