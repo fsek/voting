@@ -31,6 +31,7 @@ gem 'momentjs-rails'
 gem 'mysql2', '~> 0.3.20' # Rails 4 compatibility
 gem 'paperclip'
 gem 'prawn-rails'
+gem 'puma'
 gem 'quiet_assets'
 gem 'responders'
 gem 'sass-rails'
@@ -49,11 +50,6 @@ end
 
 group :development, :test do
   gem 'better_errors'
-  gem 'capistrano', require: false
-  # Need 1.1.3 to load sprockets manifest file
-  gem 'capistrano-rails', '~> 1.1.3', require: false
-  gem 'capistrano-rbenv', require: false
-  gem 'capistrano-passenger', require: false
   gem 'capybara'
   gem 'i18n-tasks'
   gem 'poltergeist'
