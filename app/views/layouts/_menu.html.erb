@@ -19,9 +19,6 @@
         <% if (medlem_menus = menus_by_location['members']).present? %>
           <%= render partial: 'menus/menu', collection: medlem_menus %>
         <% end %>
-
-        <% # Always show these links   %>
-        <li><%= link_to(t('proposals.machine'), proposals_form_path) %></li>
       </ul>
     </li>
     <li class="dropdown">

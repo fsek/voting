@@ -1,7 +1,6 @@
 # encoding: UTF-8
 class News < ActiveRecord::Base
   belongs_to :user
-  mount_uploader :image, AttachedImageUploader
 
   # Validations
   validates :title, :content, :user, presence: true

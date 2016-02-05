@@ -21,29 +21,12 @@
         <div class="headline">
           <%= content_tag(:h2, t('vecktorn.title')) %>
         </div>
-        <%= simple_format(t('vecktorn.subscribe_footer')) %>
-        <%= link_to(t(:subscribe), :vecktorn_signup,
-                    class: 'btn primary', target: '_blank')%>
-        <p>
-        <%= t('vecktorn.contribute_start') %>
         <%=render 'contacts/contact', name: 'Sanningsministeriet' %>
-        <%= t('vecktorn.contribute_end') %>
         </p>
         <hr>
         <div class="headline">
           <%= content_tag(:h3, t('footer.stay_connected')) %>
         </div>
-        <ul class="social-icons">
-          <%= content_tag(:li, link_to('', :facebook,
-                                       'data-original-title': 'Facebook',
-                                       class: 'social-facebook'))%>
-          <%= content_tag(:li, link_to('', :twitter,
-                                       'data-original-title': 'Twitter',
-                                       class: 'social-twitter'))%>
-          <%= content_tag(:li, link_to('', :youtube,
-                                       'data-original-title': 'YouTube',
-                                       class: 'social-youtube'))%>
-        </ul>
         <br>
         <br>
       </div>

@@ -3,7 +3,6 @@ class StartPage
 
   def initialize(member: false)
     @news = News.order(created_at: :desc).limit(5).includes(:user) || []
-    @events = Event.stream || []
     @notices = get_notices(member) || []
   end
 
