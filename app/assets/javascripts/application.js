@@ -17,12 +17,6 @@
 //= require bootstrap-sprockets
 //= require_self
 //= require jquery-ui/datepicker
-//= require moment
-//= require moment/sv
-//= require fullcalendar
-//= require fullcalendar/lang/sv.js
-//= require fancybox
-//= require fotorama
 //= require select2
 //= require select2_locale_sv
 //= require_tree .
@@ -34,16 +28,3 @@
 //= require pickers
 //= require cookies_eu
 //= require cocoon
-
-var bottom;
-bottom = function () {
-    var docHeight = $(window).height();
-    var footerHeight = $('#copyright').height()
-    var footerTop = $('#copyright').position().top + footerHeight;
-
-    if (footerTop < docHeight) {
-        $('#footer').css('margin-top', 22 + (docHeight - footerTop) + 'px');
-    }
-};
-
-$(document).ready(bottom)

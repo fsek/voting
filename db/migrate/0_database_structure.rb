@@ -13,9 +13,7 @@ class DatabaseStructure < ActiveRecord::Migration
       create_table 'contacts', force: :cascade do |t|
         t.string 'name', limit: 255
         t.string 'email', limit: 255
-        t.boolean 'public', limit: 1
         t.text 'text', limit: 65535
-        t.integer 'council_id', limit: 4
         t.datetime 'created_at'
         t.datetime 'updated_at'
       end
@@ -27,14 +25,14 @@ class DatabaseStructure < ActiveRecord::Migration
         t.integer 'pdf_file_size', limit: 4
         t.datetime 'pdf_updated_at'
         t.string 'title', limit: 255
-        t.boolean 'public', limit: 1
-        t.boolean 'download', limit: 1
+        t.boolean 'public'
         t.string 'category', limit: 255
-        t.integer 'profile_id', limit: 4
         t.datetime 'created_at'
         t.datetime 'updated_at'
         t.integer :user_id
       end
+
+      add_index :documents, :user_id
     end
     unless table_exists? :faqs
       create_table 'faqs', force: :cascade do |t|
@@ -53,9 +51,9 @@ class DatabaseStructure < ActiveRecord::Migration
         t.integer 'index', limit: 4
         t.string 'link', limit: 255
         t.string 'name', limit: 255
-        t.boolean 'visible', limit: 1
-        t.boolean 'turbolinks', limit: 1, default: true
-        t.boolean 'blank_p', limit: 1
+        t.boolean 'visible'
+        t.boolean 'turbolinks', default: true
+        t.boolean 'blank_p'
         t.datetime 'created_at'
         t.datetime 'updated_at'
       end
@@ -64,29 +62,23 @@ class DatabaseStructure < ActiveRecord::Migration
       create_table 'news', force: :cascade do |t|
         t.string 'title', limit: 255
         t.text 'content', limit: 65535
-        t.boolean 'front_page', limit: 1
-        t.string 'image_file_name', limit: 255
-        t.string 'image_content_type', limit: 255
-        t.integer 'image_file_size', limit: 4
-        t.datetime 'image_updated_at'
         t.datetime 'created_at'
         t.datetime 'updated_at'
-        t.integer 'profile_id', limit: 4
-        t.integer :user_id
+        t.integer 'user_id'
+        t.string 'url'
+        t.string 'image'
       end
+
+      add_index 'news', ['user_id'], name: 'index_news_on_user_id', using: :btree
     end
     unless table_exists? :notices
       create_table 'notices', force: :cascade do |t|
         t.string 'title', limit: 255
         t.text 'description', limit: 65535
-        t.boolean 'public', limit: 1
+        t.boolean 'public'
         t.date 'd_publish'
         t.date 'd_remove'
         t.integer 'sort', limit: 4
-        t.string 'image_file_name', limit: 255
-        t.string 'image_content_type', limit: 255
-        t.integer 'image_file_size', limit: 4
-        t.datetime 'image_updated_at'
         t.datetime 'created_at'
         t.datetime 'updated_at'
       end
@@ -116,7 +108,12 @@ class DatabaseStructure < ActiveRecord::Migration
         t.string 'last_sign_in_ip', limit: 255
         t.datetime 'created_at'
         t.datetime 'updated_at'
+        t.string   'confirmation_token'
+        t.datetime 'confirmed_at'
+        t.datetime 'confirmation_sent_at'
+        t.string   'unconfirmed_email'
       end
+      add_index 'users', ['confirmation_token'], name: 'index_users_on_confirmation_token', unique: true, using: :btree
       add_index 'users', ['email'], name: 'index_users_on_email', unique: true, using: :btree
       add_index 'users', ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true, using: :btree
     end

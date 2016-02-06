@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160205140131) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "constants", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.string   "value",      limit: 255
@@ -23,9 +26,7 @@ ActiveRecord::Schema.define(version: 20160205140131) do
   create_table "contacts", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.string   "email",      limit: 255
-    t.boolean  "public"
-    t.text     "text",       limit: 65535
-    t.integer  "council_id", limit: 4
+    t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -33,22 +34,22 @@ ActiveRecord::Schema.define(version: 20160205140131) do
   create_table "documents", force: :cascade do |t|
     t.string   "pdf_file_name",    limit: 255
     t.string   "pdf_content_type", limit: 255
-    t.integer  "pdf_file_size",    limit: 4
+    t.integer  "pdf_file_size"
     t.datetime "pdf_updated_at"
     t.string   "title",            limit: 255
     t.boolean  "public"
-    t.boolean  "download"
     t.string   "category",         limit: 255
-    t.integer  "profile_id",       limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",          limit: 4
+    t.integer  "user_id"
   end
+
+  add_index "documents", ["user_id"], name: "index_documents_on_user_id", using: :btree
 
   create_table "faqs", force: :cascade do |t|
     t.string   "question",      limit: 255
-    t.text     "answer",        limit: 65535
-    t.integer  "sorting_index", limit: 4
+    t.text     "answer"
+    t.integer  "sorting_index"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "category",      limit: 255
@@ -58,7 +59,7 @@ ActiveRecord::Schema.define(version: 20160205140131) do
 
   create_table "menus", force: :cascade do |t|
     t.string   "location",   limit: 255
-    t.integer  "index",      limit: 4
+    t.integer  "index"
     t.string   "link",       limit: 255
     t.string   "name",       limit: 255
     t.boolean  "visible"
@@ -70,35 +71,32 @@ ActiveRecord::Schema.define(version: 20160205140131) do
 
   create_table "news", force: :cascade do |t|
     t.string   "title",      limit: 255
-    t.text     "content",    limit: 65535
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "profile_id", limit: 4
-    t.integer  "user_id",    limit: 4
-    t.string   "url",        limit: 255
-    t.string   "image",      limit: 255
+    t.integer  "user_id"
+    t.string   "url"
+    t.string   "image"
   end
 
+  add_index "news", ["user_id"], name: "index_news_on_user_id", using: :btree
+
   create_table "notices", force: :cascade do |t|
-    t.string   "title",              limit: 255
-    t.text     "description",        limit: 65535
+    t.string   "title",       limit: 255
+    t.text     "description"
     t.boolean  "public"
     t.date     "d_publish"
     t.date     "d_remove"
-    t.integer  "sort",               limit: 4
-    t.string   "image_file_name",    limit: 255
-    t.string   "image_content_type", limit: 255
-    t.integer  "image_file_size",    limit: 4
-    t.datetime "image_updated_at"
+    t.integer  "sort"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "permission_users", force: :cascade do |t|
-    t.integer  "user_id",       limit: 4, null: false
-    t.integer  "permission_id", limit: 4, null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "user_id",       null: false
+    t.integer  "permission_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "permission_users", ["permission_id"], name: "index_permission_users_on_permission_id", using: :btree
@@ -120,17 +118,17 @@ ActiveRecord::Schema.define(version: 20160205140131) do
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "confirmation_token",     limit: 255
+    t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email",      limit: 255
+    t.string   "unconfirmed_email"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
@@ -138,37 +136,37 @@ ActiveRecord::Schema.define(version: 20160205140131) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "vote_options", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.integer  "count",      limit: 4,   default: 0
-    t.integer  "vote_id",    limit: 4
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.string   "title"
+    t.integer  "count",      default: 0
+    t.integer  "vote_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "vote_options", ["vote_id"], name: "index_vote_options_on_vote_id", using: :btree
 
   create_table "vote_posts", force: :cascade do |t|
-    t.string   "votecode",   limit: 255
-    t.integer  "vote_id",    limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "votecode"
+    t.integer  "vote_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "vote_posts", ["vote_id"], name: "index_vote_posts_on_vote_id", using: :btree
 
   create_table "vote_users", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "votecode",   limit: 255
-    t.boolean  "present",                default: true
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.string   "name"
+    t.string   "votecode"
+    t.boolean  "present",    default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "votes", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.boolean  "open",                   default: true
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.string   "title"
+    t.boolean  "open",       default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_foreign_key "vote_options", "votes"

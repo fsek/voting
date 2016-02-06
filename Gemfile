@@ -11,29 +11,17 @@ gem 'cancancan'
 # Need to use this for multiple file upload
 # https://github.com/carrierwaveuploader/carrierwave#multiple-file-uploads
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
-gem 'coffee-rails'
 gem 'cookies_eu'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'devise'
-gem 'factory_girl_rails'
-gem 'fancybox2-rails'
 gem 'font-awesome-rails'
-gem 'fotoramajs'
-gem 'fullcalendar-rails'
-gem 'haml-rails'
-gem 'icalendar'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
-gem 'mini_magick'
-gem 'momentjs-rails'
-gem 'mysql2', '~> 0.3.20' # Rails 4 compatibility
-gem 'paperclip'
-gem 'prawn-rails'
+gem 'pg'
 gem 'puma'
 gem 'quiet_assets'
-gem 'responders'
 gem 'sass-rails'
 gem 'select2-rails'
 gem 'simple_form'
@@ -44,13 +32,14 @@ gem 'cocoon'
 gem 'wice_grid', '3.6.0.pre4'
 
 # To have a working JVM on server
-group :staging, :production do
+group :production do
   gem 'therubyracer', platform: :ruby
 end
 
 group :development, :test do
   gem 'better_errors'
   gem 'capybara'
+  gem 'factory_girl_rails'
   gem 'i18n-tasks'
   gem 'poltergeist'
   gem 'pry-byebug'
