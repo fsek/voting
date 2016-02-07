@@ -13,10 +13,7 @@
             <th>#</th>
             <th><%= User.human_attribute_name(:name) %></th>
             <th><%= User.human_attribute_name(:email) %></th>
-            <th><%= User.human_attribute_name(:program) %></th>
-            <th><%= User.human_attribute_name(:start_year) %></th>
             <th><%= User.human_attribute_name(:confirmed_at) %></th>
-            <th><%= t('user.membership?') %></th>
         </tr>
         </thead>
 
@@ -26,23 +23,11 @@
               <td><%= user.id %></td>
               <td><%= user %></td>
               <td><%= user.email %></td>
-              <td><%= user.program %></td>
-              <td><%= user.start_year %></td>
               <td>
                 <% if user.confirmed? %>
                   <%= l(user.confirmed_at) %>
                 <% else %>
                   <%= t(:no) %>
-                <% end %>
-              </td>
-
-              <td class="member-action">
-                <% if user.member? %>
-                  <%= link_to(t('user.unmake_member'), unmember_admin_user_path(user),
-                              class: 'btn danger', remote: true, method: :post) %>
-                <% else %>
-                  <%= link_to(t('user.make_member'), member_admin_user_path(user),
-                              class: 'btn secondary', remote: true, method: :post) %>
                 <% end %>
               </td>
             </tr>

@@ -5,9 +5,5 @@
   <%= f.input :d_publish, as: :datetime_picker %>
   <%= f.input :d_remove, as: :datetime_picker %>
   <%= f.input :sort %>
-  <%= f.input :image %>
-  <% if @notice.image? %>
-    <%= image_tag(image_notice_path(@notice, style: 'small')) %><br>
-  <% end %>
   <%= f.button :submit, id: 'submit-notice' %>
 <% end %>
