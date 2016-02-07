@@ -31,14 +31,15 @@ gem 'cocoon'
 # Introduces feature needed in tables, no errors when updating
 gem 'wice_grid', '3.6.0.pre4'
 
-# To have a working JVM on server
 group :production do
+  gem 'rails_12factor'
   gem 'therubyracer', platform: :ruby
 end
 
 group :development, :test do
   gem 'better_errors'
   gem 'capybara'
+  gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'i18n-tasks'
   gem 'poltergeist'
