@@ -1,5 +1,3 @@
-require 'factory_girl'
-
 task :promote_admin => :environment do
   u = User.first
   perm = Permission.find_or_create_by!(subject_class: :all, action: :manage)

@@ -1,15 +1,7 @@
 #encoding: UTF-8
 class Notice < ActiveRecord::Base
-  include CarrierWave::Compatibility::Paperclip
-  # Relationships
-  # Paperclip attachment
-  # The storage folder require the use of Sendfile.
-  has_attached_file(:image,
-                    styles: { large: '400x400>', small: '250x250>' },
-                    path: ':rails_root/storage/notices/:id/:style-:filename')
   # Validations
   validates :title, :description, :sort, presence: true
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   # Scopes
   scope :d_published, -> { where('d_publish <= ?', Time.zone.today) }

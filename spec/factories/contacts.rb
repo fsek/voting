@@ -3,7 +3,6 @@ FactoryGirl.define do
   factory :contact do |c|
     name "Spindelmän"
     email
-    c.public { [true, false].sample }
     text { generate(:description) }
 
     trait :with_message do
