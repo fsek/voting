@@ -29,10 +29,8 @@ Fsek::Application.routes.draw do
       patch :account, path: :konto, action: :update_account
     end
 
-    resources :users, path: :anvandare, only: [:show] do
-      get :avatar, on: :member
-    end
-
+    resources :users, path: :anvandare, only: [:show]
+    
     resources :constants
 
 

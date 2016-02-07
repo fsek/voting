@@ -9,16 +9,6 @@ class UsersController < ApplicationController
   def show
   end
 
-  def avatar
-    if @user.avatar?
-      style = [:original, :medium, :thumb].include?(params[:style]) ? params[:style] : :medium
-      send_file(@user.avatar.path(style), filename: @user.avatar_file_name,
-                type: 'image/jpg',
-                disposition: 'inline',
-                x_sendfile: true)
-    end
-  end
-
   def edit
     if @tab.nil?
       if params[:tab].present?
@@ -65,9 +55,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:firstname, :lastname, :program, :start_year,
-                                 :avatar, :first_post_id, :stil_id, :phone,
-                                 :remove_avatar)
+    params.require(:user).permit(:firstname, :lastname)
   end
 
   def account_params
