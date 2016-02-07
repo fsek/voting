@@ -30,9 +30,8 @@ Fsek::Application.routes.draw do
     end
 
     resources :users, path: :anvandare, only: [:show]
-    
-    resources :constants
 
+    resources :constants
 
     resources :votes, path: :voteringar, only: :index do
       resources :vote_posts, only: [:new, :create]
