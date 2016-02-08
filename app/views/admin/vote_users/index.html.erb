@@ -3,7 +3,9 @@
 </div>
 <div class="col-md-12">
   <%= link_to t('vote_user.new'), new_admin_vote_user_path, class: 'btn primary' %>
-  <%= link_to t('vote.manage'), admin_votes_path, class: 'btn secondary' %>
+  <% if can? :manage, Vote %>
+    <%= link_to t('vote.manage'), admin_votes_path, class: 'btn secondary' %>
+  <% end %>
   <%= link_to t('vote_user.make_all_not_present'), make_all_not_present_admin_vote_users_path, class: 'btn secondary',
                                                   data: {confirm: t('vote_user.confirm_all_not_present')} %>
 </div>
