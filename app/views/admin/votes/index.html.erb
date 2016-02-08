@@ -3,7 +3,9 @@
 </div>
 <div class="col-md-12">
   <%= link_to t('vote.new_vote'), new_admin_vote_path, class: 'btn primary' %>
-  <%= link_to t('vote_user.manage'), admin_vote_users_path, class: 'btn secondary' %>
+  <% if can? :manage, VoteUser %>
+    <%= link_to t('vote_user.manage'), admin_vote_users_path, class: 'btn secondary' %>
+  <% end %>
 </div>
 <div class="col-md-12">
   <%= grid(@votes_grid) do |grid|
