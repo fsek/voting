@@ -1,0 +1,10 @@
+sv:
+  permission_user:
+    all: allt
+    title: Administrera rättigheter
+    user: Användare
+    permission: Rättighet
+    confirm1: 'Vill du verkligen ta bort rättigheten "'
+    confirm2: '" från  användaren '
+    new: Tilldela rättighet
+    save: Tilldela rättighet

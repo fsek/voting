@@ -1,0 +1,8 @@
+<%= simple_form_for [:admin, @permission_user] do |f| %>
+<%= f.input :user_id, collection: User.all, label_method: :print_id, include_blank: false %>
+<%= f.input :permission_id, collection: Permission.all, label_method: :to_s, include_blank: false %>
+<div class="table">
+  <%= f.button :submit, t('permission_user.save') %>
+  <%= link_to t('actions.back'), admin_permission_users_path, class: 'btn secondary' %>
+</div>
+<% end %>
