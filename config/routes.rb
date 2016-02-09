@@ -73,7 +73,9 @@ Fsek::Application.routes.draw do
     end
 
     namespace :admin do
-      resources :permission_users, path: :rattigheter, controller: :permission_users, except: [:show, :update]
+      resources :permission_users, path: :rattigheter,
+                                   controller: :permission_users,
+                                   except: [:show, :update]
     end
   end
 

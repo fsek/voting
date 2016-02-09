@@ -26,7 +26,6 @@ class Admin::PermissionUsersController < ApplicationController
     redirect_to admin_permission_users_path, notice: alert_destroy(PermissionUser)
   end
 
-
   private
 
   def authorize
