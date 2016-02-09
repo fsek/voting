@@ -1,9 +1,14 @@
 module VoteService
   def self.user_vote(post, option)
-    VotePost.transaction do
-      post.save!
-      option.count += 1
-      option.save!
+    begin
+      VotePost.transaction do
+        post.save!
+        option.count += 1
+        option.save!
+      end
+      true
+    rescue
+      false
     end
   end
 end
