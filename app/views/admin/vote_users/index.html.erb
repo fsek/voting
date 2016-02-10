@@ -16,7 +16,7 @@
     end
     grid.column name: t('vote_user.votecode'), attribute: 'votecode'
     grid.column name: t('vote_user.present'), attribute: 'present' do |v|
-      v.present ? t('yes') : t('no')
+      yes_no(v.present)
     end
     grid.column name: t('vote_user.change_state') do |v|
       link_to (v.present ? t('vote_user.make_not_present') : t('vote_user.make_present')),
