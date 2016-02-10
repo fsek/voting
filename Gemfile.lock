@@ -335,6 +335,7 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails
   paranoia (~> 2.0)
+  momentjs-rails
   pg
   poltergeist
   pry-byebug
