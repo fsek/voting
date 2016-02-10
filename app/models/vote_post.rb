@@ -1,4 +1,6 @@
 class VotePost < ActiveRecord::Base
+  acts_as_paranoid
+
   belongs_to :vote
   validates :vote_id, presence: true
   validates :votecode, uniqueness: {scope: :vote}, presence: true

@@ -74,6 +74,6 @@ class Admin::VoteUsersController < ApplicationController
 
   def gen_votecode
       votecode = Array.new(7){[*'0'..'9', *'a'..'z'].sample}.join
-      (VoteUser.any? {|x| x.votecode == votecode}) ? gen_votecode : votecode
+      (VoteUser.with_deleted.any? { |x| x.votecode == votecode }) ? gen_votecode : votecode
   end
 end

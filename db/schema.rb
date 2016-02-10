@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160205140131) do
+ActiveRecord::Schema.define(version: 20160210092828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,8 +141,10 @@ ActiveRecord::Schema.define(version: 20160205140131) do
     t.integer  "vote_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.datetime "deleted_at"
   end
 
+  add_index "vote_options", ["deleted_at"], name: "index_vote_options_on_deleted_at", using: :btree
   add_index "vote_options", ["vote_id"], name: "index_vote_options_on_vote_id", using: :btree
 
   create_table "vote_posts", force: :cascade do |t|
@@ -150,8 +152,10 @@ ActiveRecord::Schema.define(version: 20160205140131) do
     t.integer  "vote_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
 
+  add_index "vote_posts", ["deleted_at"], name: "index_vote_posts_on_deleted_at", using: :btree
   add_index "vote_posts", ["vote_id"], name: "index_vote_posts_on_vote_id", using: :btree
 
   create_table "vote_users", force: :cascade do |t|
@@ -160,14 +164,20 @@ ActiveRecord::Schema.define(version: 20160205140131) do
     t.boolean  "present",    default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.datetime "deleted_at"
   end
+
+  add_index "vote_users", ["deleted_at"], name: "index_vote_users_on_deleted_at", using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.string   "title"
     t.boolean  "open",       default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.datetime "deleted_at"
   end
+
+  add_index "votes", ["deleted_at"], name: "index_votes_on_deleted_at", using: :btree
 
   add_foreign_key "vote_options", "votes"
   add_foreign_key "vote_posts", "votes"
