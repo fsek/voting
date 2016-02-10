@@ -26,10 +26,10 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'PATCH #update_account' do
     it 'updates account' do
-      patch :update_account, user: { email: 'david@fsektionen.se',
+      patch :update_account, user: { email: 'tfy16hal@student.lu.se',
                                      current_password: '12345678' }
       user.reload
-      user.unconfirmed_email.should eq('david@fsektionen.se')
+      user.unconfirmed_email.should eq('tfy16hal@student.lu.se')
     end
   end
 

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   it 'has a valid factory' do
-    (build_stubbed(:user)).should be_valid
+    build_stubbed(:user).should be_valid
   end
 
   let(:user) { build_stubbed(:user) }
@@ -10,6 +10,28 @@ RSpec.describe User, type: :model do
   describe 'validations' do
     new_user = User.new
     it { new_user.should validate_presence_of(:email) }
+    it { new_user.should validate_presence_of(:firstname) }
+    it { new_user.should validate_presence_of(:lastname) }
+
+    describe 'validate email as stilid@student.lu.se' do
+      it 'should be valid' do
+        user = build(:user, email: 'tfy16hal@student.lu.se')
+
+        user.should be_valid
+      end
+
+      it 'should be invalid' do
+        user = build(:user, email: 'hilbert.alg.237@student.lu.se')
+
+        user.should be_invalid
+      end
+
+      it 'should be invalid' do
+        user = build(:user, email: 'tfy16hal@google.lu.se')
+
+        user.should be_invalid
+      end
+    end
   end
 
   describe 'public instance methods' do
