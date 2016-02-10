@@ -47,10 +47,7 @@ Fsek::Application.routes.draw do
       end
     end
 
-    resources :notices, path: :notiser do
-      post :display, path: :visa, on: :member
-      get :image, path: :bild, on: :member
-    end
+    resources :notices, path: :notiser
 
     resources :menus, path: :meny, except: :show
 
