@@ -11,6 +11,10 @@
       <td><%= t('vote.status') %></td>
       <td><%= @vote.open ? t('vote.open') : t('vote.closed') %></td>
     </tr>
+    <tr>
+      <td><%= t('vote.number_of_votes') %></td>
+      <td><%= @vote.vote_posts.count %></td>
+    </tr>
   </table>
   <% if @vote.open %>
     <i><%= t('vote.still_open') %></i><p><p>
