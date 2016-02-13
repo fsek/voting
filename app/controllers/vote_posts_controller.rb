@@ -13,6 +13,7 @@ load_permissions_and_authorize_resource
   def create
     @vote = Vote.find(params[:vote_id])
     @vote_post = @vote.vote_posts.build(vote_post_params)
+    @vote_post.user = current_user
     option = VoteOption.find(vote_post_params[:vote_option_id])
 
     if VoteService.user_vote(@vote_post, option)

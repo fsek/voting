@@ -2,14 +2,16 @@ class VotePost < ActiveRecord::Base
   acts_as_paranoid
 
   belongs_to :vote
-  validates :vote_id, presence: true
-  validates :votecode, uniqueness: { scope: :vote }, presence: true
+  belongs_to :user
+
+  attr_accessor :vote_option_id, :votecode
+
+  validates :vote_id, :votecode, presence: true
+  validates :user_id, uniqueness: { scope: :vote }, presence: true
   validate :vote_open, :user_details
 
-  attr_accessor :vote_option_id
-
   def user_details
-    unless User.exists?(votecode: votecode, presence: true)
+    unless User.exists?(id: user_id, votecode: votecode, presence: true)
       errors.add(:votecode, I18n.t('vote_post.bad_votecode'))
     end
   end

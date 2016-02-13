@@ -20,3 +20,4 @@ sv:
     no_votes_open: "Just nu finns det tyvärr inga voteringar som är öppna :("
     submit: Rösta!
     count: Antal
+    number_of_votes: Antal röster
