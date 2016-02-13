@@ -111,14 +111,14 @@ ActiveRecord::Schema.define(version: 20160210092828) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "firstname",              limit: 255, default: "", null: false
-    t.string   "lastname",               limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "email",                  limit: 255, default: "",    null: false
+    t.string   "firstname",              limit: 255, default: "",    null: false
+    t.string   "lastname",               limit: 255, default: "",    null: false
+    t.string   "encrypted_password",     limit: 255, default: "",    null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
@@ -129,11 +129,16 @@ ActiveRecord::Schema.define(version: 20160210092828) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.datetime "deleted_at"
+    t.boolean  "presence",                           default: false, null: false
+    t.string   "votecode"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["deleted_at"], name: "index_users_on_deleted_at", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["votecode"], name: "index_users_on_votecode", unique: true, using: :btree
 
   create_table "vote_options", force: :cascade do |t|
     t.string   "title"
@@ -157,17 +162,6 @@ ActiveRecord::Schema.define(version: 20160210092828) do
 
   add_index "vote_posts", ["deleted_at"], name: "index_vote_posts_on_deleted_at", using: :btree
   add_index "vote_posts", ["vote_id"], name: "index_vote_posts_on_vote_id", using: :btree
-
-  create_table "vote_users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "votecode"
-    t.boolean  "present",    default: true
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.datetime "deleted_at"
-  end
-
-  add_index "vote_users", ["deleted_at"], name: "index_vote_users_on_deleted_at", using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.string   "title"

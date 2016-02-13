@@ -1,39 +1,37 @@
 <% title(models_name(User)) %>
-<div class="col-md-12 user">
-  <div class="panel panel-orange margin-bottom-40">
-    <div class="panel-heading">
-      <h3 class="panel-title">
-        <%= fa_icon('tasks') %> <%= models_name(User) %>
-      </h3>
-    </div>
-    <div class="col-md-12">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th><%= User.human_attribute_name(:name) %></th>
-            <th><%= User.human_attribute_name(:email) %></th>
-            <th><%= User.human_attribute_name(:confirmed_at) %></th>
-        </tr>
-        </thead>
+<div class="headline">
+  <h2><%= t('user.admin_index') %></h2>
+</div>
 
-        <tbody>
-          <% @users.each do |user| %>
-            <tr id="<%= dom_id(user) %>">
-              <td><%= user.id %></td>
-              <td><%= user %></td>
-              <td><%= user.email %></td>
-              <td>
-                <% if user.confirmed? %>
-                  <%= l(user.confirmed_at) %>
-                <% else %>
-                  <%= t(:no) %>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
+<div class="col-md-2 col-sm-12 user margin-bottom-20">
+  <button class="wg-external-submit-button btn primary" data-grid-name="grid">
+    <%= t('wice_grid.filter') %>
+  </button>
+
+  <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
+    <%= t('wice_grid.reset_filter') %>
+  </button>
+</div>
+
+<div class="col-md-10 col-sm-12 user">
+  <%= grid(@users_grid, hide_submit_button: true, hide_reset_button: true) do |g|
+    g.column(name: User.human_attribute_name(:name), attribute: 'firstname') do |user|
+      user_link(user, target: :blank_p)
+    end
+    grid.column name: models_name(Permission), assoc: :permissions, attribute: 'name' do |user|
+      content_tag(:ul) do
+        user.permissions.each do |p|
+          content_tag(:li) do
+            p.to_s
+          end
+        end
+      end
+    end
+    g.column(name: User.human_attribute_name(:email), attribute: 'email')
+    g.column(name: User.human_attribute_name(:confirmed_at), attribute: 'confirmed_at',
+             filter: false)
+    g.column(name: t(:edit), filter: false) do |user|
+      link_to(t('user.vote.edit'), edit_admin_vote_user_path(user))
+    end
+  end -%>
 </div>

@@ -53,9 +53,9 @@
         <%= link_to 'Voteringar', admin_votes_path %>
       </li>
     <% end %>
-    <% if can? :manage, VoteUser %>
+    <% if can? :manage, User %>
       <li class="dropdown-submenu">
-        <%= link_to 'Mötesanvändare', admin_vote_users_path %>
+        <%= link_to models_name(User), admin_users_path %>
       </li>
     <% end %>
   </ul>

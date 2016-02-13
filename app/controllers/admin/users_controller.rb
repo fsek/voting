@@ -3,6 +3,7 @@ class Admin::UsersController < ApplicationController
   before_action :authorize
 
   def index
+    @users_grid = initialize_grid(User, include: 'permissions')
   end
 
   private

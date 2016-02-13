@@ -6,28 +6,30 @@
   <% if can? :manage, Vote %>
     <%= link_to t('vote.manage'), admin_votes_path, class: 'btn secondary' %>
   <% end %>
-  <%= link_to t('vote_user.make_all_not_present'), make_all_not_present_admin_vote_users_path, class: 'btn secondary',
-                                                  data: {confirm: t('vote_user.confirm_all_not_present')} %>
+  <%= link_to(t('vote_user.make_all_not_present'), make_all_not_present_admin_vote_users_path,
+              class: 'btn secondary',
+              data: {confirm: t('vote_user.confirm_all_not_present')}) %>
 </div>
 <div class="col-md-12">
   <%= grid(@vote_users_grid) do |grid|
-    grid.column name: t('attributes.name'), attribute: 'name' do |v|
-      link_to v.name, admin_vote_user_path(v)
+    grid.column name: t('attributes.name'), attribute: 'firstname' do |user|
+      user_link(user)
     end
-    grid.column name: t('vote_user.votecode'), attribute: 'votecode'
-    grid.column name: t('vote_user.present'), attribute: 'present' do |v|
-      yes_no(v.present)
+    grid.column name: User.human_attribute_name(:votecode), attribute: 'votecode'
+    grid.column name: User.human_attribute_name(:presence), attribute: 'presence' do |user|
+      yes_no(user.presence)
     end
-    grid.column name: t('vote_user.change_state') do |v|
-      link_to (v.present ? t('vote_user.make_not_present') : t('vote_user.make_present')),
-                            change_state_admin_vote_user_path(v)
+    grid.column name: t('user.change_state') do |user|
+      link_to(user.presence ? t('user.make_not_present') : t('vote_user.make_present'),
+              change_state_admin_vote_user_path(user))
     end
-    grid.column name: t('edit') do |v|
-      link_to t('edit'), edit_admin_vote_user_path(v)
+    grid.column name: t('edit') do |user|
+      link_to(t('edit'), edit_admin_vote_user_path(user))
     end
-    grid.column name: t('remove') do |v|
-      link_to t('remove'), admin_vote_user_path(v), method: :delete, data:
-                            {confirm: t('vote_user.confirm_remove') + v.name + '?'}
+    grid.column name: t('remove') do |user|
+      link_to t('remove'), admin_vote_user_path(user),
+        method: :delete,
+        data: { confirm: t('vote_user.confirm_remove') + user.to_s + '?' }
     end
   end -%>
 </div>

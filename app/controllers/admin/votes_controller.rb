@@ -15,7 +15,7 @@ class Admin::VotesController < ApplicationController
     @vote = Vote.new(vote_params)
 
     if @vote.save
-      redirect_to admin_votes_path, notice: alert_create(Vote)
+      redirect_to edit_admin_vote_path(@vote), notice: alert_create(Vote)
     else
       render :new, status: 422
     end
@@ -28,8 +28,8 @@ class Admin::VotesController < ApplicationController
   def update
     @vote = Vote.find(params[:id])
 
-    if @vote.update_attributes(vote_params)
-      redirect_to admin_votes_path, notice: alert_update(Vote)
+    if @vote.update(vote_params)
+      redirect_to edit_admin_vote_path(@vote), notice: alert_update(Vote)
     else
       render :edit, status: 422
     end
@@ -48,10 +48,10 @@ class Admin::VotesController < ApplicationController
 
   def change_state
     @vote = Vote.find(params[:id])
-    
+
     if @vote != nil
       @vote.open = !@vote.open
-      @vote.save
+      @vote.save!
     end
 
     redirect_to admin_votes_path
@@ -64,7 +64,8 @@ class Admin::VotesController < ApplicationController
   end
 
   def vote_params
-    params.require(:vote).permit(:title, :open, vote_options_attributes: [:id, :title, :count, :_destroy])
+    params.require(:vote).permit(:title, :open,
+                                 vote_options_attributes: [:id, :title, :_destroy])
   end
 
 end

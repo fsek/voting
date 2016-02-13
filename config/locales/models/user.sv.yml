@@ -4,12 +4,10 @@ sv:
       user: Användare
     attributes:
       user:
-        avatar: Profilbild
         confirmed_at: E-post bekräftades
         confirmed_email: Bekräftad epost
         current_password: Nuvarande lösenord
         email: E-post
-        first_post: Visningspost
         firstname: Namn
         lastname: Efternamn
         member: Medlemskap
@@ -17,14 +15,10 @@ sv:
         name: Namn
         password: Lösenord
         password_confirmation: Bekräfta lösenord
-        phone: Telefon
-        program: Program
+        presence: Närvaro
         remember_me: Kom ihåg mig
-        remove_avatar: Ta bort profilbild
-        start_year: Började år
-        stil_id: Stil-id
         unconfirmed_email: Obekräftad epost
-        username: Användarnamn
+        votecode: Valkod
   user:
     attributes_missing: du måste fylla i dina användaruppgifter.
     edit_information: Redigera användaruppgifter
@@ -36,3 +30,4 @@ sv:
     public_information: Publik information
     protected_information: Information som endast visas av funktionärer
     add_information: Du måste fylla i dina användaruppgifter
+    student_lu_email: Du kan endast använda din stild-id@student.lu.se epost
