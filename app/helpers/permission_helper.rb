@@ -7,4 +7,16 @@ module PermissionHelper
                  perm_user.user, '?'])
     end
   end
+
+  def permission_list(user)
+    if user.present? && user.permissions.any?
+      permissions = []
+      user.permissions.each { |p| permissions << permission_list_item(p) }
+      content_tag(:ul, safe_join(permissions))
+    end
+  end
+
+  def permission_list_item(permission)
+    content_tag(:li, permission.to_s)
+  end
 end
