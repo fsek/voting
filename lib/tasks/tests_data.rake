@@ -5,7 +5,7 @@ namespace :db do
     Rake::Task['permissions:load'].invoke
     perm_admin = Permission.find_or_create_by!(subject_class: :all, action: :manage)
 
-    u = User.find_or_initialize_by(email: 'admin@fsektionen.se',
+    u = User.find_or_initialize_by(email: 'admin123@student.lu.se',
                                    firstname: 'David-Admin', lastname: 'Wessman')
     u.password = 'passpass'
     u.confirmed_at = Time.zone.now
@@ -13,7 +13,7 @@ namespace :db do
 
     PermissionUser.find_or_create_by!(permission: perm_admin, user: u)
 
-    a = User.find_or_initialize_by(email: 'user@fsektionen.se',
+    a = User.find_or_initialize_by(email: 'user1234@student.lu.se',
                                    firstname: 'David', lastname: 'Wessman')
     a.confirmed_at = Time.zone.now
     a.password = 'passpass'

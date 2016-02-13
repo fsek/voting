@@ -1,12 +1,15 @@
 # encoding:UTF-8
 class User < ActiveRecord::Base
+  acts_as_paranoid
   devise(:database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable)
+         :recoverable, :rememberable, :trackable,
+         :validatable, :confirmable)
 
   validates :email, uniqueness: true
-  validates :email, format: { with: /\A\b[A-Z0-9a-z]{6,8}+@student\.lu\.se\z/ }
+  validates :email, format: { with: /\A\b[A-Z0-9a-z]{6,8}+@student\.lu\.se\z/,
+                              message: I18n.t('user.student_lu_email') }
   validates :firstname, :lastname, presence: true
+  validates :votecode, uniqueness: true, allow_nil: true
 
   # Associations
   has_many :permissions, through: :permission_users
