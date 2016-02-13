@@ -18,14 +18,8 @@
     g.column(name: User.human_attribute_name(:name), attribute: 'firstname') do |user|
       user_link(user, target: :blank_p)
     end
-    grid.column name: models_name(Permission), assoc: :permissions, attribute: 'name' do |user|
-      content_tag(:ul) do
-        user.permissions.each do |p|
-          content_tag(:li) do
-            p.to_s
-          end
-        end
-      end
+    g.column(name: models_name(Permission), assoc: :permissions, attribute: 'name') do |user|
+      permission_list(user)
     end
     g.column(name: User.human_attribute_name(:email), attribute: 'email')
     g.column(name: User.human_attribute_name(:confirmed_at), attribute: 'confirmed_at',
