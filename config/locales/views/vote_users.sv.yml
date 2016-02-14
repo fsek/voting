@@ -13,5 +13,7 @@ sv:
     make_not_present: Justera ut
     make_all_not_present: Justera ut alla användare
     change_state: Justera in/ut
-    confirm_remove: "Är du säker på att du vill ta bort "
+    reset: Nollställ
+    reset_votecode: Nollställ valkod
+    confirm_reset: "Vill du verkligen nollställa valkoden?"
     confirm_all_not_present: "Är du säker på att du vill justera ut ALLA användare?"
