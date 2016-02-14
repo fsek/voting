@@ -25,18 +25,17 @@ class Admin::VoteUsersController < ApplicationController
   end
 
   def change_state
-    @user = User.find(params[:id])
-
-    if @user.present?
-      @user.presence = !@user.presence
-      @user.save!
-    end
-
+    VoteService.change_state(User.find(params[:id]))
     redirect_to admin_vote_users_path
   end
 
   def make_all_not_present
     User.update_all(presence: false)
+    redirect_to admin_vote_users_path
+  end
+
+  def new_votecode
+    VoteService.set_votecode(User.find(params[:id]))
     redirect_to admin_vote_users_path
   end
 
@@ -48,10 +47,5 @@ class Admin::VoteUsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:presence)
-  end
-
-  def gen_votecode
-    votecode = Array.new(7){ [*'0'..'9', *'a'..'z'].sample }.join
-    (User.with_deleted.any? { |x| x.votecode == votecode }) ? gen_votecode : votecode
   end
 end

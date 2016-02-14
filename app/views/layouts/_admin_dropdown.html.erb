@@ -19,43 +19,33 @@
     <% end %>
     <% if can? :modify, Contact %>
       <li class="dropdown-submenu">
-        <%= link_to(model_name(Contact), nil) %>
-        <ul class="dropdown-menu">
-          <li><%= link_to(t(:index_attr, attr: models_name(Contact)), contacts_path) %></li>
-          <li>
-            <%= link_to(t(:new_attr, attr: model_name(Contact)), new_contact_path) %>
-          </li>
-        </ul>
+        <%= link_to models_name(Contact), contacts_path %>
       </li>
     <% end %>
     <% if can? :modify, News %>
       <li class="dropdown-submenu">
-        <%= link_to(model_name(News), admin_news_index_path) %>
+        <%= link_to models_name(News), admin_news_index_path %>
       </li>
     <% end %>
 
     <% if can? :manage, Notice %>
       <li class="dropdown-submenu">
-        <%= link_to(t('notice.title'), notices_path)%>
-        <ul class="dropdown-menu">
-          <li><%= link_to(t('notice.title'), notices_path) %></li>
-          <li><%= link_to(t('notice.new'), new_notice_path) %></li>
-        </ul>
+        <%= link_to models_name(Notice), notices_path %>
       </li>
     <% end %>
     <% if can? :manage, Document %>
       <li class="dropdown-submenu">
-        <%= link_to(model_name(Document), admin_documents_path) %>
+        <%= link_to model_name(Document), admin_documents_path %>
       </li>
     <% end %>
     <% if can? :manage, Vote %>
       <li class="dropdown-submenu">
-        <%= link_to 'Voteringar', admin_votes_path %>
+        <%= link_to models_name(Vote), admin_votes_path %>
       </li>
     <% end %>
-    <% if can? :manage, User %>
+    <% if can? :manage_voting, User %>
       <li class="dropdown-submenu">
-        <%= link_to models_name(User), admin_users_path %>
+        <%= link_to t('user.vote_administration'), admin_vote_users_path %>
       </li>
     <% end %>
   </ul>

@@ -1,7 +1,9 @@
 sv:
   activerecord:
     models:
-      vote: Votering
+      vote:
+        one: Votering
+        other: Voteringar
     attributes:
       vote:
         title: Namn

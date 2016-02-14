@@ -26,10 +26,9 @@
     grid.column name: t('edit') do |user|
       link_to(t('edit'), edit_admin_vote_user_path(user))
     end
-    grid.column name: t('remove') do |user|
-      link_to t('remove'), admin_vote_user_path(user),
-        method: :delete,
-        data: { confirm: t('vote_user.confirm_remove') + user.to_s + '?' }
+    grid.column name: t('vote_user.reset_votecode') do |user|
+      link_to t('vote_user.reset'), new_votecode_admin_vote_user_path(user),
+                data: {confirm: t('vote_user.confirm_reset')}
     end
   end -%>
 </div>
