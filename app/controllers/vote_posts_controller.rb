@@ -17,7 +17,7 @@ load_permissions_and_authorize_resource
     option = VoteOption.find(vote_post_params[:vote_option_id])
 
     if VoteService.user_vote(@vote_post, option)
-      redirect_to votes_path
+      redirect_to votes_path, notice: alert_create(VotePost)
     else
       render :new, status: 422
     end
