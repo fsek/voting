@@ -3,10 +3,12 @@
   <%= f.input :open, as: :boolean, default: true %>
   <div class="panel panel-default">
     <div class="panel-heading"><%= t('vote.options') %></div>
-    <div class="panel-body">
+    <div id="vote_options">
       <%= f.simple_fields_for :vote_options do |v| %>
         <%= render 'vote_option_fields', :f => v %>
       <% end %>
+    </div>
+    <div class="panel-body" id="links">
       <%= link_to_add_association t('vote.add_option'), f, :vote_options, class: 'btn secondary' %>
     </div>
   </div>

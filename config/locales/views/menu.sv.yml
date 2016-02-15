@@ -1,9 +1,6 @@
 sv:
   menu:
-    guild: Sektionen
-    members: För medlemmar
-    companies: För företag
+    info: Information
+    voting: Voteringar
     contact: Kontakt
     about: Om oss
-
-    farad: Arbetsmarknadsdagar

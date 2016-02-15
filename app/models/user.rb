@@ -1,6 +1,8 @@
 # encoding:UTF-8
 class User < ActiveRecord::Base
   acts_as_paranoid
+  audited only: [:presence, :votecode]
+
   devise(:database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
          :validatable, :confirmable)
@@ -14,6 +16,7 @@ class User < ActiveRecord::Base
   # Associations
   has_many :permissions, through: :permission_users
   has_many :permission_users
+  has_many :vote_posts
 
   scope :all_firstname, -> { order(firstname: :asc) }
 
@@ -33,7 +36,7 @@ class User < ActiveRecord::Base
   end
 
   def print_id
-    %(#{self} - #{id})
+    %(#{self} (Id: #{id}))
   end
 
   def print_email

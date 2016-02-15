@@ -3,31 +3,21 @@
   <ul class="nav navbar-nav navbar-right">
     <li class="dropdown active">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-        <%= t('menu.guild') %> <%= fa_icon('angle-down') %>
+        <%= t('menu.info') %> <%= fa_icon('angle-down') %>
       </a>
       <ul class="dropdown-menu">
-        <% if (sekt_menus = menus_by_location['guild']).present? %>
+        <% if (sekt_menus = menus_by_location['info']).present? %>
           <%= render partial: 'menus/menu', collection: sekt_menus %>
         <% end %>
       </ul>
     </li>
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-        <%= t('menu.members') %> <%= fa_icon('angle-down') %>
+        <%= t('menu.voting') %> <%= fa_icon('angle-down') %>
       </a>
       <ul class="dropdown-menu">
-        <% if (medlem_menus = menus_by_location['members']).present? %>
+        <% if (medlem_menus = menus_by_location['voting']).present? %>
           <%= render partial: 'menus/menu', collection: medlem_menus %>
-        <% end %>
-      </ul>
-    </li>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-        <%= t('menu.companies') %> <%= fa_icon('angle-down') %>
-      </a>
-      <ul class="dropdown-menu">
-        <% if (company_menus = menus_by_location['companies']).present? %>
-          <%= render partial: 'menus/menu', collection: company_menus %>
         <% end %>
       </ul>
     </li>

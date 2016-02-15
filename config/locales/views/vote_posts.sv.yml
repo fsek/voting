@@ -1,4 +1,4 @@
 sv:
   vote_post:
-        bad_votecode: "existerar inte, eller så är personen inte injusterad"
+        bad_votecode: "är inte din valkod, eller så är du inte injusterad"
         vote_closed: "Voteringen är tyvärr stängd"

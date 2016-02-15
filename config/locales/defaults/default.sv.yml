@@ -43,6 +43,7 @@ sv:
     image: Bild
     user: Användare
     user_id: Användare
+    vote_id: Votering
     email: E-post
     phone: Telefon
     name: Namn

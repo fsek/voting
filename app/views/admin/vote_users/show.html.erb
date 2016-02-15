@@ -5,13 +5,42 @@
   <table class="table">
     <tr>
       <td><%= t('attributes.name') %></td>
-      <td><%= @vote_user.name %></td>
+      <td><%= @user.to_s %></td>
     </tr>
     <tr>
       <td><%= t('vote_user.votecode') %></td>
-      <td><%= @vote_user.votecode %></td>
+      <td><%= @user.votecode %></td>
+    </tr>
+    <tr>
+      <td><%= User.human_attribute_name(:presence) %></td>
+      <td><%= yes_no(@user.presence) %></td>
     </tr>
   </table>
-  <%= link_to t('vote_user.edit'), edit_admin_vote_user_path(@vote_user), class: 'btn primary' %>
+  <div class="headline">
+    <h3>Log</h3>
+  </div>
+  <h4><%= t('user.vote_administration') %></h4>
+  <%= grid(@audit_grid) do |grid|
+    grid.column name: t('log.action'), attribute: 'action', filter: false do |u|
+      User.human_attribute_name(u.action)
+    end
+    grid.column name: t('log.change'), attribute: 'audited_changes', filter: false do |u|
+      split_audit_hashes(u.audited_changes, User)
+    end
+    grid.column name: t('log.date'), attribute: 'created_at', filter: false
+  end -%>
+  <h4><%= models_name(VotePost) %></h4>
+  <%= grid(@assoc_grid) do |grid|
+    grid.column name: t('log.action'), attribute: 'action', assoc: :audits, filter: false do |v|
+      Vote.human_attribute_name(v.audits.first.action)
+    end
+    grid.column name: t('log.change'), attribute: 'action', assoc: :audits, filter: false do |v|
+      split_audit_hashes(v.audits.first.audited_changes, VotePost)
+    end
+    grid.column name: t('log.date'), attribute: 'created_at', filter: false do |v|
+      v.audits.first.created_at
+    end
+  end -%>
+  <%= link_to t('vote_user.edit'), edit_admin_vote_user_path(@user), class: 'btn primary' %>
   <%= link_to t('vote_user.administrate'), admin_vote_users_path, class: 'btn secondary' %>
 </div>

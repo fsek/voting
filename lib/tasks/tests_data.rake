@@ -20,9 +20,9 @@ namespace :db do
     a.save!
 
     # Menues
-    Menu.find_or_create_by!(location: :guild, name: 'Om oss',
+    Menu.find_or_create_by!(location: :info, name: 'Om oss',
                             link: '/om', index: 10, visible: true, turbolinks: true)
-    Menu.find_or_create_by!(location: :guild, name: 'Dokument',
+    Menu.find_or_create_by!(location: :info, name: 'Dokument',
                             link: '/dokument', index: 30, visible: true, turbolinks: true)
 
     # Notice

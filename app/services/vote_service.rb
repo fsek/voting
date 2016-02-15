@@ -4,7 +4,9 @@ module VoteService
       VotePost.transaction do
         post.save!
         option.count += 1
-        option.save!
+        option.without_auditing do
+          option.save!
+        end
       end
       true
     rescue

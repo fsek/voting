@@ -44,6 +44,10 @@ class Admin::VotesController < ApplicationController
 
   def show
     @vote = Vote.find(params[:id])
+    @audit_grid = initialize_grid(@vote.audits, name: 'g')
+    @option_grid = initialize_grid(@vote.associated_audits.where(auditable_type: VoteOption),
+                   name: 'h')
+    @post_grid = initialize_grid(@vote.associated_audits.where(auditable_type: VotePost), name: 'i')
   end
 
   def change_state
