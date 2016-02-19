@@ -33,6 +33,44 @@
       <% end %>
     </table>
   <% end %>
+
+  <div class="headline">
+    <h3>Log</h3>
+  </div>
+  <h4><%= models_name(Vote) %></h4>
+  <%= grid(@audit_grid) do |grid|
+    grid.column name: t('log.action'), attribute: 'action', filter: false do |u|
+      User.human_attribute_name(u.action)
+    end
+    grid.column name: t('log.change'), attribute: 'audited_changes', filter: false do |u|
+      split_audit_hashes(u.audited_changes, Vote)
+    end
+    grid.column name: t('log.date'), attribute: 'created_at', filter: false
+  end -%>
+  <h4><%= models_name(VoteOption) %></h4>
+  <%= grid(@option_grid) do |grid|
+    grid.column name: t('log.action'), attribute: 'action', filter: false do |v|
+      Vote.human_attribute_name(v.action)
+    end
+    grid.column name: t('log.change'), attribute: 'action', filter: false do |v|
+      split_audit_hashes(v.audited_changes, VoteOption)
+    end
+    grid.column name: t('log.date'), attribute: 'created_at', filter: false do |v|
+      v.created_at
+    end
+  end -%>
+  <h4><%= models_name(VotePost) %></h4>
+  <%= grid(@post_grid) do |grid|
+    grid.column name: t('log.action'), attribute: 'action', filter: false do |v|
+      Vote.human_attribute_name(v.action)
+    end
+    grid.column name: t('log.change'), attribute: 'action', filter: false do |v|
+      split_audit_hashes(v.audited_changes, VotePost)
+    end
+    grid.column name: t('log.date'), attribute: 'created_at', filter: false do |v|
+      v.created_at
+    end
+  end -%>
   <%= link_to t('vote.edit_vote'), edit_admin_vote_path(@vote), class: 'btn primary' %>
   <%= link_to t('vote.admin_votes'), admin_votes_path, class: 'btn secondary' %>
 </div>

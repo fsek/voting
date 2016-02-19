@@ -12,6 +12,8 @@ sv:
     make_present: Justera in
     make_not_present: Justera ut
     make_all_not_present: Justera ut alla användare
+    made_present: Justerades in
+    made_not_present: Justerades ut
     change_state: Justera in/ut
     reset: Nollställ
     reset_votecode: Nollställ valkod

@@ -22,6 +22,8 @@ class Admin::VoteUsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @audit_grid = initialize_grid(@user.audits, name: 'g1')
+    @assoc_grid = initialize_grid(VotePost.includes(:audits).where(user_id: @user.id), name: 'g2')
   end
 
   def change_state

@@ -4,6 +4,8 @@ class VotePost < ActiveRecord::Base
   belongs_to :vote
   belongs_to :user
 
+  audited associated_with: :vote, except: :deleted_at
+
   attr_accessor :vote_option_id, :votecode
 
   validates :vote_id, :votecode, presence: true
