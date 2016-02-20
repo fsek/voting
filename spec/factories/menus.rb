@@ -1,7 +1,8 @@
 # encoding: UTF-8
 FactoryGirl.define do
   factory :menu do
-    location { ['Sektionen', 'För medlemmar', 'För företag', 'Kontakt'].sample }
+    name
+    location { [Menu::VOTING, Menu::INFO].sample }
     index { rand(10..100) }
     link { generate(:url) }
     visible true

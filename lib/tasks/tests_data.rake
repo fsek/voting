@@ -6,7 +6,7 @@ namespace :db do
     perm_admin = Permission.find_or_create_by!(subject_class: :all, action: :manage)
 
     u = User.find_or_initialize_by(email: 'admin123@student.lu.se',
-                                   firstname: 'David-Admin', lastname: 'Wessman')
+                                   firstname: 'Hilbert-Admin', lastname: 'Älg')
     u.password = 'passpass'
     u.confirmed_at = Time.zone.now
     u.save!
@@ -14,16 +14,18 @@ namespace :db do
     PermissionUser.find_or_create_by!(permission: perm_admin, user: u)
 
     a = User.find_or_initialize_by(email: 'user1234@student.lu.se',
-                                   firstname: 'David', lastname: 'Wessman')
+                                   firstname: 'Hilbert', lastname: 'Älg')
     a.confirmed_at = Time.zone.now
     a.password = 'passpass'
     a.save!
 
     # Menues
-    Menu.find_or_create_by!(location: :guild, name: 'Om oss',
+    Menu.find_or_create_by!(location: Menu::INFO, name: 'Om oss',
                             link: '/om', index: 10, visible: true, turbolinks: true)
-    Menu.find_or_create_by!(location: :guild, name: 'Dokument',
-                            link: '/dokument', index: 30, visible: true, turbolinks: true)
+    Menu.find_or_create_by!(location: Menu::INFO, name: 'Dokument',
+                            link: '/dokument', index: 10, visible: true, turbolinks: true)
+    Menu.find_or_create_by!(location: Menu::VOTING, name: 'Voteringar',
+                            link: '/voteringar', index: 30, visible: true, turbolinks: true)
 
     # Notice
     Notice.find_or_create_by!(FactoryGirl.attributes_for(:notice))

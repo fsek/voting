@@ -1,9 +1,10 @@
 sv:
   menu:
-    guild: Sektionen
-    members: För medlemmar
-    companies: För företag
-    contact: Kontakt
     about: Om oss
-
-    farad: Arbetsmarknadsdagar
+    contact: Kontakt
+    destroy: Förinta meny
+    edit: Redigera meny
+    index: Alla menyer
+    info: Information
+    new: Ny meny
+    voting: Röstning

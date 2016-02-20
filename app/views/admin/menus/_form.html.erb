@@ -1,0 +1,18 @@
+<%= simple_form_for([:admin, menu]) do |f| %>
+  <%= f.input(:location, collection: [[t("menu.#{Menu::INFO}"), Menu::INFO],
+                                      [t("menu.#{Menu::VOTING}"), Menu::VOTING]],
+                         include_blank: false) %>
+  <%= f.input :index %>
+  <%= f.input :name %>
+  <%= f.input :link %>
+  <%= f.input :visible %>
+  <%= f.input :turbolinks %>
+  <%= f.input :blank_p %>
+  <%= f.button :submit, id: :menu_id %>
+
+  <% if menu.persisted? %>
+    <%= link_to(t('menu.destroy'), admin_menu_path(menu),
+                                   method: :delete,
+                                   class: 'btn danger pull-right') %>
+  <% end %>
+<% end %>
