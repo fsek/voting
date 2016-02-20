@@ -1,45 +1,9 @@
-<% menus_by_location = Menu.index.group_by(&:location) %>
 <div class="collapse navbar-collapse navbar-responsive-collapse">
   <ul class="nav navbar-nav navbar-right">
-    <li class="dropdown active">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-        <%= t('menu.guild') %> <%= fa_icon('angle-down') %>
-      </a>
-      <ul class="dropdown-menu">
-        <% if (sekt_menus = menus_by_location['guild']).present? %>
-          <%= render partial: 'menus/menu', collection: sekt_menus %>
-        <% end %>
-      </ul>
-    </li>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-        <%= t('menu.members') %> <%= fa_icon('angle-down') %>
-      </a>
-      <ul class="dropdown-menu">
-        <% if (medlem_menus = menus_by_location['members']).present? %>
-          <%= render partial: 'menus/menu', collection: medlem_menus %>
-        <% end %>
-      </ul>
-    </li>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-        <%= t('menu.companies') %> <%= fa_icon('angle-down') %>
-      </a>
-      <ul class="dropdown-menu">
-        <% if (company_menus = menus_by_location['companies']).present? %>
-          <%= render partial: 'menus/menu', collection: company_menus %>
-        <% end %>
-      </ul>
-    </li>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">
-        <%= t('menu.contact') %> <%= fa_icon('angle-down') %>
-      </a>
-      <ul class="dropdown-menu">
-        <% if (contact_menus = menus_by_location['contact']).present? %>
-          <%= render partial: 'menus/menu', collection: contact_menus %>
-        <% end %>
-      </ul>
-    </li>
+    <% cache('main_menu', skip_digest: true) do %>
+      <% global_menus = GlobalMenus.new %>
+      <%= menu_dropdown(menus: global_menus.info_menus, title: t('menu.info')) %>
+      <%= menu_dropdown(menus: global_menus.voting_menus, title: t('menu.voting')) %>
+    <% end %>
   </ul>
 </div>

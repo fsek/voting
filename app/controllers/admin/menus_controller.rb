@@ -1,9 +1,10 @@
 # encoding:UTF-8
-class MenusController < ApplicationController
+class Admin::MenusController < ApplicationController
   load_permissions_and_authorize_resource
+  before_action :authorize
 
   def index
-    @menues = Menu.all
+    @menu_grid = initialize_grid(Menu)
   end
 
   def new
@@ -17,7 +18,8 @@ class MenusController < ApplicationController
   def create
     @menu = Menu.new(menu_params)
     if @menu.save
-      redirect_to menus_path, notice: alert_create(Menu)
+      expire_fragment('main_menu')
+      redirect_to edit_admin_menu_path(@menu), notice: alert_create(Menu)
     else
       render :new, status: 422
     end
@@ -26,19 +28,25 @@ class MenusController < ApplicationController
   def update
     @menu = Menu.find(params[:id])
     if @menu.update(menu_params)
-      redirect_to edit_menu_path(@menu), notice: alert_update(Menu)
+      expire_fragment('main_menu')
+      redirect_to edit_admin_menu_path(@menu), notice: alert_update(Menu)
     else
       render :edit, status: 422
     end
   end
 
   def destroy
-    @menu = Menu.find(params[:id])
-    @menu.destroy
-    redirect_to menus_url, notice: alert_destroy(Menu)
+    menu = Menu.find(params[:id])
+    menu.destroy!
+    expire_fragment('main_menu')
+    redirect_to admin_menus_url, notice: alert_destroy(Menu)
   end
 
   private
+
+  def authorize
+    authorize!(:modify, Menu)
+  end
 
   def menu_params
     params.require(:menu).permit(:location, :index, :link,

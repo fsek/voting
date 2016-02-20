@@ -50,7 +50,9 @@ Fsek::Application.routes.draw do
 
     resources :notices, path: :notiser
 
-    resources :menus, path: :meny, except: :show
+    namespace :admin do
+      resources :menus, path: :meny, except: :show
+    end
 
     resources :faqs, path: :faq
 
