@@ -8,3 +8,4 @@ sv:
       vote:
         title: Namn
         open: Öppen
+        choices: Max alternativ per röst

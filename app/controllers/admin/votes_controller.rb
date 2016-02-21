@@ -64,7 +64,7 @@ class Admin::VotesController < ApplicationController
   end
 
   def vote_params
-    params.require(:vote).permit(:title, :open,
+    params.require(:vote).permit(:title, :open, :choices,
                                  vote_options_attributes: [:id, :title, :_destroy])
   end
 

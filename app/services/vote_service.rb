@@ -1,10 +1,13 @@
 module VoteService
-  def self.user_vote(post, option)
+  def self.user_vote(post)
     begin
       VotePost.transaction do
         post.save!
-        option.count += 1
-        option.save!
+        options = VoteOption.find(post.vote_option_ids)
+        options.each do |o|
+          o.count += 1
+          o.save!
+        end
       end
       true
     rescue
