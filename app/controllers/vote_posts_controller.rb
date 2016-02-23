@@ -14,9 +14,8 @@ load_permissions_and_authorize_resource
     @vote = Vote.find(params[:vote_id])
     @vote_post = @vote.vote_posts.build(vote_post_params)
     @vote_post.user = current_user
-    option = VoteOption.find(vote_post_params[:vote_option_id])
 
-    if VoteService.user_vote(@vote_post, option)
+    if VoteService.user_vote(@vote_post)
       redirect_to votes_path, notice: alert_create(VotePost)
     else
       render :new, status: 422
@@ -26,6 +25,6 @@ load_permissions_and_authorize_resource
   private
 
   def vote_post_params
-    params.require(:vote_post).permit(:id, :votecode, :vote_id, :vote_option_id)
+    params.require(:vote_post).permit(:id, :votecode, :vote_id, vote_option_ids: [])
   end
 end

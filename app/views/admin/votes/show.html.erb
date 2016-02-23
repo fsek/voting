@@ -12,6 +12,10 @@
       <td><%= @vote.open ? t('vote.open') : t('vote.closed') %></td>
     </tr>
     <tr>
+      <td><%= Vote.human_attribute_name(:choices) %></td>
+      <td><%= @vote.choices %></td>
+    </tr>
+    <tr>
       <td><%= t('vote.number_of_votes') %></td>
       <td><%= @vote.vote_posts.count %></td>
     </tr>

@@ -5,13 +5,17 @@
   <table class="table">
     <tr>
       <td><%= t('attributes.name') %></td>
-      <td><%= @vote_user.name %></td>
+      <td><%= @user.to_s %></td>
     </tr>
     <tr>
       <td><%= t('vote_user.votecode') %></td>
-      <td><%= @vote_user.votecode %></td>
+      <td><%= @user.votecode %></td>
     </tr>
+    <tr>
+      <td><%= User.human_attribute_name(:presence) %></td>
+      <td><%= yes_no(@user.presence) %></td>
+     </tr>
   </table>
-  <%= link_to t('vote_user.edit'), edit_admin_vote_user_path(@vote_user), class: 'btn primary' %>
+  <%= link_to t('vote_user.edit'), edit_admin_vote_user_path(@user), class: 'btn primary' %>
   <%= link_to t('vote_user.administrate'), admin_vote_users_path, class: 'btn secondary' %>
 </div>
