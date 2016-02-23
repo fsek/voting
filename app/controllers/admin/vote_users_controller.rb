@@ -22,6 +22,8 @@ class Admin::VoteUsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @votes = Vote.with_deleted
+    @grid = initialize_grid(Audit.where(user_id: @user.id), include: :updater)
   end
 
   def change_state

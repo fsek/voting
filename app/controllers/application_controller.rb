@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_devise_parameters, if: :devise_controller?
   before_action :set_locale
 
+  before_filter :set_current_user
+
   helper_method :alert_update, :alert_create, :alert_destroy
 
   rescue_from CanCan::AccessDenied do |ex|
@@ -107,5 +109,9 @@ class ApplicationController < ActionController::Base
 
   def referring_action
     Rails.application.routes.recognize_path(request.referer)[:action]
+  end
+
+  def set_current_user
+    User.current = current_user
   end
 end

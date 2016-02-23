@@ -16,6 +16,21 @@ sv:
   show: Visa
   remove: Ta bort
 
+  attributes:
+    create: Skapades
+    destroy: Raderades
+    update: Ändrades
+
+  log:
+    title: Logg
+    type: Typ
+    action: Åtgärd
+    change: Ändring
+    date: Datum
+    missing: Saknas
+    to: " till "
+    updated_by: Uppdaterad av
+
   administrate: Administrera
 
   actions:

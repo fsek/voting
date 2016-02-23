@@ -37,7 +37,7 @@ RSpec.describe User, type: :model do
   describe 'public instance methods' do
     context 'printing' do
       it 'print_id' do
-        user.print_id.should eq(%(#{user.firstname} #{user.lastname} - #{user.id}))
+        user.print_id.should eq(%(#{user.firstname} #{user.lastname} (Id: #{user.id})))
       end
 
       it 'print_email' do
