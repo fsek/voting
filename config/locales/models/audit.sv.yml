@@ -1,0 +1,8 @@
+sv:
+  activerecord:
+    attributes:
+      audit:
+        Vote: Votering
+        VoteOption: Alternativ
+        VotePost: Röst
+        User: Användare

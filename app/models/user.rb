@@ -14,6 +14,11 @@ class User < ActiveRecord::Base
   # Associations
   has_many :permissions, through: :permission_users
   has_many :permission_users
+  has_many :audits, as: :auditable
+
+  after_create :log_create
+  after_update :log_update
+  after_destroy :log_destroy
 
   scope :all_firstname, -> { order(firstname: :asc) }
 
@@ -33,10 +38,45 @@ class User < ActiveRecord::Base
   end
 
   def print_id
-    %(#{self} - #{id})
+    %(#{self} (Id: #{id}))
   end
 
   def print_email
     %(#{self} <#{email}>)
+  end
+
+  def log_create
+    log('create')
+  end
+
+  def log_update
+    if log_changes.present?
+      log('update')
+    end
+  end
+
+  def log_destroy
+    log('destroy')
+  end
+
+  def log(action)
+    Audit.create!(auditable: self, user_id: id, audited_changes: log_changes,
+                  action: action, updater_id: updater)
+  end
+
+  def log_changes
+    changes.extract!(:presence, :votecode)
+  end
+
+  def self.current=(user)
+    Thread.current[:current_user] = user
+  end
+
+  def self.current
+    Thread.current[:current_user]
+  end
+
+  def updater
+    User.current.id if User.current && !destroyed?
   end
 end

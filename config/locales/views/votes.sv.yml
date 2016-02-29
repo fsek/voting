@@ -21,3 +21,5 @@ sv:
     submit: Rösta!
     count: Antal
     number_of_votes: Antal röster
+    made_open: Öppnades
+    made_closed: Stängdes
