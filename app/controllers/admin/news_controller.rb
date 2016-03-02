@@ -48,6 +48,6 @@ class Admin::NewsController < ApplicationController
   end
 
   def news_params
-    params.require(:news).permit(:title, :content, :image, :url, :remove_image)
+    params.require(:news).permit(:title, :content, :url)
   end
 end

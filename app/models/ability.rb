@@ -8,7 +8,6 @@ class Ability
     can :read, Document, public: true
     can :read, News
     can [:mail, :read], Contact, public: true
-    can [:display, :image], Notice
     can [:new, :create, :read], Faq
     can [:index, :about, :cookies_information], :static_pages
 
