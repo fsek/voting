@@ -7,13 +7,6 @@
 <%= grid(@news_grid) do |g|
   g.column name: News.human_attribute_name(:title), attribute: 'title', filter: false
   g.column name: News.human_attribute_name(:url), attribute: 'url', filter: false
-  g.column name: News.human_attribute_name(:image), attribute: 'image', filter: false do |news|
-    if news.image.present?
-      t(:yes)
-    else
-      t(:no)
-    end
-  end
   g.column name: News.human_attribute_name(:created_at), attribute: 'created_at', filter: false do |news|
     l(news.created_at)
   end
