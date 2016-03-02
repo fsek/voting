@@ -23,6 +23,7 @@
 //= require turbolinks
 //= require wice_grid
 //= require jquery.countdown.min
+//= require moment
 //= require bootstrap-datepicker
 //= require bootstrap-datetimepicker
 //= require pickers
