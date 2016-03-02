@@ -61,7 +61,7 @@ Fsek::Application.routes.draw do
     end
 
     namespace :admin do
-      resources :news, path: :nyheter
+      resources :news, path: :nyheter, except: [:show]
     end
 
     resources :news, path: :nyheter, only: [:index, :show]

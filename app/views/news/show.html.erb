@@ -2,7 +2,7 @@
   <h2><%= @news.title %></h2>
 </div>
 
-<%= content_for :info do %>
+<div class="col-md-12 news">
   <%= simple_format(@news.content)%>
 
   <% if @news.url.present? %>
@@ -34,21 +34,4 @@
   <%= link_to(t(:index_attr, attr: models_name(News)),
               news_index_path,
               class: 'btn secondary') %>
-<% end %>
-
-<%= content_for :image do %>
-  <%= image_tag(@news.image.url, class: 'img-responsive') %>
-<% end %>
-
-<% if @news.image.present? %>
-  <div class="col-md-6 col-sm-12 news">
-    <%= yield :info %>
-  </div>
-  <div class="col-md-6 col-sm-12">
-    <%= yield :image %>
-  </div>
-<% else %>
-  <div class="col-md-12 news">
-    <%= yield :info %>
-  </div>
-<% end %>
+</div>

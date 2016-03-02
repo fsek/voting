@@ -9,7 +9,7 @@ RSpec.describe Ability do
     Faq.new => { yes: [:read, :create], no: [:update, :destroy] },
     Menu.new => { yes: [], no: standard },
     News.new => { yes: [:read], no: [:create, :update, :destroy] },
-    Notice.new => { yes: [:display, :image], no: standard },
+    Notice.new => { no: standard },
     Permission.new => { yes: [], no: standard }
   }
   
