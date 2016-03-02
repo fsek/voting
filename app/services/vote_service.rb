@@ -17,9 +17,10 @@ module VoteService
 
   def self.set_present(user)
     state = false
-    if Vote.current.nil?
+    if Vote.current.nil? && !Agenda.current.nil?
       begin
         user.update!(presence: true)
+        Adjustment.create!(user: user, agenda: Agenda.current, presence: true)
         state = true
       rescue
         state = false
@@ -30,9 +31,10 @@ module VoteService
 
   def self.set_not_present(user)
     state = false
-    if Vote.current.nil?
+    if Vote.current.nil? && !Agenda.current.nil?
       begin
         user.update!(presence: false)
+        Adjustment.create!(user: user, agenda: Agenda.current, presence: false)
         state = true
       rescue
         state = false
@@ -42,13 +44,16 @@ module VoteService
   end
 
   def self.set_all_not_present
-    state = false
-    if Vote.current.nil?
+    agenda = Agenda.current
+    if Vote.current.nil? && !agenda.nil?
       User.transaction do
-        state = User.update_all(presence: false)
+        User.present.each do |u|
+          u.update!(presence: false)
+          Adjustment.create!(user: u, agenda: agenda, presence: false)
+        end
       end
+      true
     end
-    state
   end
 
   def self.set_votecode(user)

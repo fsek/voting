@@ -1,0 +1,12 @@
+sv:
+  activerecord:
+    models:
+      agenda:
+        one: Punkt
+        other: Punkter
+    attributes:
+      agenda:
+        future: Framtida
+        current: Aktuell
+        closed: Stängd
+        parent_id: Sektion

@@ -1,0 +1,8 @@
+<div class="col-md-6 col-md-offset-3 col-sm-12 reg-page">
+  <div class="headline">
+    <h1><%= t('adjustment.edit') %></h1>
+  </div>
+  <%= render 'form' %>
+    <%= link_to t('adjustment.destroy'),
+                admin_adjustment_path(@adjustment), method: :delete,  class: 'btn danger' %>
+</div>

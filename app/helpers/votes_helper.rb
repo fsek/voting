@@ -14,6 +14,8 @@ module VotesHelper
       val = split_array(value)
     when 'vote_id'
       val = split_array(value)
+    when 'agenda_id'
+      val = split_agenda(value)
     when 'presence'
       val = split_presence(value)
     when 'votecode'
@@ -71,6 +73,14 @@ module VotesHelper
     end
   end
 
+  def split_agenda(value)
+    if value.is_a?(Array) && value.size == 2
+      '§' + Agenda.find(value.first).order + t('log.to') + '§' + Agenda.find(value.last).order
+    else
+      value.to_s
+    end
+  end
+
   def open_closed_string(value)
     if value
       t('vote.made_open')
@@ -97,7 +107,8 @@ module VotesHelper
 
   def user_filter
     [[Audit.human_attribute_name('User'), 'User'],
-     [Audit.human_attribute_name('VotePost'), 'VotePost']]
+     [Audit.human_attribute_name('VotePost'), 'VotePost'],
+     [Audit.human_attribute_name('Adjustment'), 'Adjustment']]
   end
 
   def vote_filter

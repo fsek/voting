@@ -35,6 +35,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
     it 'makes not present @user present' do
       user = create(:user, presence: false)
       create(:vote, open: false)
+      create(:agenda, status: Agenda::CURRENT)
 
       patch(:present, id: user.to_param)
 
@@ -47,6 +48,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
     it 'makes already present @user stay present' do
       user = create(:user, presence: true)
       create(:vote, open: false)
+      create(:agenda, status: Agenda::CURRENT)
 
       patch(:present, id: user.to_param)
 
@@ -59,6 +61,20 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
     it 'doesnt work if a vote is open' do
       user = create(:user, presence: false)
       create(:vote, open: true)
+      create(:agenda, status: Agenda::CURRENT)
+
+      patch(:present, id: user.to_param)
+
+      user.reload
+      assigns(:user).should eq(user)
+      user.presence.should be_falsey
+      response.should redirect_to(admin_vote_users_path)
+    end
+
+    it 'doesnt work without a current agenda' do
+      user = create(:user, presence: false)
+      create(:vote, open: false)
+      create(:agenda)
 
       patch(:present, id: user.to_param)
 
@@ -73,6 +89,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
     it 'makes present @user not present' do
       user = create(:user, presence: true)
       create(:vote, open: false)
+      create(:agenda, status: Agenda::CURRENT)
 
       patch(:not_present, id: user.to_param)
 
@@ -85,6 +102,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
 
     it 'makes already not present @user stay not present' do
       user = create(:user, presence: false)
+      create(:agenda, status: Agenda::CURRENT)
       create(:vote, open: false)
 
       patch(:not_present, id: user.to_param)
@@ -98,7 +116,22 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
 
     it 'doesnt work if a vote is open' do
       user = create(:user, presence: true)
+      create(:agenda, status: Agenda::CURRENT)
       create(:vote, open: true)
+
+      patch(:not_present, id: user.to_param)
+
+      user.reload
+      assigns(:user).should eq(user)
+      user.presence.should be_truthy
+      flash[:alert].should eq(I18n.t('vote_user.state.error_not_present', u: user.to_s))
+      response.should redirect_to(admin_vote_users_path)
+    end
+
+    it 'doesnt work without a current agenda' do
+      user = create(:user, presence: true)
+      create(:agenda)
+      create(:vote, open: false)
 
       patch(:not_present, id: user.to_param)
 
@@ -117,6 +150,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       create(:user, presence: true)
       create(:user, presence: true)
       create(:vote, open: false)
+      create(:agenda, status: Agenda::CURRENT)
 
       patch(:all_not_present)
 

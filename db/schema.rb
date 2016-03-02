@@ -16,6 +16,33 @@ ActiveRecord::Schema.define(version: 20160302090637) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "adjustments", force: :cascade do |t|
+    t.integer  "agenda_id"
+    t.integer  "user_id"
+    t.boolean  "presence",   default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.datetime "deleted_at"
+  end
+
+  add_index "adjustments", ["agenda_id"], name: "index_adjustments_on_agenda_id", using: :btree
+  add_index "adjustments", ["deleted_at"], name: "index_adjustments_on_deleted_at", using: :btree
+  add_index "adjustments", ["user_id"], name: "index_adjustments_on_user_id", using: :btree
+
+  create_table "agendas", force: :cascade do |t|
+    t.integer  "parent_id"
+    t.integer  "index",      default: 1
+    t.string   "sort_index"
+    t.string   "title"
+    t.string   "status",     default: "future", null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.datetime "deleted_at"
+  end
+
+  add_index "agendas", ["deleted_at"], name: "index_agendas_on_deleted_at", using: :btree
+  add_index "agendas", ["parent_id"], name: "index_agendas_on_parent_id", using: :btree
+
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id"
     t.string   "auditable_type"
@@ -191,6 +218,8 @@ ActiveRecord::Schema.define(version: 20160302090637) do
 
   add_index "votes", ["deleted_at"], name: "index_votes_on_deleted_at", using: :btree
 
+  add_foreign_key "adjustments", "agendas"
+  add_foreign_key "adjustments", "users"
   add_foreign_key "audits", "users"
   add_foreign_key "audits", "votes"
   add_foreign_key "vote_options", "votes"

@@ -6,6 +6,9 @@
   <% if can? :manage, User %>
     <%= link_to t('user.manage'), admin_vote_users_path, class: 'btn secondary' %>
   <% end %>
+  <% if can? :manage, Agenda %>
+    <%= link_to t('agenda.manage'), admin_agendas_path, class: 'btn secondary' %>
+  <% end %>
 </div>
 <div class="col-md-12">
   <%= grid(@votes_grid) do |grid|

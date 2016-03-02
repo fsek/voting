@@ -48,7 +48,19 @@ Fsek::Application.routes.draw do
         patch :not_present, on: :member
         patch :new_votecode, on: :member
         patch :all_not_present, on: :collection
+        get :attendance_list, on: :collection
       end
+    end
+
+    namespace :admin do
+      resources :agendas, path: :dagordning, controller: :agendas, except: [:show] do
+        patch :set_current, on: :member
+        patch :set_closed, on: :member
+      end
+    end
+
+    namespace :admin do
+      resources :adjustments, path: :justering, controller: :adjustments, except: [:show, :index]
     end
 
     resources :notices, path: :notiser

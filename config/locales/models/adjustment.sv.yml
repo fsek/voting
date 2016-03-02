@@ -1,0 +1,10 @@
+sv:
+  activerecord:
+    models:
+      adjustment: 
+        one: Justering
+        other: Justeringar
+    attributes:
+      adjustment:
+        presence: Närvaro
+        agenda_id: Punkt
