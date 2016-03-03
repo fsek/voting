@@ -26,7 +26,7 @@
   <div class="headline">
     <h3><%= t('log.title') %></h3>
   </div>
-  <%= grid(@grid) do |grid|
+  <%= grid(@audit_grid) do |grid|
     grid.column name: t('log.type'), attribute: 'auditable_type', custom_filter: user_filter do |a|
       Audit.human_attribute_name(a.auditable_type)
     end

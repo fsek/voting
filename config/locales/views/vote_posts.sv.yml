@@ -1,8 +1,9 @@
 sv:
   vote_post:
+    already_voted: "Du har redan röstat i omröstningen"
     bad_votecode_or_presence: "är inte din valkod, eller så är du inte injusterad"
-    vote_closed: "Voteringen är tyvärr stängd"
-    too_many_options: "för många alternativ valda"
-    same_option_twice: "varje alternativ kan väljas max en gång"
-    no_option_selected: "inget alternativ valt"
     max_choices: "Du kan maximalt välja %{choices} alternativ"
+    no_option_selected: "inget alternativ valt"
+    same_option_twice: "varje alternativ kan väljas max en gång"
+    too_many_options: "för många alternativ valda"
+    vote_closed: "Voteringen är tyvärr stängd"

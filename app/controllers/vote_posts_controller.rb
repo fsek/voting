@@ -1,12 +1,12 @@
 class VotePostsController < ApplicationController
-load_permissions_and_authorize_resource
+  load_permissions_and_authorize_resource
 
   def new
     @vote = Vote.find(params[:vote_id])
-    @vote_post = VotePost.new
-
     if !@vote.open
-      redirect_to votes_path
+      redirect_to votes_path, alert: I18n.t('vote.is_closed')
+    else
+      @vote_post = VotePost.new
     end
   end
 
@@ -25,6 +25,6 @@ load_permissions_and_authorize_resource
   private
 
   def vote_post_params
-    params.require(:vote_post).permit(:id, :votecode, :vote_id, vote_option_ids: [])
+    params.require(:vote_post).permit(:id, :votecode, vote_option_ids: [])
   end
 end

@@ -1,6 +1,6 @@
-<div class="col-md-10 col-md-offset-1 col-sm-1+ col-sm-offset-1 reg-page">
+<div class="col-md-10 col-md-offset-1 reg-page">
   <div class="headline">
-    <h2><%= t('vote.show_title') + ' – ' + @vote.title %></h2>
+    <h1><%= t('vote.show_title') + ' – ' + @vote.title %></h1>
   </div>
   <table class="table">
     <tr>
@@ -31,13 +31,13 @@
     <table class="table">
       <% @vote.vote_options.where.not(:title => nil).each do |v| %>
         <tr>
-          <td><b> <%= v.title %></b></td>
+          <td><b><%= v.title %></b></td>
          <td><b><%= v.count %></b></td>
        </tr>
       <% end %>
     </table>
   <% end %>
-  <%= grid(@grid) do |grid|
+  <%= grid(@audit_grid) do |grid|
     grid.column name: t('log.type'), attribute: 'auditable_type', custom_filter: vote_filter do |a|
       Audit.human_attribute_name(a.auditable_type)
     end

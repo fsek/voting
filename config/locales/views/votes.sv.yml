@@ -1,25 +1,28 @@
 sv:
   vote:
-    title: Voteringar
-    show_title: Votering
+    add_option: Lägg till
     admin_votes: Administrera voteringar
-    new_vote: Ny votering
-    edit_vote: Redigera votering
-    open: Öppen
     closed: Stängd
-    open_close: Öppna/stäng
-    do_open: Öppna
-    do_close: Stäng
+    closing_failed: Stängningen misslyckades
     confirm_remove: "Är du säker på att du vill ta bort "
+    count: Antal
+    do_close: Stäng
+    do_open: Öppna
+    edit_vote: Redigera votering
+    is_closed: Omröstningen är stängd
+    made_closed: Stängdes
+    made_open: Öppnades
+    manage: Hantera voteringar
+    new_vote: Ny votering
+    no_votes_open: "Just nu finns det tyvärr inga voteringar som är öppna :("
+    number_of_votes: Antal röster
+    open: Öppen
+    open_close: Öppna/stäng
+    open_failed: Öppningen misslyckades, är ett annat val öppet?
+    options: Alternativ
+    results: Resultat
+    show_title: Votering
     status: Status
     still_open: Voteringen är fortfarande öppen. Resultatet kommer att visas här när voteringen har stängts. Följande alternativ finns
-    results: Resultat
-    options: Alternativ
-    add_option: Lägg till
-    manage: Hantera voteringar
-    no_votes_open: "Just nu finns det tyvärr inga voteringar som är öppna :("
     submit: Rösta!
-    count: Antal
-    number_of_votes: Antal röster
-    made_open: Öppnades
-    made_closed: Stängdes
+    title: Voteringar

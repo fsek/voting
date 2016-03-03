@@ -1,15 +1,26 @@
-<div class="col-md-6 col-md-offset-3 col-sm-12 reg-page">
+<div class="col-md-6 col-md-offset-3 col-sm-12 reg-page form">
   <div class="headline">
-    <h2><%= t('vote.show_title') %></h2>
+    <h1><%= t('vote.show_title') %></h1>
   </div>
+
   <%= simple_form_for [@vote, @vote_post] do |f| %>
     <h3><%= @vote.title %></h3>
     <p><i><%= t('vote_post.max_choices', choices: @vote.choices) %></i></p>
+
+    <% if @vote_post.errors[:user_id].present? %>
+      <% @vote_post.errors[:user_id].each do |error| %>
+        <span class="error">
+          <%= fa_icon('exclamation-circle') %>
+          <%= error.to_s %>
+        </span>
+      <% end %>
+    <% end %>
+
     <%= f.input :votecode %>
     <%= f.input :vote_option_ids, collection: @vote.vote_options.order(:title), include_blank: false,
-                input_html: { class: 'select2', multiple: true }, include_hidden: false, required: true %>
+      input_html: { class: 'select2', multiple: true }, include_hidden: false, required: true %>
     <div class="table">
-      <%= f.button :submit, t('vote.submit') %>
+      <%= f.button :submit, t('vote.submit'), id: 'vote_post_submit' %>
       <%= link_to t('actions.back'), votes_path, class: 'btn secondary' %>
     </div>
   <% end %>

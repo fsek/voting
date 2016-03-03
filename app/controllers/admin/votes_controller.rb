@@ -8,7 +8,7 @@ class Admin::VotesController < ApplicationController
 
   def new
     @vote = Vote.new
-    @vote.vote_posts.build
+    @vote.vote_options.build
   end
 
   def create
@@ -44,18 +44,28 @@ class Admin::VotesController < ApplicationController
 
   def show
     @vote = Vote.find(params[:id])
-    @grid = initialize_grid(Audit.where(vote_id: @vote.id), include: [:user, :updater])
+    @audit_grid = initialize_grid(Audit.where(vote_id: @vote.id), include: [:user, :updater])
   end
 
-  def change_state
-    @vote = Vote.find(params[:id])
+  def open
+    vote = Vote.find(params[:id])
+    vote.open = true
 
-    if @vote != nil
-      @vote.open = !@vote.open
-      @vote.save!
+    if vote.save
+      flash[:notice] = I18n.t('vote.made_open')
+    else
+      flash[:alert] = I18n.t('vote.open_failed')
     end
 
     redirect_to admin_votes_path
+  end
+
+  def close
+    vote = Vote.find(params[:id])
+    vote.open = false
+    vote.save!
+
+    redirect_to admin_votes_path, notice: I18n.t('vote.made_closed')
   end
 
   private
@@ -68,5 +78,4 @@ class Admin::VotesController < ApplicationController
     params.require(:vote).permit(:title, :open, :choices,
                                  vote_options_attributes: [:id, :title, :_destroy])
   end
-
 end

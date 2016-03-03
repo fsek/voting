@@ -27,6 +27,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
 
       get(:show, id: user.to_param)
       assigns(:user).should eq(user)
+      assigns(:audit_grid).should be_present
     end
   end
 
@@ -78,6 +79,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       user.reload
       assigns(:user).should eq(user)
       response.should redirect_to(admin_vote_users_path)
+      flash[:notice].should eq(I18n.t('vote_user.state.made_not_present', u: user.to_s))
       user.presence.should be_falsey
     end
 
@@ -90,6 +92,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       user.reload
       assigns(:user).should eq(user)
       response.should redirect_to(admin_vote_users_path)
+      flash[:notice].should eq(I18n.t('vote_user.state.made_not_present', u: user.to_s))
       user.presence.should be_falsey
     end
 
@@ -97,12 +100,70 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       user = create(:user, presence: true)
       create(:vote, open: true)
 
-      patch(:present, id: user.to_param)
+      patch(:not_present, id: user.to_param)
 
       user.reload
       assigns(:user).should eq(user)
       user.presence.should be_truthy
+      flash[:alert].should eq(I18n.t('vote_user.state.error_not_present', u: user.to_s))
       response.should redirect_to(admin_vote_users_path)
+    end
+  end
+
+  describe 'PATCH #all_not_present' do
+    it 'sets all users to not present' do
+      create(:user, presence: true)
+      create(:user, presence: true)
+      create(:user, presence: true)
+      create(:user, presence: true)
+      create(:vote, open: false)
+
+      patch(:all_not_present)
+
+      response.should redirect_to(admin_vote_users_path)
+      flash[:notice].should eq(I18n.t('vote_user.state.all_not_present'))
+
+      User.where(presence: true).count.should eq(0)
+    end
+
+    it 'does not set users to not present' do
+      create(:user, presence: true)
+      create(:user, presence: true)
+      create(:user, presence: true)
+      create(:user, presence: true)
+      create(:vote, open: true)
+
+      patch(:all_not_present)
+
+      response.should redirect_to(admin_vote_users_path)
+      flash[:alert].should eq(I18n.t('vote_user.state.error_all_not_present'))
+
+      User.where(presence: true).count.should eq(4)
+    end
+  end
+
+  describe 'PATCH #new_votecode' do
+    it 'sets new votecode' do
+      user = create(:user, votecode: 'abcd123')
+
+      patch(:new_votecode, id: user)
+
+      response.should redirect_to(admin_vote_users_path)
+      user.reload
+      user.votecode.should_not eq('abcd123')
+    end
+
+    it 'does not set new votecode' do
+      user = create(:user, votecode: 'abcd123')
+      allow(VoteService).to receive(:set_votecode) { false }
+
+      patch(:new_votecode, id: user)
+
+      response.status.should eq(422)
+      response.should render_template(:show)
+
+      user.reload
+      user.votecode.should eq('abcd123')
     end
   end
 end
