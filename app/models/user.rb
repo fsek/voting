@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   after_destroy :log_destroy
 
   scope :all_firstname, -> { order(firstname: :asc) }
+  scope :present, -> { where(presence: true) }
+  scope :not_present, -> { where(presence: false) }
 
   def to_s
     if has_name_data?

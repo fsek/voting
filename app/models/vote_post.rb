@@ -9,37 +9,13 @@ class VotePost < ActiveRecord::Base
   attr_accessor :vote_option_ids, :votecode
 
   validates :vote_id, :votecode, presence: true
-  validates :user_id, uniqueness: { scope: :vote }, presence: true
+  validates :user_id, uniqueness: { scope: :vote_id }, presence: true
   validate :vote_open, :user_details, :option_details
 
   after_create :log_create
   after_update :log_update
   after_destroy :log_destroy
 
-  def user_details
-    unless User.exists?(id: user_id, votecode: votecode, presence: true)
-      errors.add(:votecode, I18n.t('vote_post.bad_votecode'))
-    end
-  end
-
-  def vote_open
-    unless vote.open
-      errors.add(:votecode, I18n.t('vote_post.vote_closed'))
-    end
-  end
-
-  def option_details
-    if vote_option_ids.present?
-      unless vote_option_ids.count <= vote.choices
-        errors.add(:vote_option_ids, I18n.t('vote_post.too_many_options'))
-      end
-      unless vote_option_ids.uniq.count == vote_option_ids.count
-        errors.add(:vote_option_ids, I18n.t('vote_post.same_option_twice'))
-      end
-    else
-      errors.add(:vote_option_ids, I18n.t('vote_post.no_option_selected'))
-    end
-  end
 
   def log_create
     log('create')
@@ -66,5 +42,32 @@ class VotePost < ActiveRecord::Base
 
   def updater
     User.current.id if User.current && !destroyed?
+  end
+
+  private
+
+  def user_details
+    unless User.exists?(id: user_id, votecode: votecode, presence: true)
+      errors.add(:votecode, I18n.t('vote_post.bad_votecode_or_presence'))
+    end
+  end
+
+  def vote_open
+    unless vote.present? && vote.open
+      errors.add(:votecode, I18n.t('vote_post.vote_closed'))
+    end
+  end
+
+  def option_details
+    if vote_option_ids.present?
+      unless vote_option_ids.count <= vote.choices
+        errors.add(:vote_option_ids, I18n.t('vote_post.too_many_options'))
+      end
+      unless vote_option_ids.uniq.count == vote_option_ids.count
+        errors.add(:vote_option_ids, I18n.t('vote_post.same_option_twice'))
+      end
+    else
+      errors.add(:vote_option_ids, I18n.t('vote_post.no_option_selected'))
+    end
   end
 end

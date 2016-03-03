@@ -9,3 +9,6 @@ sv:
         title: Namn
         open: Öppen
         choices: Max alternativ per röst
+
+  vote:
+    already_one_open: Det finns redan ett öppet val

@@ -1,21 +1,34 @@
 sv:
   vote_user:
-    title: Mötesanvändare
-    manage: Hantera mötesanvändare
     administrate: Administrera mötesanvändare
-    new: Ny användare
-    new2: Ny mötesanvändare
-    edit: Redigera användare
-    edit2: Redigera mötesanvändare
-    votecode: Valkod
-    present: Närvarande
-    make_present: Justera in
-    make_not_present: Justera ut
-    make_all_not_present: Justera ut alla användare
-    made_present: Justerades in
-    made_not_present: Justerades ut
     change_state: Justera in/ut
+    confirm_all_not_present: "Är du säker på att du vill justera ut ALLA användare?"
+    confirm_reset: "Vill du verkligen nollställa valkoden?"
+    edit2: Redigera mötesanvändare
+    edit: Redigera användare
+    make_all_not_present: Justera ut alla användare
+    make_not_present: Justera ut
+    make_present: Justera in
+    manage: Hantera mötesanvändare
+    new2: Ny mötesanvändare
+    new: Ny användare
+    present: Närvarande
     reset: Nollställ
     reset_votecode: Nollställ valkod
-    confirm_reset: "Vill du verkligen nollställa valkoden?"
-    confirm_all_not_present: "Är du säker på att du vill justera ut ALLA användare?"
+    title: Mötesanvändare
+    votecode: Valkod
+    votecode_success: "%{u} fick en ny valkod, som skickats via epost"
+
+    state:
+      all_not_present: Utjustering av alla mötesdeltagare lyckades
+      made_not_present: "%{u} justerades ut"
+      made_present: "%{u} justerades in"
+      present: Injusterad
+      not_present: Utjusterad
+
+    mailer:
+      votecode:
+        subject: Här är din röstkod
+        description: Här kommer din valkod, se till att du håller den för dig själv. Tror du att någon kommit över din kod? Kontakta justerare så får du en ny.
+        new_success: Ny valkod skickades till användaren.
+        title: Din röstkod
