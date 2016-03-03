@@ -24,8 +24,8 @@
     g.column(name: User.human_attribute_name(:email), attribute: 'email')
     g.column(name: User.human_attribute_name(:confirmed_at), attribute: 'confirmed_at',
              filter: false)
-    g.column(name: t(:edit), filter: false) do |user|
-      link_to(t('user.vote.edit'), edit_admin_vote_user_path(user))
+    g.column(name: t(:show), filter: false) do |user|
+      link_to(t('user.vote.show'), admin_vote_user_path(user))
     end
   end -%>
 </div>
