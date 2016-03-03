@@ -64,7 +64,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       user.reload
       assigns(:user).should eq(user)
       user.presence.should be_falsey
-      response.status.should eq(422)
+      response.should redirect_to(admin_vote_users_path)
     end
   end
 
@@ -102,7 +102,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       user.reload
       assigns(:user).should eq(user)
       user.presence.should be_truthy
-      response.status.should eq(422)
+      response.should redirect_to(admin_vote_users_path)
     end
   end
 end
