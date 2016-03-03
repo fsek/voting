@@ -57,9 +57,9 @@ module VotesHelper
 
   def presence_string(value)
     if value
-      t('vote_user.made_present')
+      t('vote_user.state.present')
     else
-      t('vote_user.made_not_present')
+      t('vote_user.state.not_present')
     end
   end
 

@@ -41,10 +41,12 @@ Fsek::Application.routes.draw do
       resources :votes, path: :voteringar, controller: :votes do
         get 'change_state', on: :member
       end
-      resources :vote_users, path: :motesanvandare, controller: :vote_users do
-        patch 'change_state', on: :member
-        patch 'make_all_not_present', on: :collection
-        patch 'new_votecode', on: :member
+
+      resources :vote_users, path: :motesanvandare, controller: :vote_users, only: [:show, :index] do
+        patch :present, on: :member
+        patch :not_present, on: :member
+        patch :new_votecode, on: :member
+        patch :all_not_present, on: :collection
       end
     end
 

@@ -1,14 +1,16 @@
 <div class="headline">
-  <h2><%= t('vote_user.administrate') %></h2>
+  <h1><%= t('vote_user.administrate') %></h1>
 </div>
+
 <div class="col-md-12">
   <% if can? :manage, Vote %>
     <%= link_to t('vote.manage'), admin_votes_path, class: 'btn secondary' %>
   <% end %>
-  <%= link_to(t('vote_user.make_all_not_present'), make_all_not_present_admin_vote_users_path,
+  <%= link_to(t('vote_user.make_all_not_present'), all_not_present_admin_vote_users_path,
               method: :patch, class: 'btn secondary',
               data: {confirm: t('vote_user.confirm_all_not_present')}) %>
 </div>
+
 <div class="col-md-12">
   <%= grid(@vote_users_grid) do |grid|
     grid.column name: t('attributes.name'), attribute: 'firstname' do |user|
@@ -18,12 +20,11 @@
     grid.column name: User.human_attribute_name(:presence), attribute: 'presence' do |user|
       yes_no(user.presence)
     end
-    grid.column name: t('user.change_state') do |user|
-      link_to(user.presence ? t('user.make_not_present') : t('vote_user.make_present'),
-              change_state_admin_vote_user_path(user), method: :patch)
+    grid.column name: t('vote_user.change_state') do |user|
+      vote_user_state_link(user)
     end
-    grid.column name: t('edit') do |user|
-      link_to(t('edit'), edit_admin_vote_user_path(user))
+    grid.column name: t('show') do |user|
+      link_to(t('show'), admin_vote_user_path(user))
     end
     grid.column name: t('vote_user.reset_votecode') do |user|
       link_to t('vote_user.reset'), new_votecode_admin_vote_user_path(user),

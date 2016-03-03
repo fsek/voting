@@ -15,20 +15,51 @@ module VoteService
     end
   end
 
-  def self.change_state(user)
-    if user.present?
-      user.update(presence: !user.presence)
-
-      if user.votecode == nil
-        set_votecode(user)
+  def self.set_present(user)
+    state = false
+    if Vote.current.nil?
+      begin
+        user.update!(presence: true)
+        state = true
+      rescue
+        state = false
       end
     end
+    state
+  end
+
+  def self.set_not_present(user)
+    state = false
+    if Vote.current.nil?
+      begin
+        user.update!(presence: false)
+        state = true
+      rescue
+        state = false
+      end
+    end
+    state
+  end
+
+  def self.set_all_not_present
+    state = false
+    if Vote.current.nil?
+      User.transaction do
+        state = User.update_all(presence: false)
+      end
+    end
+    state
   end
 
   def self.set_votecode(user)
     votecode = votecode_generator
-    user.update!(votecode: votecode)
-    # TODO: An email with the new votecode should be sent to the user!
+    begin
+      user.update!(votecode: votecode)
+      VoteMailer.votecode(user).deliver_now
+      true
+    rescue
+      false
+    end
   end
 
   def self.votecode_generator

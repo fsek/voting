@@ -8,11 +8,16 @@ class Vote < ActiveRecord::Base
 
   validates :title, presence: true
   validates :choices, presence: true, numericality: { greater_than_or_equal_to: 1 }
+  validate :only_one_open
   accepts_nested_attributes_for :vote_options, reject_if: :all_blank, allow_destroy: true
 
   after_create :log_create
   after_update :log_update
   after_destroy :log_destroy
+
+  def self.current
+    Vote.where(open: true).first
+  end
 
   def log_create
     log('create')
@@ -43,5 +48,13 @@ class Vote < ActiveRecord::Base
 
   def updater
     User.current.id if User.current && !destroyed?
+  end
+
+  private
+
+  def only_one_open
+    if open && Vote.current.present? && Vote.current != self
+      errors.add(:open, I18n.t('vote.already_one_open'))
+    end
   end
 end

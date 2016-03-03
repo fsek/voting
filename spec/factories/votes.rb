@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :vote do
     title
-    open true
+    open false
 
     trait :with_options do
       transient do

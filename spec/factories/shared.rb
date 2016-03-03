@@ -1,6 +1,6 @@
 FactoryGirl.define do
   sequence(:description) { |n| "This describes the most impressive nr#{n}" }
-  sequence(:email) { |n| "tfy#{n}hal@student.lu.se" }
+  sequence(:email) { |n| "tfy#{'%03d' % n}al@student.lu.se" }
   sequence(:lastname) { |n| "Älg#{n}" }
   sequence(:name) { |n| "Hilbert#{n}" }
   sequence(:firstname) { |n| "Hilbert#{n}" }
@@ -10,5 +10,5 @@ FactoryGirl.define do
   sequence(:url) { |n| "url#{n}" }
   sequence(:value) { |n| "david#{n}" }
   sequence(:location) { ['MH:A','Hilbert','Kårhuset','Ön-ön','Sjönsjön','Bastun'].sample }
-  sequence(:date) { |n| Time.zone.now + 10.days + n.days }
+  sequence(:date) { |n| 10.days.from_now + n.days }
 end
