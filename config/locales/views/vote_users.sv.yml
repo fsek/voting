@@ -21,10 +21,13 @@ sv:
 
     state:
       all_not_present: Utjustering av alla mötesdeltagare lyckades
+      error_all_not_present: Utjustering av alla mötesdeltagare lyckades inte
+      error_not_present: "%{u} kunde inte justeras ut, är ett val öppet?"
+      error_present: "%{u} kunde inte justeras in, är ett val öppet?"
       made_not_present: "%{u} justerades ut"
       made_present: "%{u} justerades in"
-      present: Injusterad
       not_present: Utjusterad
+      present: Injusterad
 
     mailer:
       votecode:

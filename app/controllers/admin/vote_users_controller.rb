@@ -18,7 +18,8 @@ class Admin::VoteUsersController < ApplicationController
       redirect_to admin_vote_users_path,
                   notice: t('vote_user.state.made_present', u: @user.to_s)
     else
-      render :index, status: 422
+      redirect_to admin_vote_users_path,
+                  alert: t('vote_user.state.error_present', u: @user.to_s)
     end
   end
 
@@ -28,7 +29,8 @@ class Admin::VoteUsersController < ApplicationController
       redirect_to admin_vote_users_path,
                   notice: t('vote_user.state.made_not_present', u: @user.to_s)
     else
-      render :index, status: 422
+      redirect_to admin_vote_users_path,
+                  alert: t('vote_user.state.error_not_present', u: @user.to_s)
     end
   end
 
@@ -36,9 +38,8 @@ class Admin::VoteUsersController < ApplicationController
     if VoteService.set_all_not_present
       redirect_to admin_vote_users_path, notice: t('vote_user.state.all_not_present')
     else
-      render :index, status: 422
+      redirect_to admin_vote_users_path, alert: t('vote_user.state.error_all_not_present')
     end
-    User.update_all(presence: false)
   end
 
   def new_votecode
@@ -47,7 +48,7 @@ class Admin::VoteUsersController < ApplicationController
       redirect_to admin_vote_users_path,
                   notice: t('vote_user.votecode_success', u: @user.to_s)
     else
-      render :edit
+      render :edit, status: 422
     end
   end
 
