@@ -39,7 +39,8 @@ Fsek::Application.routes.draw do
 
     namespace :admin do
       resources :votes, path: :voteringar, controller: :votes do
-        get 'change_state', on: :member
+        patch :close, on: :member
+        patch :open, on: :member
       end
 
       resources :vote_users, path: :motesanvandare, controller: :vote_users, only: [:show, :index] do

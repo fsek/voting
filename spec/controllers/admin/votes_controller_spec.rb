@@ -21,6 +21,16 @@ RSpec.describe Admin::VotesController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    it 'assigns given vote as @vote' do
+      vote = create(:vote)
+
+      get(:show, id: vote.to_param)
+      assigns(:vote).should eq(vote)
+      assigns(:audit_grid).should be_present
+    end
+  end
+
   describe 'GET #edit' do
     it 'assigns given vote as @vote' do
       vote = create(:vote)
@@ -76,10 +86,12 @@ RSpec.describe Admin::VotesController, type: :controller do
     it 'invalid parameters' do
       vote = create(:vote, title: 'A Bad Title')
 
-      patch :update, id: vote.to_param, vote: { title: 'A Good Title' }
+      patch :update, id: vote.to_param, vote: { title: '' }
       vote.reload
 
-      response.should redirect_to(edit_admin_vote_path(vote))
+      response.status.should eq(422)
+      response.should render_template(:edit)
+      vote.title.should eq('A Bad Title')
     end
   end
 
@@ -92,6 +104,44 @@ RSpec.describe Admin::VotesController, type: :controller do
       end.should change(Vote, :count).by(-1)
 
       response.should redirect_to(admin_votes_path)
+    end
+  end
+
+  describe 'PATCH #open' do
+    it 'opens the vote' do
+      vote = create(:vote, open: false)
+
+      patch(:open, id: vote)
+
+      response.should redirect_to(admin_votes_path)
+      flash[:notice].should eq(I18n.t('vote.made_open'))
+      vote.reload
+      vote.open.should be_truthy
+    end
+
+    it 'cannot open the vote' do
+      create(:vote, open: true)
+      vote = create(:vote, open: false)
+
+      patch(:open, id: vote)
+
+      response.should redirect_to(admin_votes_path)
+      flash[:alert].should eq(I18n.t('vote.open_failed'))
+      vote.reload
+      vote.open.should be_falsey
+    end
+  end
+
+  describe 'PATCH #close' do
+    it 'closes the vote' do
+      vote = create(:vote, open: true)
+
+      patch(:close, id: vote)
+
+      response.should redirect_to(admin_votes_path)
+      flash[:notice].should eq(I18n.t('vote.made_closed'))
+      vote.reload
+      vote.open.should be_falsey
     end
   end
 end

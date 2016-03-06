@@ -16,7 +16,7 @@
       yes_no(v.open)
     end
     grid.column name: t('vote.open_close') do |v|
-      link_to (v.open ? t('vote.do_close') : t('vote.do_open')), change_state_admin_vote_path(v)
+      vote_state_link(v)
     end
     grid.column name: t('edit') do |v|
       link_to t('edit'), edit_admin_vote_path(v)

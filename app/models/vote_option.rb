@@ -36,4 +36,8 @@ class VoteOption < ActiveRecord::Base
   def updater
     User.current.id if User.current && !destroyed?
   end
+
+  def to_s
+    title || id
+  end
 end

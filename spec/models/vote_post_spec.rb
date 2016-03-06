@@ -29,7 +29,7 @@ RSpec.describe VotePost, type: :model do
       it 'is unique to vote' do
         vote = create(:vote, open: true)
         vote_post = build(:vote_post, user: user, vote: vote)
-        vote_post.should validate_uniqueness_of(:user_id).scoped_to(:vote_id)
+        vote_post.should validate_uniqueness_of(:user_id).scoped_to(:vote_id).with_message(I18n.t('vote_post.already_voted'))
       end
 
       it 'has valid votecode and presence' do

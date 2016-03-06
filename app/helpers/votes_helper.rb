@@ -79,6 +79,18 @@ module VotesHelper
     end
   end
 
+  def vote_state_link(vote)
+    if vote.present?
+      if vote.open
+        link_to(t('vote.do_close'), close_admin_vote_path(vote),
+                method: :patch)
+      else
+        link_to(t('vote.do_open'), open_admin_vote_path(vote),
+                method: :patch)
+      end
+    end
+  end
+
   def vote_str(votes, id)
     votes.find_by_id(id).to_s
   end
