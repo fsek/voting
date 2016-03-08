@@ -7,3 +7,4 @@ sv:
     same_option_twice: "varje alternativ kan väljas max en gång"
     too_many_options: "för många alternativ valda"
     vote_closed: "Voteringen är tyvärr stängd"
+    unallowed_options: "alternativet tillhör ej denna votering"

@@ -67,6 +67,9 @@ class VotePost < ActiveRecord::Base
       unless vote_option_ids.uniq.count == vote_option_ids.count
         errors.add(:vote_option_ids, I18n.t('vote_post.same_option_twice'))
       end
+      unless (vote_option_ids.map(&:to_i) - vote.vote_option_ids).empty?
+        errors.add(:vote_option_ids, I18n.t('vote_post.unallowed_options'))
+      end
     else
       errors.add(:vote_option_ids, I18n.t('vote_post.no_option_selected'))
     end

@@ -88,7 +88,7 @@ RSpec.describe VotePost, type: :model do
         vote_post.vote_option_ids = [1, 2, 3]
         vote_post.valid?
 
-        vote_post.errors[:vote_option_ids].should be_empty
+        vote_post.errors[:vote_option_ids].should_not include(I18n.t('vote_post.too_many_options'))
       end
 
       it 'has less than maximum amount' do
@@ -97,7 +97,7 @@ RSpec.describe VotePost, type: :model do
         vote_post.vote_option_ids = [1, 2]
         vote_post.valid?
 
-        vote_post.errors[:vote_option_ids].should be_empty
+        vote_post.errors[:vote_option_ids].should_not include(I18n.t('vote_post.no_option_selected'))
       end
 
       it 'has no options' do
@@ -125,6 +125,17 @@ RSpec.describe VotePost, type: :model do
         vote_post.valid?
 
         vote_post.errors[:vote_option_ids].should include(I18n.t('vote_post.same_option_twice'))
+      end
+
+      it 'does not allow vote options not belonging to vote' do
+        vote = build_stubbed(:vote, :with_options, choices: 3)
+        vote.vote_options.first.id.should > 1000
+
+        vote_post = build(:vote_post, vote: vote)
+        vote_post.vote_option_ids = [1, vote.vote_options.first.id]
+        vote_post.valid?
+
+        vote_post.errors[:vote_option_ids].should include(I18n.t('vote_post.unallowed_options'))
       end
     end
   end

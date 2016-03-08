@@ -2,14 +2,15 @@ FactoryGirl.define do
   factory :vote do
     title
     open false
+    choices 1
 
     trait :with_options do
-      transient do
-        option_count 3
-      end
-
-      after(:create) do |vote, evaluator|
-        create_list(:vote_option, evaluator.option_count, vote: vote)
+      vote_options do |o|
+        arr = []
+        o.choices.times do
+          arr << o.association(:vote_option, strategy: @build_strategy.class)
+        end
+        arr
       end
     end
   end
