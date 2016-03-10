@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   validates :firstname, :lastname, presence: true
   validates :votecode, uniqueness: true, allow_nil: true
 
+  validate :confirmed_to_vote
+
   # Associations
   has_many :permissions, through: :permission_users
   has_many :permission_users
@@ -82,5 +84,19 @@ class User < ActiveRecord::Base
 
   def updater
     User.current.id if User.current && !destroyed?
+  end
+
+  private
+
+  def confirmed_to_vote
+    unless confirmed?
+      if presence
+        errors.add(:presence, I18n.t('vote_user.presence_error'))
+      end
+
+      if votecode.present?
+        errors.add(:votecode, I18n.t('vote_user.votecode_error'))
+      end
+    end
   end
 end

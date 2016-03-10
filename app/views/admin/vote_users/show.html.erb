@@ -22,6 +22,12 @@
         <%= vote_user_state_link(@user) %>
       </td>
     </tr>
+    <tr>
+      <td><%= User.human_attribute_name(:confirmed_at) %></td>
+      <td>
+        <%= user_confirmed(@user) %>
+      </td>
+    </tr>
   </table>
   <div class="headline">
     <h3><%= models_name(Adjustment) %></h3>

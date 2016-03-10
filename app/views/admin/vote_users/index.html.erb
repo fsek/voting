@@ -19,7 +19,7 @@
 <div class="col-md-12">
   <%= grid(@vote_users_grid) do |grid|
     grid.column name: t('attributes.name'), attribute: 'firstname' do |user|
-      link_to user, admin_vote_user_path(user)
+      link_to admin_print_user(user), admin_vote_user_path(user)
     end
     grid.column name: User.human_attribute_name(:votecode), attribute: 'votecode'
     grid.column name: User.human_attribute_name(:presence), attribute: 'presence' do |user|
@@ -27,9 +27,6 @@
     end
     grid.column name: t('vote_user.change_state') do |user|
       vote_user_state_link(user)
-    end
-    grid.column name: t('show') do |user|
-      link_to(t('show'), admin_vote_user_path(user))
     end
     grid.column name: t('vote_user.reset_votecode') do |user|
       link_to t('vote_user.reset'), new_votecode_admin_vote_user_path(user),
