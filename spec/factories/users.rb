@@ -8,22 +8,10 @@ FactoryGirl.define do
     confirmed_at { 10.days.ago }
 
     trait :admin do
-      password '12345678'
-      with_admin_post
+      permission_users do
+        [association(:permission_user, :admin, strategy: @build_strategy.class)]
+      end
     end
-  end
-
-  factory :admin, class: 'User' do
-    email
-    password '12345678'
-    firstname
-    lastname
-    confirmed_at { Time.zone.now }
-    with_admin_post
-  end
-
-  trait :with_admin_post do
-    ##
   end
 
   trait :unconfirmed do

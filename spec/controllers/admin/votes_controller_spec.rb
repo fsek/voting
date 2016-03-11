@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Admin::VotesController, type: :controller do
-  let(:user) { create(:admin) }
+  let(:user) { create(:user, :admin) }
 
   allow_user_to(:manage, Vote)
 
