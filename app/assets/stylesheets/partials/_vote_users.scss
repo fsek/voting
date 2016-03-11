@@ -1,0 +1,11 @@
+.adjustment-grid {
+  tr {
+    &.present {
+      td,
+      &.even td,
+      &.odd td {
+        background-color: $orange-highlight;
+      }
+    }
+  }
+}

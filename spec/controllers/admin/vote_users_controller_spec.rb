@@ -37,11 +37,11 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       create(:vote, open: false)
       create(:agenda, status: Agenda::CURRENT)
 
-      patch(:present, id: user.to_param)
+      xhr(:patch, :present, id: user.to_param)
 
       user.reload
       assigns(:user).should eq(user)
-      response.should redirect_to(admin_vote_users_path)
+      assigns(:success).should be_truthy
       user.presence.should be_truthy
     end
 
@@ -50,11 +50,11 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       create(:vote, open: false)
       create(:agenda, status: Agenda::CURRENT)
 
-      patch(:present, id: user.to_param)
+      xhr(:patch, :present, id: user.to_param)
 
       user.reload
       assigns(:user).should eq(user)
-      response.should redirect_to(admin_vote_users_path)
+      assigns(:success).should be_truthy
       user.presence.should be_truthy
     end
 
@@ -63,12 +63,12 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       create(:vote, open: true)
       create(:agenda, status: Agenda::CURRENT)
 
-      patch(:present, id: user.to_param)
+      xhr(:patch, :present, id: user.to_param)
 
       user.reload
       assigns(:user).should eq(user)
+      assigns(:success).should be_falsey
       user.presence.should be_falsey
-      response.should redirect_to(admin_vote_users_path)
     end
 
     it 'doesnt work without a current agenda' do
@@ -76,12 +76,12 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       create(:vote, open: false)
       create(:agenda)
 
-      patch(:present, id: user.to_param)
+      xhr(:patch, :present, id: user.to_param)
 
       user.reload
       assigns(:user).should eq(user)
+      assigns(:success).should be_falsey
       user.presence.should be_falsey
-      response.should redirect_to(admin_vote_users_path)
     end
   end
 
@@ -91,12 +91,11 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       create(:vote, open: false)
       create(:agenda, status: Agenda::CURRENT)
 
-      patch(:not_present, id: user.to_param)
+      xhr(:patch, :not_present, id: user.to_param)
 
       user.reload
       assigns(:user).should eq(user)
-      response.should redirect_to(admin_vote_users_path)
-      flash[:notice].should eq(I18n.t('vote_user.state.made_not_present', u: user.to_s))
+      assigns(:success).should be_truthy
       user.presence.should be_falsey
     end
 
@@ -105,12 +104,11 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       create(:agenda, status: Agenda::CURRENT)
       create(:vote, open: false)
 
-      patch(:not_present, id: user.to_param)
+      xhr(:patch, :not_present, id: user.to_param)
 
       user.reload
       assigns(:user).should eq(user)
-      response.should redirect_to(admin_vote_users_path)
-      flash[:notice].should eq(I18n.t('vote_user.state.made_not_present', u: user.to_s))
+      assigns(:success).should be_truthy
       user.presence.should be_falsey
     end
 
@@ -119,13 +117,12 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       create(:agenda, status: Agenda::CURRENT)
       create(:vote, open: true)
 
-      patch(:not_present, id: user.to_param)
+      xhr(:patch, :not_present, id: user.to_param)
 
       user.reload
       assigns(:user).should eq(user)
+      assigns(:success).should be_falsey
       user.presence.should be_truthy
-      flash[:alert].should eq(I18n.t('vote_user.state.error_not_present', u: user.to_s))
-      response.should redirect_to(admin_vote_users_path)
     end
 
     it 'doesnt work without a current agenda' do
@@ -133,13 +130,12 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       create(:agenda)
       create(:vote, open: false)
 
-      patch(:not_present, id: user.to_param)
+      xhr(:patch, :not_present, id: user.to_param)
 
       user.reload
       assigns(:user).should eq(user)
+      assigns(:success).should be_falsey
       user.presence.should be_truthy
-      flash[:alert].should eq(I18n.t('vote_user.state.error_not_present', u: user.to_s))
-      response.should redirect_to(admin_vote_users_path)
     end
   end
 
@@ -180,24 +176,24 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
     it 'sets new votecode' do
       user = create(:user, votecode: 'abcd123')
 
-      patch(:new_votecode, id: user)
+      xhr(:patch, :new_votecode, id: user)
 
-      response.should redirect_to(admin_vote_users_path)
       user.reload
       user.votecode.should_not eq('abcd123')
+      assigns(:user).should eq(user)
+      assigns(:success).should be_truthy
     end
 
     it 'does not set new votecode' do
       user = create(:user, votecode: 'abcd123')
       allow(VoteService).to receive(:set_votecode) { false }
 
-      patch(:new_votecode, id: user)
-
-      response.status.should eq(422)
-      response.should render_template(:show)
+      xhr(:patch, :new_votecode, id: user)
 
       user.reload
       user.votecode.should eq('abcd123')
+      assigns(:user).should eq(user)
+      assigns(:success).should be_falsey
     end
   end
 end
