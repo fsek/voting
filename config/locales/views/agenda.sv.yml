@@ -1,0 +1,18 @@
+sv:
+  agenda:
+    recursion: För många nivåer av rekursion :)
+    too_many_open: Nu försöker du ta upp två punkter på dagordningen samtidigt. Så effektiva kan vi inte vara.
+    close: Stäng
+    set_current: Gör aktuell
+    title: Administrera dagordning
+    name: Dagordning
+    new: Ny punkt
+    edit: Redigera punkt
+    change_status: Ändra status
+    manage: Hantera dagordning
+
+    state:
+      closed: "%{a} stängdes"
+      current: "%{a} är nu aktuell punkt"
+      error_closing: "%{a} kunde inte stängas"
+      error_current: "%{a} kunde inte väljas till aktuell punkt"

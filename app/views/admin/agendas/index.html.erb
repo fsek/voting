@@ -1,0 +1,34 @@
+<div class="headline">
+  <h1><%= t('agenda.title') %></h1>
+</div>
+<div class="col-md-12">
+  <%= link_to t('agenda.new'), new_admin_agenda_path, class: 'btn primary' %>
+  <% if can? :manage, Vote %>
+    <%= link_to t('vote.manage'), admin_votes_path, class: 'btn secondary' %>
+  <% end %>
+  <% if can? :manage_voting, User %>
+    <%= link_to t('vote_user.manage'), admin_vote_users_path, class: 'btn secondary' %>
+  <% end %>
+</div>
+<div class="col-md-12">
+  <%= grid(@agenda_grid, class: 'agenda-grid') do |grid|
+    grid.row_attributes do |a|
+      if a.current?
+        { class: 'current' }
+      end
+    end
+    grid.column name: Agenda.human_attribute_name(:index), attribute: 'sort_index' do |a|
+      link_to a, edit_admin_agenda_path(a)
+    end
+    grid.column name: Agenda.human_attribute_name(:status), attribute: 'status' do |a|
+      status_str(a.status)
+    end
+    grid.column name: t('agenda.change_status') do |a|
+      agenda_state_link(a)
+    end
+    grid.column name: t('remove') do |a|
+      link_to t('remove'), admin_agenda_path(a), method: :delete, data:
+                            {confirm: t('vote.confirm_remove') + a.title + '?'}
+    end
+  end -%>
+</div>

@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :permissions, through: :permission_users
   has_many :permission_users
   has_many :audits, as: :auditable
+  has_many :adjustments
 
   after_create :log_create
   after_update :log_update
@@ -23,6 +24,7 @@ class User < ActiveRecord::Base
   scope :all_firstname, -> { order(firstname: :asc) }
   scope :present, -> { where(presence: true) }
   scope :not_present, -> { where(presence: false) }
+  scope :all_attended, -> { includes(:adjustments).where.not(adjustments: { id: nil }) }
 
   def to_s
     if has_name_data?

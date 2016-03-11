@@ -1,23 +1,21 @@
 sv:
   vote_user:
-    administrate: Administrera mötesanvändare
+    administrate: Administrera justeringar
     change_state: Justera in/ut
     confirm_all_not_present: "Är du säker på att du vill justera ut ALLA användare?"
     confirm_reset: "Vill du verkligen nollställa valkoden?"
-    edit2: Redigera mötesanvändare
     edit: Redigera användare
     make_all_not_present: Justera ut alla användare
     make_not_present: Justera ut
     make_present: Justera in
-    manage: Hantera mötesanvändare
-    new2: Ny mötesanvändare
+    manage: Hantera justeringar
     new: Ny användare
     present: Närvarande
     reset: Nollställ
     reset_votecode: Nollställ valkod
-    title: Mötesanvändare
     votecode: Valkod
     votecode_success: "%{u} fick en ny valkod, som skickats via epost"
+    attendance_list: Närvarolista
 
     state:
       all_not_present: Utjustering av alla mötesdeltagare lyckades

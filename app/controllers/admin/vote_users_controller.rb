@@ -9,7 +9,12 @@ class Admin::VoteUsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @votes = Vote.with_deleted
-    @audit_grid = initialize_grid(Audit.where(user_id: @user.id), include: :updater)
+    @audit_grid = initialize_grid(Audit.where(user_id: @user.id), include: :updater, name: 'g')
+    @attend_grid = initialize_grid(Adjustment.where(user_id: @user.id), include: :agenda, name: 'h')
+  end
+
+  def attendance_list
+    @attend_grid = initialize_grid(User.all_attended)
   end
 
   def present

@@ -1,0 +1,80 @@
+class Admin::AgendasController < ApplicationController
+  load_permissions_and_authorize_resource
+  before_action :authorize
+
+  def index
+    @agenda_grid = initialize_grid(Agenda, order: 'sort_index')
+  end
+
+  def new
+    @agenda = Agenda.new
+  end
+
+  def create
+    @agenda = Agenda.new(agenda_params)
+
+    if @agenda.save
+      redirect_to new_admin_agenda_path, notice: alert_create(Agenda)
+    else
+      render :new, status: 422
+    end
+  end
+
+  def edit
+    @agenda = Agenda.find(params[:id])
+  end
+
+  def update
+    @agenda = Agenda.find(params[:id])
+
+    if @agenda.update(agenda_params)
+      redirect_to edit_admin_agenda_path(@agenda), notice: alert_update(Agenda)
+    else
+      render :edit, status: 422
+    end
+  end
+
+  def destroy
+    @agenda = Agenda.find(params[:id])
+
+    @agenda.destroy!
+    redirect_to admin_agendas_path, notice: alert_destroy(Agenda)
+  end
+
+  def show
+    @agenda = Agenda.find(params[:id])
+  end
+
+  def set_current
+    agenda = Agenda.find(params[:id])
+    agenda.status = Agenda::CURRENT
+
+    if agenda.save
+      flash[:notice] = t('agenda.state.current', a: agenda.to_s)
+    else
+      flash[:alert] = t('agenda.state.error_current', a: agenda.to_s)
+    end
+    redirect_to admin_agendas_path
+  end
+
+  def set_closed
+    agenda = Agenda.find(params[:id])
+    agenda.status = Agenda::CLOSED
+    if agenda.save
+      flash[:notice] = t('agenda.state.closed', a: agenda.to_s)
+    else
+      flash[:alert] = t('agenda.state.error_closing', a: agenda.to_s)
+    end
+    redirect_to admin_agendas_path
+  end
+
+  private
+
+  def authorize
+    authorize! :manage, Agenda
+  end
+
+  def agenda_params
+    params.require(:agenda).permit(:title, :index, :parent_id, :status)
+  end
+end

@@ -46,6 +46,7 @@ RSpec.describe VoteService do
   describe 'presence' do
     it 'set_present' do
       user = create(:user, presence: false)
+      create(:agenda, status: Agenda::CURRENT)
 
       result = VoteService.set_present(user)
       user.reload
@@ -54,9 +55,31 @@ RSpec.describe VoteService do
       user.presence.should be_truthy
     end
 
+    it 'set_present fail if no agendas' do
+      user = create(:user, presence: false)
+
+      result = VoteService.set_present(user)
+      user.reload
+
+      result.should be_falsey
+      user.presence.should be_falsey
+    end
+
+    it 'set_present fail if no current agenda' do
+      user = create(:user, presence: false)
+      create(:agenda)
+
+      result = VoteService.set_present(user)
+      user.reload
+
+      result.should be_falsey
+      user.presence.should be_falsey
+    end
+
     it 'set_present fail if open vote' do
       user = create(:user, presence: false)
       create(:vote, open: true)
+      create(:agenda, status: Agenda::CURRENT)
 
       result = VoteService.set_present(user)
       user.reload
@@ -67,6 +90,7 @@ RSpec.describe VoteService do
 
     it 'set_not_present' do
       user = create(:user, presence: true)
+      create(:agenda, status: Agenda::CURRENT)
 
       result = VoteService.set_not_present(user)
       user.reload
@@ -78,6 +102,7 @@ RSpec.describe VoteService do
     it 'set_not_present fail if open vote' do
       user = create(:user, presence: true)
       create(:vote, open: true)
+      create(:agenda, status: Agenda::CURRENT)
 
       result = VoteService.set_not_present(user)
       user.reload
@@ -88,6 +113,7 @@ RSpec.describe VoteService do
 
     it 'returns false if no user' do
       user = nil
+      create(:agenda, status: Agenda::CURRENT)
 
       present = VoteService.set_present(user)
       not_present = VoteService.set_not_present(user)
@@ -110,7 +136,7 @@ RSpec.describe VoteService do
 
     it 'handles nil user' do
       user = nil
-
+      create(:agenda, status: Agenda::CURRENT)
       result = VoteService.set_votecode(user)
 
       result.should be_falsey
@@ -129,6 +155,7 @@ RSpec.describe VoteService do
       create(:user, presence: true)
       create(:user, presence: true)
       create(:user, presence: false)
+      create(:agenda, status: Agenda::CURRENT)
 
       result = VoteService.set_all_not_present
       result.should be_truthy

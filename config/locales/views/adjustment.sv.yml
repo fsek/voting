@@ -1,0 +1,9 @@
+sv:
+  adjustment:
+    in: " – kom in"
+    out: " – gick ut"
+    present: Justerades in
+    not_present: Justerades ut
+    new: Ny justering
+    edit: Redigera justering
+    destroy: Förinta justering

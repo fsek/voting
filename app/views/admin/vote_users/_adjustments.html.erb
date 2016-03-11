@@ -1,0 +1,19 @@
+<%= link_to new_admin_adjustment_path(user_id: user.id) do %>
+    <%= fa_icon('plus') %> <%= t('adjustment.new') %>
+<% end %>
+
+<%= grid(@attend_grid) do |grid|
+  grid.column name: t('log.type'), attribute: 'presence', filter: false do |a|
+    in_out_table(a.presence)
+  end
+  grid.column name: model_name(Agenda), assoc: :agenda, attribute: 'title', filter: false do |a|
+    a.agenda
+  end
+  grid.column name: t('edit') do |a|
+    link_to t('edit'), edit_admin_adjustment_path(a)
+  end
+  grid.column name: t('remove') do |a|
+    link_to t('remove'), admin_adjustment_path(a), method: :delete, data:
+            {confirm: t('vote.confirm_remove') + '?'}
+  end
+end -%>
