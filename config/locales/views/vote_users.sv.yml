@@ -4,7 +4,7 @@ sv:
     attendance_list: Närvarolista
     change_state: Justera in/ut
     confirm_all_not_present: "Är du säker på att du vill justera ut ALLA användare?"
-    confirm_reset: "Vill du verkligen nollställa valkoden?"
+    confirm_reset: "Vill du verkligen nollställa röstkoden?"
     edit: Redigera användare
     make_all_not_present: Justera ut alla användare
     make_not_present: Justera ut
@@ -14,18 +14,18 @@ sv:
     present: Närvarande
     presence_error: Användare kunde inte justeras in, har eposten bekräftats?
     reset: Nollställ
-    reset_votecode: Nollställ valkod
-    votecode: Valkod
-    votecode_error: Ny valkod kunde inte ges ut, har användare bekräftat sin epost?
+    reset_votecode: Nollställ röstkod
+    votecode: Röstkod
+    votecode_error: Ny röstkod kunde inte ges ut, har användare bekräftat sin epost?
     votecode_error_short: kunde inte nollställa
-    votecode_success: "%{u} fick en ny valkod, som skickats via epost"
+    votecode_success: "%{u} fick en ny röstkod, som skickats via epost"
 
     mailer:
       votecode:
-        subject: Här är din valkod
-        description: Här kommer din valkod, se till att du håller den för dig själv. Tror du att någon kommit över din kod? Kontakta justerare så får du en ny.
-        new_success: Ny valkod skickades till användaren.
-        title: Din valkod
+        subject: Här är din röstkod
+        description: Här kommer din röstkod, se till att du håller den för dig själv. Tror du att någon kommit över din kod? Kontakta justerare så får du en ny.
+        new_success: Ny röstkod skickades till användaren.
+        title: Din röstkod
 
     state:
       all_not_present: Utjustering av alla mötesdeltagare lyckades
