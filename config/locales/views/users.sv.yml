@@ -13,6 +13,7 @@ sv:
     make_not_present: Justera ut
     make_present: Justera in
     manage: Hantera användare
+    not_confirmed: Ej bekräftad
     password: Lösenord
     profile: Användare
 

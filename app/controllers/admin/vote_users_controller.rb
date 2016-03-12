@@ -52,7 +52,10 @@ class Admin::VoteUsersController < ApplicationController
       redirect_to admin_vote_users_path,
                   notice: t('vote_user.votecode_success', u: @user.to_s)
     else
-      render :show, status: 422
+      @votes = Vote.with_deleted
+      @audit_grid = initialize_grid(Audit.where(user_id: @user.id), include: :updater)
+      @attend_grid = initialize_grid(Adjustment.where(user_id: @user.id), include: :agenda, name: 'h')
+      render :show, status: 422, alert: t('vote_user.votecode_error')
     end
   end
 
