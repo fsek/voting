@@ -14,21 +14,23 @@
   <%= grid(@agenda_grid, class: 'agenda-grid') do |grid|
     grid.row_attributes do |a|
       if a.current?
-        { class: 'current' }
+        {id: dom_id(a), class: 'current'}
+      else
+        {id: dom_id(a)}
       end
     end
     grid.column name: Agenda.human_attribute_name(:index), attribute: 'sort_index' do |a|
       link_to a, edit_admin_agenda_path(a)
     end
-    grid.column name: Agenda.human_attribute_name(:status), attribute: 'status' do |a|
+    grid.column name: Agenda.human_attribute_name(:status), attribute: 'status', class: 'status' do |a|
       status_str(a.status)
     end
-    grid.column name: t('agenda.change_status') do |a|
+    grid.column name: t('agenda.change_status'), class: 'state' do |a|
       agenda_state_link(a)
     end
     grid.column name: t('remove') do |a|
-      link_to t('remove'), admin_agenda_path(a), method: :delete, data:
-                            {confirm: t('vote.confirm_remove') + a.title + '?'}
+      link_to(t('remove'), admin_agenda_path(a), method: :delete,
+              data: {confirm: t('vote.confirm_remove') + a.title + '?'})
     end
   end -%>
 </div>

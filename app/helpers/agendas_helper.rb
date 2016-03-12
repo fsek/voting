@@ -1,9 +1,11 @@
 module AgendasHelper
   def agenda_state_link(agenda)
     if agenda.current?
-      link_to t('agenda.close'), set_closed_admin_agenda_path(agenda), method: :patch
+      link_to(t('agenda.close'), set_closed_admin_agenda_path(agenda),
+              method: :patch, remote: true)
     else
-      link_to t('agenda.set_current'), set_current_admin_agenda_path(agenda), method: :patch
+      link_to(t('agenda.set_current'), set_current_admin_agenda_path(agenda),
+              method: :patch, remote: true)
     end
   end
 

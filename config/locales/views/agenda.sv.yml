@@ -16,3 +16,5 @@ sv:
       current: "%{a} är nu aktuell punkt"
       error_closing: "%{a} kunde inte stängas"
       error_current: "%{a} kunde inte väljas till aktuell punkt"
+      short_current_error: Fel vid aktivering
+      short_closed_error: Fel vid avmarkering 

@@ -41,31 +41,18 @@ class Admin::AgendasController < ApplicationController
     redirect_to admin_agendas_path, notice: alert_destroy(Agenda)
   end
 
-  def show
-    @agenda = Agenda.find(params[:id])
-  end
-
   def set_current
-    agenda = Agenda.find(params[:id])
-    agenda.status = Agenda::CURRENT
-
-    if agenda.save
-      flash[:notice] = t('agenda.state.current', a: agenda.to_s)
-    else
-      flash[:alert] = t('agenda.state.error_current', a: agenda.to_s)
-    end
-    redirect_to admin_agendas_path
+    @agenda = Agenda.find(params[:id])
+    @agenda.status = Agenda::CURRENT
+    @success = @agenda.save
+    render
   end
 
   def set_closed
-    agenda = Agenda.find(params[:id])
-    agenda.status = Agenda::CLOSED
-    if agenda.save
-      flash[:notice] = t('agenda.state.closed', a: agenda.to_s)
-    else
-      flash[:alert] = t('agenda.state.error_closing', a: agenda.to_s)
-    end
-    redirect_to admin_agendas_path
+    @agenda = Agenda.find(params[:id])
+    @agenda.status = Agenda::CLOSED
+    @success = @agenda.save
+    render
   end
 
   private
