@@ -3,7 +3,7 @@ class Admin::VoteUsersController < ApplicationController
   before_action :authorize
 
   def index
-    @vote_users_grid = initialize_grid(User)
+    @vote_users_grid = initialize_grid(User, order: 'firstname')
   end
 
   def show
@@ -19,22 +19,14 @@ class Admin::VoteUsersController < ApplicationController
 
   def present
     @user = User.find(params[:id])
-    if VoteService.set_present(@user)
-      flash[:notice] = t('vote_user.state.made_present', u: @user.to_s)
-    else
-      flash[:alert] = t('vote_user.state.error_present', u: @user.to_s)
-    end
-    redirect_to admin_vote_users_path
+    @success = VoteService.set_present(@user)
+    render
   end
 
   def not_present
     @user = User.find(params[:id])
-    if VoteService.set_not_present(@user)
-      flash[:notice] = t('vote_user.state.made_not_present', u: @user.to_s)
-    else
-      flash[:alert] = t('vote_user.state.error_not_present', u: @user.to_s)
-    end
-    redirect_to admin_vote_users_path
+    @success = VoteService.set_not_present(@user)
+    render
   end
 
   def all_not_present
@@ -48,15 +40,8 @@ class Admin::VoteUsersController < ApplicationController
 
   def new_votecode
     @user = User.find(params[:id])
-    if VoteService.set_votecode(@user)
-      redirect_to admin_vote_users_path,
-                  notice: t('vote_user.votecode_success', u: @user.to_s)
-    else
-      @votes = Vote.with_deleted
-      @audit_grid = initialize_grid(Audit.where(user_id: @user.id), include: :updater)
-      @attend_grid = initialize_grid(Adjustment.where(user_id: @user.id), include: :agenda, name: 'h')
-      render :show, status: 422, alert: t('vote_user.votecode_error')
-    end
+    @success = VoteService.set_votecode(@user)
+    render
   end
 
   private

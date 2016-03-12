@@ -17,6 +17,7 @@ sv:
     reset_votecode: Nollställ valkod
     votecode: Valkod
     votecode_error: Ny valkod kunde inte ges ut, har användare bekräftat sin epost?
+    votecode_error_short: kunde inte nollställa
     votecode_success: "%{u} fick en ny valkod, som skickats via epost"
 
     mailer:
@@ -35,4 +36,6 @@ sv:
       made_present: "%{u} justerades in"
       not_present: Utjusterad
       present: Injusterad
+      short_error_not_present: Utjustering misslyckades
+      short_error_present: Injustering misslyckades
 
