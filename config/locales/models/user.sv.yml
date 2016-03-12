@@ -18,7 +18,7 @@ sv:
         presence: Närvaro
         remember_me: Kom ihåg mig
         unconfirmed_email: Obekräftad epost
-        votecode: Valkod
+        votecode: Röstkod
   user:
     attributes_missing: du måste fylla i dina användaruppgifter.
     edit_information: Redigera användaruppgifter

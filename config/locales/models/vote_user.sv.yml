@@ -5,5 +5,5 @@ sv:
     attributes:
       vote_user:
         name: Namn
-        votecode: Valkod
+        votecode: Röstkod
         present: Närvarande

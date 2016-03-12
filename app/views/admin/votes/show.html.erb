@@ -29,7 +29,7 @@
   <% else %>
     <%= t('vote.results') %>
     <table class="table">
-      <% @vote.vote_options.where.not(:title => nil).each do |v| %>
+      <% @vote.vote_options.where.not(:title => nil).order(count: :desc).each do |v| %>
         <tr>
           <td><b><%= v.title %></b></td>
          <td><b><%= v.count %></b></td>

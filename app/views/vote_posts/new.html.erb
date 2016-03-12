@@ -16,11 +16,12 @@
       <% end %>
     <% end %>
 
-    <%= f.input :votecode %>
+    <%= f.input :votecode, input_html: { autocomplete: 'off' } %>
     <%= f.input :vote_option_ids, collection: @vote.vote_options.order(:title), include_blank: false,
       input_html: { class: 'select2', multiple: true }, include_hidden: false, required: true %>
     <div class="table">
-      <%= f.button :submit, t('vote.submit'), id: 'vote_post_submit' %>
+      <%= f.button :submit, t('vote.submit'), id: 'vote_post_submit',
+                    data: { confirm: t('vote_post.confirm') } %>
       <%= link_to t('actions.back'), votes_path, class: 'btn secondary' %>
     </div>
   <% end %>
