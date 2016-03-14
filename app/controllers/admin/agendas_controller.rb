@@ -43,15 +43,13 @@ class Admin::AgendasController < ApplicationController
 
   def set_current
     @agenda = Agenda.find(params[:id])
-    @agenda.status = Agenda::CURRENT
-    @success = @agenda.save
+    @success = @agenda.update(status: Agenda::CURRENT)
     render
   end
 
   def set_closed
     @agenda = Agenda.find(params[:id])
-    @agenda.status = Agenda::CLOSED
-    @success = @agenda.save
+    @success = @agenda.update(status: Agenda::CLOSED)
     render
   end
 

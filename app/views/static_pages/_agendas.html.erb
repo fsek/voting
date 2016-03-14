@@ -1,0 +1,21 @@
+<% if agendas.present? %>
+  <ul class="agenda list-group">
+    <% agendas.each do |agenda| %>
+      <li class="<%= "list-group-item #{agenda.current_status}" %>">
+        <h4 class="list-group-item-heading">
+          <%= agenda %>
+        </h4>
+        <span class="badge">
+          <%= status_str(agenda.current_status) %>
+        </span>
+        <p class="list-group-item-text">
+          <% if agenda.children.present? %>
+            <%= agenda.children.index.map(&:to_s).join(", ") %>
+          <% else %>
+            <br>
+          <% end %>
+        </p>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

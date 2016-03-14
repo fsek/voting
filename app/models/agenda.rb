@@ -13,6 +13,8 @@ class Agenda < ActiveRecord::Base
   validates :index, presence: true, numericality: { greater_than_or_equal_to: 1 }
   validate :parent_validation, :only_one_current
 
+  scope :index, -> { order(:sort_index) }
+
   before_save :set_sort_index
 
   def self.current
@@ -41,6 +43,14 @@ class Agenda < ActiveRecord::Base
 
   def current?
     status == CURRENT
+  end
+
+  def current_status
+    if status == CLOSED && children.where(status: CURRENT).first
+      CURRENT
+    else
+      status
+    end
   end
 
   private

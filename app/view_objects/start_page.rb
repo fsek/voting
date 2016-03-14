@@ -1,7 +1,8 @@
 class StartPage
-  attr_accessor :news, :events, :notices
+  attr_accessor :agendas, :news, :events, :notices
 
   def initialize(member: false)
+    @agendas = Agenda.index.where(parent_id: nil) || []
     @news = News.order(created_at: :desc).limit(5).includes(:user) || []
     @notices = get_notices(member) || []
   end
