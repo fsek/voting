@@ -5,7 +5,7 @@ bottom = function () {
     var footerTop = $('#copyright').position().top + footerHeight;
 
     if (footerTop < docHeight) {
-        $('#footer').css('margin-top', 22 + (docHeight - footerTop) + 'px');
+        $('#copyright').css('margin-top', 5 + (docHeight - footerTop) + 'px');
     }
 };
 

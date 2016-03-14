@@ -28,7 +28,7 @@ module ApplicationHelper
   end
 
   def full_title(page_title)
-    base_title = 'F-sektionen'
+    base_title = 'Röstsystem'
     if page_title.empty?
       base_title
     else
