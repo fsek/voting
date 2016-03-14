@@ -1,8 +1,8 @@
-$('tr#<%= dom_id(@agenda) %> td.state').html('<%= j agenda_state_link(@agenda) %>');
-
 <% if @success %>
+  $('tr#<%= dom_id(@agenda) %> td.state').html('<%= j agenda_close_link(@agenda) %>');
   $('tr#<%= dom_id(@agenda) %>').addClass('current');
   $('tr#<%= dom_id(@agenda) %> td.status').html('<%= j status_str(@agenda.status) %>');
 <% else %>
+  $('tr#<%= dom_id(@agenda) %> td.state').html('<%= j agenda_current_link(@agenda) %>');
   $('tr#<%= dom_id(@agenda) %> td.state').append('<br><%= t('agenda.state.short_current_error') %>');
 <% end %>

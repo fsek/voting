@@ -1,0 +1,53 @@
+.agenda {
+  .badge {
+    font-size: 14px;
+  }
+
+  .closed {
+    .list-group-item-heading,
+    .list-group-item-text {
+      color: $gray-text;
+    }
+
+    .badge {
+      background: $unify-green;
+    }
+  }
+
+  .current {
+    border: 3px solid $fsek-orange;
+    margin-bottom: 0;
+
+    .list-group-item-heading,
+    .list-group-item-text {
+      color: $black;
+    }
+
+    .badge {
+      background: $unify-orange;
+    }
+  }
+
+  .future {
+    .list-group-item-heading,
+    .list-group-item-text {
+      color: $black;
+    }
+
+    .badge {
+      background: $gray-headline;
+    }
+  }
+}
+
+.agenda-grid {
+  tr {
+    &.current {
+      td,
+      &.even td,
+      &.odd td {
+        background-color: $orange-highlight;
+      }
+    }
+  }
+}

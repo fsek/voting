@@ -1,5 +1,28 @@
 <div class="collapse navbar-collapse navbar-responsive-collapse">
   <ul class="nav navbar-nav navbar-right">
+    <% if current_user.present? && current_user.permissions.count > 0 %>
+      <li class="dropdown">
+        <%= menu_dropdown_link(t(:administrate)) %>
+        <ul class="dropdown-menu">
+          <% if can? :manage, Vote %>
+            <li>
+              <%= link_to models_name(Vote), admin_votes_path %>
+            </li>
+          <% end %>
+          <% if can? :manage_voting, User %>
+            <li>
+              <%= link_to t('user.vote_administration'), admin_vote_users_path %>
+            </li>
+          <% end %>
+          <% if can? :manage, Agenda %>
+            <li>
+              <%= link_to t('agenda.name'), admin_agendas_path %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+
     <% cache('main_menu', skip_digest: true) do %>
       <% global_menus = GlobalMenus.new %>
       <%= menu_dropdown(menus: global_menus.info_menus, title: t('menu.info')) %>

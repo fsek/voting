@@ -38,20 +38,5 @@
         <%= link_to model_name(Document), admin_documents_path %>
       </li>
     <% end %>
-    <% if can? :manage, Vote %>
-      <li class="dropdown-submenu">
-        <%= link_to models_name(Vote), admin_votes_path %>
-      </li>
-    <% end %>
-    <% if can? :manage_voting, User %>
-      <li class="dropdown-submenu">
-        <%= link_to t('user.vote_administration'), admin_vote_users_path %>
-      </li>
-    <% end %>
-    <% if can? :manage, Agenda %>
-      <li class="dropdown-submenu">
-        <%= link_to t('agenda.name'), admin_agendas_path %>
-      </li>
-    <% end %>
   </ul>
 </li>
