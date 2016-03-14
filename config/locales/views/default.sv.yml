@@ -9,6 +9,8 @@ sv:
   destroy_attr: Förinta %{attr}
   edit: Redigera
   edit_attr: Redigera %{attr}
+  footer:
+    developed_at: Utvecklad vid
   hello: Hej
   here: här
   hide: Dölj

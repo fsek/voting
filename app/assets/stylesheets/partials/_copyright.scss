@@ -1,18 +1,19 @@
 .copyright {
-  &.year {
-    float: left;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+
+  .github {
+    font-size: 30px;
+    vertical-align: middle;
   }
 
-  &.contact {
-    float: right;
+  img {
+    height: 35px;
+  }
+
+  p {
+    font-size: 16px;
   }
 }
-
-@media (min-width: 500px) {
-  .copyright {
-    &.contact {
-      float: auto;
-    }
-  }
-}
-
