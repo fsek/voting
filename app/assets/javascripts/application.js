@@ -29,3 +29,4 @@
 //= require pickers
 //= require cookies_eu
 //= require cocoon
+//= require inputmask

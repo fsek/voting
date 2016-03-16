@@ -11,6 +11,11 @@ class User < ActiveRecord::Base
   validates :firstname, :lastname, presence: true
   validates :votecode, uniqueness: true, allow_nil: true
 
+  validates :card_number, uniqueness: { allow_nil: true },
+                          format: { with: /\A\b[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}\z/,
+                                    message: I18n.t('user.card_number_format'),
+                                    allow_nil: true }
+
   validate :confirmed_to_vote
 
   # Associations
@@ -27,6 +32,12 @@ class User < ActiveRecord::Base
   scope :present, -> { where(presence: true) }
   scope :not_present, -> { where(presence: false) }
   scope :all_attended, -> { includes(:adjustments).where.not(adjustments: { id: nil }) }
+
+  def self.card_number(card)
+    if card != '____-____-____-____'
+      User.where('card_number LIKE ?', "%#{card}%")
+    end
+  end
 
   def to_s
     if has_name_data?

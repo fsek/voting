@@ -1,6 +1,6 @@
 class Admin::AdjustmentsController < ApplicationController
   load_permissions_and_authorize_resource
-  before_action :authorize
+  before_action :authorize, except: :index
 
   def new
     @adjustment = Adjustment.new(user_id: params[:user_id])
@@ -35,6 +35,11 @@ class Admin::AdjustmentsController < ApplicationController
     adjustment.destroy!
 
     redirect_to admin_vote_user_path(user), notice: alert_destroy(Adjustment)
+  end
+
+  def index
+    authorize! :manage_voting, User
+    @agenda = Agenda.current
   end
 
   private

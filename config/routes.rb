@@ -49,6 +49,7 @@ Fsek::Application.routes.draw do
         patch :new_votecode, on: :member
         patch :all_not_present, on: :collection
         get :attendance_list, on: :collection
+        post :search, on: :collection
       end
     end
 
@@ -60,7 +61,7 @@ Fsek::Application.routes.draw do
     end
 
     namespace :admin do
-      resources :adjustments, path: :justering, controller: :adjustments, except: [:show, :index]
+      resources :adjustments, path: :justering, controller: :adjustments, except: [:show]
     end
 
     resources :notices, path: :notiser

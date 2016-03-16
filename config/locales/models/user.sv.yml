@@ -7,6 +7,7 @@ sv:
         confirmed_at: E-post bekräftades
         confirmed_email: Bekräftad epost
         current_password: Nuvarande lösenord
+        card_number: Kortnummer - Mecenatkortet
         email: E-post
         firstname: Förnamn
         lastname: Efternamn
