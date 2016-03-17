@@ -196,4 +196,14 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       assigns(:success).should be_falsey
     end
   end
+
+  describe 'POST #search' do
+    it 'finds user with card number' do
+      create(:user, firstname: 'The one', card_number: '1234-1234-1234-1234')
+      create(:user, firstname: 'Not the one', card_number: '4321-4321-4321-4321')
+
+      xhr(:post, :search, vote_user: { card_number: '1234-1234-1234-1234' })
+      assigns(:vote_users).map(&:firstname).should eq(['The one'])
+    end
+  end
 end

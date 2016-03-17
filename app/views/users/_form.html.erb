@@ -1,6 +1,7 @@
 <%= simple_form_for(user, url: own_user_path, html: { class: 'reg-page' }) do |f| %>
   <%= f.input :firstname %>
   <%= f.input :lastname %>
+  <%= f.input :card_number, input_html: {data: {mask: '9999-9999-9999-9999'}} %>
   <%= f.button :submit, id: 'user-info-submit' %>
 <% end %>
 

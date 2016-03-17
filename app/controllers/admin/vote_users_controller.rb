@@ -44,7 +44,15 @@ class Admin::VoteUsersController < ApplicationController
     render
   end
 
+  def search
+    @vote_users = User.card_number(search_params[:card_number])
+  end
+
   private
+
+  def search_params
+    params.require(:vote_user).permit(:card_number)
+  end
 
   def authorize
     authorize! :manage_voting, User

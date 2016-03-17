@@ -1,9 +1,12 @@
 sv:
   adjustment:
+    destroy: Förinta justering
+    edit: Redigera justering
     in: " – kom in"
+    index: Snabbjustering
+    new: Ny justering
+    no_results: Inga användare hittades
+    not_present: Justerades ut
     out: " – gick ut"
     present: Justerades in
-    not_present: Justerades ut
-    new: Ny justering
-    edit: Redigera justering
-    destroy: Förinta justering
+    title: Justeringar
