@@ -16,6 +16,11 @@
   <%= link_to(t('vote_user.make_all_not_present'), all_not_present_admin_vote_users_path,
               method: :patch, class: 'btn secondary',
               data: {confirm: t('vote_user.confirm_all_not_present')}) %>
+  <hr>
+</div>
+
+<div class="col-md-12 vote status" id="vote-status">
+  <%= render '/admin/votes/status', vote_status_view: @vote_status_view %>
 </div>
 
 <div class="col-md-12">
@@ -28,7 +33,8 @@
     end
     grid.column name: User.human_attribute_name(:votecode), attribute: 'votecode',
       html: {class: 'votecode'}
-    grid.column name: User.human_attribute_name(:presence), attribute: 'presence' do |user|
+    grid.column name: User.human_attribute_name(:presence), attribute: 'presence', 
+                html: {class: 'presence'} do |user|
       yes_no(user.presence)
     end
     grid.column name: t('vote_user.change_state'), html: {class: 'adjust'} do |user|

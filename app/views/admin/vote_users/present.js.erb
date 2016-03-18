@@ -2,6 +2,7 @@ $('tr#<%= dom_id(@user) %> td.adjust').html('<%= j vote_user_state_link(@user) %
 
 <% if @success %>
   $('tr#<%= dom_id(@user) %>').addClass('present');
+  $('tr#<%= dom_id(@user) %> td.presence').html('<%= j yes_no(@user.presence) %>');
 <% else %>
   $('tr#<%= dom_id(@user) %> td.adjust').append('<br><%= t('vote_user.state.short_error_present') %>');
 <% end %>

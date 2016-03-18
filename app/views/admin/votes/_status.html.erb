@@ -1,0 +1,48 @@
+<% if vote_status_view.present? %>
+  <div class="col-md-4 col-sm-12">
+    <%= fa_icon('users', class: 'large') %>
+    <span class="counter">
+      <%= vote_status_view.adjusted %>
+    </span>
+    <h4>
+      <%= t('vote_user.present_count') %>
+    </h4>
+  </div>
+
+  <div class="col-md-4 col-sm-12">
+    <%= fa_icon('agenda', class: 'large') %>
+    <span class="current">
+      <%= vote_status_view.agenda %>
+    </span>
+  </div>
+
+  <div class="col-md-4 col-sm-12">
+    <span class="refresh">
+      <%= link_to(refresh_admin_votes_path, remote: true, method: :post) do %>
+        <%= fa_icon('refresh') %>
+      <% end %>
+    </span>
+
+    <%= fa_icon('envelope', class: 'large') %>
+    <span class="current">
+      <% if vote_status_view.vote.present? %>
+        <%= link_to(vote_status_view.vote, new_vote_vote_post_path(vote_status_view.vote)) %>
+      <% else %>
+        <%= t('vote.current_missing') %>
+      <% end %>
+    </span>
+    <% if vote_status_view.vote.present? %>
+      <h4>
+        <%= t('vote.current') %>
+      </h4>
+    <% end %>
+  </div>
+  <div class="col-md-12">
+    <span class="updated-time">
+      <%= fa_icon('clock-o') %>
+      <%= l(Time.zone.now) %>.<br>
+      <%= t('vote.automatic_refresh') %>
+    </span>
+    <hr class="devider devider-db">
+  </div>
+<% end %>

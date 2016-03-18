@@ -3,6 +3,7 @@ class Admin::VoteUsersController < ApplicationController
   before_action :authorize
 
   def index
+    @vote_status_view = VoteStatusView.new
     @vote_users_grid = initialize_grid(User, order: 'firstname')
   end
 

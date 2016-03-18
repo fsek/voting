@@ -39,7 +39,7 @@ class Admin::AdjustmentsController < ApplicationController
 
   def index
     authorize! :manage_voting, User
-    @agenda = Agenda.current
+    @vote_status_view = VoteStatusView.new
   end
 
   private

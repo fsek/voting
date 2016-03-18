@@ -32,6 +32,7 @@ sv:
   tool: Verktyg
   update: Uppdatera
   update_attr: Uppdatera %{attr}
+  updated: Uppdaterades
   welcome: Välkommen
 
   "yes": Ja

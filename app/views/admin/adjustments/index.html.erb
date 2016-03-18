@@ -7,6 +7,7 @@
   <% if can? :manage_voting, User %>
     <%= link_to t('vote_user.attendance_list'), attendance_list_admin_vote_users_path,
                 class: 'btn primary' %>
+    <%= link_to t('vote_user.manage'), admin_vote_users_path, class: 'btn secondary' %>
   <% end %>
   <% if can? :manage, Vote %>
     <%= link_to t('vote.manage'), admin_votes_path, class: 'btn secondary' %>
@@ -16,13 +17,11 @@
   <% end %>
 </div>
 
-<div class="col-md-9 col-sm-12">
-  <% if @agenda.present? %>
-    <%= @agenda %>
-  <% end %>
+<div class="col-md-9 col-sm-12 vote status" id="vote-status">
+  <%= render '/admin/votes/status', vote_status_view: @vote_status_view %>
+</div>
 
-  <br>
-
+<div class="col-md-9 col-md-offset-3 col-sm-12">
   <%= simple_form_for(:vote_user, url: search_admin_vote_users_path, remote: true) do |f| %>
     <%= f.input(:card_number, required: false, autofocus: true,
                 label: User.human_attribute_name(:card_number),

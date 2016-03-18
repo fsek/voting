@@ -41,6 +41,7 @@ Fsek::Application.routes.draw do
       resources :votes, path: :voteringar, controller: :votes do
         patch :close, on: :member
         patch :open, on: :member
+        post :refresh, on: :collection
       end
 
       resources :vote_users, path: :motesanvandare, controller: :vote_users, only: [:show, :index] do

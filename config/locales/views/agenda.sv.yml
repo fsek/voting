@@ -3,6 +3,7 @@ sv:
     recursion: För många nivåer av rekursion :)
     too_many_open: Nu försöker du ta upp två punkter på dagordningen samtidigt. Så effektiva kan vi inte vara.
     close: Stäng
+    current: Aktuell dagordning
     set_current: Gör aktuell
     title: Administrera dagordning
     name: Dagordning
