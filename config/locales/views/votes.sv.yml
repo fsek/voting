@@ -2,10 +2,13 @@ sv:
   vote:
     add_option: Lägg till
     admin_votes: Administrera voteringar
+    automatic_refresh: Uppdateras automatiskt var 15 sekund.
     closed: Stängd
     closing_failed: Stängningen misslyckades
     confirm_remove: "Är du säker på att du vill ta bort "
     count: Antal
+    current: Aktuell omröstning
+    current_missing: Ingen omröstning öppen
     do_close: Stäng
     do_open: Öppna
     edit_vote: Redigera votering

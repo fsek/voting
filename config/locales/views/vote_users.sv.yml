@@ -12,6 +12,7 @@ sv:
     manage: Hantera justeringar
     new: Ny användare
     present: Närvarande
+    present_count: Antal injusterade
     presence_error: Användare kunde inte justeras in, har eposten bekräftats?
     reset: Nollställ
     reset_votecode: Nollställ röstkod

@@ -68,6 +68,11 @@ class Admin::VotesController < ApplicationController
     redirect_to admin_votes_path, notice: I18n.t('vote.made_closed')
   end
 
+  def refresh
+    @vote_status_view = VoteStatusView.new
+    render
+  end
+
   private
 
   def authorize

@@ -13,10 +13,12 @@ RSpec.describe Admin::AdjustmentsController, type: :controller do
   describe 'GET #index' do
     it 'assigns an agenda' do
       agenda = create(:agenda, status: Agenda::CURRENT)
+      vote = create(:vote, open: true)
 
       get(:index)
       response.status.should eq(200)
-      assigns(:agenda).should eq(agenda)
+      assigns(:vote_status_view).agenda.should eq(agenda)
+      assigns(:vote_status_view).vote.should eq(vote)
     end
   end
 

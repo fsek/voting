@@ -24,7 +24,9 @@
 //= require wice_grid
 //= require jquery.countdown.min
 //= require moment
-//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.sv.js
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.en-GB.js
 //= require bootstrap-datetimepicker
 //= require pickers
 //= require cookies_eu
