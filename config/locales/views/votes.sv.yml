@@ -29,3 +29,4 @@ sv:
     still_open: Voteringen är fortfarande öppen. Resultatet kommer att visas här när voteringen har stängts. Följande alternativ finns
     submit: Rösta!
     title: Voteringar
+    deleted: " [RADERAD]"

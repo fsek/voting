@@ -105,6 +105,14 @@ module VotesHelper
     votes.find_by_id(id).to_s
   end
 
+  def vote_option_str(option)
+    if option.deleted?
+      option.title + t('vote.deleted')
+    else
+      option.title
+    end
+  end
+
   def user_filter
     [[Audit.human_attribute_name('User'), 'User'],
      [Audit.human_attribute_name('VotePost'), 'VotePost'],
