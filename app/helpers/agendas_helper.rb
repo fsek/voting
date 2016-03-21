@@ -17,7 +17,7 @@ module AgendasHelper
             method: :patch, remote: true)
   end
 
-  def status_str(state)
+  def agenda_status_str(state)
     if state == Agenda::CURRENT
       Agenda.human_attribute_name('current')
     elsif state == Agenda::FUTURE
@@ -29,7 +29,7 @@ module AgendasHelper
     end
   end
 
-  def status_collection
+  def agenda_status_collection
     [[Agenda.human_attribute_name('future'), Agenda::FUTURE],
      [Agenda.human_attribute_name('current'), Agenda::CURRENT],
      [Agenda.human_attribute_name('closed'), Agenda::CLOSED]]

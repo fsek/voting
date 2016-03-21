@@ -45,14 +45,16 @@ class Admin::VotesController < ApplicationController
   def show
     vote = Vote.find(params[:id])
     @vote_status = VoteStatusView.new(vote: vote)
-    @audit_grid = initialize_grid(Audit.where(vote_id: vote.id), include: [:user, :updater])
+    @audit_grid = initialize_grid(Audit.where(vote_id: vote.id),
+                                  include: [:user, :updater],
+                                  order: 'created_at',
+                                  order_direction: 'desc')
   end
 
   def open
     vote = Vote.find(params[:id])
-    vote.open = true
 
-    if vote.save
+    if vote.update(status: Vote::OPEN)
       flash[:notice] = I18n.t('vote.made_open')
     else
       flash[:alert] = I18n.t('vote.open_failed')
@@ -63,8 +65,7 @@ class Admin::VotesController < ApplicationController
 
   def close
     vote = Vote.find(params[:id])
-    vote.open = false
-    vote.save!
+    vote.update!(status: Vote::CLOSED)
 
     redirect_to admin_votes_path, notice: I18n.t('vote.made_closed')
   end
@@ -74,6 +75,19 @@ class Admin::VotesController < ApplicationController
     render
   end
 
+  def reset
+    vote = Vote.find(params[:id])
+    success = VoteService.reset(vote)
+
+    if success
+      flash[:notice] = I18n.t('vote.reset_ok')
+    else
+      flash[:alert] = I18n.t('vote.reset_failed')
+    end
+
+    redirect_to admin_vote_path(vote)
+  end
+
   private
 
   def authorize
@@ -81,7 +95,7 @@ class Admin::VotesController < ApplicationController
   end
 
   def vote_params
-    params.require(:vote).permit(:title, :open, :choices, :agenda_id,
+    params.require(:vote).permit(:title, :choices, :agenda_id,
                                  vote_options_attributes: [:id, :title, :_destroy])
   end
 end

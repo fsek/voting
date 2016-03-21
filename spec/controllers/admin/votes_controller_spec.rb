@@ -52,7 +52,6 @@ RSpec.describe Admin::VotesController, type: :controller do
     it 'valid parameters' do
       option_attr = { '12345678': { title: 'Joost' } }
       attributes = { title: 'Ordförande',
-                     open: true,
                      vote_options_attributes: option_attr }
 
       lambda do
@@ -109,39 +108,63 @@ RSpec.describe Admin::VotesController, type: :controller do
 
   describe 'PATCH #open' do
     it 'opens the vote' do
-      vote = create(:vote, open: false)
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      vote = create(:vote, status: Vote::FUTURE, agenda: agenda)
 
       patch(:open, id: vote)
 
       response.should redirect_to(admin_votes_path)
       flash[:notice].should eq(I18n.t('vote.made_open'))
       vote.reload
-      vote.open.should be_truthy
+      vote.open?.should be_truthy
     end
 
     it 'cannot open the vote' do
-      create(:vote, open: true)
-      vote = create(:vote, open: false)
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      create(:vote, status: Vote::OPEN, agenda: agenda)
+      vote = create(:vote, status: Vote::FUTURE)
 
       patch(:open, id: vote)
 
       response.should redirect_to(admin_votes_path)
       flash[:alert].should eq(I18n.t('vote.open_failed'))
       vote.reload
-      vote.open.should be_falsey
+      vote.open?.should be_falsey
     end
   end
 
   describe 'PATCH #close' do
     it 'closes the vote' do
-      vote = create(:vote, open: true)
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      vote = create(:vote, status: Vote::OPEN, agenda: agenda)
 
       patch(:close, id: vote)
 
       response.should redirect_to(admin_votes_path)
       flash[:notice].should eq(I18n.t('vote.made_closed'))
       vote.reload
-      vote.open.should be_falsey
+      vote.open?.should be_falsey
+    end
+  end
+
+  describe 'PATCH #reset' do
+    it 'resets the vote' do
+      vote = create(:vote, status: Vote::CLOSED)
+      create(:vote_option, vote: vote, count: 1)
+      create(:vote_option, vote: vote, count: 1)
+      create(:vote_post, vote: vote)
+      create(:vote_post, vote: vote)
+
+      vote.vote_options.sum(:count).should eq 2
+      vote.vote_posts.count.should eq 2
+
+      patch(:reset, id: vote)
+
+      response.should redirect_to(admin_vote_path(vote))
+      flash[:notice].should eq(I18n.t('vote.reset_ok'))
+      vote.reload
+      vote.vote_options.sum(:count).should eq 0
+      vote.vote_posts.count.should eq 0
     end
   end
 end

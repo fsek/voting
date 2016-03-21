@@ -34,7 +34,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
   describe 'PATCH #present' do
     it 'makes not present @user present' do
       user = create(:user, presence: false)
-      create(:vote, open: false)
+      create(:vote, status: Vote::FUTURE)
       create(:agenda, status: Agenda::CURRENT)
 
       xhr(:patch, :present, id: user.to_param)
@@ -47,7 +47,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
 
     it 'makes already present @user stay present' do
       user = create(:user, presence: true)
-      create(:vote, open: false)
+      create(:vote, status: Vote::FUTURE)
       create(:agenda, status: Agenda::CURRENT)
 
       xhr(:patch, :present, id: user.to_param)
@@ -60,8 +60,8 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
 
     it 'doesnt work if a vote is open' do
       user = create(:user, presence: false)
-      create(:vote, open: true)
-      create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      create(:vote, status: Vote::OPEN, agenda: agenda)
 
       xhr(:patch, :present, id: user.to_param)
 
@@ -73,7 +73,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
 
     it 'doesnt work without a current agenda' do
       user = create(:user, presence: false)
-      create(:vote, open: false)
+      create(:vote, status: Vote::FUTURE)
       create(:agenda)
 
       xhr(:patch, :present, id: user.to_param)
@@ -88,7 +88,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
   describe 'PATCH #not_present' do
     it 'makes present @user not present' do
       user = create(:user, presence: true)
-      create(:vote, open: false)
+      create(:vote, status: Vote::FUTURE)
       create(:agenda, status: Agenda::CURRENT)
 
       xhr(:patch, :not_present, id: user.to_param)
@@ -102,7 +102,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
     it 'makes already not present @user stay not present' do
       user = create(:user, presence: false)
       create(:agenda, status: Agenda::CURRENT)
-      create(:vote, open: false)
+      create(:vote, status: Vote::FUTURE)
 
       xhr(:patch, :not_present, id: user.to_param)
 
@@ -114,8 +114,8 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
 
     it 'doesnt work if a vote is open' do
       user = create(:user, presence: true)
-      create(:agenda, status: Agenda::CURRENT)
-      create(:vote, open: true)
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      create(:vote, status: Vote::OPEN, agenda: agenda)
 
       xhr(:patch, :not_present, id: user.to_param)
 
@@ -128,7 +128,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
     it 'doesnt work without a current agenda' do
       user = create(:user, presence: true)
       create(:agenda)
-      create(:vote, open: false)
+      create(:vote, status: Vote::FUTURE)
 
       xhr(:patch, :not_present, id: user.to_param)
 
@@ -145,7 +145,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       create(:user, presence: true)
       create(:user, presence: true)
       create(:user, presence: true)
-      create(:vote, open: false)
+      create(:vote, status: Vote::FUTURE)
       create(:agenda, status: Agenda::CURRENT)
 
       patch(:all_not_present)
@@ -156,12 +156,29 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       User.where(presence: true).count.should eq(0)
     end
 
-    it 'does not set users to not present' do
+    it 'does not set users to not present if a vote is open' do
       create(:user, presence: true)
       create(:user, presence: true)
       create(:user, presence: true)
       create(:user, presence: true)
-      create(:vote, open: true)
+
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      create(:vote, status: Vote::OPEN, agenda: agenda)
+
+      patch(:all_not_present)
+
+      response.should redirect_to(admin_vote_users_path)
+      flash[:alert].should eq(I18n.t('vote_user.state.error_all_not_present'))
+
+      User.where(presence: true).count.should eq(4)
+    end
+
+    it 'does not set users to not present without a current agenda' do
+      create(:user, presence: true)
+      create(:user, presence: true)
+      create(:user, presence: true)
+      create(:user, presence: true)
+      create(:agenda)
 
       patch(:all_not_present)
 

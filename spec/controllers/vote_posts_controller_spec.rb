@@ -11,7 +11,8 @@ RSpec.describe VotePostsController, type: :controller do
 
   describe 'GET #new' do
     it 'sets new vote_post if post is open' do
-      vote = create(:vote, open: true)
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      vote = create(:vote, status: Vote::OPEN, agenda: agenda)
 
       get(:new, vote_id: vote)
 
@@ -22,7 +23,17 @@ RSpec.describe VotePostsController, type: :controller do
     end
 
     it 'redirects if vote is closed' do
-      vote = create(:vote, open: false)
+      vote = create(:vote, status: Vote::CLOSED)
+
+      get(:new, vote_id: vote.to_param)
+
+      assigns(:vote).should eq(vote)
+      response.should redirect_to(votes_path)
+      flash[:alert].should eq(I18n.t('vote.is_closed'))
+    end
+
+    it 'redirects if vote is future' do
+      vote = create(:vote, status: Vote::FUTURE)
 
       get(:new, vote_id: vote.to_param)
 
@@ -34,8 +45,9 @@ RSpec.describe VotePostsController, type: :controller do
 
   describe 'POST #create' do
     it 'valid parameters' do
+      agenda = create(:agenda, status: Agenda::CURRENT)
       user.update!(presence: true, votecode: 'abcd123')
-      vote = create(:vote, :with_options, open: true)
+      vote = create(:vote, :with_options, status: Vote::OPEN, agenda: agenda)
       attributes = { votecode: 'abcd123',
                      vote_option_ids: [vote.vote_options.first.id] }
 
@@ -48,7 +60,8 @@ RSpec.describe VotePostsController, type: :controller do
 
     it 'invalid parameters' do
       user.update!(presence: true, votecode: 'abcd123')
-      vote = create(:vote, :with_options, open: true)
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      vote = create(:vote, :with_options, status: Vote::OPEN, agenda: agenda)
       attributes = { votecode: 'falseyfalsey',
                      vote_option_ids: [vote.vote_options.first.id] }
 

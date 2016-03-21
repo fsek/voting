@@ -3,7 +3,7 @@ class VotePostsController < ApplicationController
 
   def new
     @vote = Vote.find(params[:vote_id])
-    if !@vote.open
+    if !@vote.open?
       redirect_to votes_path, alert: I18n.t('vote.is_closed')
     else
       @vote_post = VotePost.new

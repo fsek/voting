@@ -12,7 +12,7 @@ class Agenda < ActiveRecord::Base
 
   validates :title, :status, presence: true
   validates :index, presence: true, numericality: { greater_than_or_equal_to: 1 }
-  validate :parent_validation, :only_one_current
+  validate :parent_validation, :only_one_current, :no_open_votes
 
   scope :index, -> { order(:sort_index) }
 
@@ -71,6 +71,14 @@ class Agenda < ActiveRecord::Base
   def only_one_current
     if current? && Agenda.current.present? && Agenda.current != self
       errors.add(:status, I18n.t('agenda.too_many_open'))
+    end
+  end
+
+  def no_open_votes
+    if status_changed?(from: CURRENT) && votes.present?
+      unless votes.current.blank?
+        errors.add(:status, I18n.t('agenda.vote_open'))
+      end
     end
   end
 

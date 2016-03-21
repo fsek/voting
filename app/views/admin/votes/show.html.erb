@@ -10,18 +10,26 @@
     </tr>
     <tr>
       <td><%= t('vote.status') %></td>
-      <td><%= @vote_status.vote.open ? t('vote.open') : t('vote.closed') %></td>
+      <td><%= vote_status_str(@vote_status.vote.status) %></td>
     </tr>
     <tr>
       <td><%= Vote.human_attribute_name(:choices) %></td>
       <td><%= @vote_status.vote.choices %></td>
     </tr>
+    <% if @vote_status.vote.closed? %>
+    <tr>
+      <td><%= t('vote.number_of_votes') %></td>
+      <td><%= "#{@vote_status.vote.vote_posts.count} / #{@vote_status.vote.present_users}" %></td>
+    </tr>
+    <% elsif @vote_status.vote.open? %>
     <tr>
       <td><%= t('vote.number_of_votes') %></td>
       <td><%= "#{@vote_status.vote.vote_posts.count} / #{@vote_status.adjusted}" %></td>
     </tr>
+    <% end %>
   </table>
-  <% if @vote_status.vote.open %>
+
+  <% if !@vote_status.vote.closed? %>
     <i><%= t('vote.still_open') %></i>
     <ul class="list">
       <% @vote_status.vote.vote_options.with_deleted.each do |v| %>
@@ -39,7 +47,7 @@
       <% end %>
       <tr>
         <td><i><%= t('vote.sum_votes_blank') %></i></td>
-        <td><i><%= vote_stats(@vote_status.vote, @vote_status.adjusted) %></i></td>
+        <td><i><%= vote_stats(@vote_status.vote) %></i></td>
       </tr>
     </table>
   <% end %>
@@ -62,6 +70,8 @@
     end
     grid.column name: t('log.date'), attribute: 'created_at', filter: false
   end -%>
-<%= link_to t('vote.edit_vote'), edit_admin_vote_path(@vote_status.vote), class: 'btn primary' %>
-<%= link_to t('vote.admin_votes'), admin_votes_path, class: 'btn secondary' %>
+  <%= link_to t('vote.edit_vote'), edit_admin_vote_path(@vote_status.vote), class: 'btn primary' %>
+  <%= link_to t('vote.admin_votes'), admin_votes_path, class: 'btn secondary' %>
+  <%= link_to t('vote.reset'), reset_admin_vote_path(@vote_status.vote), method: :patch,
+              class: 'btn danger pull-right', data: { confirm: t('vote.confirm_reset') } %>
 </div>

@@ -23,7 +23,7 @@
       link_to a, edit_admin_agenda_path(a)
     end
     grid.column name: Agenda.human_attribute_name(:status), attribute: 'status', class: 'status' do |a|
-      status_str(a.status)
+      agenda_status_str(a.status)
     end
     grid.column name: t('agenda.change_status'), class: 'state' do |a|
       agenda_state_link(a)

@@ -5,8 +5,8 @@ RSpec.describe VoteStatusView do
     it 'sets current' do
       agenda = create(:agenda, status: Agenda::CURRENT)
       create(:agenda, status: Agenda::CLOSED)
-      vote = create(:vote, open: true)
-      create(:vote, open: false)
+      vote = create(:vote, status: Vote::OPEN, agenda: agenda)
+      create(:vote, status: Vote::CLOSED)
       create(:user, presence: true)
       create(:user, presence: true)
       create(:user, presence: true)

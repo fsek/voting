@@ -4,7 +4,8 @@ RSpec.describe VoteService do
   describe 'user_vote' do
     it 'votes' do
       user = create(:user, presence: true, votecode: 'abcd123')
-      vote = create(:vote, :with_options, open: true, choices: 1)
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      vote = create(:vote, :with_options, status: Vote::OPEN, choices: 1, agenda: agenda)
       vote_option = vote.vote_options.first
 
       vote_post = VotePost.new(user: user, vote: vote, votecode: 'abcd123')
@@ -25,7 +26,8 @@ RSpec.describe VoteService do
 
     it 'votes multiple' do
       user = create(:user, presence: true, votecode: 'abcd123')
-      vote = create(:vote, :with_options, open: true, choices: 2)
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      vote = create(:vote, :with_options, status: Vote::OPEN, choices: 2, agenda: agenda)
       first_option = vote.vote_options.first
       second_option = vote.vote_options.second
 
@@ -47,7 +49,8 @@ RSpec.describe VoteService do
 
     it 'invalid vote' do
       user = create(:user, presence: true, votecode: 'abcd123')
-      vote = create(:vote, :with_options, open: true, choices: 1)
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      vote = create(:vote, :with_options, status: Vote::OPEN, choices: 1, agenda: agenda)
       # vote has 3 vote options when using :with_options
       first_option = vote.vote_options.first
       last_option = vote.vote_options.last
@@ -102,8 +105,8 @@ RSpec.describe VoteService do
 
     it 'set_present fail if open vote' do
       user = create(:user, presence: false)
-      create(:vote, open: true)
-      create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      create(:vote, status: Vote::OPEN, agenda: agenda)
 
       result = VoteService.set_present(user)
       user.reload
@@ -125,8 +128,8 @@ RSpec.describe VoteService do
 
     it 'set_not_present fail if open vote' do
       user = create(:user, presence: true)
-      create(:vote, open: true)
-      create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      create(:vote, status: Vote::OPEN, agenda: agenda)
 
       result = VoteService.set_not_present(user)
       user.reload
@@ -165,6 +168,16 @@ RSpec.describe VoteService do
 
       result.should be_falsey
     end
+
+    it 'does not work if user is not confirmed' do
+      user = create(:user, :unconfirmed)
+
+      result = VoteService.set_votecode(user)
+      user.reload
+
+      result.should be_falsey
+      user.votecode.should be_nil
+    end
   end
 
   describe 'votecode generator' do
@@ -175,7 +188,7 @@ RSpec.describe VoteService do
 
   describe 'set_all_not_present' do
     it 'works when votes are closed' do
-      create(:vote, open: false)
+      create(:vote, status: Vote::CLOSED)
       create(:user, presence: true)
       create(:user, presence: true)
       create(:user, presence: false)

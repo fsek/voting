@@ -2,7 +2,7 @@ sv:
   vote:
     add_option: Lägg till
     admin_votes: Administrera voteringar
-    already_voted: Du har redan röstat i omröstningen
+    already_voted: Du har redan deltagit i omröstningen
     automatic_refresh: Uppdateras automatiskt var 15 sekund.
     closed: Stängd
     closing_failed: Stängningen misslyckades
@@ -28,8 +28,14 @@ sv:
     results: Resultat
     show_title: Votering
     status: Status
-    still_open: Voteringen är fortfarande öppen. Resultatet kommer att visas här när voteringen har stängts. Följande alternativ finns
+    still_open: Voteringen har ännu inte avslutats. Resultatet kommer att visas här när voteringen har stängts. Följande alternativ finns
     submit: Rösta!
     sum_is_wrong: " Resultatet stämmer inte"
     sum_votes_blank: Σ röster / Σ blanka
     title: Voteringar
+    reopen: "Är du säker på att du vill öppna denna votering igen?\nDetta kommer att påverka statistiken över blanka röster."
+    wrong_agenda: "Voteringen kan enbart öppnas under den valda dagordningspunkten"
+    reset: Nollställ votering
+    reset_ok: Voteringen nollställdes
+    reset_failed: Det gick inte att nollställa voteringen
+    confirm_reset: Är du helt säker på att du vill nollställa voteringen?
