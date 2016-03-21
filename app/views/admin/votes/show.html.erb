@@ -22,16 +22,16 @@
   </table>
   <% if @vote.open %>
     <i><%= t('vote.still_open') %></i><p><p>
-    <% @vote.vote_options.where.not(:title => nil).each do |v| %>
-      <b><%= v.title %></b>
+    <% @vote.vote_options.with_deleted.each do |v| %>
+      <b><%= vote_option_str(v) %></b>
       <p>
     <% end %>
   <% else %>
     <%= t('vote.results') %>
     <table class="table">
-      <% @vote.vote_options.where.not(:title => nil).order(count: :desc).each do |v| %>
+      <% @vote.vote_options.with_deleted.order(count: :desc).each do |v| %>
         <tr>
-          <td><b><%= v.title %></b></td>
+          <td><b><%= vote_option_str(v) %></b></td>
          <td><b><%= v.count %></b></td>
        </tr>
       <% end %>
