@@ -1,6 +1,8 @@
+<% provide(:title, t('vote.admin_votes')) %>
 <div class="headline">
   <h2><%= t('vote.admin_votes') %></h2>
 </div>
+
 <div class="col-md-12">
   <%= link_to t('vote.new_vote'), new_admin_vote_path, class: 'btn primary' %>
   <% if can? :manage, User %>
@@ -10,10 +12,16 @@
     <%= link_to t('agenda.manage'), admin_agendas_path, class: 'btn secondary' %>
   <% end %>
 </div>
+
 <div class="col-md-12">
   <%= grid(@votes_grid) do |grid|
     grid.column name: t('attributes.name'), attribute: 'title' do |v|
       link_to v.title, admin_vote_path(v)
+    end
+    grid.column name: model_name(Agenda), assoc: :agenda, attribute: 'sort_index' do |v|
+      if v.agenda.present?
+        link_to(v.agenda, edit_admin_agenda_path(v.agenda))
+      end
     end
     grid.column name: t('vote.open'), attribute: 'open' do |v|
       yes_no(v.open)
@@ -25,8 +33,8 @@
       link_to t('edit'), edit_admin_vote_path(v)
     end
     grid.column name: t('remove') do |v|
-      link_to t('remove'), admin_vote_path(v), method: :delete, data:
-                            {confirm: t('vote.confirm_remove') + v.title + '?'}
+      link_to(t('remove'), admin_vote_path(v), method: :delete, data:
+              {confirm: t('vote.confirm_remove') + v.title + '?'})
     end
   end -%>
 </div>

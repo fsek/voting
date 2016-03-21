@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316180136) do
+ActiveRecord::Schema.define(version: 20160320125754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -198,10 +198,11 @@ ActiveRecord::Schema.define(version: 20160316180136) do
 
   create_table "vote_posts", force: :cascade do |t|
     t.integer  "vote_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.datetime "deleted_at"
     t.integer  "user_id"
+    t.integer  "selected",   default: 0, null: false
   end
 
   add_index "vote_posts", ["deleted_at"], name: "index_vote_posts_on_deleted_at", using: :btree
@@ -215,8 +216,10 @@ ActiveRecord::Schema.define(version: 20160316180136) do
     t.datetime "updated_at",                 null: false
     t.datetime "deleted_at"
     t.integer  "choices",    default: 1
+    t.integer  "agenda_id"
   end
 
+  add_index "votes", ["agenda_id"], name: "index_votes_on_agenda_id", using: :btree
   add_index "votes", ["deleted_at"], name: "index_votes_on_deleted_at", using: :btree
 
   add_foreign_key "adjustments", "agendas"
@@ -226,4 +229,5 @@ ActiveRecord::Schema.define(version: 20160316180136) do
   add_foreign_key "vote_options", "votes"
   add_foreign_key "vote_posts", "users"
   add_foreign_key "vote_posts", "votes"
+  add_foreign_key "votes", "agendas"
 end

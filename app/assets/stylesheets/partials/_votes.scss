@@ -35,4 +35,37 @@
       top: 0;
     }
   }
+
+  &.agenda {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .missing {
+    font-size: 18px;
+    text-align: center;
+
+    i {
+      color: $fsek-orange;
+      font-size: 20px;
+    }
+  }
+
+  .not-present {
+    font-size: 20px;
+
+    i {
+      color: $unify-red;
+      font-size: 26px;
+    }
+  }
+
+  .present {
+    font-size: 20px;
+
+    i {
+      color: $unify-green;
+      font-size: 26px;
+    }
+  }
 }

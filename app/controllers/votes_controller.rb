@@ -2,6 +2,7 @@ class VotesController < ApplicationController
 load_permissions_and_authorize_resource
 
   def index
-    @votes_grid = initialize_grid(Vote.where(open: true))
+    @vote_status = VoteStatusView.new
+    @vote_status.vote_post = VotePost.where(vote: @vote_status.vote, user: current_user).first
   end
 end

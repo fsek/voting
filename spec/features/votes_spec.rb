@@ -9,8 +9,10 @@ RSpec.feature 'votes' do
       LoginPage.new.visit_page.login(user)
 
       page.visit votes_path
+      page.status_code.should eq(200)
 
       first(:linkhref, new_vote_vote_post_path(vote)).click
+      page.status_code.should eq(200)
 
       fill_in 'vote_post[votecode]', with: 'abcd123'
       select vote.vote_options.first, from: 'vote_post[vote_option_ids][]'

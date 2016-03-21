@@ -1,5 +1,6 @@
 <%= simple_form_for [:admin, @vote] do |f| %>
   <%= f.input :title %>
+  <%= f.association :agenda, collection: Agenda.index, label_method: :to_s  %>
   <%= f.input :choices, as: :integer, input_html: { min: '1'} %>
   <%= f.input :open, as: :boolean, default: true %>
   <div class="panel panel-default">

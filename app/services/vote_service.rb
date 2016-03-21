@@ -2,6 +2,7 @@ module VoteService
   def self.user_vote(post)
     begin
       VotePost.transaction do
+        post.selected = post.vote_option_ids.length
         post.save!
         options = VoteOption.find(post.vote_option_ids)
         options.each do |o|

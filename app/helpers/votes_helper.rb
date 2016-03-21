@@ -36,8 +36,8 @@ module VotesHelper
 
   def split_votecode(value)
     if value.is_a?(Array) && value.size == 2
-      return (value.first.nil? ? t('log.missing') : value.first.to_s) + t('log.to') +
-             (value.last.nil? ? t('log.missing') : value.last.to_s)
+      return ((value.first.nil? ? t('log.missing') : value.first.to_s) + t('log.to') +
+              (value.last.nil? ? t('log.missing') : value.last.to_s))
     else
       return value.nil? ? t('log.missing') : value
     end
@@ -123,5 +123,47 @@ module VotesHelper
     [[Audit.human_attribute_name('Vote'), 'Vote'],
      [Audit.human_attribute_name('VoteOption'), 'VoteOption'],
      [Audit.human_attribute_name('VotePost'), 'VotePost']]
+  end
+
+  def user_vote_link(vote_status)
+    if vote_status.present? && vote_status.vote.present?
+      header = user_vote_header(vote_status.vote)
+      content = user_vote_post_status(vote_status)
+
+      safe_join([header, content])
+    else
+      safe_join([fa_icon('exclamation-circle'), ' ', t('vote.no_votes_open')])
+    end
+  end
+
+  def user_vote_header(vote)
+    if vote.present?
+      content_tag(:div, class: 'headline') do
+        content_tag(:h2) do
+          state = vote.open ? t('vote.open') : t('vote.close')
+          safe_join([vote.title, ' ', content_tag(:small, state)])
+        end
+      end
+    end
+  end
+
+  def user_vote_post_status(vote_status)
+    if vote_status.vote_post.present?
+      safe_join([t('vote.already_voted'), ': ', l(vote_status.vote_post.created_at)])
+    else
+      link_to(t('vote.submit'), new_vote_vote_post_path(vote_status.vote), class: 'btn primary')
+    end
+  end
+
+  def vote_stats(vote, adjusted)
+    pcount = vote.vote_posts.sum(:selected)
+    ocount = vote.vote_options.sum(:count)
+    result = "#{pcount} / #{adjusted * vote.choices - pcount}"
+
+    if pcount != ocount
+      result += t('vote.sum_is_wrong')
+    end
+
+    result
   end
 end

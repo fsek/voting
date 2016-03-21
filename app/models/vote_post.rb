@@ -19,7 +19,9 @@ class VotePost < ActiveRecord::Base
 
 
   def log_create
-    log('create')
+    Audit.create!(auditable: self, user_id: user_id, vote_id: vote_id,
+                  audited_changes: create_changes,
+                  action: 'create', updater_id: updater)
   end
 
   def log_update
@@ -33,8 +35,13 @@ class VotePost < ActiveRecord::Base
   end
 
   def log(action)
-    Audit.create!(auditable: self, user_id: user_id, vote_id: vote_id, audited_changes: log_changes,
+    Audit.create!(auditable: self, user_id: user_id, vote_id: vote_id,
+                  audited_changes: log_changes,
                   action: action, updater_id: updater)
+  end
+
+  def create_changes
+    changes.except(:created_at, :updated_at, :deleted_at, :id, :selected)
   end
 
   def log_changes
