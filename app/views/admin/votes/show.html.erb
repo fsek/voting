@@ -1,42 +1,49 @@
+<% provide(:title, t('vote.admin_votes')) %>
 <div class="col-md-10 col-md-offset-1 reg-page">
   <div class="headline">
-    <h1><%= t('vote.show_title') + ' – ' + @vote.title %></h1>
+    <h1><%= "#{t('vote.show_title')} - #{@vote_status.vote.title}" %></h1>
   </div>
   <table class="table">
     <tr>
       <td><%= t('attributes.name') %></td>
-      <td><%= @vote.title %></td>
+      <td><%= @vote_status.vote.title %></td>
     </tr>
     <tr>
       <td><%= t('vote.status') %></td>
-      <td><%= @vote.open ? t('vote.open') : t('vote.closed') %></td>
+      <td><%= @vote_status.vote.open ? t('vote.open') : t('vote.closed') %></td>
     </tr>
     <tr>
       <td><%= Vote.human_attribute_name(:choices) %></td>
-      <td><%= @vote.choices %></td>
+      <td><%= @vote_status.vote.choices %></td>
     </tr>
     <tr>
       <td><%= t('vote.number_of_votes') %></td>
-      <td><%= @vote.vote_posts.count %></td>
+      <td><%= "#{@vote_status.vote.vote_posts.count} / #{@vote_status.adjusted}" %></td>
     </tr>
   </table>
-  <% if @vote.open %>
-    <i><%= t('vote.still_open') %></i><p><p>
-    <% @vote.vote_options.with_deleted.each do |v| %>
-      <b><%= vote_option_str(v) %></b>
-      <p>
-    <% end %>
+  <% if @vote_status.vote.open %>
+    <i><%= t('vote.still_open') %></i>
+    <ul class="list">
+      <% @vote_status.vote.vote_options.with_deleted.each do |v| %>
+        <li><b><%= vote_option_str(v) %></b></li>
+      <% end %>
+    </ul>
   <% else %>
     <%= t('vote.results') %>
     <table class="table">
-      <% @vote.vote_options.with_deleted.order(count: :desc).each do |v| %>
+      <% @vote_status.vote.vote_options.order_all.each do |v| %>
         <tr>
           <td><b><%= vote_option_str(v) %></b></td>
-         <td><b><%= v.count %></b></td>
-       </tr>
+          <td><b><%= v.count %></b></td>
+        </tr>
       <% end %>
+      <tr>
+        <td><i><%= t('vote.sum_votes_blank') %></i></td>
+        <td><i><%= vote_stats(@vote_status.vote, @vote_status.adjusted) %></i></td>
+      </tr>
     </table>
   <% end %>
+
   <%= grid(@audit_grid) do |grid|
     grid.column name: t('log.type'), attribute: 'auditable_type', custom_filter: vote_filter do |a|
       Audit.human_attribute_name(a.auditable_type)
@@ -55,6 +62,6 @@
     end
     grid.column name: t('log.date'), attribute: 'created_at', filter: false
   end -%>
-  <%= link_to t('vote.edit_vote'), edit_admin_vote_path(@vote), class: 'btn primary' %>
-  <%= link_to t('vote.admin_votes'), admin_votes_path, class: 'btn secondary' %>
+<%= link_to t('vote.edit_vote'), edit_admin_vote_path(@vote_status.vote), class: 'btn primary' %>
+<%= link_to t('vote.admin_votes'), admin_votes_path, class: 'btn secondary' %>
 </div>

@@ -3,6 +3,7 @@ class Vote < ActiveRecord::Base
 
   has_many :audits, as: :auditable
 
+  belongs_to :agenda
   has_many :vote_options, dependent: :destroy
   has_many :vote_posts, dependent: :destroy
 

@@ -3,7 +3,7 @@ class Admin::VotesController < ApplicationController
   before_action :authorize
 
   def index
-    @votes_grid = initialize_grid(Vote)
+    @votes_grid = initialize_grid(Vote, include: :agenda, order: 'agendas.sort_index')
   end
 
   def new
@@ -43,8 +43,9 @@ class Admin::VotesController < ApplicationController
   end
 
   def show
-    @vote = Vote.find(params[:id])
-    @audit_grid = initialize_grid(Audit.where(vote_id: @vote.id), include: [:user, :updater])
+    vote = Vote.find(params[:id])
+    @vote_status = VoteStatusView.new(vote: vote)
+    @audit_grid = initialize_grid(Audit.where(vote_id: vote.id), include: [:user, :updater])
   end
 
   def open
@@ -80,7 +81,7 @@ class Admin::VotesController < ApplicationController
   end
 
   def vote_params
-    params.require(:vote).permit(:title, :open, :choices,
+    params.require(:vote).permit(:title, :open, :choices, :agenda_id,
                                  vote_options_attributes: [:id, :title, :_destroy])
   end
 end

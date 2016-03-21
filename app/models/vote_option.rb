@@ -10,6 +10,8 @@ class VoteOption < ActiveRecord::Base
   after_update :log_update
   after_destroy :log_destroy
 
+  scope :order_all, -> { with_deleted.order(count: :desc) }
+
   def log_create
     log('create')
   end

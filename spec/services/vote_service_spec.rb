@@ -19,6 +19,30 @@ RSpec.describe VoteService do
       end.should change(vote_option, :count).by(1)
 
       result.should be_truthy
+      vote_post.reload
+      vote_post.selected.should eq(1)
+    end
+
+    it 'votes multiple' do
+      user = create(:user, presence: true, votecode: 'abcd123')
+      vote = create(:vote, :with_options, open: true, choices: 2)
+      first_option = vote.vote_options.first
+      second_option = vote.vote_options.second
+
+      vote_post = VotePost.new(user: user, vote: vote, votecode: 'abcd123')
+      vote_post.vote_option_ids = [first_option.id, second_option.id]
+
+      vote_post.should be_valid
+      result = false
+
+      lambda do
+        result = VoteService.user_vote(vote_post)
+        first_option.reload
+      end.should change(first_option, :count).by(1)
+
+      result.should be_truthy
+      vote_post.reload
+      vote_post.selected.should eq(2)
     end
 
     it 'invalid vote' do

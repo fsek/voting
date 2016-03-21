@@ -2,6 +2,7 @@ sv:
   vote:
     add_option: Lägg till
     admin_votes: Administrera voteringar
+    already_voted: Du har redan röstat i omröstningen
     automatic_refresh: Uppdateras automatiskt var 15 sekund.
     closed: Stängd
     closing_failed: Stängningen misslyckades
@@ -9,6 +10,7 @@ sv:
     count: Antal
     current: Aktuell omröstning
     current_missing: Ingen omröstning öppen
+    deleted: " [RADERAD]"
     do_close: Stäng
     do_open: Öppna
     edit_vote: Redigera votering
@@ -18,7 +20,7 @@ sv:
     manage: Hantera voteringar
     new_vote: Ny votering
     no_votes_open: "Just nu finns det tyvärr inga voteringar som är öppna :("
-    number_of_votes: Antal röster
+    number_of_votes: Antal röster / antal injusterade
     open: Öppen
     open_close: Öppna/stäng
     open_failed: Öppningen misslyckades, är ett annat val öppet?
@@ -28,5 +30,6 @@ sv:
     status: Status
     still_open: Voteringen är fortfarande öppen. Resultatet kommer att visas här när voteringen har stängts. Följande alternativ finns
     submit: Rösta!
+    sum_is_wrong: " Resultatet stämmer inte"
+    sum_votes_blank: Σ röster / Σ blanka
     title: Voteringar
-    deleted: " [RADERAD]"
