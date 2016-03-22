@@ -12,11 +12,10 @@ RSpec.describe Ability do
     Notice.new => { no: standard },
     Permission.new => { yes: [], no: standard }
   }
-  
+
   let(:signed) { build_stubbed(:user) }
   subject(:signed_ability) { Ability.new(signed) }
 
-  
   describe 'Signed in' do
     ab_signed.each do |obj, value|
       if value[:yes].present?

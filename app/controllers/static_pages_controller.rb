@@ -11,4 +11,8 @@ class StaticPagesController < ApplicationController
   def index
     @start_page = StartPage.new
   end
+
+  def lets_encrypt
+    render text: ENV['LETSENCRYPT_TOKEN']
+  end
 end
