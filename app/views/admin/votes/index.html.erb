@@ -13,6 +13,10 @@
   <% end %>
 </div>
 
+<div class="col-md-12 vote status" id="vote-status">
+  <%= render '/admin/votes/status', vote_status_view: @vote_status_view %>
+</div>
+
 <div class="col-md-12">
   <%= grid(@votes_grid) do |grid|
     grid.column name: t('attributes.name'), attribute: 'title' do |v|

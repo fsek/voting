@@ -4,9 +4,12 @@ sv:
     admin_votes: Administrera voteringar
     already_voted: Du har redan deltagit i omröstningen
     automatic_refresh: Uppdateras automatiskt var 15 sekund.
+    cannot_edit: Voteringen är öppen och kan därmed inte redigeras
+    cannot_reset: Voteringen är öppen och kan därmed inte nollställas
     closed: Stängd
     closing_failed: Stängningen misslyckades
     confirm_remove: "Är du säker på att du vill ta bort "
+    confirm_reset: Är du helt säker på att du vill nollställa voteringen?
     count: Antal
     current: Aktuell omröstning
     current_missing: Ingen omröstning öppen
@@ -23,8 +26,11 @@ sv:
     number_of_votes: Antal röster / antal injusterade
     open: Öppen
     open_close: Öppna/stäng
-    open_failed: Öppningen misslyckades, är ett annat val öppet?
     options: Alternativ
+    reopen: "Är du säker på att du vill öppna denna votering igen?\nDetta kommer att påverka statistiken över blanka röster."
+    reset: Nollställ votering
+    reset_failed: Det gick inte att nollställa voteringen
+    reset_ok: Voteringen nollställdes
     results: Resultat
     show_title: Votering
     status: Status
@@ -33,9 +39,4 @@ sv:
     sum_is_wrong: " Resultatet stämmer inte"
     sum_votes_blank: Σ röster / Σ blanka
     title: Voteringar
-    reopen: "Är du säker på att du vill öppna denna votering igen?\nDetta kommer att påverka statistiken över blanka röster."
     wrong_agenda: "Voteringen kan enbart öppnas under den valda dagordningspunkten"
-    reset: Nollställ votering
-    reset_ok: Voteringen nollställdes
-    reset_failed: Det gick inte att nollställa voteringen
-    confirm_reset: Är du helt säker på att du vill nollställa voteringen?

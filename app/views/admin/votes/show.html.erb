@@ -70,8 +70,11 @@
     end
     grid.column name: t('log.date'), attribute: 'created_at', filter: false
   end -%>
+  <% unless @vote_status.vote.open? %>
   <%= link_to t('vote.edit_vote'), edit_admin_vote_path(@vote_status.vote), class: 'btn primary' %>
-  <%= link_to t('vote.admin_votes'), admin_votes_path, class: 'btn secondary' %>
   <%= link_to t('vote.reset'), reset_admin_vote_path(@vote_status.vote), method: :patch,
               class: 'btn danger pull-right', data: { confirm: t('vote.confirm_reset') } %>
+  <% end %>
+  <%= link_to t('vote.admin_votes'), admin_votes_path, class: 'btn secondary' %>
+  <%= vote_state_link(@vote_status.vote, type: 'btn secondary') %>
 </div>

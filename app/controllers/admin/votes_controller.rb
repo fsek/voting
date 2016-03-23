@@ -3,6 +3,7 @@ class Admin::VotesController < ApplicationController
   before_action :authorize
 
   def index
+    @vote_status_view = VoteStatusView.new
     @votes_grid = initialize_grid(Vote, include: :agenda, order: 'agendas.sort_index')
   end
 
@@ -23,12 +24,18 @@ class Admin::VotesController < ApplicationController
 
   def edit
     @vote = Vote.find(params[:id])
+
+    if @vote.open?
+      redirect_to admin_votes_path, alert: t('vote.cannot_edit')
+    end
   end
 
   def update
     @vote = Vote.find(params[:id])
 
-    if @vote.update(vote_params)
+    if @vote.open?
+      redirect_to admin_votes_path, alert: t('vote.cannot_edit')
+    elsif @vote.update(vote_params)
       redirect_to edit_admin_vote_path(@vote), notice: alert_update(Vote)
     else
       render :edit, status: 422
@@ -57,7 +64,7 @@ class Admin::VotesController < ApplicationController
     if vote.update(status: Vote::OPEN)
       flash[:notice] = I18n.t('vote.made_open')
     else
-      flash[:alert] = I18n.t('vote.open_failed')
+      flash[:alert] = vote.errors[:status].to_sentence
     end
 
     redirect_to admin_votes_path
@@ -77,9 +84,10 @@ class Admin::VotesController < ApplicationController
 
   def reset
     vote = Vote.find(params[:id])
-    success = VoteService.reset(vote)
 
-    if success
+    if vote.open?
+      flash[:alert] = I18n.t('vote.cannot_reset')
+    elsif VoteService.reset(vote)
       flash[:notice] = I18n.t('vote.reset_ok')
     else
       flash[:alert] = I18n.t('vote.reset_failed')
