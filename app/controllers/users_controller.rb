@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def update
     @tab = :profile
-    if @user.update(user_params)
+    if UserService.set_card_number(@user, user_params[:card_number])
       flash[:notice] = alert_update(User)
       render :edit
     else
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:firstname, :lastname, :card_number)
+    params.require(:user).permit(:card_number)
   end
 
   def account_params

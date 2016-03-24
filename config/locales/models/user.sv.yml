@@ -21,15 +21,18 @@ sv:
         unconfirmed_email: Obekräftad epost
         votecode: Röstkod
   user:
-    attributes_missing: du måste fylla i dina användaruppgifter.
-    edit_information: Redigera användaruppgifter
-    settings: Kontoinställningar
     account_updated: Kontoinställningar uppdaterades
+    add_information: Du måste fylla i dina användaruppgifter
+    attributes_missing: du måste fylla i dina användaruppgifter.
+    card_number_already_set: Har redan fyllts i, kontakta administratör för att ändra
+    card_number_format: Fel format på kortnumret
+    edit_information: Redigera användaruppgifter
     password_required: Lösenord måste fyllas i för att ändra uppgifter
     password_required_update: Nuvarande lösenord måste fyllas i för att byta lösenord
     password_updated: Lösenordet uppdaterades.
-    public_information: Publik information
     protected_information: Information som endast visas av funktionärer
-    add_information: Du måste fylla i dina användaruppgifter
+    public_information: Publik information
+    settings: Kontoinställningar
     student_lu_email: Du kan endast använda din stild-id@student.lu.se epost
     vote_administration: Justeringar
+    submit_card_number: Spara kortnummer

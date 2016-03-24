@@ -1,14 +1,5 @@
-.profile-img {
-  border: 2px solid;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 15px;
-  max-width: 60%;
-}
 
 .user {
-
   .round-icon {
     border: 50px;
     border-radius: 50%;
@@ -46,5 +37,36 @@
     li:before {
       content: "- ";
     }
+  }
+
+  &.status {
+    margin-bottom: 20px;
+
+    span {
+      display: block;
+    }
+
+    .not-present {
+      font-size: 20px;
+
+      i {
+        color: $unify-red;
+        font-size: 26px;
+      }
+    }
+
+    .present {
+      font-size: 20px;
+
+      i {
+        color: $unify-green;
+        font-size: 26px;
+      }
+    }
+  }
+
+  &.signup-terms {
+    display: block;
+    margin-bottom: 10px;
   }
 }

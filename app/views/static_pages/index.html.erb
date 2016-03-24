@@ -13,12 +13,14 @@
   </div>
 <% end %>
 
-<div class="col-md-7 col-sm-12">
-  <%= render '/static_pages/agendas', agendas: @start_page.agendas %>
-  <%= render @start_page.notices %>
+<div class="col-md-6 col-sm-12">
+  <%= render '/users/confirm_information' %>
+  <%= render '/agendas/start_page', agendas: @start_page.agendas %>
 </div>
 
-<div class="col-md-5 col-sm-12">
+<div class="col-md-6 col-sm-12">
+  <%= render @start_page.notices %>
+
   <div class="headline headline-md">
     <h3><%= models_name(News) %></h3>
   </div>
