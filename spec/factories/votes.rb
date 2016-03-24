@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :vote do
     title
-    open false
+    status Vote::FUTURE
     choices 1
 
     trait :with_options do

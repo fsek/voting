@@ -32,4 +32,10 @@ module VoteUserHelper
       end
     end
   end
+
+  def user_filter
+    [[Audit.human_attribute_name('User'), 'User'],
+     [Audit.human_attribute_name('VotePost'), 'VotePost'],
+     [Audit.human_attribute_name('Adjustment'), 'Adjustment']]
+  end
 end

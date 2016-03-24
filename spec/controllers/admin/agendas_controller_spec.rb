@@ -134,5 +134,18 @@ RSpec.describe Admin::AgendasController, type: :controller do
       agenda.status.should eq(Agenda::CLOSED)
       Agenda.current.should be_nil
     end
+
+    it 'doesnt work if a associated vote is open' do
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      create(:vote, status: Vote::OPEN, agenda: agenda)
+
+      xhr(:patch, :set_closed, id: agenda.to_param)
+
+      agenda.reload
+      assigns(:agenda).should eq(agenda)
+      assigns(:success).should be_falsey
+      agenda.status.should eq(Agenda::CURRENT)
+      Agenda.current.should eq agenda
+    end
   end
 end

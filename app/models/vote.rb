@@ -7,17 +7,50 @@ class Vote < ActiveRecord::Base
   has_many :vote_options, dependent: :destroy
   has_many :vote_posts, dependent: :destroy
 
-  validates :title, presence: true
+  validates :title, :status, presence: true
   validates :choices, presence: true, numericality: { greater_than_or_equal_to: 1 }
   validate :only_one_open
+  validate :open_on_agenda
   accepts_nested_attributes_for :vote_options, reject_if: :all_blank, allow_destroy: true
+
+  attr_accessor :reset
+
+  OPEN = 'open'.freeze
+  CLOSED = 'closed'.freeze
+  FUTURE = 'future'.freeze
+
+  before_update :update_present_users
 
   after_create :log_create
   after_update :log_update
   after_destroy :log_destroy
 
   def self.current
-    Vote.where(open: true).first
+    Vote.where(status: OPEN).first
+  end
+
+  def to_s
+    %(#{title} (Id: #{id}))
+  end
+
+  def open?
+    status == OPEN
+  end
+
+  def closed?
+    status == CLOSED
+  end
+
+  private
+
+  def update_present_users
+    if status_changed?(from: OPEN, to: CLOSED)
+      self.present_users = User.present.count
+    end
+  end
+
+  def updater
+    User.current.id if User.current && !destroyed?
   end
 
   def log_create
@@ -40,22 +73,25 @@ class Vote < ActiveRecord::Base
   end
 
   def log_changes
-    changes.except(:created_at, :updated_at, :deleted_at, :id, :vote_options)
-  end
+    diff = changes.except(:created_at, :updated_at, :deleted_at, :id, :vote_options)
 
-  def to_s
-    %(#{title} (Id: #{id}))
+    if reset.present? && reset
+      diff[:reset] = ''
+    end
+    diff
   end
-
-  def updater
-    User.current.id if User.current && !destroyed?
-  end
-
-  private
 
   def only_one_open
-    if open && Vote.current.present? && Vote.current != self
-      errors.add(:open, I18n.t('vote.already_one_open'))
+    if open? && Vote.current.present? && Vote.current != self
+      errors.add(:status, I18n.t('vote.already_one_open'))
+    end
+  end
+
+  def open_on_agenda
+    if open?
+      unless agenda.present? && agenda.current?
+        errors.add(:status, I18n.t('vote.wrong_agenda'))
+      end
     end
   end
 end

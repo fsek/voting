@@ -6,7 +6,7 @@
           <%= agenda %>
         </h4>
         <span class="badge">
-          <%= status_str(agenda.current_status) %>
+          <%= agenda_status_str(agenda.current_status) %>
         </span>
         <p class="list-group-item-text">
           <% if agenda.children.present? %>

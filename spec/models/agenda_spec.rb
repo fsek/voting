@@ -43,5 +43,14 @@ RSpec.describe Agenda, type: :model do
 
       agenda1.errors[:parent_id].should include I18n.t('agenda.recursion')
     end
+
+    it 'can not close if a associated vote is open' do
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      create(:vote, status: Vote::OPEN, agenda: agenda)
+      agenda.status = Agenda::CLOSED
+      agenda.valid?
+
+      agenda.errors[:status].should include I18n.t('agenda.vote_open')
+    end
   end
 end

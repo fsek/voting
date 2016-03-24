@@ -42,6 +42,7 @@ Fsek::Application.routes.draw do
       resources :votes, path: :voteringar, controller: :votes do
         patch :close, on: :member
         patch :open, on: :member
+        patch :reset, on: :member
         post :refresh, on: :collection
       end
 

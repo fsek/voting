@@ -72,4 +72,15 @@ module VoteService
     votecode = Array.new(7) { [*'0'..'9', *'a'..'z'].sample }.join
     (User.with_deleted.any? { |x| x.votecode == votecode }) ? votecode_generator : votecode
   end
+
+  def self.reset(vote)
+    Vote.transaction do
+      vote.update!(present_users: 0, reset: true)
+      vote.vote_posts.destroy_all
+      vote.vote_options.update_all(count: 0)
+      true
+    end
+  rescue
+    false
+  end
 end

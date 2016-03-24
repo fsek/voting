@@ -1,6 +1,6 @@
 <% provide(:title, t('vote.admin_votes')) %>
 <div class="headline">
-  <h2><%= t('vote.admin_votes') %></h2>
+  <h1><%= t('vote.admin_votes') %></h1>
 </div>
 
 <div class="col-md-12">
@@ -13,6 +13,10 @@
   <% end %>
 </div>
 
+<div class="col-md-12 vote status" id="vote-status">
+  <%= render '/admin/votes/status', vote_status_view: @vote_status_view %>
+</div>
+
 <div class="col-md-12">
   <%= grid(@votes_grid) do |grid|
     grid.column name: t('attributes.name'), attribute: 'title' do |v|
@@ -23,8 +27,8 @@
         link_to(v.agenda, edit_admin_agenda_path(v.agenda))
       end
     end
-    grid.column name: t('vote.open'), attribute: 'open' do |v|
-      yes_no(v.open)
+    grid.column name: t('vote.status'), attribute: 'status' do |v|
+      vote_status_str(v.status)
     end
     grid.column name: t('vote.open_close') do |v|
       vote_state_link(v)
@@ -34,7 +38,7 @@
     end
     grid.column name: t('remove') do |v|
       link_to(t('remove'), admin_vote_path(v), method: :delete, data:
-              {confirm: t('vote.confirm_remove') + v.title + '?'})
+              { confirm: t('vote.confirm_remove') + v.title + '?'} )
     end
   end -%>
 </div>

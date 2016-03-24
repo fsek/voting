@@ -11,6 +11,7 @@ sv:
     set_current: Gör aktuell
     title: Administrera dagordning
     too_many_open: Nu försöker du ta upp två punkter på dagordningen samtidigt. Så effektiva kan vi inte vara.
+    vote_open: En votering som tillhör denna punkt är fortfarande öppen!
 
     state:
       closed: "%{a} stängdes"

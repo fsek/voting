@@ -20,40 +20,45 @@ module VotesHelper
       val = split_presence(value)
     when 'votecode'
       val = split_votecode(value)
-    when 'open'
-      val = split_open(value)
+    when 'status'
+      val = split_status(value)
     when 'title'
       val = split_votecode(value)
+    when 'present_users'
+      val = split_present_users(value)
     else
       val = value.to_s
     end
 
-    unless val.blank?
+    if val.present?
       content = model.human_attribute_name(key) + ': ' + val.to_s
-      content_tag(:p, content)
+    elsif key == 'reset'
+      content = model.human_attribute_name(key)
     end
+
+    content_tag(:p, content)
   end
 
   def split_votecode(value)
     if value.is_a?(Array) && value.size == 2
-      return ((value.first.nil? ? t('log.missing') : value.first.to_s) + t('log.to') +
-              (value.last.nil? ? t('log.missing') : value.last.to_s))
+      ((value.first.nil? ? t('log.missing') : value.first.to_s) + t('log.to') +
+       (value.last.nil? ? t('log.missing') : value.last.to_s))
     else
-      return value.nil? ? t('log.missing') : value
+      value.nil? ? t('log.missing') : value
     end
   end
 
   def split_array(value)
     unless value.is_a?(Array) && value.first.nil?
-      return value.to_s
+      value.to_s
     end
   end
 
   def split_presence(value)
     if value.is_a?(Array) && value.size == 2 && value.first != value.last
-      return presence_string(value.last)
+      presence_string(value.last)
     else
-      return yes_no(value)
+      yes_no(value)
     end
   end
 
@@ -65,38 +70,47 @@ module VotesHelper
     end
   end
 
-  def split_open(value)
-    if value.is_a?(Array) && value.size == 2 && value.first != value.last
-      return open_closed_string(value.last)
-    else
-      return yes_no(value)
-    end
-  end
-
-  def split_agenda(value)
+  def split_status(value)
     if value.is_a?(Array) && value.size == 2
-      '§' + Agenda.find(value.first).order + t('log.to') + '§' + Agenda.find(value.last).order
+      vote_status_str(value.first) + t('log.to') + vote_status_str(value.last)
     else
       value.to_s
     end
   end
 
-  def open_closed_string(value)
-    if value
-      t('vote.made_open')
+  def split_agenda(value)
+    if value.is_a?(Array) && value.size == 2
+      agenda_log_str(value.first) + t('log.to') + agenda_log_str(value.last)
     else
-      t('vote.made_closed')
+      value.to_s
     end
   end
 
-  def vote_state_link(vote)
+  def agenda_log_str(value)
+    if value.present?
+      '§' + Agenda.find(value).order
+    else
+      t('log.missing')
+    end
+  end
+
+  def split_present_users(value)
+    if value.is_a?(Array) && value.size == 2
+      value.first.to_s + t('log.to') + value.last.to_s
+    else
+      value.to_s
+    end
+  end
+
+  def vote_state_link(vote, type: nil)
     if vote.present?
-      if vote.open
-        link_to(t('vote.do_close'), close_admin_vote_path(vote),
-                method: :patch)
+      if vote.open?
+        link_to(t('vote.do_close'), close_admin_vote_path(vote), method: :patch, class: type)
+      elsif vote.closed?
+        link_to(t('vote.do_open'), open_admin_vote_path(vote), method: :patch, class: type, data:
+                { confirm: t('vote.reopen') })
       else
-        link_to(t('vote.do_open'), open_admin_vote_path(vote),
-                method: :patch)
+        link_to(t('vote.do_open'), open_admin_vote_path(vote), method: :patch, class: type)
       end
     end
   end
@@ -111,12 +125,6 @@ module VotesHelper
     else
       option.title
     end
-  end
-
-  def user_filter
-    [[Audit.human_attribute_name('User'), 'User'],
-     [Audit.human_attribute_name('VotePost'), 'VotePost'],
-     [Audit.human_attribute_name('Adjustment'), 'Adjustment']]
   end
 
   def vote_filter
@@ -140,7 +148,7 @@ module VotesHelper
     if vote.present?
       content_tag(:div, class: 'headline') do
         content_tag(:h2) do
-          state = vote.open ? t('vote.open') : t('vote.close')
+          state = vote.open? ? t('vote.open') : t('vote.close')
           safe_join([vote.title, ' ', content_tag(:small, state)])
         end
       end
@@ -155,15 +163,23 @@ module VotesHelper
     end
   end
 
-  def vote_stats(vote, adjusted)
+  def vote_stats(vote)
     pcount = vote.vote_posts.sum(:selected)
     ocount = vote.vote_options.sum(:count)
-    result = "#{pcount} / #{adjusted * vote.choices - pcount}"
+    result = "#{pcount} / #{vote.present_users * vote.choices - pcount}"
 
     if pcount != ocount
       result += t('vote.sum_is_wrong')
     end
 
     result
+  end
+
+  def vote_status_str(state)
+    if state.present?
+      Vote.human_attribute_name(state)
+    else
+      t('log.missing')
+    end
   end
 end

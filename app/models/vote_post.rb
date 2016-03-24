@@ -61,7 +61,7 @@ class VotePost < ActiveRecord::Base
   end
 
   def vote_open
-    unless vote.present? && vote.open
+    unless vote.present? && vote.open?
       errors.add(:votecode, I18n.t('vote_post.vote_closed'))
     end
   end

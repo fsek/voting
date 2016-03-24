@@ -8,8 +8,14 @@ sv:
       vote:
         title: Namn
         open: Öppen
+        status: Status
         choices: Max alternativ per röst
         agenda: Dagordning
-
+        future: Framtida
+        current: Aktuell
+        closed: Avslutad
+        agenda_id: Dagordning
+        present_users: Injusterade användare
+        reset: Nollställdes
   vote:
     already_one_open: Det finns redan ett öppet val
