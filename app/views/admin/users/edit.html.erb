@@ -1,0 +1,10 @@
+<%= provide(:title, @user.to_s) %>
+<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
+  <div class="headline">
+    <h1><%= "#{t(:edit)} - #{@user.to_s}" %></h1>
+  </div>
+
+  <%= render('form', user: @user) %>
+  <hr>
+  <%= link_to(t('user.admin_index'), admin_users_path, class: 'btn secondary') %>
+</div>

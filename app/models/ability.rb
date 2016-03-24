@@ -13,7 +13,9 @@ class Ability
 
     # Abilities all signed in users get
     if user.id.present?
-      can [:edit, :show, :update, :update_password, :update_account], User, id: user.id
+      can [:edit, :show, :update,
+           :set_card_number, :update_password,
+           :update_account], User, id: user.id
       can [:read, :mail], Contact
       can :read, Document, public: true
       can [:index], Vote

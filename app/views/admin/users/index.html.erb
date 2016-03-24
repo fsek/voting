@@ -16,7 +16,7 @@
 <div class="col-md-10 col-sm-12 user">
   <%= grid(@users_grid, hide_submit_button: true, hide_reset_button: true) do |g|
     g.column(name: User.human_attribute_name(:name), attribute: 'firstname') do |user|
-      user_link(user, target: :blank_p)
+      link_to(user, edit_admin_user_path(user))
     end
     g.column(name: models_name(Permission), assoc: :permissions, attribute: 'name') do |user|
       permission_list(user)

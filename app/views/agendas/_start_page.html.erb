@@ -1,9 +1,12 @@
 <% if agendas.present? %>
+  <div class="headline">
+    <h2><%= t('agenda.name') %></h2>
+  </div>
   <ul class="agenda list-group">
     <% agendas.each do |agenda| %>
       <li class="<%= "list-group-item #{agenda.current_status}" %>">
         <h4 class="list-group-item-heading">
-          <%= agenda %>
+          <%= agenda.to_s %>
         </h4>
         <span class="badge">
           <%= agenda_status_str(agenda.current_status) %>

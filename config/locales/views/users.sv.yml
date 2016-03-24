@@ -2,10 +2,12 @@ sv:
   user:
     account: Konto
     admin_index: Administrera användare
+    agree_to_terms: Genom att registrera ett konto accepterar du våra
     asterix_hidden: Fält markerade med * visas endast för funktionärer vid t.ex. Hilbert Café
     change_state: Justera in/ut
     check_email_to_confirm: Vänlig kontrollera om du fått ett epost %{date} med en länk för att bekräfta din e-postadress.
     confirm: Bekräfta
+    confirm_card_number: Kontrollera att kortnumret är korrekt, kan endast ändras av administratör.
     contact_for_membership: Kontakta Spindelmännen för att bli registrerad som medlem
     edit: Redigera kontouppgifter
     email_confirmed: Din e-postadress är bekräftad.
@@ -16,6 +18,8 @@ sv:
     not_confirmed: Ej bekräftad
     password: Lösenord
     profile: Användare
+    your_status: Din status
+    terms: Användarvillkor
 
     mailer:
       before_starting: Innan allting fungerar som det ska måste du bekräfta ditt konto, via nedanstående länk, och sedan fylla i ditt Mecenatkortsnummer efter inloggning.
@@ -35,3 +39,8 @@ sv:
     vote:
       edit: Redigera mötesanvändare
       show: Visa mötesanvändare
+    visibility:
+      name: kan endast ses av justerare, sekreterare, mötesordförande och administratörer i systemet samt i närvarolistan i mötesprotokollet.
+      email: kan endast ses av administratörer.
+      password: lagras aldrig i klartext, kan inte ses av någon.
+      card_number: kan endast ses av justerare, sekreterare, mötesordförande och administratörer.

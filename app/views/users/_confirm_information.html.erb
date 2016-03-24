@@ -1,0 +1,30 @@
+<% if current_user.present? %>
+  <div class="user status">
+    <div class="headline">
+      <h2><%= t('user.your_status') %></h2>
+    </div>
+    <% if current_user.presence == true %>
+      <span class="present">
+        <%= fa_icon('check-circle-o') %>
+        <%= t('vote_user.state.present') %>
+      </span>
+    <% else %>
+      <span class="not-present">
+        <%= fa_icon('times-circle-o') %>
+        <%= t('vote_user.state.not_present') %>
+      </span>
+    <% end %>
+
+    <% if current_user.card_number.present? %>
+      <span class="present">
+        <%= fa_icon('check-circle-o') %>
+        <%= t('vote_user.card_number_present') %>
+      </span>
+    <% else %>
+      <span class="not-present">
+        <%= fa_icon('times-circle-o') %>
+        <%= link_to(t('vote_user.card_number_not_present'), own_user_path) %>
+      </span>
+    <% end %>
+  </div>
+<% end %>

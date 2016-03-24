@@ -34,12 +34,25 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'PATCH #update_password' do
-    it 'updates passwordt' do
+    it 'updates password' do
       patch :update_password, user: { password: 'testatesta',
                                       password_confirmation: 'testatesta',
                                       current_password: '12345678' }
       user.reload
       user.valid_password?('testatesta').should be_truthy
+    end
+  end
+
+  describe 'PATCH #update' do
+    it 'set card_number' do
+      user = create(:user, card_number: nil)
+      allow(controller).to receive(:current_user) { user }
+
+      patch(:update, user: { card_number: '6122-6122-6122-6122' })
+
+      user.reload
+      response.status.should eq(200)
+      user.card_number.should eq('6122-6122-6122-6122')
     end
   end
 end
