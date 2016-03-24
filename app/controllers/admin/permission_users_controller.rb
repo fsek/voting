@@ -1,6 +1,5 @@
-class Admin::PermissionUsersController < ApplicationController
+class Admin::PermissionUsersController < Admin::BaseController
   load_permissions_and_authorize_resource
-  before_action :authorize
 
   def index
     @perm_user_grid = initialize_grid(PermissionUser, include: [:user, :permission])
@@ -27,10 +26,6 @@ class Admin::PermissionUsersController < ApplicationController
   end
 
   private
-
-  def authorize
-    authorize!(:manage, PermissionUser)
-  end
 
   def permission_user_params
     params.require(:permission_user).permit(:user_id, :permission_id)

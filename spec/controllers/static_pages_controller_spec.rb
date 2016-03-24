@@ -5,6 +5,7 @@ RSpec.describe StaticPagesController, type: :controller do
   let(:news) { create(:news, user: user) }
 
   allow_user_to(:manage, :static_pages)
+
   before(:each) do
     allow(controller).to receive(:current_user) { user }
   end

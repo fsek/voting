@@ -9,7 +9,7 @@
               <%= link_to models_name(Vote), admin_votes_path %>
             </li>
           <% end %>
-          <% if can? :manage_voting, User %>
+          <% if can? :manage, :vote_user %>
             <li>
               <%= link_to t('user.vote_administration'), admin_vote_users_path %>
             </li>
