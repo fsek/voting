@@ -29,12 +29,22 @@ class Admin::AdjustmentsController < ApplicationController
     end
   end
 
+  def update_row_order
+    adjustment = Adjustment.find(params[:id])
+
+    if adjustment.update(order_params)
+      render json: nil, status: :ok
+    else
+      render json: nil, status: :error
+    end
+  end
+
   def destroy
     adjustment = Adjustment.find(params[:id])
     user = adjustment.user
     adjustment.destroy!
 
-    redirect_to admin_vote_user_path(user), notice: alert_destroy(Adjustment)
+    render json: nil, status: :ok
   end
 
   def index
@@ -50,5 +60,9 @@ class Admin::AdjustmentsController < ApplicationController
 
   def adjustment_params
     params.require(:adjustment).permit(:agenda_id, :presence, :user_id)
+  end
+
+  def order_params
+    params.require(:adjustment).permit(:row_order_position)
   end
 end

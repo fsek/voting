@@ -9,3 +9,11 @@
     }
   }
 }
+
+.ui-sortable tr {
+  cursor: pointer;
+}
+
+.ui-sortable tr:hover {
+  background: $orange-highlight;
+}

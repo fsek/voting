@@ -9,7 +9,7 @@
     split_audit_hashes(a.audited_changes, User)
   end
   grid.column name: model_name(Vote), attribute: 'vote_id', filter: false do |a|
-    vote_str(@votes, a.vote_id)
+    vote_str(votes, a.vote_id)
   end
   grid.column name: t('log.updated_by'), assoc: :updater, attribute: 'firstname', filter: false do |a|
     a.updater

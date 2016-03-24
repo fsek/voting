@@ -30,6 +30,7 @@ gem 'turbolinks'
 gem 'uglifier'
 gem 'cocoon'
 gem 'paranoia', '~> 2.0'
+gem 'ranked-model'
 # Introduces feature needed in tables, no errors when updating
 gem 'wice_grid', '3.6.0.pre4'
 

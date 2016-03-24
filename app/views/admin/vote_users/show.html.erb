@@ -36,6 +36,6 @@
   <div class="headline">
     <h3><%= t('log.title') %></h3>
   </div>
-  <%= render 'log' %>
+  <%= render 'log', votes: @votes %>
   <%= link_to t('vote_user.administrate'), admin_vote_users_path, class: 'btn secondary' %>
 </div>

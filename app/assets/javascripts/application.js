@@ -14,6 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery-ui/effect.all
+//= require jquery-ui/sortable
 //= require bootstrap-sprockets
 //= require_self
 //= require jquery-ui/datepicker
