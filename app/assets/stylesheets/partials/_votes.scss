@@ -68,4 +68,23 @@
       font-size: 26px;
     }
   }
+
+  .choices,
+  .vote-count {
+    display: block;
+
+    .title {
+      display: block;
+    }
+
+    .value {
+      display: block;
+      font-size: 18px;
+    }
+
+  }
+
+  &.margin {
+    margin-bottom: 20px;
+  }
 }

@@ -44,6 +44,7 @@ Fsek::Application.routes.draw do
         patch :open, on: :member
         patch :reset, on: :member
         post :refresh, on: :collection
+        post :refresh_count, on: :member
       end
 
       resources :vote_users, path: :motesanvandare, controller: :vote_users, only: [:show, :index] do

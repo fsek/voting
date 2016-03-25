@@ -157,13 +157,25 @@ RSpec.describe Admin::VotesController, type: :controller do
   end
 
   describe 'PATCH #open' do
-    it 'opens the vote' do
+    it 'opens the vote default to index' do
       agenda = create(:agenda, status: Agenda::CURRENT)
       vote = create(:vote, status: Vote::FUTURE, agenda: agenda)
 
       patch(:open, id: vote)
 
       response.should redirect_to(admin_votes_path)
+      flash[:notice].should eq(I18n.t('vote.made_open'))
+      vote.reload
+      vote.open?.should be_truthy
+    end
+
+    it 'opens the vote with route show' do
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      vote = create(:vote, status: Vote::FUTURE, agenda: agenda)
+
+      patch(:open, id: vote, route: :show)
+
+      response.should redirect_to(admin_vote_path(vote))
       flash[:notice].should eq(I18n.t('vote.made_open'))
       vote.reload
       vote.open?.should be_truthy

@@ -1,0 +1,18 @@
+<%= grid(audit_grid) do |grid|
+  grid.column name: t('log.type'), attribute: 'auditable_type', custom_filter: vote_filter do |a|
+    Audit.human_attribute_name(a.auditable_type)
+  end
+  grid.column name: t('log.action'), attribute: 'action', filter: false do |a|
+    User.human_attribute_name(a.action)
+  end
+  grid.column name: t('log.change'), attribute: 'audited_changes', filter: false do |a|
+    split_audit_hashes(a.audited_changes, Vote)
+  end
+  grid.column name: model_name(User), assoc: :user, attribute: 'firstname', filter: false do |a|
+    a.user
+  end
+  grid.column name: t('log.updated_by'), assoc: :updater, attribute: 'firstname', filter: false do |a|
+    a.updater
+  end
+  grid.column name: t('log.date'), attribute: 'created_at', filter: false
+end -%>

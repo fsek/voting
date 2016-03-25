@@ -66,14 +66,16 @@ class Admin::VotesController < Admin::BaseController
       flash[:alert] = vote.errors[:status].to_sentence
     end
 
-    redirect_to admin_votes_path
+    redirect_to redirect_path(vote, params[:route])
   end
 
   def close
     vote = Vote.find(params[:id])
     vote.update!(status: Vote::CLOSED)
 
-    redirect_to admin_votes_path, notice: I18n.t('vote.made_closed')
+    flash[:notice] = I18n.t('vote.made_closed')
+
+    redirect_to redirect_path(vote, params[:route])
   end
 
   def refresh
@@ -95,10 +97,23 @@ class Admin::VotesController < Admin::BaseController
     redirect_to admin_vote_path(vote)
   end
 
+  def refresh_count
+    vote = Vote.find(params[:id])
+    @result = VoteStatusView.new(vote: vote).number_of_votes
+  end
+
   private
 
   def vote_params
     params.require(:vote).permit(:title, :choices, :agenda_id,
                                  vote_options_attributes: [:id, :title, :_destroy])
+  end
+
+  def redirect_path(vote, route)
+    if route == 'show'
+      admin_vote_path(vote)
+    else
+      admin_votes_path
+    end
   end
 end

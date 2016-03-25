@@ -1,7 +1,9 @@
 <% provide(:title, t('vote.admin_votes')) %>
 <div class="col-md-6 col-md-offset-3 col-sm-12 reg-page">
   <div class="headline">
-    <h2><%= t('vote.edit_vote') %></h2>
+    <h1><%= t('vote.edit_vote') %></h12>
   </div>
   <%= render 'form' %>
+  <hr>
+  <%= link_to(t('vote.show'), admin_vote_path(@vote), class: 'btn secondary') %>
 </div>

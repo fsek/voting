@@ -22,8 +22,8 @@ sv:
     made_open: Öppnades
     manage: Hantera voteringar
     new_vote: Ny votering
-    no_votes_open: "Just nu finns det tyvärr ingen votering som är öppen."
-    number_of_votes: Antal röster / antal injusterade
+    no_votes_open: "Just nu finns det tyvärr inga voteringar som är öppna :("
+    number_of_votes: Röster / Injusterade
     open: Öppen
     open_close: Öppna/stäng
     options: Alternativ
@@ -32,6 +32,7 @@ sv:
     reset_failed: Det gick inte att nollställa voteringen
     reset_ok: Voteringen nollställdes
     results: Resultat
+    show: Visa votering
     show_title: Votering
     status: Status
     still_open: Voteringen har ännu inte avslutats. Resultatet kommer att visas här när voteringen har stängts. Följande alternativ finns
