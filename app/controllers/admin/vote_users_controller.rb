@@ -11,7 +11,7 @@ class Admin::VoteUsersController < ApplicationController
     @user = User.find(params[:id])
     @votes = Vote.with_deleted
     @audit_grid = initialize_grid(Audit.where(user_id: @user.id), include: :updater, name: 'g')
-    @attend_grid = initialize_grid(Adjustment.where(user_id: @user.id), include: :agenda, name: 'h')
+    @adjustments = @user.adjustments.rank(:row_order)
   end
 
   def attendance_list

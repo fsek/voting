@@ -1,13 +1,19 @@
 class Adjustment < ActiveRecord::Base
   acts_as_paranoid
+  include RankedModel
 
   belongs_to :agenda
   belongs_to :user
+  belongs_to :adjustment_list
 
   validates :agenda_id, :user_id, presence: true
 
   after_update :log_update
   after_destroy :log_destroy
+
+  ranks :row_order, with_same: :user_id
+
+  private
 
   def log_update
     if log_changes.present?

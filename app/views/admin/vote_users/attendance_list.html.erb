@@ -18,7 +18,7 @@
       link_to user, admin_vote_user_path(user)
     end
     grid.column name: User.human_attribute_name('presence') do |user|
-      split_adjustments(user.adjustments)
+      split_adjustments(user.adjustments.rank(:row_order))
     end
   end -%>
 </div>

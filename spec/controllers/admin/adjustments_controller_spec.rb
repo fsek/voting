@@ -100,7 +100,21 @@ RSpec.describe Admin::AdjustmentsController, type: :controller do
         delete :destroy, id: adjustment.to_param
       end.should change(Adjustment, :count).by(-1)
 
-      response.should redirect_to(admin_vote_user_path(user))
+      response.status.should eq(200)
+    end
+  end
+
+  describe 'POST #update_row_order' do
+    it 'moves the last adjustment to the top' do
+      user = create(:user)
+      a1 = create(:adjustment, user: user)
+      a2 = create(:adjustment, user: user)
+      a3 = create(:adjustment, user: user)
+
+      get(:update_row_order, id: a3.to_param, adjustment: { row_order_position: 0 })
+      response.status.should eq(200)
+
+      user.adjustments.rank(:row_order).should eq [a3, a1, a2]
     end
   end
 end

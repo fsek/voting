@@ -64,7 +64,9 @@ Fsek::Application.routes.draw do
     end
 
     namespace :admin do
-      resources :adjustments, path: :justering, controller: :adjustments, except: [:show]
+      resources :adjustments, path: :justering, controller: :adjustments, except: [:show] do
+        post :update_row_order, on: :collection
+      end
     end
 
     resources :notices, path: :notiser
