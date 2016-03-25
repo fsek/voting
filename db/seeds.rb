@@ -36,3 +36,8 @@ Agenda.find_or_create_by!(index: 16, title: 'Övriga frågor')
 Agenda.find_or_create_by!(index: 17, title: 'Frågan om F´s förträfflighet')
 Agenda.find_or_create_by!(index: 18, title: 'Mötesordförandes fräckis')
 Agenda.find_or_create_by!(index: 19, title: 'MOFMA - mötesordförande förklarar mötet avslutat')
+
+# Menu
+Menu.find_or_create_by!(name: 'Om', location: Menu::INFO, link: '/om', index: 10, visible: true)
+Menu.find_or_create_by!(name: 'Dokument', location: Menu::INFO, link: '/dokument', index: 20, visible: true)
+Menu.find_or_create_by!(name: 'Användarvillkor', location: Menu::INFO, link: '/villkor', index: 30, visible: true)

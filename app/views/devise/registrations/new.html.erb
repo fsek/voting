@@ -10,8 +10,16 @@
     <%= f.input :password, required: true, hint: t('user.visibility.password') %>
     <%= f.input :password_confirmation, required: true %>
 
+    <span class="user signup-terms">
+      <%= t('user.agree_to_terms' ) %>
+      <%= link_to(t('user.terms'), terms_path, target: :blank_p) %>.
+      <%= t('user.read_terms') %>
+    </span>
+
     <%= f.button :submit, id: 'user-submit' %>
     <hr>
+
     <%= render 'devise/shared/links' %>
+
   <% end %>
 </div>

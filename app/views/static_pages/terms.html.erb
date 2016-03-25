@@ -1,0 +1,33 @@
+<% provide(:title, t('terms.title')) %>
+<div class="headline">
+  <h1><%= t('terms.title') %></h1>
+</div>
+
+<div class="col-md-8 col-md-offset-2 col-sm-12 terms">
+  <h2><%= t('terms.general.title') %></h2>
+  <%= simple_format(t('terms.general.text')) %>
+
+  <h2><%= t('terms.personal_information.title') %></h2>
+  <%= simple_format(t('terms.personal_information.text_first')) %>
+  <ol>
+    <li><%= t('terms.personal_information.text_one') %></li>
+    <li><%= t('terms.personal_information.text_two') %></li>
+    <li><%= t('terms.personal_information.text_three') %></li>
+  </ol>
+  <%= simple_format(t('terms.personal_information.text_last')) %>
+
+  <h2><%= t('terms.visitors_responsibilities.title') %></h2>
+  <%= simple_format(t('terms.visitors_responsibilities.text')) %>
+
+  <h2><%= t('terms.links.title') %></h2>
+  <%= simple_format(t('terms.links.text')) %>
+
+  <h2><%= t('terms.limit_liability.title') %></h2>
+  <%= simple_format(t('terms.limit_liability.text')) %>
+
+  <h2><%= t('terms.changes.title') %></h2>
+  <%= simple_format(t('terms.changes.text')) %>
+  <span class="updated">
+    <%= t('terms.last_updated', date: '2015-03-25') %>
+  </span>
+</div>

@@ -15,4 +15,7 @@ class StaticPagesController < ApplicationController
   def lets_encrypt
     render text: ENV['LETSENCRYPT_TOKEN']
   end
+
+  def terms
+  end
 end
