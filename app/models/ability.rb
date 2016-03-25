@@ -22,13 +22,8 @@ class Ability
       can [:new, :create], VotePost
     end
 
-    # Add abilities gained from posts
     user.permissions.each do |permission|
-      if permission.subject_class == 'all'
-        can permission.action.to_sym, :all
-      else
-        can permission.action.to_sym, permission.subject_class.constantize
-      end
+      can permission.action.to_sym, permission.subject
     end
   end
 end

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Admin::VoteUsersController, type: :controller do
   let(:user) { create(:user, :admin) }
 
-  allow_user_to(:manage, User)
+  allow_user_to(:manage, :vote_user)
 
   before(:each) do
     allow(controller).to receive(:current_user) { user }

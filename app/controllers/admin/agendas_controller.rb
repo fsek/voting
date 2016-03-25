@@ -1,6 +1,5 @@
-class Admin::AgendasController < ApplicationController
+class Admin::AgendasController < Admin::BaseController
   load_permissions_and_authorize_resource
-  before_action :authorize
 
   def index
     @agenda_grid = initialize_grid(Agenda, order: 'sort_index')
@@ -54,10 +53,6 @@ class Admin::AgendasController < ApplicationController
   end
 
   private
-
-  def authorize
-    authorize! :manage, Agenda
-  end
 
   def agenda_params
     params.require(:agenda).permit(:title, :index, :parent_id, :status)

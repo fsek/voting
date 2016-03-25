@@ -1,6 +1,5 @@
-class Admin::VoteUsersController < ApplicationController
-  skip_authorization
-  before_action :authorize
+class Admin::VoteUsersController < Admin::BaseController
+  authorize_resource class: false
 
   def index
     @vote_status_view = VoteStatusView.new
@@ -53,9 +52,5 @@ class Admin::VoteUsersController < ApplicationController
 
   def search_params
     params.require(:vote_user).permit(:card_number)
-  end
-
-  def authorize
-    authorize! :manage_voting, User
   end
 end

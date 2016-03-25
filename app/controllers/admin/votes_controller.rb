@@ -1,6 +1,5 @@
-class Admin::VotesController < ApplicationController
+class Admin::VotesController < Admin::BaseController
   load_permissions_and_authorize_resource
-  before_action :authorize
 
   def index
     @vote_status_view = VoteStatusView.new
@@ -97,10 +96,6 @@ class Admin::VotesController < ApplicationController
   end
 
   private
-
-  def authorize
-    authorize! :manage, Vote
-  end
 
   def vote_params
     params.require(:vote).permit(:title, :choices, :agenda_id,

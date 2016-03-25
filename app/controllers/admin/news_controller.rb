@@ -1,6 +1,5 @@
-# encoding: utf-8
-class Admin::NewsController < ApplicationController
-  before_action :authorize
+class Admin::NewsController < Admin::BaseController
+  load_permissions_and_authorize_resource
 
   def index
     @news_grid = initialize_grid(News, include: :user,
@@ -42,10 +41,6 @@ class Admin::NewsController < ApplicationController
   end
 
   private
-
-  def authorize
-    can?(:manage, News)
-  end
 
   def news_params
     params.require(:news).permit(:title, :content, :url)

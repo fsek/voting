@@ -1,7 +1,5 @@
-# encoding:UTF-8
-class Admin::MenusController < ApplicationController
+class Admin::MenusController < Admin::BaseController
   load_permissions_and_authorize_resource
-  before_action :authorize
 
   def index
     @menu_grid = initialize_grid(Menu)
@@ -43,10 +41,6 @@ class Admin::MenusController < ApplicationController
   end
 
   private
-
-  def authorize
-    authorize!(:modify, Menu)
-  end
 
   def menu_params
     params.require(:menu).permit(:location, :index, :link,

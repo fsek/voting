@@ -2,7 +2,7 @@
   <div class="container">
     <ul class="loginbar pull-right">
       <% if user_signed_in? %>
-        <% if current_user.permissions.count > 0 %>
+        <% if can?(:manage, :all) %>
           <%= render 'layouts/admin_dropdown' %>
           <li class="devider"></li>
         <% end %>

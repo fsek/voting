@@ -1,6 +1,5 @@
-class Admin::AdjustmentsController < ApplicationController
+class Admin::AdjustmentsController < Admin::BaseController
   load_permissions_and_authorize_resource
-  before_action :authorize, except: :index
 
   def new
     @adjustment = Adjustment.new(user_id: params[:user_id])
@@ -48,15 +47,10 @@ class Admin::AdjustmentsController < ApplicationController
   end
 
   def index
-    authorize! :manage_voting, User
     @vote_status_view = VoteStatusView.new
   end
 
   private
-
-  def authorize
-    authorize! :manage, Adjustment
-  end
 
   def adjustment_params
     params.require(:adjustment).permit(:agenda_id, :presence, :user_id)
