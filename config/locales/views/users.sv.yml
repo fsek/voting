@@ -19,6 +19,7 @@ sv:
     password: Lösenord
     profile: Användare
     your_status: Din status
+    read_terms: Användarvillkoren kan alltid hittas under menyn Information.
     terms: Användarvillkor
 
     mailer:

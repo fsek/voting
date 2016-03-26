@@ -3,6 +3,7 @@ Fsek::Application.routes.draw do
   get :cookies_information, controller: :static_pages, as: :cookies, path: :cookies
   get :about, controller: :static_pages, path: :om
   get :lets_encrypt, controller: :static_pages, path: '.well-known/acme-challenge/:key'
+  get :terms, controller: :static_pages, path: :villkor
 
   # User-related routes
   devise_for :users, skip: [:sessions, :registrations], controllers: {registrations: "registrations"}

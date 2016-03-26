@@ -1,7 +1,53 @@
-<% provide(:title, t(:about)) %>
-<h2><%= t(:about) %></h2>
-<div class="search-blocks search-blocks-top-orange">
-  <div class="col-md-8 col-xs-12">
-    Nu har vi äntligen ett digitalt valsystem!
-  </div>
+<% provide(:title, t('about.title')) %>
+<div class="headline">
+  <h1><%= t('about.title') %></h1>
+</div>
+
+<div class="col-md-8 col-md-offset-2 col-sm-12">
+  <h3><%= t('about.what_is.title') %></h3>
+  <%= simple_format(t('about.what_is.text')) %>
+
+  <h3><%= t('about.how_start.title') %></h3>
+  <ol>
+    <li><%= t('about.how_start.first') %></li>
+    <li><%= t('about.how_start.second') %></li>
+    <li><%= t('about.how_start.third') %></li>
+  </ol>
+
+
+  <h3><%= t('about.adjustment.title') %></h3>
+  <%= simple_format(t('about.adjustment.text')) %>
+
+  <h3><%= t('about.votes.title') %></h3>
+  <%= simple_format(t('about.votes.text')) %>
+
+  <h3><%= t('about.votecode.title') %></h3>
+  <%= simple_format(t('about.votecode.text')) %>
+
+  <h3><%= t('about.anonymity.title') %></h3>
+  <%= simple_format(t('about.anonymity.text')) %>
+
+  <h3><%= t('about.by.title') %></h3>
+  <%= simple_format(t('about.by.text')) %>
+  <p><strong><%= t('about.by.developers') %></strong></p>
+  <ul class="list">
+    <li>
+      <%= link_to('https://github.com/navro', target: :blank_p) do %>
+        Jakob Navrozidis (F14)&nbsp;&nbsp;<%= fa_icon('github') %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to('https://github.com/davidwessman', target: :blank_p) do %>
+        David Wessman (F13)&nbsp;&nbsp;<%= fa_icon('github') %>
+      <% end %>
+    </li>
+  </ul>
+
+  <h3><%= t('about.questions') %></h3>
+  <% id = Constant.find_by(name: 'contact_rostsystem').try(:value) %>
+  <% if id.present? %>
+    <%= link_to(contact_path(id), class: 'btn primary') do %>
+      <%= fa_icon('envelope-o') %>&nbsp; Röstiga
+    <% end %>
+  <% end %>
 </div>
