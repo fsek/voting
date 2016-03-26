@@ -17,6 +17,7 @@ sv:
     do_close: Stäng
     do_open: Öppna
     edit_vote: Redigera votering
+    edit: Redigera
     is_closed: Omröstningen är stängd
     made_closed: Stängdes
     made_open: Öppnades
@@ -28,7 +29,7 @@ sv:
     open_close: Öppna/stäng
     options: Alternativ
     reopen: "Är du säker på att du vill öppna denna votering igen?\nDetta kommer att påverka statistiken över blanka röster."
-    reset: Nollställ votering
+    reset: Nollställ
     reset_failed: Det gick inte att nollställa voteringen
     reset_ok: Voteringen nollställdes
     results: Resultat

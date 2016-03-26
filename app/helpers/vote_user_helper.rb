@@ -38,4 +38,16 @@ module VoteUserHelper
      [Audit.human_attribute_name('VotePost'), 'VotePost'],
      [Audit.human_attribute_name('Adjustment'), 'Adjustment']]
   end
+
+  def user_presence_status(user)
+    if user.present? && user.presence == true
+      content_tag(:span, class: 'present') do
+        safe_join([fa_icon('check-circle-o'), ' ', t('vote_user.state.present')])
+      end
+    else
+      content_tag(:span, class: 'not-present') do
+        safe_join([fa_icon('times-circle-o'), ' ', t('vote_user.state.not_present')])
+      end
+    end
+  end
 end

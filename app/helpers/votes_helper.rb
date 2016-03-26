@@ -187,4 +187,14 @@ module VotesHelper
       t('log.missing')
     end
   end
+
+  def number_of_votes(vote)
+    if vote.present?
+      if vote.closed?
+        "#{vote.vote_posts.count} / #{vote.present_users}"
+      elsif vote.open?
+        "#{vote.vote_posts.count} / #{User.present.count}"
+      end
+    end
+  end
 end

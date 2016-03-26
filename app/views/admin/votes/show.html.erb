@@ -1,8 +1,8 @@
 <% provide(:title, t('vote.admin_votes')) %>
 <div class="headline">
   <h1>
-    <%= @vote_status.vote.title %>
-    <small><%= vote_status_str(@vote_status.vote.status) %></small>
+    <%= @vote.title %>
+    <small><%= vote_status_str(@vote.status) %></small>
   </h1>
 </div>
 
@@ -12,18 +12,19 @@
     <%= Vote.human_attribute_name(:choices) %> 
     </span>
     <span class="value">
-      <%= fa_icon('hashtag') %> <%= @vote_status.vote.choices %>
+      <%= fa_icon('hashtag') %> <%= @vote.choices %>
     </span>
   </span>
-  <hr>
+  <br>
 
+  <% unless @vote.future? %>
   <span class="vote-count">
     <span class="title">
       <%= t('vote.number_of_votes') %>
     </span>
 
     <span class="value">
-      <%= @vote_status.number_of_votes %>
+      <%= number_of_votes(@vote) %>
     </span>
   </span>
 
@@ -33,28 +34,15 @@
       <%= t(:update) %>
     <% end %>
   </span>
-  <hr>
-  <%= vote_state_link(@vote_status.vote, type: 'btn primary', route: :show) %>
-
-  <% unless @vote_status.vote.open? %>
-    <%= link_to(t('vote.edit_vote'), edit_admin_vote_path(@vote_status.vote),
-                class: 'btn secondary') %>
-    <%= link_to(t('vote.reset'), reset_admin_vote_path(@vote_status.vote),
-                method: :patch,
-                class: 'btn danger',
-                data: { confirm: t('vote.confirm_reset') }) %>
   <% end %>
-
-  <%= link_to(t('vote.admin_votes'), admin_votes_path,
-                                     class: 'btn secondary') %>
 </div>
 
-<div class="col-md-10 col-sm-12 vote margin">
+<div class="col-md-9 col-sm-12 vote margin">
 
-  <% if !@vote_status.vote.closed? %>
+  <% if !@vote.closed? %>
     <i><%= t('vote.still_open') %></i>
     <ul class="list">
-      <% @vote_status.vote.vote_options.with_deleted.each do |v| %>
+      <% @vote.vote_options.with_deleted.each do |v| %>
         <li><b><%= vote_option_str(v) %></b></li>
       <% end %>
     </ul>
@@ -62,8 +50,8 @@
     <div class="headline">
       <h2><%= t('vote.results') %></h2>
     </div>
-    <table class="table">
-      <% @vote_status.vote.vote_options.order_all.each do |v| %>
+    <table class="table table-bordered table-striped">
+      <% @vote.vote_options.order_all.each do |v| %>
         <tr>
           <td><b><%= vote_option_str(v) %></b></td>
           <td><b><%= v.count %></b></td>
@@ -71,13 +59,29 @@
       <% end %>
       <tr>
         <td><i><%= t('vote.sum_votes_blank') %></i></td>
-        <td><i><%= vote_stats(@vote_status.vote) %></i></td>
+        <td><i><%= vote_stats(@vote) %></i></td>
       </tr>
     </table>
   <% end %>
-  <hr>
 </div>
 
+<div class="col-md-1 col-sm-12 vote margin">
+  <%= vote_state_link(@vote, type: 'btn primary vote button', route: :show) %>
+
+  <% unless @vote.open? %>
+    <%= link_to(t('vote.edit'), edit_admin_vote_path(@vote),
+                class: 'btn secondary vote button') %>
+    <%= link_to(t('vote.reset'), reset_admin_vote_path(@vote),
+                method: :patch,
+                class: 'btn danger vote button',
+                data: { confirm: t('vote.confirm_reset') }) %>
+  <% end %>
+</div>
+
+<div class="col md-12 col-sm-12 vote margin">
+  <%= link_to(t('vote.admin_votes'), admin_votes_path,
+                                     class: 'btn primary') %>
+</div>
 
 <div class="col-md-12 col-sm-12">
   <div class="headline">

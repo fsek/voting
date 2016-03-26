@@ -41,6 +41,10 @@ class Vote < ActiveRecord::Base
     status == CLOSED
   end
 
+  def future?
+    status == FUTURE
+  end
+
   private
 
   def update_present_users

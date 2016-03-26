@@ -49,9 +49,11 @@ class Admin::VotesController < Admin::BaseController
   end
 
   def show
-    vote = Vote.find(params[:id])
-    @vote_status = VoteStatusView.new(vote: vote)
-    @audit_grid = initialize_grid(Audit.where(vote_id: vote.id),
+    # Let vote_status hold current open vote
+    # @vote holds visited vote
+    @vote = Vote.find(params[:id])
+    @vote_status = VoteStatusView.new
+    @audit_grid = initialize_grid(Audit.where(vote_id: @vote.id),
                                   include: [:user, :updater],
                                   order: 'created_at',
                                   order_direction: 'desc')
@@ -98,8 +100,7 @@ class Admin::VotesController < Admin::BaseController
   end
 
   def refresh_count
-    vote = Vote.find(params[:id])
-    @result = VoteStatusView.new(vote: vote).number_of_votes
+    @vote = Vote.find(params[:id])
   end
 
   private
