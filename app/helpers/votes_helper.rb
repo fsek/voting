@@ -87,8 +87,10 @@ module VotesHelper
   end
 
   def agenda_log_str(value)
-    if value.present?
-      '§' + Agenda.find(value).order
+    agenda = Agenda.with_deleted.find_by_id(value)
+
+    if agenda.present?
+      agenda.to_s
     else
       t('log.missing')
     end

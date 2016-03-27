@@ -36,8 +36,13 @@ class Admin::AgendasController < Admin::BaseController
   def destroy
     @agenda = Agenda.find(params[:id])
 
-    @agenda.destroy!
-    redirect_to admin_agendas_path, notice: alert_destroy(Agenda)
+    if @agenda.destroy
+      flash[:notice] = t('agenda.deleted_ok')
+    else
+      flash[:alert] = @agenda.errors. full_messages_for(:destroy).to_sentence
+    end
+
+    redirect_to admin_agendas_path
   end
 
   def set_current
