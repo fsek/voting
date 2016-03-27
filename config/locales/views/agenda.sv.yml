@@ -2,8 +2,11 @@ sv:
   agenda:
     change_status: Ändra status
     close: Stäng
-    current: Aktuell dagordning
+    current: Aktuell dagordningspunkt
+    deleted: " [RADERAD]"
+    deleted_ok: Dagordningspunkten har raderas
     edit: Redigera punkt
+    error_deleting: Öppna punkter kan ej raderas
     manage: Hantera dagordning
     name: Dagordning
     new: Ny punkt

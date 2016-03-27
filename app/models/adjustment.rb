@@ -2,9 +2,8 @@ class Adjustment < ActiveRecord::Base
   acts_as_paranoid
   include RankedModel
 
-  belongs_to :agenda
+  belongs_to :agenda, -> { with_deleted }
   belongs_to :user
-  belongs_to :adjustment_list
 
   validates :agenda_id, :user_id, presence: true
 
@@ -16,22 +15,29 @@ class Adjustment < ActiveRecord::Base
   private
 
   def log_update
-    if log_changes.present?
-      log('update')
+    if update_changes.present?
+      Audit.create!(auditable: self, user_id: user_id, audited_changes: update_changes,
+                    action: 'update', updater_id: updater)
     end
   end
 
   def log_destroy
-    log('destroy')
+    Audit.create!(auditable: self, user_id: user_id, audited_changes: destroy_changes,
+                  action: 'destroy', updater_id: updater)
   end
 
-  def log(action)
-    Audit.create!(auditable: self, user_id: user_id, audited_changes: log_changes,
-                  action: action, updater_id: updater)
-  end
-
-  def log_changes
+  def update_changes
     changes.extract!(:agenda_id, :presence)
+  end
+
+  def destroy_changes
+    diff = changes.extract!(:agenda_id, :presence)
+
+    if agenda.present? && !diff.key?('agenda_id')
+      diff[:name] = agenda.to_s
+    end
+
+    diff
   end
 
   def updater

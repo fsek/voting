@@ -26,12 +26,14 @@
       <%= @vote_status.agenda.to_s %>
     </h5>
 
-    <%= models_name(Vote) %>
-    <ul class="list">
-      <% @vote_status.agenda.votes.each do |vote| %>
-        <li><%= vote.title %></li>
-      <% end %>
-    </ul>
+    <% if @vote_status.agenda.votes.present? %>
+      <%= models_name(Vote) %>
+      <ul class="list">
+        <% @vote_status.agenda.votes.order(:id).each do |vote| %>
+          <li><%= vote.title %></li>
+        <% end %>
+      </ul>
+    <% end %>
   <% end %>
 </div>
 

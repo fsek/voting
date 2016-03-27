@@ -92,7 +92,86 @@ RSpec.describe Admin::AgendasController, type: :controller do
         delete :destroy, id: agenda.to_param
       end.should change(Agenda, :count).by(-1)
 
+      agenda.reload
+      agenda.deleted?.should be_truthy
+
       response.should redirect_to(admin_agendas_path)
+    end
+
+    it 'fails if the agenda is current' do
+      agenda = create(:agenda, status: Agenda::CURRENT)
+
+      lambda do
+        delete :destroy, id: agenda.to_param
+      end.should_not change(Agenda, :count)
+
+      agenda.reload
+      agenda.deleted?.should be_falsey
+
+      response.should redirect_to(admin_agendas_path)
+      flash[:alert].should eq(I18n.t('agenda.error_deleting'))
+    end
+
+    it 'fails if the agenda has a current child' do
+      agenda = create(:agenda)
+      child = create(:agenda, status: Agenda::CURRENT, parent: agenda)
+
+      lambda do
+        delete :destroy, id: agenda.to_param
+      end.should_not change(Agenda, :count)
+
+      agenda.reload
+      child.reload
+      agenda.deleted?.should be_falsey
+      child.deleted?.should be_falsey
+
+      response.should redirect_to(admin_agendas_path)
+      flash[:alert].should eq(I18n.t('agenda.error_deleting'))
+    end
+
+    it 'fails if the agenda has a current grandchild' do
+      agenda = create(:agenda)
+      child = create(:agenda, parent: agenda)
+      grandchild = create(:agenda, status: Agenda::CURRENT, parent: child)
+
+      lambda do
+        delete :destroy, id: agenda.to_param
+      end.should_not change(Agenda, :count)
+
+      agenda.reload
+      child.reload
+      grandchild.reload
+
+      agenda.deleted?.should be_falsey
+      child.deleted?.should be_falsey
+      grandchild.deleted?.should be_falsey
+
+      response.should redirect_to(admin_agendas_path)
+      flash[:alert].should eq(I18n.t('agenda.error_deleting'))
+    end
+
+    it 'works if the agenda has non-current children' do
+      agenda = create(:agenda)
+      child1 = create(:agenda, parent: agenda)
+      child2 = create(:agenda, status: Agenda::CLOSED, parent: agenda)
+      grandchild = create(:agenda, parent: child2)
+
+      lambda do
+        delete :destroy, id: agenda.to_param
+      end.should change(Agenda, :count).by(-4)
+
+      agenda.reload
+      child1.reload
+      child2.reload
+      grandchild.reload
+
+      agenda.deleted?.should be_truthy
+      child1.deleted?.should be_truthy
+      child2.deleted?.should be_truthy
+      grandchild.deleted?.should be_truthy
+
+      response.should redirect_to(admin_agendas_path)
+      flash[:notice].should eq(I18n.t('agenda.deleted_ok'))
     end
   end
 

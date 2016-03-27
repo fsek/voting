@@ -9,8 +9,11 @@ class Admin::VoteUsersController < Admin::BaseController
   def show
     @user = User.find(params[:id])
     @votes = Vote.with_deleted
-    @audit_grid = initialize_grid(Audit.where(user_id: @user.id), include: :updater, name: 'g')
     @adjustments = @user.adjustments.rank(:row_order)
+    @audit_grid = initialize_grid(Audit.where(user_id: @user.id),
+                                  include: :updater,
+                                  order: 'created_at',
+                                  order_direction: 'desc')
   end
 
   def attendance_list

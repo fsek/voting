@@ -1,6 +1,9 @@
 class Agenda < ActiveRecord::Base
   acts_as_paranoid
 
+  before_destroy :destroy_validation  # Must be placed above has_many :children!
+  before_save :set_sort_index
+
   has_many :adjustments
   has_many :votes
   has_many :children, class_name: 'Agenda', foreign_key: 'parent_id', dependent: :destroy
@@ -16,14 +19,20 @@ class Agenda < ActiveRecord::Base
 
   scope :index, -> { order(:sort_index) }
 
-  before_save :set_sort_index
+  attr_accessor :destroyed_by_parent
 
   def self.current
     Agenda.where(status: CURRENT).first
   end
 
   def to_s
-    '§' + order + ' ' + title
+    str = '§' + order + ' ' + title
+
+    if deleted?
+      str += I18n.t('agenda.deleted')
+    end
+
+    str
   end
 
   def order
@@ -84,5 +93,28 @@ class Agenda < ActiveRecord::Base
 
   def set_sort_index
     self.sort_index = sort_order
+  end
+
+  def destroy_validation
+    children.each { |child| child.destroyed_by_parent = true }
+
+    if destroyed_by_parent.blank? && (current? || current_child_to?(self))
+      errors.add(:destroy, I18n.t('agenda.error_deleting'))
+      false
+    else
+      true
+    end
+  end
+
+  def current_child_to?(parent)
+    agenda = Agenda.current
+
+    if agenda.present?
+      while agenda.parent.present?
+        (agenda.parent == parent) ? (return true) : (agenda = agenda.parent)
+      end
+    end
+
+    false
   end
 end
