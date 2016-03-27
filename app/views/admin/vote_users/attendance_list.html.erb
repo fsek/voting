@@ -13,12 +13,5 @@
   <% end %>
 </div>
 <div class="col-md-12">
-  <%= grid(@attend_grid) do |grid|
-    grid.column name: t('attributes.name'), attribute: 'lastname' do |user|
-      link_to user, admin_vote_user_path(user)
-    end
-    grid.column name: User.human_attribute_name('presence') do |user|
-      split_adjustments(user.adjustments.rank(:row_order))
-    end
-  end -%>
+  <%= render 'attendance_grid' %>
 </div>

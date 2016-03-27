@@ -17,7 +17,11 @@ class Admin::VoteUsersController < Admin::BaseController
   end
 
   def attendance_list
-    @attend_grid = initialize_grid(User.all_attended)
+    @attend_grid = initialize_grid(User.all_attended,
+                                   enable_export_to_csv: true,
+                                   csv_field_separator: ';',
+                                   name: 'attendance')
+    export_grid_if_requested
   end
 
   def present
