@@ -1,0 +1,11 @@
+<%= grid(@attend_grid) do |grid|
+  grid.column name: t('attributes.name'), attribute: 'lastname', in_csv: false do |user|
+    link_to user, admin_vote_user_path(user)
+  end
+  grid.column name: t('attributes.name'), attribute: 'lastname', in_html: false do |user|
+    user
+  end
+  grid.column name: User.human_attribute_name('presence') do |user|
+    split_adjustments(user.adjustments.rank(:row_order))
+  end
+end -%>

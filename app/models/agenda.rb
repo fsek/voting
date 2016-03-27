@@ -51,6 +51,16 @@ class Agenda < ActiveRecord::Base
     end
   end
 
+  def list_str
+    str = '§' + order
+
+    if deleted?
+      str += I18n.t('agenda.deleted')
+    end
+
+    str
+  end
+
   def current?
     status == CURRENT
   end
