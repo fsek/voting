@@ -32,15 +32,4 @@ RSpec.describe StaticPagesController, type: :controller do
       assigns(:start_page).class.should eq(StartPage)
     end
   end
-
-  describe 'GET #lets_encrypt' do
-    it 'renders set text' do
-      token = 'awsdawsdwasdwasd6122awsdawsdawsd3737'
-      ENV['LETSENCRYPT_TOKEN'] = token
-      get(:lets_encrypt, key: 'aa')
-
-      response.status.should eq(200)
-      response.body.should eq(token)
-    end
-  end
 end
