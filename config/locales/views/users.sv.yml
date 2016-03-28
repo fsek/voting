@@ -41,7 +41,7 @@ sv:
       edit: Redigera mötesanvändare
       show: Visa mötesanvändare
     visibility:
-      name: kan endast ses av justerare, sekreterare, mötesordförande och administratörer i systemet samt i närvarolistan i mötesprotokollet.
-      email: kan endast ses av administratörer.
-      password: lagras aldrig i klartext, kan inte ses av någon.
-      card_number: kan endast ses av justerare, sekreterare, mötesordförande och administratörer.
+      name: Kan ses av justerare, sekreterare, mötesordförande och administratörer. Syns även i mötesprotokollets närvarolista.
+      email: Kan endast ses av administratörer.
+      password: Lagras aldrig i klartext, kan inte ses av någon.
+      card_number: Kan endast ses av justerare, sekreterare, mötesordförande och administratörer.
