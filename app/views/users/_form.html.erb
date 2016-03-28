@@ -9,7 +9,7 @@
       <td><%= user.lastname %></td>
     </tr>
   </table>
-  <%= image_tag('img/mecenatkort', class: 'img-responsive') %>
+  <%= image_tag('img/mecenatkort.jpg', class: 'img-responsive') %>
   <%= f.input(:card_number, input_html: {data: {mask: '9999-9999-9999-9999'},
                                          autocomplete: 'off'},
                             hint: t('user.visibility.card_number')) %>

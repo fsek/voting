@@ -42,6 +42,7 @@ end
 
 group :development, :test do
   gem 'better_errors'
+  gem 'bullet'
   gem 'capybara'
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
