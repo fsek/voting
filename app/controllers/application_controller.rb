@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_current_user
 
-  helper_method :alert_update, :alert_create, :alert_destroy
+  helper_method :alert_update, :alert_create, :alert_destroy, :can_administrate?
 
   rescue_from CanCan::AccessDenied do |ex|
     if current_user.nil?
@@ -68,6 +68,14 @@ class ApplicationController < ActionController::Base
 
   def current_ability
     @current_ability ||= Ability.new(current_user)
+  end
+
+  def current_admin_ability
+    @current_admin_ability ||= AdminAbility.new(current_user)
+  end
+
+  def can_administrate?(*args)
+    current_admin_ability.can?(*args)
   end
 
   # load the permissions for the current user so that UI can be manipulated

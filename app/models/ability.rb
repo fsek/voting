@@ -20,9 +20,5 @@ class Ability
       can [:index], Vote
       can [:new, :create], VotePost
     end
-
-    user.permissions.each do |permission|
-      can permission.action.to_sym, permission.subject
-    end
   end
 end
