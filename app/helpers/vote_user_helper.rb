@@ -25,10 +25,12 @@ module VoteUserHelper
 
   def admin_print_user(user)
     if user.present?
-      if user.confirmed?
-        user
-      else
+      if !user.confirmed?
         safe_join([fa_icon('times'), ' ', user])
+      elsif user.card_number.present?
+        safe_join([fa_icon('credit-card'), ' ', user])
+      else
+        user
       end
     end
   end

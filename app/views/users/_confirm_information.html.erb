@@ -1,7 +1,7 @@
 <% if current_user.present? %>
   <div class="user status">
     <div class="headline">
-      <h2><%= t('user.your_status') %></h2>
+      <h3><%= t('user.your_status') %></h3>
     </div>
     <%= user_presence_status(current_user) %>
 
