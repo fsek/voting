@@ -53,4 +53,9 @@ Fsek::Application.configure do
   # Don't log partials etc. in development.
   config.quiet_assets = true
   config.action_view.logger = nil
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+  end
 end

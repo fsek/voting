@@ -15,7 +15,9 @@
 
 <div class="col-md-6 col-sm-12">
   <%= render '/users/confirm_information' %>
-  <%= render '/agendas/start_page', agendas: @start_page.agendas %>
+  <% cache(@start_page.agendas) do %>
+    <%= render '/agendas/start_page', agendas: @start_page.agendas %>
+  <% end %>
 </div>
 
 <div class="col-md-6 col-sm-12">

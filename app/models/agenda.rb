@@ -17,7 +17,7 @@ class Agenda < ActiveRecord::Base
   validates :index, presence: true, numericality: { greater_than_or_equal_to: 1 }
   validate :parent_validation, :only_one_current, :no_open_votes
 
-  scope :index, -> { order(:sort_index) }
+  scope :index, -> { includes(:parent).order(:sort_index) }
 
   attr_accessor :destroyed_by_parent
 
@@ -66,7 +66,7 @@ class Agenda < ActiveRecord::Base
   end
 
   def current_status
-    if status == CLOSED && children.where(status: CURRENT).first
+    if status == CLOSED && children.where(status: CURRENT).count > 0
       CURRENT
     else
       status

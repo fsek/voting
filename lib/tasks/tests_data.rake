@@ -19,14 +19,6 @@ namespace :db do
     a.password = 'passpass'
     a.save!
 
-    # Menues
-    Menu.find_or_create_by!(location: Menu::INFO, name: 'Om oss',
-                            link: '/om', index: 10, visible: true, turbolinks: true)
-    Menu.find_or_create_by!(location: Menu::INFO, name: 'Dokument',
-                            link: '/dokument', index: 10, visible: true, turbolinks: true)
-    Menu.find_or_create_by!(location: Menu::VOTING, name: 'Voteringar',
-                            link: '/voteringar', index: 30, visible: true, turbolinks: true)
-
     # Notice
     Notice.find_or_create_by!(FactoryGirl.attributes_for(:notice))
     Notice.find_or_create_by!(FactoryGirl.attributes_for(:notice))
