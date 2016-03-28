@@ -1,4 +1,9 @@
 Fsek::Application.routes.draw do
+  constraints(host: /^www\./i) do
+    get '(*any)' => redirect { |_params, request|
+      URI.parse(request.url).tap { |uri| uri.host.sub!(/^www\./i, '') }.to_s
+    }, via: [:get, :post]
+  end
 
   get :cookies_information, controller: :static_pages, as: :cookies, path: :cookies
   get :about, controller: :static_pages, path: :om
