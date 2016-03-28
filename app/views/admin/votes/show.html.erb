@@ -1,45 +1,57 @@
 <% provide(:title, t('vote.admin_votes')) %>
-<div class="col-md-10 col-md-offset-1 reg-page">
-  <div class="headline">
-    <h1><%= "#{t('vote.show_title')} - #{@vote_status.vote.title}" %></h1>
-  </div>
-  <table class="table">
-    <tr>
-      <td><%= t('attributes.name') %></td>
-      <td><%= @vote_status.vote.title %></td>
-    </tr>
-    <tr>
-      <td><%= t('vote.status') %></td>
-      <td><%= vote_status_str(@vote_status.vote.status) %></td>
-    </tr>
-    <tr>
-      <td><%= Vote.human_attribute_name(:choices) %></td>
-      <td><%= @vote_status.vote.choices %></td>
-    </tr>
-    <% if @vote_status.vote.closed? %>
-    <tr>
-      <td><%= t('vote.number_of_votes') %></td>
-      <td><%= "#{@vote_status.vote.vote_posts.count} / #{@vote_status.vote.present_users}" %></td>
-    </tr>
-    <% elsif @vote_status.vote.open? %>
-    <tr>
-      <td><%= t('vote.number_of_votes') %></td>
-      <td><%= "#{@vote_status.vote.vote_posts.count} / #{@vote_status.adjusted}" %></td>
-    </tr>
-    <% end %>
-  </table>
+<div class="headline">
+  <h1>
+    <%= @vote.title %>
+    <small><%= vote_status_str(@vote.status) %></small>
+  </h1>
+</div>
 
-  <% if !@vote_status.vote.closed? %>
+<div class="col-md-2 col-sm-12 vote margin">
+  <span class="choices">
+    <span class="title">
+    <%= Vote.human_attribute_name(:choices) %> 
+    </span>
+    <span class="value">
+      <%= fa_icon('hashtag') %> <%= @vote.choices %>
+    </span>
+  </span>
+  <br>
+
+  <% unless @vote.future? %>
+  <span class="vote-count">
+    <span class="title">
+      <%= t('vote.number_of_votes') %>
+    </span>
+
+    <span class="value">
+      <%= number_of_votes(@vote) %>
+    </span>
+  </span>
+
+  <span class="refresh">
+    <%= link_to(refresh_count_admin_vote_path(@vote), remote: true, method: :post) do %>
+      <%= fa_icon('refresh') %>
+      <%= t(:update) %>
+    <% end %>
+  </span>
+  <% end %>
+</div>
+
+<div class="col-md-9 col-sm-12 vote margin">
+
+  <% if !@vote.closed? %>
     <i><%= t('vote.still_open') %></i>
     <ul class="list">
-      <% @vote_status.vote.vote_options.with_deleted.each do |v| %>
+      <% @vote.vote_options.with_deleted.each do |v| %>
         <li><b><%= vote_option_str(v) %></b></li>
       <% end %>
     </ul>
   <% else %>
-    <%= t('vote.results') %>
-    <table class="table">
-      <% @vote_status.vote.vote_options.order_all.each do |v| %>
+    <div class="headline">
+      <h2><%= t('vote.results') %></h2>
+    </div>
+    <table class="table table-bordered table-striped">
+      <% @vote.vote_options.order_all.each do |v| %>
         <tr>
           <td><b><%= vote_option_str(v) %></b></td>
           <td><b><%= v.count %></b></td>
@@ -47,34 +59,44 @@
       <% end %>
       <tr>
         <td><i><%= t('vote.sum_votes_blank') %></i></td>
-        <td><i><%= vote_stats(@vote_status.vote) %></i></td>
+        <td><i><%= vote_stats(@vote) %></i></td>
       </tr>
     </table>
   <% end %>
+</div>
 
-  <%= grid(@audit_grid) do |grid|
-    grid.column name: t('log.type'), attribute: 'auditable_type', custom_filter: vote_filter do |a|
-      Audit.human_attribute_name(a.auditable_type)
-    end
-    grid.column name: t('log.action'), attribute: 'action', filter: false do |a|
-      User.human_attribute_name(a.action)
-    end
-    grid.column name: t('log.change'), attribute: 'audited_changes', filter: false do |a|
-      split_audit_hashes(a.audited_changes, Vote)
-    end
-    grid.column name: model_name(User), assoc: :user, attribute: 'firstname', filter: false do |a|
-      a.user
-    end
-    grid.column name: t('log.updated_by'), assoc: :updater, attribute: 'firstname', filter: false do |a|
-      a.updater
-    end
-    grid.column name: t('log.date'), attribute: 'created_at', filter: false
-  end -%>
-  <% unless @vote_status.vote.open? %>
-  <%= link_to t('vote.edit_vote'), edit_admin_vote_path(@vote_status.vote), class: 'btn primary' %>
-  <%= link_to t('vote.reset'), reset_admin_vote_path(@vote_status.vote), method: :patch,
-              class: 'btn danger pull-right', data: { confirm: t('vote.confirm_reset') } %>
+<div class="col-md-1 col-sm-12 vote margin">
+  <%= vote_state_link(@vote, type: 'btn primary vote button', route: :show) %>
+
+  <% unless @vote.open? %>
+    <%= link_to(t('vote.edit'), edit_admin_vote_path(@vote),
+                class: 'btn secondary vote button') %>
+    <%= link_to(t('vote.reset'), reset_admin_vote_path(@vote),
+                method: :patch,
+                class: 'btn danger vote button',
+                data: { confirm: t('vote.confirm_reset') }) %>
   <% end %>
-  <%= link_to t('vote.admin_votes'), admin_votes_path, class: 'btn secondary' %>
-  <%= vote_state_link(@vote_status.vote, type: 'btn secondary') %>
+</div>
+
+<div class="col md-12 col-sm-12 vote margin">
+  <%= link_to(t('vote.admin_votes'), admin_votes_path,
+                                     class: 'btn primary') %>
+</div>
+
+<div class="col-md-12 col-sm-12">
+  <div class="headline">
+    <h2><%= t('vote.status') %></h2>
+  </div>
+
+  <div class="vote status" id="vote-status">
+    <%= render '/admin/votes/status', vote_status_view: @vote_status %>
+  </div>
+</div>
+
+<div class="col-md-12 col-sm-12">
+  <div class="headline">
+    <h2><%= models_name(Audit) %></h2>
+  </div>
+
+  <%= render '/admin/votes/audits', audit_grid: @audit_grid %>
 </div>

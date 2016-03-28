@@ -1,5 +1,9 @@
 sv:
   activerecord:
+    models:
+      audit:
+        one: Granskning
+        other: Granskningar
     attributes:
       audit:
         Vote: Votering

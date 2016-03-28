@@ -2,9 +2,9 @@ class VoteStatusView
   attr_accessor :vote_post
   attr_reader :adjusted, :agenda, :vote
 
-  def initialize(vote: Vote.current)
+  def initialize
     @adjusted = User.present.count
     @agenda = Agenda.includes(:votes).current
-    @vote = vote
+    @vote = Vote.current
   end
 end

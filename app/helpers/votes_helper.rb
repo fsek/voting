@@ -104,15 +104,18 @@ module VotesHelper
     end
   end
 
-  def vote_state_link(vote, type: nil)
+  def vote_state_link(vote, type: nil, route: :index)
     if vote.present?
       if vote.open?
-        link_to(t('vote.do_close'), close_admin_vote_path(vote), method: :patch, class: type)
+        link_to(t('vote.do_close'), close_admin_vote_path(vote, route: route),
+                method: :patch, class: type)
       elsif vote.closed?
-        link_to(t('vote.do_open'), open_admin_vote_path(vote), method: :patch, class: type, data:
-                { confirm: t('vote.reopen') })
+        link_to(t('vote.do_open'), open_admin_vote_path(vote, route: route),
+                method: :patch, class: type,
+                data: { confirm: t('vote.reopen') })
       else
-        link_to(t('vote.do_open'), open_admin_vote_path(vote), method: :patch, class: type)
+        link_to(t('vote.do_open'), open_admin_vote_path(vote, route: route),
+                method: :patch, class: type)
       end
     end
   end
@@ -182,6 +185,16 @@ module VotesHelper
       Vote.human_attribute_name(state)
     else
       t('log.missing')
+    end
+  end
+
+  def number_of_votes(vote)
+    if vote.present?
+      if vote.closed?
+        "#{vote.vote_posts.count} / #{vote.present_users}"
+      elsif vote.open?
+        "#{vote.vote_posts.count} / #{User.present.count}"
+      end
     end
   end
 end

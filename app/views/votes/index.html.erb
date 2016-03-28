@@ -4,17 +4,7 @@
 </div>
 
 <div class="col-md-3 col-sm-12 vote">
-  <% if current_user.present? && current_user.presence == true %>
-    <span class="present">
-      <%= fa_icon('check-circle-o') %>
-      <%= t('vote_user.state.present') %>
-    </span>
-  <% else %>
-    <span class="not-present">
-      <%= fa_icon('times-circle-o') %>
-      <%= t('vote_user.state.not_present') %>
-    </span>
-  <% end %>
+  <%= user_presence_status(current_user) %>
   <hr>
 
   <div class="headline">
