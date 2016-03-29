@@ -1,13 +1,19 @@
 # encoding: UTF-8
 class Contact < ActiveRecord::Base
-  belongs_to :council
-  validates :name, :email, :text, presence: true
-  validates :email, uniqueness: true
+  validates :name, presence: true
+  validates :email, :text, presence: true
+  validates :email, uniqueness: true, format: { with: Devise::email_regexp }
+  validates :slug, uniqueness: { allow_blank: true }
 
-  attr_accessor :sender_message, :sender_name, :sender_email
+  attr_accessor :message
 
   def send_email
-    ContactMailer.contact_email(self).deliver_now
+    if message.validate!
+      ContactMailer.contact_email(self).deliver_now
+      true
+    else
+      false
+    end
   end
 
   def to_s

@@ -83,7 +83,12 @@ Fsek::Application.routes.draw do
 
     resources :faqs, path: :faq
 
-    resources :contacts, path: :kontakt do
+    namespace :admin do
+      resources :contacts, path: :kontakt, except: :show
+    end
+
+
+    resources :contacts, path: :kontakt, only: [:index, :show] do
       post :mail, on: :member
     end
 

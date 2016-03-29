@@ -8,9 +8,5 @@ sv:
       contact:
         name: Namn
         email: E-post
-        public: Publik
         text: Beskrivning
-        council_id: Utskott
-        sender_name: Ditt namn
-        sender_email: Din e-post
-        sender_message: Meddelande
+        slug: Snabbreferens

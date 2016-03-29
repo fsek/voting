@@ -7,17 +7,25 @@
   <% end %>
   <ul class="dropdown-menu">
     <li class="dropdown-submenu">
-      <%= link_to(t(:admin), nil) %>
-      <ul class="dropdown-menu">
-        <li><%= link_to(models_name(User), admin_users_path) %></li>
-        <li><%= link_to(models_name(Menu), admin_menus_path) %></li>
-        <li><%= link_to(models_name(Constant), constants_path) %></li>
-        <li><%= link_to(models_name(Permission), admin_permission_users_path) %></li>
-      </ul>
+        <%= link_to(models_name(User), admin_users_path) %>
     </li>
+
     <li class="dropdown-submenu">
-      <%= link_to models_name(Contact), contacts_path %>
+        <%= link_to(models_name(Menu), admin_menus_path) %>
     </li>
+
+    <li class="dropdown-submenu">
+        <%= link_to(models_name(Constant), constants_path) %>
+    </li>
+
+    <li class="dropdown-submenu">
+        <%= link_to(models_name(Permission), admin_permission_users_path) %>
+    </li>
+
+    <li class="dropdown-submenu">
+      <%= link_to models_name(Contact), admin_contacts_path %>
+    </li>
+
     <li class="dropdown-submenu">
       <%= link_to models_name(News), admin_news_index_path %>
     </li>
@@ -25,6 +33,7 @@
     <li class="dropdown-submenu">
       <%= link_to models_name(Notice), notices_path %>
     </li>
+
     <li class="dropdown-submenu">
       <%= link_to model_name(Document), admin_documents_path %>
     </li>
