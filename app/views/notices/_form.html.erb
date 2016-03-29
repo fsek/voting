@@ -1,9 +1,0 @@
-<%= simple_form_for(@notice) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description, as: :text %>
-  <%= f.input :public %>
-  <%= f.input :d_publish, as: :datetime_picker %>
-  <%= f.input :d_remove, as: :datetime_picker %>
-  <%= f.input :sort %>
-  <%= f.button :submit, id: 'submit-notice' %>
-<% end %>

@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
   end
 
   def index
-    @start_page = StartPage.new
+    @start_page = StartPage.new(signed_in: current_user.present?)
   end
 
   def terms

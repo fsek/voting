@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323231142) do
+ActiveRecord::Schema.define(version: 20160329130306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,20 +61,16 @@ ActiveRecord::Schema.define(version: 20160323231142) do
   add_index "audits", ["user_id"], name: "index_audits_on_user_id", using: :btree
   add_index "audits", ["vote_id"], name: "index_audits_on_vote_id", using: :btree
 
-  create_table "constants", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "value",      limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "contacts", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.string   "email",      limit: 255
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "contacts", ["slug"], name: "index_contacts_on_slug", using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.string   "pdf_file_name",    limit: 255
@@ -90,17 +86,6 @@ ActiveRecord::Schema.define(version: 20160323231142) do
   end
 
   add_index "documents", ["user_id"], name: "index_documents_on_user_id", using: :btree
-
-  create_table "faqs", force: :cascade do |t|
-    t.string   "question",      limit: 255
-    t.text     "answer"
-    t.integer  "sorting_index"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "category",      limit: 255
-  end
-
-  add_index "faqs", ["category"], name: "index_faqs_on_category", using: :btree
 
   create_table "menus", force: :cascade do |t|
     t.string   "location",   limit: 255
@@ -129,8 +114,6 @@ ActiveRecord::Schema.define(version: 20160323231142) do
     t.string   "title",       limit: 255
     t.text     "description"
     t.boolean  "public"
-    t.date     "d_publish"
-    t.date     "d_remove"
     t.integer  "sort"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -4,17 +4,17 @@
       <li class="dropdown">
         <%= menu_dropdown_link(t(:administrate)) %>
         <ul class="dropdown-menu">
-          <% if can? :manage, Vote %>
+          <% if can_administrate? :modify, Vote %>
             <li>
               <%= link_to models_name(Vote), admin_votes_path %>
             </li>
           <% end %>
-          <% if can? :manage, :vote_user %>
+          <% if can_administrate? :modify, :vote_user %>
             <li>
               <%= link_to t('user.vote_administration'), admin_vote_users_path %>
             </li>
           <% end %>
-          <% if can? :manage, Agenda %>
+          <% if can_administrate? :modify, Agenda %>
             <li>
               <%= link_to t('agenda.name'), admin_agendas_path %>
             </li>

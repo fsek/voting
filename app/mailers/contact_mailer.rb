@@ -1,7 +1,7 @@
 # encoding: UTF-8
 require 'digest/sha2'
 class ContactMailer < ActionMailer::Base
-  default from: 'Röstiga <dirac@fsektionen.se>', parts_order: ['text/plain', 'text/html']
+  default from: 'Röstsystem <dirac@fsektionen.se>'
   default subject: I18n.t('contact.message_sent_via')
 
   def contact_email(contact)
@@ -10,7 +10,7 @@ class ContactMailer < ActionMailer::Base
       set_message_id
 
       recipient = "#{contact.name} <#{contact.email}>"
-      sender = "#{contact.sender_name} <#{contact.sender_email}>"
+      sender = "#{contact.message.name} <#{contact.message.email}>"
 
       mail(to: recipient, cc: sender, reply_to: sender)
     end

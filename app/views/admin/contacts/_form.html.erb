@@ -1,0 +1,12 @@
+<%= simple_form_for([:admin, contact]) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :text %>
+  <%= f.input :email %>
+  <%= f.input :slug, hint: t('contact.slug_description') %>
+  <%= f.button :submit, id: 'contact-submit' %>
+  <% if !contact.new_record? %>
+    <%= link_to(t('contact.destroy'), admin_contact_path(contact),
+                method: :delete,
+                class: 'btn danger pull-right') %>
+  <% end %>
+<% end %>

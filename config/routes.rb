@@ -37,8 +37,6 @@ Fsek::Application.routes.draw do
 
     resources :users, path: :anvandare, only: [:show]
 
-    resources :constants
-
     resources :votes, path: :voteringar, only: :index do
       resources :vote_posts, only: [:new, :create]
     end
@@ -75,15 +73,16 @@ Fsek::Application.routes.draw do
       end
     end
 
-    resources :notices, path: :notiser
-
     namespace :admin do
       resources :menus, path: :meny, except: :show
+      resources :notices, path: :notiser, except: :show
     end
 
-    resources :faqs, path: :faq
+    namespace :admin do
+      resources :contacts, path: :kontakt, except: :show
+    end
 
-    resources :contacts, path: :kontakt do
+    resources :contacts, path: :kontakt, only: [:index, :show] do
       post :mail, on: :member
     end
 
