@@ -78,8 +78,6 @@ Fsek::Application.routes.draw do
       resources :notices, path: :notiser, except: :show
     end
 
-    resources :faqs, path: :faq
-
     namespace :admin do
       resources :contacts, path: :kontakt, except: :show
     end

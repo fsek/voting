@@ -8,7 +8,6 @@ class Ability
     can :read, Document, public: true
     can :read, News
     can [:mail, :read], Contact
-    can [:new, :create, :read], Faq
     can [:index, :about, :cookies_information, :terms], :static_pages
 
     # Abilities all signed in users get

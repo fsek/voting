@@ -5,7 +5,6 @@ RSpec.describe Ability do
   ab_not_signed = {
     Contact.new => { yes: [:read, :mail], no: [:create, :update, :destroy] },
     Document.new(public: true) => { yes: [:read], no: [:create, :update, :destroy] },
-    Faq.new => { yes: [:read, :create], no: [:update, :destroy] },
     Menu.new => { yes: [], no: standard },
     News.new => { yes: [:read], no: [:create, :update, :destroy] },
     Notice.new => { no: standard },
@@ -15,7 +14,6 @@ RSpec.describe Ability do
   ab_signed = {
     Contact.new => { yes: [:read, :mail], no: [:create, :update, :destroy] },
     Document.new => { yes: [:read], no: [:create, :update, :destroy] },
-    Faq.new => { yes: [:read, :create], no: [:update, :destroy] },
     Menu.new => { yes: [], no: standard },
     News.new => { yes: [:read], no: [:create, :update, :destroy] },
     Notice.new => { no: standard },

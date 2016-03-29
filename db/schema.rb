@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329053210) do
+ActiveRecord::Schema.define(version: 20160329130306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,17 +86,6 @@ ActiveRecord::Schema.define(version: 20160329053210) do
   end
 
   add_index "documents", ["user_id"], name: "index_documents_on_user_id", using: :btree
-
-  create_table "faqs", force: :cascade do |t|
-    t.string   "question",      limit: 255
-    t.text     "answer"
-    t.integer  "sorting_index"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "category",      limit: 255
-  end
-
-  add_index "faqs", ["category"], name: "index_faqs_on_category", using: :btree
 
   create_table "menus", force: :cascade do |t|
     t.string   "location",   limit: 255
