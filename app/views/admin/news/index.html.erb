@@ -1,8 +1,8 @@
 <%= title(models_name(News)) %>
 <div class="headline">
-  <h3><%= models_name(News) %></h3>
+  <h1><%= models_name(News) %></h1>
 </div>
-<%= link_to(t(:new_attr, attr: model_name(News)), new_admin_news_path, class: 'btn secondary') %>
+<%= link_to t('news.new'), new_admin_news_path, class: 'btn primary' %>
 
 <%= grid(@news_grid) do |g|
   g.column name: News.human_attribute_name(:title), attribute: 'title', filter: false
