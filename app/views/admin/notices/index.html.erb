@@ -4,7 +4,7 @@
 </div>
 
 <div class="col-md-2 col-sm-12">
-  <%= link_to(t('notice.new'), new_notice_path, class: 'btn primary') %>
+  <%= link_to(t('notice.new'), new_admin_notice_path, class: 'btn primary') %>
   <hr>
   <button class="wg-external-submit-button btn secondary" data-grid-name="grid">
     <%= t('document.filter') %>
@@ -19,20 +19,13 @@
            hide_reset_button: true) do |g|
     g.column(name: Notice.human_attribute_name(:title),
              attribute: 'title') do |notice|
-      link_to(notice, notice)
+      link_to(notice, edit_admin_notice_path(notice))
     end
     g.column(name: Notice.human_attribute_name(:public),
              attribute: 'public') do |notice|
       yes_no(notice.public)
     end
-    g.column(name: Notice.human_attribute_name(:d_publish),
-             attribute: 'd_publish')
-    g.column(name: Notice.human_attribute_name(:d_remove),
-             attribute: 'd_remove')
     g.column(name: Notice.human_attribute_name(:sort),
              attribute: 'sort')
-    g.column(name: t(:edit)) do |notice|
-      link_to(t(:edit), edit_notice_path(notice))
-    end
   end -%>
 </div>

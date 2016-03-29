@@ -73,10 +73,9 @@ Fsek::Application.routes.draw do
       end
     end
 
-    resources :notices, path: :notiser
-
     namespace :admin do
       resources :menus, path: :meny, except: :show
+      resources :notices, path: :notiser, except: :show
     end
 
     resources :faqs, path: :faq
@@ -84,7 +83,6 @@ Fsek::Application.routes.draw do
     namespace :admin do
       resources :contacts, path: :kontakt, except: :show
     end
-
 
     resources :contacts, path: :kontakt, only: [:index, :show] do
       post :mail, on: :member
