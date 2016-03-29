@@ -58,7 +58,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       user.presence.should be_truthy
     end
 
-    it 'doesnt work if a vote is open' do
+    it 'works even if a vote is open' do
       user = create(:user, presence: false)
       agenda = create(:agenda, status: Agenda::CURRENT)
       create(:vote, status: Vote::OPEN, agenda: agenda)
@@ -67,8 +67,8 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
 
       user.reload
       assigns(:user).should eq(user)
-      assigns(:success).should be_falsey
-      user.presence.should be_falsey
+      assigns(:success).should be_truthy
+      user.presence.should be_truthy
     end
 
     it 'doesnt work without a current agenda' do

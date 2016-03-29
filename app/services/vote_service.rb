@@ -18,7 +18,7 @@ module VoteService
 
   def self.set_present(user)
     state = false
-    if Vote.current.nil? && !Agenda.current.nil?
+    if !Agenda.current.nil?
       begin
         user.update!(presence: true)
         Adjustment.create!(user: user, agenda: Agenda.current, presence: true)
