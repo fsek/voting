@@ -44,9 +44,9 @@
   </ul>
 
   <h3><%= t('about.questions') %></h3>
-  <% id = Contact.find_by(slug: 'röstiga').try(:value).id %>
-  <% if id.present? %>
-    <%= link_to(contact_path(id), class: 'btn primary') do %>
+  <% contact = Contact.find_by(slug: 'röstiga') %>
+  <% if contact.present? %>
+    <%= link_to(contact_path(contact), class: 'btn primary') do %>
       <%= fa_icon('envelope-o') %>&nbsp; Röstiga
     <% end %>
   <% end %>
