@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329044053) do
+ActiveRecord::Schema.define(version: 20160329052144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,13 +60,6 @@ ActiveRecord::Schema.define(version: 20160329044053) do
   add_index "audits", ["updater_id"], name: "index_audits_on_updater_id", using: :btree
   add_index "audits", ["user_id"], name: "index_audits_on_user_id", using: :btree
   add_index "audits", ["vote_id"], name: "index_audits_on_vote_id", using: :btree
-
-  create_table "constants", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "value",      limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "contacts", force: :cascade do |t|
     t.string   "name",       limit: 255
