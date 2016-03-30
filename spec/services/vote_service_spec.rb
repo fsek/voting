@@ -103,7 +103,7 @@ RSpec.describe VoteService do
       user.presence.should be_falsey
     end
 
-    it 'set_present fail if open vote' do
+    it 'set_present works if a vote is open' do
       user = create(:user, presence: false)
       agenda = create(:agenda, status: Agenda::CURRENT)
       create(:vote, status: Vote::OPEN, agenda: agenda)
@@ -111,8 +111,8 @@ RSpec.describe VoteService do
       result = VoteService.set_present(user)
       user.reload
 
-      result.should be_falsey
-      user.presence.should be_falsey
+      result.should be_truthy
+      user.presence.should be_truthy
     end
 
     it 'set_not_present' do
