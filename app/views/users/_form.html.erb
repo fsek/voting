@@ -12,7 +12,7 @@
   <%= image_tag('img/mecenatkort.jpg', class: 'img-responsive') %>
   <%= f.input(:card_number, input_html: {data: {mask: '9999-9999-9999-9999'},
                                          autocomplete: 'off'},
-                            hint: t('user.visibility.card_number')) %>
+                            hint: simple_format(t('user.visibility.card_number'))) %>
   <%= f.button(:submit, t('user.submit_card_number'),
                id: 'user-card-number-submit',
                data: {confirm: t('user.confirm_card_number')}) %>
