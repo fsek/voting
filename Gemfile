@@ -11,6 +11,7 @@ gem 'cancancan'
 # Need to use this for multiple file upload
 # https://github.com/carrierwaveuploader/carrierwave#multiple-file-uploads
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'carrierwave-aws'
 gem 'cookies_eu'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'devise'
