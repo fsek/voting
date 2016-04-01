@@ -1,8 +1,12 @@
 class DocumentUploader < CarrierWave::Uploader::Base
-  storage :file
+  if ENV['AWS']
+    storage :aws
 
-  def store_dir
-    "#{Rails.root}/storage/#{model.class.name.pluralize.downcase}"
+    def cache_dir
+      "#{Rails.root}/tmp/uploads"
+    end
+  else
+    storage :file
   end
 
   def extension_white_list

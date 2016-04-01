@@ -14,8 +14,9 @@ class DocumentsController < ApplicationController
 
   def show
     document = Document.find(params[:id])
-    send_file(document.pdf.path,
-              filename: document.pdf_file_name,
+    data = open(document.view)
+    send_file(data,
+              filename: document.pdf.filename,
               type: 'application/pdf',
               disposition: 'inline',
               x_sendfile: true)

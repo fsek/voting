@@ -22,4 +22,14 @@ class Document < ActiveRecord::Base
       order(:category).
       pluck(:category).uniq
   end
+
+  def view
+    if pdf.present?
+      if ENV['AWS']
+        pdf.url
+      else
+        pdf.path
+      end
+    end
+  end
 end
