@@ -6,7 +6,7 @@
                       url: registration_path(resource_name)) do |f| %>
     <%= f.input :firstname, hint: t('user.visibility.name') %>
     <%= f.input :lastname, hint: t('user.visibility.name') %>
-    <%= f.input :email, required: true, hint: t('user.visibility.email') %>
+    <%= f.input :email, required: true, hint: user_email_hint %>
     <%= f.input :password, required: true, hint: t('user.visibility.password') %>
     <%= f.input :password_confirmation, required: true %>
 

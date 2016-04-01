@@ -8,9 +8,9 @@ sv:
     check_email_to_confirm: Vänlig kontrollera om du fått ett epost %{date} med en länk för att bekräfta din e-postadress.
     confirm: Bekräfta
     confirm_card_number: Kontrollera att kortnumret är korrekt, kan endast ändras av administratör.
-    contact_for_membership: Kontakta Spindelmännen för att bli registrerad som medlem
     edit: Redigera kontouppgifter
     email_confirmed: Din e-postadress är bekräftad.
+    email_format: Endast epost kopplad till skolan är godkänd, t.ex. tfy15hal@student.lu.se.
     make_all_not_present: Justera ut alla användare
     make_not_present: Justera ut
     make_present: Justera in
@@ -44,4 +44,4 @@ sv:
       name: Kan ses av justerare, sekreterare, mötesordförande och administratörer. Syns även i mötesprotokollets närvarolista.
       email: Kan endast ses av administratörer.
       password: Lagras aldrig i klartext, kan inte ses av någon.
-      card_number: Kan endast ses av justerare, sekreterare, mötesordförande och administratörer.
+      card_number: Kan endast ses av justerare, sekreterare, mötesordförande och administratörer. <br> Måste vara på formatet 6122-6122-6122-6122
