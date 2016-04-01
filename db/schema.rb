@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329130306) do
+ActiveRecord::Schema.define(version: 20160402203437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,8 +83,10 @@ ActiveRecord::Schema.define(version: 20160329130306) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "agenda_id"
   end
 
+  add_index "documents", ["agenda_id"], name: "index_documents_on_agenda_id", using: :btree
   add_index "documents", ["user_id"], name: "index_documents_on_user_id", using: :btree
 
   create_table "menus", force: :cascade do |t|
@@ -211,6 +213,7 @@ ActiveRecord::Schema.define(version: 20160329130306) do
   add_foreign_key "adjustments", "users"
   add_foreign_key "audits", "users"
   add_foreign_key "audits", "votes"
+  add_foreign_key "documents", "agendas"
   add_foreign_key "vote_options", "votes"
   add_foreign_key "vote_posts", "users"
   add_foreign_key "vote_posts", "votes"

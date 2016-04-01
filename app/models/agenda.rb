@@ -6,6 +6,7 @@ class Agenda < ActiveRecord::Base
 
   has_many :adjustments
   has_many :votes
+  has_many :documents, dependent: :nullify
   has_many :children, class_name: 'Agenda', foreign_key: 'parent_id', dependent: :destroy
   belongs_to :parent, class_name: 'Agenda'
 

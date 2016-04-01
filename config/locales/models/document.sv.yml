@@ -12,3 +12,4 @@ sv:
         user_id: Uppladdad av
         created_at: Skapad
         updated_at: Uppdaterad
+        agenda_id: Dagordningspunkt

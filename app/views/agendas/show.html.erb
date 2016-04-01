@@ -1,0 +1,54 @@
+<div class="headline">
+  <h1><%= t('agenda.name') %></h1>
+</div>
+
+<div class="col-md-3 col-sm-12 vote">
+  <%= user_presence_status(current_user) %>
+  <hr>
+
+  <div class="headline">
+    <h3><%= t('agenda.current_short') %></h3>
+  </div>
+
+  <% if @current_agenda.present? %>
+    <h5 class="vote agenda">
+      <%= link_to @current_agenda, agenda_path(@current_agenda) %>
+    </h5>
+  <% end %>
+</div>
+
+<div class="col-md-9 col-sm-12 vote">
+  <div class="headline">
+    <h1>
+      <%= @agenda.to_s %>
+      <small><%= agenda_status_str(@agenda.status) %></small>
+    </h1>
+  </div>
+  <br>
+
+  <% if @agenda.documents.present? %>
+    <div class="col-md-6 col-sm-12">
+      <div class="headline">
+        <h3><%= models_name(Document) %></h3>
+      </div>
+      <ul class="list">
+        <% @agenda.documents.each do |d| %>
+        <li><%= link_to d, document_path(d), target: '_blank' %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @agenda.votes.present? %>
+    <div class="col-md-6 col-sm-12">
+      <div class="headline">
+        <h3><%= models_name(Vote) %></h3>
+      </div>
+      <ul class="list">
+        <% @agenda.votes.order(:id).each do |v| %>
+        <li><%= v.title %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

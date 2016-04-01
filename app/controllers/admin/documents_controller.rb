@@ -5,7 +5,7 @@ class Admin::DocumentsController < Admin::BaseController
     documents = filter_documents(Document.all, params[:category])
     grid = initialize_grid(documents, order: 'documents.updated_at',
                                       order_direction: 'desc',
-                                      include: :user)
+                                      include: [:user, :agenda])
 
     @documents = DocumentView.new(grid: grid,
                                   categories: Document.categories,
@@ -56,7 +56,7 @@ class Admin::DocumentsController < Admin::BaseController
   private
 
   def document_params
-    params.require(:document).permit(:title, :pdf, :public, :category)
+    params.require(:document).permit(:title, :pdf, :public, :category, :agenda_id)
   end
 
   def filter_documents(documents, category)

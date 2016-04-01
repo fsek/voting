@@ -3,6 +3,7 @@ sv:
     change_status: Ändra status
     close: Stäng
     current: Aktuell dagordningspunkt
+    current_short: Aktuell punkt
     deleted: " [RADERAD]"
     deleted_ok: Dagordningspunkten har raderas
     edit: Redigera punkt
