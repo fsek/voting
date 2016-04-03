@@ -2,6 +2,7 @@
 class Document < ActiveRecord::Base
   include CarrierWave::Compatibility::Paperclip
   belongs_to :user
+  belongs_to :agenda
 
   validates :title, :category, presence: true
 

@@ -6,7 +6,14 @@
   .closed {
     .list-group-item-heading,
     .list-group-item-text {
-      color: $gray-text;
+      :link,
+      :visited {
+        color: $gray-text;
+      }
+
+      :hover {
+        color: $fsek-orange;
+      }
     }
 
     .badge {
@@ -20,7 +27,14 @@
 
     .list-group-item-heading,
     .list-group-item-text {
-      color: $black;
+      :link,
+      :visited {
+        color: $black;
+      }
+
+      :hover {
+        color: $fsek-orange;
+      }
     }
 
     .badge {
@@ -31,7 +45,14 @@
   .future {
     .list-group-item-heading,
     .list-group-item-text {
-      color: $black;
+      :link,
+      :visited {
+        color: $black;
+      }
+
+      :hover {
+        color: $fsek-orange;
+      }
     }
 
     .badge {

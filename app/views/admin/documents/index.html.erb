@@ -29,6 +29,11 @@
     end
     g.column(name: Document.human_attribute_name(:updated_at), attribute: 'updated_at',
              filter: false)
+    g.column name: model_name(Agenda), attribute: 'title', assoc: :agenda do |document|
+      if document.agenda.present?
+        link_to document.agenda, edit_admin_agenda_path(document.agenda)
+      end
+    end
     g.column(name: model_name(User), assoc: :user, attribute: 'firstname') do |document|
       user_link(document.user)
     end

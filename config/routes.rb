@@ -41,6 +41,8 @@ Fsek::Application.routes.draw do
       resources :vote_posts, only: [:new, :create]
     end
 
+    resources :agendas, path: :dagordning, only: :show
+
     namespace :admin do
       resources :votes, path: :voteringar, controller: :votes do
         patch :close, on: :member

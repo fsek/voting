@@ -9,6 +9,7 @@ class Ability
     can :read, News
     can [:mail, :read], Contact
     can [:index, :about, :cookies_information, :terms], :static_pages
+    can [:show], Agenda
 
     # Abilities all signed in users get
     if user.id.present?
