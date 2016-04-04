@@ -1,5 +1,5 @@
 <% if @success %>
-  $('tr#<%= dom_id(@user) %> td.votecode').html('<%= @user.votecode %>');
+  $('tr#<%= dom_id(@user) %> td.votecode-reset').append('<br><%= t(:sent) %>');
 <% else %>
   $('tr#<%= dom_id(@user) %> td.votecode-reset').append('<br><%= t('vote_user.votecode_error_short') %>');
 <% end %>

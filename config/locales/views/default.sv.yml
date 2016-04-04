@@ -25,6 +25,7 @@ sv:
   save: Spara
   save_attr: Spara %{attr}
   search: Sök
+  sent: Skickat
   show: Visa
   show_attr: Visa %{attr}
   sincerely: Med vänlig hälsning
