@@ -31,8 +31,6 @@
     grid.column name: t('attributes.name'), attribute: 'firstname' do |user|
       link_to admin_print_user(user), admin_vote_user_path(user)
     end
-    grid.column name: User.human_attribute_name(:votecode), attribute: 'votecode',
-      html: {class: 'votecode'}
     grid.column name: User.human_attribute_name(:presence), attribute: 'presence', 
                 html: {class: 'presence'} do |user|
       yes_no(user.presence)
