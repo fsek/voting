@@ -6,7 +6,9 @@ sv:
         other: Punkter
     attributes:
       agenda:
-        future: Framtida
-        current: Aktuell
         closed: Stängd
-        parent_id: Sektion
+        current: Aktuell
+        description: Lång beskrivning
+        future: Framtida
+        parent: Huvudpunkt
+        short: Kort beskrivning

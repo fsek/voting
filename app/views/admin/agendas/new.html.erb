@@ -2,5 +2,10 @@
   <div class="headline">
     <h1><%= t('agenda.new') %></h1>
   </div>
+
   <%= render 'form' %>
+
+  <hr>
+
+  <%= link_to t('agenda.admin'), admin_agendas_path, class: 'btn secondary' %>
 </div>

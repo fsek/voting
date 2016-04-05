@@ -6,14 +6,41 @@
   <%= user_presence_status(current_user) %>
   <hr>
 
-  <div class="headline">
-    <h3><%= t('agenda.current_short') %></h3>
-  </div>
 
   <% if @current_agenda.present? %>
+    <div class="headline">
+      <h3><%= t('agenda.current_short') %></h3>
+    </div>
     <h5 class="vote agenda">
       <%= link_to @current_agenda, agenda_path(@current_agenda) %>
     </h5>
+    <br>
+  <% end %>
+
+  <% if @agenda.parent.present? %>
+    <div class="headline">
+      <h4><%= t('agenda.parent') %></h4>
+    </div>
+    <h5 class="vote agenda">
+      <%= link_to(@agenda.parent, agenda_path(@agenda.parent)) %>
+    </h5>
+    <br>
+  <% end %>
+
+  <% if @agenda.children.count > 0 %>
+    <div class="headline">
+      <h4><%= t('agenda.children') %></h4>
+    </div>
+    <ul class="list">
+      <% @agenda.children.each do |agenda| %>
+        <li><%= link_to(agenda, agenda_path(agenda)) %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <% if can_administrate?(:edit, @agenda) %>
+    <hr>
+    <%= link_to(t('agenda.edit'), edit_admin_agenda_path(@agenda), class: 'btn primary') %>
   <% end %>
 </div>
 
@@ -21,10 +48,16 @@
   <div class="headline">
     <h1>
       <%= @agenda.to_s %>
-      <small><%= agenda_status_str(@agenda.status) %></small>
+      <small>
+        <%= agenda_status_str(@agenda.status) %> <%= @agenda.short %>
+      </small>
     </h1>
   </div>
-  <br>
+
+  <div class="col-md-12">
+    <%= markdown(@agenda.description) %>
+    <hr>
+  </div>
 
   <% if @agenda.documents.present? %>
     <div class="col-md-6 col-sm-12">
@@ -32,8 +65,12 @@
         <h3><%= models_name(Document) %></h3>
       </div>
       <ul class="list">
-        <% @agenda.documents.each do |d| %>
-        <li><%= link_to d, document_path(d), target: '_blank' %></li>
+        <% @agenda.documents.each do |doc| %>
+          <li>
+            <%= link_to document_path(doc), target: '_blank' do %>
+              <%= fa_icon('paperclip') %><%= doc.to_s %>
+            <% end %>
+          </li>
         <% end %>
       </ul>
     </div>
@@ -46,7 +83,7 @@
       </div>
       <ul class="list">
         <% @agenda.votes.order(:id).each do |v| %>
-        <li><%= v.title %></li>
+          <li><%= v.title %></li>
         <% end %>
       </ul>
     </div>
