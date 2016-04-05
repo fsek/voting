@@ -46,8 +46,10 @@ module AgendasHelper
     if agenda.current?
       content << ''
       content << fa_icon('angle-double-left')
-      content << ' '
-      content << t('current')
+      if agenda.parent.present?
+        content << ' '
+        content << t('current')
+      end
     end
 
     link_to safe_join(content), agenda_path(agenda)
