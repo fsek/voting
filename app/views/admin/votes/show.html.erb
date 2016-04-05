@@ -42,7 +42,7 @@
   <% if !@vote.closed? %>
     <i><%= t('vote.still_open') %></i>
     <ul class="list">
-      <% @vote.vote_options.with_deleted.each do |v| %>
+      <% @vote.vote_options.order(:created_at).with_deleted.each do |v| %>
         <li><b><%= vote_option_str(v) %></b></li>
       <% end %>
     </ul>
