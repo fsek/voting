@@ -5,6 +5,7 @@ sv:
   administration: Administration
   back: Tillbaka
   close: Stäng
+  current: Aktuell
   destroy: Förinta
   destroy_attr: Förinta %{attr}
   edit: Redigera

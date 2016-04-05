@@ -13,6 +13,7 @@ class Admin::AgendasController < Admin::BaseController
     @agenda = Agenda.new(agenda_params)
 
     if @agenda.save
+      expire_fragment('agenda_startpage')
       redirect_to new_admin_agenda_path, notice: alert_create(Agenda)
     else
       render :new, status: 422
@@ -27,6 +28,7 @@ class Admin::AgendasController < Admin::BaseController
     @agenda = Agenda.find(params[:id])
 
     if @agenda.update(agenda_params)
+      expire_fragment('agenda_startpage')
       redirect_to edit_admin_agenda_path(@agenda), notice: alert_update(Agenda)
     else
       render :edit, status: 422
@@ -37,6 +39,7 @@ class Admin::AgendasController < Admin::BaseController
     @agenda = Agenda.find(params[:id])
 
     if @agenda.destroy
+      expire_fragment('agenda_startpage')
       flash[:notice] = t('agenda.deleted_ok')
     else
       flash[:alert] = @agenda.errors. full_messages_for(:destroy).to_sentence
@@ -60,6 +63,7 @@ class Admin::AgendasController < Admin::BaseController
   private
 
   def agenda_params
-    params.require(:agenda).permit(:title, :index, :parent_id, :status)
+    params.require(:agenda).permit(:title, :index, :parent_id, :status,
+                                   :short, :description)
   end
 end

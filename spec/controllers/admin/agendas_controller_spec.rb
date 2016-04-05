@@ -41,7 +41,9 @@ RSpec.describe Admin::AgendasController, type: :controller do
   describe 'POST #create' do
     it 'valid parameters' do
       attributes = { title: 'Propositioner',
-                     index: 10 }
+                     index: 10,
+                     short: 'Bifall',
+                     description: '## Waow' }
 
       lambda do
         post :create, agenda: attributes

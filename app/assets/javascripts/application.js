@@ -33,3 +33,5 @@
 //= require cookies_eu
 //= require cocoon
 //= require inputmask
+//= require pagedown_bootstrap
+//= require pagedown_init

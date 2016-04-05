@@ -36,10 +36,20 @@ module AgendasHelper
   end
 
   def agenda_link(agenda)
-    if agenda.current?
-      link_to safe_join([agenda.to_s, '', fa_icon('angle-double-left')]), agenda_path(agenda)
-    else
-      link_to agenda, agenda_path(agenda)
+    content = [agenda.to_s]
+
+    if agenda.short.present?
+      content << ' - '
+      content << agenda.short
     end
+
+    if agenda.current?
+      content << ''
+      content << fa_icon('angle-double-left')
+      content << ' '
+      content << t('current')
+    end
+
+    link_to safe_join(content), agenda_path(agenda)
   end
 end
