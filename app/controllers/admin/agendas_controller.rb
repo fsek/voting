@@ -50,12 +50,14 @@ class Admin::AgendasController < Admin::BaseController
 
   def set_current
     @agenda = Agenda.find(params[:id])
+    expire_fragment('agenda_startpage')
     @success = @agenda.update(status: Agenda::CURRENT)
     render
   end
 
   def set_closed
     @agenda = Agenda.find(params[:id])
+    expire_fragment('agenda_startpage')
     @success = @agenda.update(status: Agenda::CLOSED)
     render
   end
