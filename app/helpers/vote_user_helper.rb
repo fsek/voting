@@ -24,15 +24,23 @@ module VoteUserHelper
   end
 
   def admin_print_user(user)
+    str = ''
+
     if user.present?
       if !user.confirmed?
-        safe_join([fa_icon('times'), ' ', user])
+        str = safe_join(fa_icon(['times', ' ']))
       elsif user.card_number.present?
-        safe_join([fa_icon('credit-card'), ' ', user])
-      else
-        user
+        str = safe_join([fa_icon('credit-card'), ' '])
       end
+
+      if user.votecode.present?
+        str += safe_join([' ', fa_icon('key'), ' '])
+      end
+
+      str += user
     end
+
+    str
   end
 
   def user_filter
