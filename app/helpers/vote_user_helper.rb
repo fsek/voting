@@ -37,7 +37,7 @@ module VoteUserHelper
         str += safe_join([' ', fa_icon('key'), ' '])
       end
 
-      str += user
+      str += user.to_s
     end
 
     str
