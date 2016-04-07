@@ -28,7 +28,7 @@ module VoteUserHelper
 
     if user.present?
       if !user.confirmed?
-        str = safe_join(fa_icon(['times', ' ']))
+        str = safe_join([fa_icon('times'), ' '])
       elsif user.card_number.present?
         str = safe_join([fa_icon('credit-card'), ' '])
       end
