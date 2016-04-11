@@ -74,6 +74,14 @@ class Agenda < ActiveRecord::Base
     end
   end
 
+  def start_page?
+    if status == CLOSED && children.where(status: CLOSED).count == children.count
+      false
+    else
+      true
+    end
+  end
+
   private
 
   def parent_validation

@@ -2,26 +2,36 @@
   <div class="headline">
     <h3><%= t('agenda.name') %></h3>
   </div>
+
   <ul class="agenda list-group">
+    <li class="list-group-item">
+      <h5 class="list-group-item-heading">
+        <%= link_to agendas_path do%>
+          <%= fa_icon('angle-double-up') %> <%= t('agenda.all') %>
+        <% end %>
+      </h5>
+    </li>
     <% agendas.each do |agenda| %>
-      <li class="<%= "list-group-item #{agenda.current_status}" %>">
-        <h4 class="list-group-item-heading">
-          <%= agenda_link(agenda) %>
-        </h4>
-        <span class="badge">
-          <%= agenda_status_str(agenda.current_status) %>
-        </span>
-        <p class="list-group-item-text">
-          <% if agenda.children.present? %>
-            <% agenda.children.index.each do |a| %>
-              <%= agenda_link(a) %>
+      <% if agenda.start_page? %>
+        <li class="<%= "list-group-item #{agenda.current_status}" %>">
+          <h4 class="list-group-item-heading">
+            <%= agenda_link(agenda) %>
+          </h4>
+          <span class="badge">
+            <%= agenda_status_str(agenda.current_status) %>
+          </span>
+          <p class="list-group-item-text">
+            <% if agenda.children.present? %>
+              <% agenda.children.index.each do |a| %>
+                <%= agenda_link(a) %>
+                <br>
+              <% end %>
+            <% else %>
               <br>
             <% end %>
-          <% else %>
-            <br>
-          <% end %>
-        </p>
-      </li>
+          </p>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 <% end %>
