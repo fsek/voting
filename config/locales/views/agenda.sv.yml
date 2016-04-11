@@ -1,6 +1,7 @@
 sv:
   agenda:
     admin: Administrera dagordning
+    all: Visa hela dagordningen
     change_status: Ändra status
     children: Underpunkter
     close: Stäng
