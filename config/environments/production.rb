@@ -40,7 +40,7 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   if ENV.fetch('FORCE_SSL').to_s.downcase == 'true'
-    config.force_ssl = false
+    config.force_ssl = true
   else
     config.force_ssl = false
   end
