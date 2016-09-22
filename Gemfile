@@ -1,19 +1,22 @@
 source 'https://rubygems.org'
 
 # Do not forget to update in .ruby-version, Capfile and circle.yml
-ruby '2.3.0'
+ruby '2.3.1'
 
-gem 'rails', '4.2.5.2'
+gem 'rails', '4.2.7.1'
 
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
 gem 'cancancan'
 # Need to use this for multiple file upload
 # https://github.com/carrierwaveuploader/carrierwave#multiple-file-uploads
-gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'carrierwave',
+     git: 'https://github.com/carrierwaveuploader/carrierwave'
 gem 'carrierwave-aws'
 gem 'cookies_eu'
-gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+gem 'datetimepicker-rails',
+    git: 'https://github.com/zpaulovics/datetimepicker-rails',
+    branch: 'master', submodules: true
 gem 'devise'
 gem 'font-awesome-rails'
 gem 'jbuilder'
@@ -24,7 +27,6 @@ gem 'momentjs-rails'
 gem 'pagedown-bootstrap-rails'
 gem 'pg'
 gem 'puma'
-gem 'quiet_assets'
 gem 'sass-rails'
 gem 'select2-rails'
 gem 'simple_form'
@@ -34,9 +36,8 @@ gem 'cocoon'
 gem 'paranoia', '~> 2.0'
 gem 'ranked-model'
 gem 'redcarpet'
-gem 'rollbar', '~> 2.8.3'
-# Introduces feature needed in tables, no errors when updating
-gem 'wice_grid', '3.6.0.pre4'
+gem 'rollbar'
+gem 'wice_grid', git: 'https://github.com/leikind/wice_grid.git', branch: 'rails3'
 
 group :production do
   gem 'rails_12factor'
