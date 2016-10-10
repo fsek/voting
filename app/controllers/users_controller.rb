@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     @tab = :password
     if @user.update_with_password(password_params)
       flash[:notice] = t('user.password_updated')
-      sign_in @user, bypass: true
+      bypass_sign_in(@user)
       render :edit
     else
       flash[:alert] = t('user.password_required_update')
