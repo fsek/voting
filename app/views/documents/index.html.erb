@@ -27,6 +27,13 @@
              filter: false)
     g.column(name: Document.human_attribute_name(:updated_at), attribute: 'updated_at',
              filter: false)
+    if can_administrate?(:manage, Document)
+      g.column(name: t(:edit)) do |document|
+        link_to(edit_admin_document_path(document)) do
+          fa_icon('cog', text: t(:edit))
+        end
+      end
+    end
   end -%>
   <%= simple_format(t('document.filter_explanation')) %>
 </div>
