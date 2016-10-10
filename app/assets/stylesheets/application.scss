@@ -21,3 +21,12 @@
 @import "select2-bootstrap";
 @import "cookies_eu";
 @import "pagedown_bootstrap";
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  padding-bottom: 200px;
+}

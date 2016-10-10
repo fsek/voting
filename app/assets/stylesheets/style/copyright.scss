@@ -1,7 +1,11 @@
 .copyright {
   background: $footer-gray;
+  bottom: 0;
   font-size: 12px;
+  height: 70px;
   padding: 11px 0 7px;
+  position: absolute;
+  width: 100%;
 
   .year {
     float: left;

@@ -51,7 +51,7 @@ Fsek::Application.configure do
   config.action_view.raise_on_missing_translations = true
 
   # Don't log partials etc. in development.
-  config.quiet_assets = true
+  config.assets.quiet = true
   config.action_view.logger = nil
 
   config.after_initialize do
