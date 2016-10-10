@@ -14,7 +14,7 @@
 
   <%= news_user(news) %>
 
-  <% if can?(:manage, news) %>
+  <% if can_administrate?(:manage, news) %>
     <span class="edit">
       <%= link_to(edit_admin_news_path(news)) do %>
         <%= fa_icon('cog') %> <%= t(:edit) %>

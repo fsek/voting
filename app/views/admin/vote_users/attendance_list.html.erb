@@ -2,13 +2,13 @@
   <h1><%= t('vote_user.attendance_list') %></h1>
 </div>
 <div class="col-md-12">
-  <% if can? :manage_voting, User %>
+  <% if can_administrate? :manage_voting, User %>
     <%= link_to t('vote_user.manage'), admin_vote_users_path, class: 'btn primary' %>
   <% end %>
-  <% if can? :manage, Vote %>
+  <% if can_administrate? :manage, Vote %>
     <%= link_to t('vote.manage'), admin_votes_path, class: 'btn secondary' %>
   <% end %>
-  <% if can? :manage, Agenda %>
+  <% if can_administrate? :manage, Agenda %>
     <%= link_to t('agenda.manage'), admin_agendas_path, class: 'btn secondary' %>
   <% end %>
 </div>

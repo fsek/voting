@@ -3,10 +3,10 @@
 </div>
 <div class="col-md-12">
   <%= link_to t('agenda.new'), new_admin_agenda_path, class: 'btn primary' %>
-  <% if can? :manage, Vote %>
+  <% if can_administrate? :manage, Vote %>
     <%= link_to t('vote.manage'), admin_votes_path, class: 'btn secondary' %>
   <% end %>
-  <% if can? :manage_voting, User %>
+  <% if can_administrate? :manage_voting, User %>
     <%= link_to t('vote_user.manage'), admin_vote_users_path, class: 'btn secondary' %>
   <% end %>
 </div>
