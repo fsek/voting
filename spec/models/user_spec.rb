@@ -32,8 +32,14 @@ RSpec.describe User, type: :model do
     end
 
     describe 'validate email as stilid@student.lu.se' do
-      it 'should be valid' do
+      it 'allows student email Stil-ID' do
         user = build(:user, email: 'tfy16hal@student.lu.se')
+
+        user.should be_valid
+      end
+
+      it 'allows student email Lucat-ID' do
+        user = build(:user, email: 'hi6122al-x@student.lu.se')
 
         user.should be_valid
       end

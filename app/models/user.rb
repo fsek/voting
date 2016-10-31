@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :validatable, :confirmable)
 
   validates :email, uniqueness: true
-  validates :email, format: { with: /\A\b[A-Z0-9a-z]{6,8}+@student\.lu\.se\z/,
+  validates :email, format: { with: /\A\b[-A-Z0-9a-z]{6,10}+@student\.lu\.se\z/,
                               message: I18n.t('user.email_format') }
   validates :firstname, :lastname, presence: true
   validates :votecode, uniqueness: true, allow_nil: true
