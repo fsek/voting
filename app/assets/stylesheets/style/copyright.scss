@@ -16,14 +16,11 @@
   }
 
   @media (max-width: 500px) {
-    .contact,
-    .year {
-      float: none;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 5px 0 0;
-      text-align: center;
-    }
+    padding: 5px 0 0;
+  }
+
+  @media (max-width: 412px) {
+    height: 89px;
   }
 
   p {
