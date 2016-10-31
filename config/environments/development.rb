@@ -51,8 +51,11 @@ Fsek::Application.configure do
   config.action_view.raise_on_missing_translations = true
 
   # Don't log partials etc. in development.
+  config.assets.debug = false
   config.assets.quiet = true
   config.action_view.logger = nil
+  config.serve_static_files = true
+  config.assets.digest = false
 
   config.after_initialize do
     Bullet.enable = true
