@@ -11,9 +11,9 @@
   <% end %>
 </div>
 <div class="col-md-12">
-  <%= grid(@agenda_grid, class: 'agenda-grid') do |grid|
+  <%= grid(@agenda_grid, class: 'admin-grid') do |grid|
     grid.row_attributes do |a|
-      {id: dom_id(a), class: a.current ? 'highlight' : 'no-highlight'}
+      {id: dom_id(a), class: a.current? ? 'highlight' : 'no-highlight'}
     end
     grid.column name: Agenda.human_attribute_name(:index), attribute: 'sort_index' do |a|
       link_to a, edit_admin_agenda_path(a)
