@@ -13,11 +13,7 @@
 <div class="col-md-12">
   <%= grid(@agenda_grid, class: 'agenda-grid') do |grid|
     grid.row_attributes do |a|
-      if a.current?
-        {id: dom_id(a), class: 'current'}
-      else
-        {id: dom_id(a)}
-      end
+      {id: dom_id(a), class: a.current ? 'highlight' : 'no-highlight'}
     end
     grid.column name: Agenda.human_attribute_name(:index), attribute: 'sort_index' do |a|
       link_to a, edit_admin_agenda_path(a)

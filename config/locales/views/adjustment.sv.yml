@@ -10,3 +10,13 @@ sv:
     out: " – gick ut"
     present: Justerades in
     title: Justeringar
+
+    info:
+      symbols: Teckenförklaring
+      card: betyder att användaren har ett kortnummer.
+      key: betyder att användaren har en röstkod.
+      times: betyder att användaren inte har bekräftat sitt konto.
+      observe: "Observera att det **inte** går att:"
+      obs1: Justera in en användare som är obekräftad.
+      obs2: Justera ut en användare när en votering är öppen.
+      obs3: Skicka en röstkod till en användare som inte är bekräftad.

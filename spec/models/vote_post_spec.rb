@@ -100,16 +100,7 @@ RSpec.describe VotePost, type: :model do
         vote_post.vote_option_ids = [1, 2]
         vote_post.valid?
 
-        vote_post.errors[:vote_option_ids].should_not include(I18n.t('vote_post.no_option_selected'))
-      end
-
-      it 'has no options' do
-        vote = build_stubbed(:vote, choices: 1)
-        vote_post = build(:vote_post, vote: vote)
-        vote_post.vote_option_ids = nil
-        vote_post.valid?
-
-        vote_post.errors[:vote_option_ids].should include(I18n.t('vote_post.no_option_selected'))
+        vote_post.errors[:vote_option_ids].should_not include(I18n.t('vote_post.too_many_options'))
       end
 
       it 'has too many options' do

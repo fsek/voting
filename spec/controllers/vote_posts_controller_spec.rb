@@ -58,6 +58,19 @@ RSpec.describe VotePostsController, type: :controller do
       response.should redirect_to(votes_path)
     end
 
+    it 'allows blank votes' do
+      user.update!(presence: true, votecode: 'abcd123')
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      vote = create(:vote, :with_options, status: Vote::OPEN, agenda: agenda)
+      attributes = { votecode: 'abcd123' }
+
+      lambda do
+        post(:create, vote_id: vote.to_param, vote_post: attributes)
+      end.should change(VotePost, :count).by(1)
+
+      response.should redirect_to(votes_path)
+    end
+
     it 'invalid parameters' do
       user.update!(presence: true, votecode: 'abcd123')
       agenda = create(:agenda, status: Agenda::CURRENT)

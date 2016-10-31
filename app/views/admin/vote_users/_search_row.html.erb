@@ -1,6 +1,6 @@
 <% if vote_users.present? %>
   <%= vote_users.each do |user| %>
-    <tr id="<%= dom_id(user) %>" class="adjustment-box <%= 'present' if user.presence %>">
+    <tr id="<%= dom_id(user) %>" class="adjustment-box <%= 'highlight' if user.presence %>">
       <td class="name"><%= link_to admin_print_user(user), admin_vote_user_path(user) %></td>
       <td><%= user.card_number %></td>
       <td class="adjust"><%= vote_user_state_link(user) %></td>

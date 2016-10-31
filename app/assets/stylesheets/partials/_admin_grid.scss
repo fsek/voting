@@ -1,0 +1,11 @@
+.admin-grid {
+  tr {
+    &.highlight {
+      td,
+      &.even td,
+      &.odd td {
+        background-color: $orange-highlight;
+      }
+    }
+  }
+}

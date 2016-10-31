@@ -18,4 +18,4 @@ sv:
         present_users: Injusterade användare
         reset: Nollställdes
   vote:
-    already_one_open: Det finns redan ett öppet val
+    already_one_open: Det finns redan en öppen votering

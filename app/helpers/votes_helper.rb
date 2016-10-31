@@ -171,7 +171,7 @@ module VotesHelper
   def vote_stats(vote)
     pcount = vote.vote_posts.sum(:selected)
     ocount = vote.vote_options.sum(:count)
-    result = "#{pcount} / #{vote.present_users * vote.choices - pcount}"
+    result = "#{pcount} / #{vote.vote_posts.count * vote.choices - pcount}"
 
     if pcount != ocount
       result += t('vote.sum_is_wrong')
