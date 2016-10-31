@@ -68,6 +68,31 @@ RSpec.describe VoteService do
 
       result.should be_falsey
     end
+
+    it 'blank vote' do
+      user = create(:user, presence: true, votecode: 'abcd123')
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      vote = create(:vote, status: Vote::OPEN, choices: 1, agenda: agenda)
+
+      opt1 = create(:vote_option, vote: vote, count: 0)
+      opt2 = create(:vote_option, vote: vote, count: 0)
+      opt3 = create(:vote_option, vote: vote, count: 0)
+
+      vote_post = VotePost.new(user: user, vote: vote, votecode: 'abcd123')
+      vote_post.should be_valid
+
+      result = VoteService.user_vote(vote_post)
+      opt1.reload
+      opt2.reload
+      opt3.reload
+      vote_post.reload
+
+      result.should be_truthy
+      opt1.count.should be(0)
+      opt2.count.should be(0)
+      opt3.count.should be(0)
+      vote_post.selected.should be(0)
+    end
   end
 
   describe 'presence' do

@@ -24,9 +24,9 @@
 </div>
 
 <div class="col-md-12">
-  <%= grid(@vote_users_grid, class: 'adjustment-grid') do |grid|
+  <%= grid(@vote_users_grid, class: 'admin-grid') do |grid|
     grid.row_attributes do |user|
-      {id: dom_id(user), class: user.presence ? 'present' : 'not-present'}
+      {id: dom_id(user), class: user.presence ? 'highlight' : 'no-highlight'}
     end
     grid.column name: t('attributes.name'), attribute: 'firstname', html: {class: 'name'} do |user|
       link_to admin_print_user(user), admin_vote_user_path(user)
@@ -44,4 +44,7 @@
                 method: :patch, remote: true,  data: {confirm: t('vote_user.confirm_reset')}
     end
   end -%>
+
+  <hr>
+  <%= render '/admin/adjustments/info' %>
 </div>

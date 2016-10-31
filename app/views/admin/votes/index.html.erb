@@ -19,7 +19,10 @@
 </div>
 
 <div class="col-md-12">
-  <%= grid(@votes_grid) do |grid|
+  <%= grid(@votes_grid, class: 'admin-grid') do |grid|
+    grid.row_attributes do |v|
+      {class: v.open? ? 'highlight' : 'no-highlight'}
+    end
     grid.column name: t('attributes.name'), attribute: 'title' do |v|
       link_to v.title, admin_vote_path(v)
     end

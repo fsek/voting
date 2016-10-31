@@ -20,7 +20,7 @@ sv:
     reset_votecode: Nollställ röstkod
     votecode: Röstkod
     votecode_error: Ny röstkod kunde inte ges ut, har användare bekräftat sin epost?
-    votecode_error_short: kunde inte nollställa
+    votecode_error_short: Kunde inte nollställa
     votecode_success: "%{u} fick en ny röstkod, som skickats via epost"
 
     mailer:

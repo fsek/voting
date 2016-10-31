@@ -60,15 +60,3 @@
     }
   }
 }
-
-.agenda-grid {
-  tr {
-    &.current {
-      td,
-      &.even td,
-      &.odd td {
-        background-color: $orange-highlight;
-      }
-    }
-  }
-}

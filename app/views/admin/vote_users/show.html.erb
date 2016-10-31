@@ -11,15 +11,12 @@
       <td><%= t('vote_user.votecode') %></td>
       <td>
         <%= @user.votecode %><br>
-        <%= link_to t('vote_user.reset'), new_votecode_admin_vote_user_path(@user),
-                    method: :patch, data: {confirm: t('vote_user.confirm_reset')} %>
     </td>
     </tr>
     <tr>
       <td><%= User.human_attribute_name(:presence) %></td>
       <td>
         <%= presence_string(@user.presence) %><br>
-        <%= vote_user_state_link(@user) %>
       </td>
     </tr>
     <tr>
