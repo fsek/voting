@@ -1,0 +1,69 @@
+.fsek {
+  &:hover {
+    background-color: rgba(248, 147,30, 0.5);
+  }
+
+  .logo {
+    color: #f8931e;
+    font-family: "LTH";
+    font-size: 60px;
+    padding-left: 25px;
+    padding-right: 35px;
+  }
+}
+
+.wsek {
+  &:hover {
+    background-color: rgba(111, 204,221, 0.2);
+  }
+
+  .logo {
+    color: #6fccdd;
+    font-family: "LTH";
+    font-size: 50px;
+    padding-left: 10px;
+    padding-right: 30px;
+  }
+}
+
+.table > a {
+  color: #000000;
+  text-decoration: none;
+
+  .outer {
+    display: block;
+    border: 1px solid;
+    border-radius: 7px;
+    margin-bottom: 15px;
+    height: 80px;
+  }
+}
+
+.outer:last-of-type {
+  margin-bottom: 0;
+}
+
+.outer:hover {
+}
+
+.inner {
+  display: inline-block;
+  vertical-align: middle;
+  }
+
+.inner:last-of-type {
+  padding-right: 0px;
+}
+
+@media (max-width: 348px) {
+  .table > a {
+    .outer {
+      height: 120px;
+    }
+  }
+
+  .inner {
+    display: block;
+    text-align: center;
+  }
+}

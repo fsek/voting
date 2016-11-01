@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+<div class="home">
+  
+  {{ content }}
+
+  <div class="table">
+
+    <a href="http://f.rostsystem.se">
+      <div class="outer fsek">
+        <div class="inner logo">f</div>
+        <div class="inner">F-sektionen inom TLTH</div>
+      </div>
+    </a>
+
+    <a href="http://w.rostsystem.se">
+      <div class="outer wsek">
+        <div class="inner logo">w</div>
+        <div class="inner">W-sektionen inom TLTH</div>
+      </div>
+    </a>
+  </div>
+
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+        <h2>
+          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
+
+</div>

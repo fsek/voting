@@ -24,5 +24,4 @@ url: "http://rostsystem.se"
 markdown: kramdown
 theme: minima
 gems:
-  - jekyll-feed
-exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'vendor']
+exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'vendor', 'bin/']

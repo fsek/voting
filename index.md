@@ -5,9 +5,7 @@
 layout: home
 ---
 
-# Välkommen till Röstsystem
+# Välkommen till Röstsystem!
 
 Just nu används Röstsystem vid:
-- Ekosystemtekniksektionen vid TLTH - [w.rostsystem.se](http://w.rostsystem.se)
-- F-sektionen vid TLTH - [f.rostsystem.se](http://f.rostsystem.se)
 
