@@ -29,7 +29,7 @@ a {
       font-size: 20;
 
       &:hover {
-        color: $fsek-orange;
+        color: $main-color;
         text-decoration: none;
       }
     }
@@ -42,7 +42,7 @@ a {
 
   a {
     .btn-more {
-      background: $fsek-orange;
+      background: $main-color;
       bottom: 10;
       color: $black;
       display: inline-block;
@@ -51,7 +51,7 @@ a {
       right: -10;
 
       &:hover {
-        box-shadow: 0 0 0 2px $fsek-orange;
+        box-shadow: 0 0 0 2px $main-color;
         text-decoration: none;
       }
     }

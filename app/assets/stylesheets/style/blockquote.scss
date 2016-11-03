@@ -1,7 +1,7 @@
 blockquote {
   &:hover {
     @include transition(all 0.4s ease-in-out);
-    border-left-color: $fsek-orange;
+    border-left-color: $main-color;
   }
 
   p {

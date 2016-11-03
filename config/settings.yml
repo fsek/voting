@@ -1,2 +1,9 @@
 start:
   title: Sektionsmöte på F-sektionen!
+  logo: f
+css:
+  main_color: "#eb7125"
+  highlight_color: "rgba(252, 152, 0, 0.5)"
+  hover_color: "#d35400"
+  logo_color: "#eb7125"
+  logo_size: 68px

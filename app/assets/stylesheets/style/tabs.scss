@@ -2,7 +2,7 @@
   .nav-tabs {
     background: none;
     border: none;
-    border-bottom: solid 2px $unify-orange;
+    border-bottom: solid 2px $main-color;
     margin-bottom: 20px;
 
     a {
@@ -14,7 +14,7 @@
       > a,
       > a:hover,
       > a:focus {
-        background: $unify-orange;
+        background: $main-color;
         border: none;
         color: $white;
       }
@@ -26,7 +26,7 @@
       }
 
       > a:hover {
-        background: $unify-orange;
+        background: $main-color;
         color: $white;
       }
     }
@@ -61,7 +61,7 @@
         background: $black;
         border: solid 1px $light-gray-text;
         border-bottom: none;
-        border-top: solid 2px $unify-orange;
+        border-top: solid 2px $main-color;
         padding: 7px 15px 9px;
       }
     }
@@ -88,8 +88,8 @@
 
       a:hover,
       .active a {
-        background: $unify-orange;
-        border: solid 1px $unify-orange;
+        background: $main-color;
+        border: solid 1px $main-color;
         color: $black;
       }
 

@@ -61,17 +61,17 @@
 }
 
 .search-blocks-top-orange {
-  border-top: solid 2px $fsek-orange;
+  border-top: solid 2px $main-color;
 
   &:hover {
-    border-top-color: $fsek-orange-hover;
+    border-top-color: $main-color-hover;
   }
 }
 
 .search-blocks-left-orange {
-  border-left: solid 2px $fsek-orange;
+  border-left: solid 2px $main-color;
 
   &:hover {
-    border-top-color: $fsek-orange-hover;
+    border-top-color: $main-color-hover;
   }
 }
