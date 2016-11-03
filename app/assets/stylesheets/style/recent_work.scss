@@ -14,7 +14,7 @@
 
       span {
         @include transition(all 0.3s ease-in-out);
-        border-bottom: solid 2px $fsek-orange;
+        border-bottom: solid 2px $main-color;
       }
 
       strong {

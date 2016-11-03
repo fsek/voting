@@ -12,7 +12,7 @@
       }
 
       :hover {
-        color: $fsek-orange;
+        color: $main-color;
       }
     }
 
@@ -22,7 +22,7 @@
   }
 
   .current {
-    border: 3px solid $fsek-orange;
+    border: 3px solid $main-color;
     margin-bottom: 0;
 
     .list-group-item-heading,
@@ -33,12 +33,12 @@
       }
 
       :hover {
-        color: $fsek-orange;
+        color: $main-color;
       }
     }
 
     .badge {
-      background: $unify-orange;
+      background: $main-color;
     }
   }
 
@@ -51,7 +51,7 @@
       }
 
       :hover {
-        color: $fsek-orange;
+        color: $main-color;
       }
     }
 

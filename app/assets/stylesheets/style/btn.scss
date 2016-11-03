@@ -17,18 +17,18 @@
     color: $gray-headline;
 
     &:hover {
-      color: $unify-orange;
+      color: $main-color;
     }
   }
 
   &.primary {
-    background: $unify-orange;
-    border: 1px solid $unify-orange;
+    background: $main-color;
+    border: 1px solid $main-color;
     color: $white;
     margin: 0 10px 10px 0;
 
     &:hover {
-      background: $unify-orange-hover;
+      background: $main-color-hover;
       color: $white;
     }
   }
@@ -75,7 +75,7 @@
 }
 
 .btn-u {
-  background: $unify-orange;
+  background: $main-color;
   border: 0;
   border-radius: 2px;
   color: $white;
@@ -87,7 +87,7 @@
   text-decoration: none;
 
   &:hover {
-    background: $unify-orange;
+    background: $main-color;
     color: $white;
     text-decoration: none;
   }
@@ -174,10 +174,10 @@ a {
 }
 
 .btn-u-orange {
-  background: $unify-orange;
+  background: $main-color;
 
   &:hover {
-    background: $unify-orange-hover;
+    background: $main-color-hover;
   }
 }
 

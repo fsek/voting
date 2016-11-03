@@ -1,17 +1,3 @@
-<%= content_for :pre_content do %>
-  <div class="carousel slide carousel-v1 margin-bottom-20 margin-top-20" id="myCarousel-1">
-    <div class="carousel-inner">
-      <div class="item active">
-        <div class="start-background">
-          <div class="container">
-            <h1><%= Settings.start.title %></h1><br>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
-
 <div class="col-md-6 col-sm-12">
   <%= render '/users/confirm_information' %>
   <% cache('agenda_startpage', skip_digest: true) do %>

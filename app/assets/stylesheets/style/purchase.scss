@@ -19,7 +19,7 @@
 
   a {
     .btn-buy {
-      background: $fsek-orange;
+      background: $main-color;
       color: $black;
       display: inline-block;
       font-size: 16px;
@@ -27,12 +27,12 @@
       margin-top: 22px;
       padding: 12px 28px 9px;
       text-decoration: none;
-      text-shadow: 0 1px 0 $fsek-orange;
+      text-shadow: 0 1px 0 $main-color;
       text-transform: uppercase;
     }
 
     .btn-buy:hover {
-      background: $fsek-orange;
+      background: $main-color;
       box-shadow: 0 0 5px $fsek-pi-silver;
       color: $black;
       text-decoration: none;

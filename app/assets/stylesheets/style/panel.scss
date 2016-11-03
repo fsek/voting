@@ -67,6 +67,15 @@
   }
 }
 
+.panel-main {
+  border-color: $main-color;
+
+  > .panel-heading {
+    background: $main-color;
+    color: $gray-headline;
+  }
+}
+
 .panel-green {
   border-color: $unify-green;
 
