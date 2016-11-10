@@ -15,7 +15,7 @@ class DocumentsController < ApplicationController
   def show
     document = Document.find(params[:id])
     stream = open(document.view)
-    file = File.open(document.pdf_file_name, 'w+b') do |f|
+    file = File.open(File.join(Rails.root, 'tmp', document.pdf_file_name), 'w+b') do |f|
       stream.respond_to?(:read) ? IO.copy_stream(stream, f): f.write(stream)
       open(f)
     end
