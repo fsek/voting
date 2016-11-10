@@ -14,9 +14,14 @@ class DocumentsController < ApplicationController
 
   def show
     document = Document.find(params[:id])
-    data = open(document.view)
-    send_file(data,
-              filename: document.pdf.filename,
+    stream = open(document.view)
+    file = File.open(document.pdf_file_name, 'w+b') do |f|
+      stream.respond_to?(:read) ? IO.copy_stream(stream, f): f.write(stream)
+      open(f)
+    end
+
+    send_file(file,
+              filename: document.pdf_file_name,
               type: 'application/pdf',
               disposition: 'inline',
               x_sendfile: true)
