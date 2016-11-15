@@ -14,7 +14,7 @@ class Document < ActiveRecord::Base
   scope :publik, -> { where(public: true).order('category asc') }
 
   def to_s
-    title || id
+    title || id
   end
 
   def self.categories

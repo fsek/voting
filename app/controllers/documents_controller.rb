@@ -14,17 +14,15 @@ class DocumentsController < ApplicationController
 
   def show
     document = Document.find(params[:id])
-    stream = open(document.view)
-    file = File.open(File.join(Rails.root, 'tmp', document.pdf_file_name), 'w+b') do |f|
-      stream.respond_to?(:read) ? IO.copy_stream(stream, f): f.write(stream)
-      open(f)
-    end
 
-    send_file(file,
-              filename: document.pdf_file_name,
-              type: 'application/pdf',
-              disposition: 'inline',
-              x_sendfile: true)
+    file = set_file(document.view, document.pdf_file_name)
+    if file.present?
+      send_file(file,
+                filename: document.pdf_file_name,
+                type: 'application/pdf',
+                disposition: 'inline',
+                x_sendfile: true)
+    end
   end
 
   private
@@ -42,6 +40,18 @@ class DocumentsController < ApplicationController
       documents.where(category: category)
     else
       documents
+    end
+  end
+
+  def set_file(url, filename)
+    if url.present?
+      stream = open(url)
+      File.open(File.join(Rails.root, 'tmp', filename), 'w+b') do |f|
+        stream.respond_to?(:read) ? IO.copy_stream(stream, f): f.write(stream)
+        open(f)
+      end
+    else
+      redirect_to(:index, alert: I18n.t('model.document.cannot_find_file'))
     end
   end
 end
