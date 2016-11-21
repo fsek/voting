@@ -6,6 +6,7 @@ module VoteService
           post.selected = post.vote_option_ids.length
           options = VoteOption.find(post.vote_option_ids)
           options.each do |o|
+            o.lock!
             o.count += 1
             o.save!
           end
