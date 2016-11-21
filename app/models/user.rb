@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
 
   scope :all_firstname, -> { order(firstname: :asc) }
   scope :present, -> { where(presence: true) }
-  scope :not_present, -> { where(presence: false) }
+  scope :not_present, -> { where(presence: false) }
   scope :all_attended, -> { includes(:adjustments).where.not(adjustments: { id: nil }) }
 
   def self.card_number(card)
