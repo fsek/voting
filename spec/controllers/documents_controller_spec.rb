@@ -29,5 +29,13 @@ RSpec.describe DocumentsController, type: :controller do
       controller.should_receive(:send_file).and_return(controller: :render, nothing: true)
       get(:show, id: document.to_param)
     end
+
+    it 'redirects to index if failed' do
+      document = create(:document)
+      allow_any_instance_of(Document).to receive(:view).and_return(nil)
+
+      get(:show, id: document.to_param)
+      response.should redirect_to(documents_path)
+    end
   end
 end

@@ -51,7 +51,8 @@ class DocumentsController < ApplicationController
         open(f)
       end
     else
-      redirect_to(:index, alert: I18n.t('model.document.cannot_find_file'))
+      redirect_to(documents_path, alert: I18n.t('model.document.cannot_find_file'))
+      nil
     end
   end
 end
