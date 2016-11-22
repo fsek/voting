@@ -3,8 +3,8 @@ module VoteService
     begin
       VotePost.transaction do
         if post.vote_option_ids.present?
+          post.trim_votecode
           post.selected = post.vote_option_ids.length
-          options = VoteOption.find(post.vote_option_ids)
           ret = VoteOption.increment_counter(:count, post.vote_option_ids)
           unless ret == post.vote_option_ids.length
             throw ActiveRecord::RecordInvalid

@@ -52,6 +52,10 @@ class VotePost < ActiveRecord::Base
     User.current.id if User.current && !destroyed?
   end
 
+  def trim_votecode
+    self.votecode = votecode.gsub(/[^0-9a-zA-Z]/, '')
+  end
+
   private
 
   def user_details
