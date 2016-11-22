@@ -24,6 +24,30 @@ RSpec.describe VoteService do
       vote_post.selected.should eq(1)
     end
 
+    it 'votes and trims votecode' do
+      user = create(:user, presence: true, votecode: 'abcd123')
+      agenda = create(:agenda, status: Agenda::CURRENT)
+      vote = create(:vote, :with_options, status: Vote::OPEN, choices: 1, agenda: agenda)
+      vote_option = vote.vote_options.first
+
+      vote_post = VotePost.new(user: user, vote: vote, votecode: '   abcd123')
+
+      vote_post.vote_option_ids = [vote_option.id]
+
+      # Wrong format on vote_code
+      vote_post.should be_invalid
+      result = false
+
+      lambda do
+        result = VoteService.user_vote(vote_post)
+        vote_option.reload
+      end.should change(vote_option, :count).by(1)
+
+      result.should be_truthy
+      vote_post.reload
+      vote_post.selected.should eq(1)
+    end
+
     it 'votes multiple' do
       user = create(:user, presence: true, votecode: 'abcd123')
       agenda = create(:agenda, status: Agenda::CURRENT)
