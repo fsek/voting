@@ -5,10 +5,9 @@ module VoteService
         if post.vote_option_ids.present?
           post.selected = post.vote_option_ids.length
           options = VoteOption.find(post.vote_option_ids)
-          options.each do |o|
-            o.lock!
-            o.count += 1
-            o.save!
+          ret = VoteOption.increment_counter(:count, post.vote_option_ids)
+          unless ret == post.vote_option_ids.length
+            throw ActiveRecord::RecordInvalid
           end
         else
           post.selected = 0

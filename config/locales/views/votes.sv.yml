@@ -1,5 +1,6 @@
 sv:
   vote:
+    2_3_majority: För 2/3 majoritet krävs
     add_option: Lägg till
     admin_votes: Administrera voteringar
     already_voted: Du har redan deltagit i omröstningen
@@ -35,6 +36,7 @@ sv:
     results: Resultat
     show: Visa votering
     show_title: Votering
+    simple_majority: För enkel majoritet krävs
     status: Status
     still_open: Voteringen har ännu inte avslutats. Resultatet kommer att visas här när voteringen har stängts. Följande alternativ finns
     submit: Rösta!
