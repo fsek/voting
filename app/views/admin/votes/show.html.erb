@@ -62,6 +62,17 @@
         <td><i><%= vote_stats(@vote) %></i></td>
       </tr>
     </table>
+
+    <table class="table table-bordered table-striped">
+      <tr>
+        <td><%= t('vote.simple_majority') %></td>
+        <td><%= @vote.vote_posts.count.fdiv(2).ceil %> röster</td>
+      </tr>
+      <tr>
+        <td><%= t('vote.2_3_majority') %></td>
+        <td><%= (@vote.vote_posts.count.fdiv(3)*2).ceil %> röster</td>
+      </tr>
+    </table>
   <% end %>
 </div>
 
