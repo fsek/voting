@@ -14,10 +14,9 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery-ui/effect.all
-//= require jquery-ui/sortable
+//= require jquery-ui/widgets/sortable
 //= require bootstrap-sprockets
 //= require_self
-//= require jquery-ui/datepicker
 //= require select2
 //= require select2_locale_sv
 //= require_tree .

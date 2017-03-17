@@ -3,6 +3,7 @@
 .DS_Store
 .sass-cache
 capybara-*.html
+coverage
 .rspec
 /log
 /tmp

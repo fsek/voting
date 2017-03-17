@@ -1,9 +1,8 @@
 machine:
   ruby:
-    version: 2.3.1
+    version: 2.4.0
 
 database:
   override:
-    - cp config/secrets.yml.template config/secrets.yml
     - cp config/database.yml.circle config/database.yml
     - bundle exec rake db:create db:migrate --trace
