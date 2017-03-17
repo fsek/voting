@@ -1,15 +1,16 @@
 source 'https://rubygems.org'
 
-# Do not forget to update in .ruby-version, Capfile and circle.yml
-ruby '2.3.1'
+# Do not forget to update in .ruby-version and circle.yml
+ruby '2.4.0'
 
-gem 'rails', '4.2.7.1'
+gem 'rails', '4.2.8'
 
-gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-sass'
 gem 'cancancan'
 gem 'carrierwave'
 gem 'carrierwave-aws'
+gem 'cocoon'
 gem 'config'
 gem 'cookies_eu'
 gem 'datetimepicker-rails',
@@ -23,18 +24,17 @@ gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
 gem 'momentjs-rails'
 gem 'pagedown-bootstrap-rails'
+gem 'paranoia', '~> 2.0'
 gem 'pg'
 gem 'puma'
+gem 'ranked-model'
+gem 'redcarpet'
+gem 'rollbar'
 gem 'sass-rails'
 gem 'select2-rails'
 gem 'simple_form'
 gem 'turbolinks', '>= 2.5.3', '< 5.0'
 gem 'uglifier'
-gem 'cocoon'
-gem 'paranoia', '~> 2.0'
-gem 'ranked-model'
-gem 'redcarpet'
-gem 'rollbar'
 gem 'wice_grid', git: 'https://github.com/leikind/wice_grid.git', branch: 'rails3'
 
 group :production do
