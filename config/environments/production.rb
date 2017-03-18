@@ -1,4 +1,5 @@
 Rails.application.configure do
+  PUBLIC_URL = ENV['APPLICATION_URL']
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -39,11 +40,7 @@ Rails.application.configure do
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  if ENV.fetch('FORCE_SSL').to_s.downcase == 'true'
-    config.force_ssl = true
-  else
-    config.force_ssl = false
-  end
+  config.force_ssl = ENV.fetch('FORCE_SSL').to_s.casecmp('true')
 
   # Set to :debug to see everything in the log.
   config.log_level = :warn
@@ -100,7 +97,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  PUBLIC_URL = ENV['APPLICATION_URL']
-
-  config.secret_key_base = ENV['SECRET_KEY_BASE']
 end
