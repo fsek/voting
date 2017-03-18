@@ -1,4 +1,5 @@
-Fsek::Application.configure do
+Rails.application.configure do
+  PUBLIC_URL = "localhost:3000".freeze
   # Settings specified here will take precedence over those in config/application.rb.
 
   # The test environment is used exclusively to run your application's
@@ -14,7 +15,7 @@ Fsek::Application.configure do
 
   # Configure static asset server for tests with Cache-Control for performance.
 
-  config.serve_static_files  = true
+  config.serve_static_files = true
 
   config.static_cache_control = "public, max-age=3600"
 
@@ -35,11 +36,15 @@ Fsek::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
-  PUBLIC_URL = "example.com"
 
-  config.action_controller.asset_host = 'example.com'
-  config.action_mailer.default_url_options = { host: 'example.com' }
-  config.action_mailer.asset_host = 'http://example.com'
+  config.action_controller.asset_host = PUBLIC_URL
+  config.action_mailer.default_url_options = { host: PUBLIC_URL }
+  config.action_mailer.asset_host = PUBLIC_URL
 
   config.action_view.raise_on_missing_translations = true
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.raise = true
+  end
 end

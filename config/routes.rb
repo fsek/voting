@@ -1,4 +1,4 @@
-Fsek::Application.routes.draw do
+Rails.application.routes.draw do
   constraints(host: /^www\./i) do
     get '(*any)' => redirect { |_params, request|
       URI.parse(request.url).tap { |uri| uri.host.sub!(/^www\./i, '') }.to_s
