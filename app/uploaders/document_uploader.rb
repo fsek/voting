@@ -9,6 +9,10 @@ class DocumentUploader < CarrierWave::Uploader::Base
     storage :file
   end
 
+  def store_dir
+    "#{model.class.name.pluralize.downcase}/#{model.id}"
+  end
+
   def extension_white_list
     %w(pdf)
   end
