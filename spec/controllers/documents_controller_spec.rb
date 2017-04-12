@@ -23,11 +23,8 @@ RSpec.describe DocumentsController, type: :controller do
   describe 'GET #show' do
     it 'assigns given document as @document' do
       document = create(:document)
-
-      controller.stub(:render)
-
-      controller.should_receive(:send_file).and_return(controller: :render, nothing: true)
       get(:show, id: document.to_param)
+      response.should redirect_to(document.view)
     end
 
     it 'redirects to index if failed' do

@@ -25,12 +25,6 @@ class Document < ActiveRecord::Base
   end
 
   def view
-    if pdf.present?
-      if ENV['AWS']
-        pdf.url
-      else
-        pdf.path
-      end
-    end
+    pdf.url
   end
 end

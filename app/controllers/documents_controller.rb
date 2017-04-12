@@ -14,7 +14,11 @@ class DocumentsController < ApplicationController
 
   def show
     document = Document.find(params[:id])
-    redirect_to document.view
+    if document.view
+      redirect_to document.view
+    else
+      redirect_to documents_path, alert: t('model.document.not_found')
+    end
   end
 
   private

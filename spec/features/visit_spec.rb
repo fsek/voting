@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature 'visits paths' do
   paths = {
     contacts: [:index, :show],
-    documents: [:index, :show],
+    documents: [:index],
     news: [:show],
     votes: [:index],
     static_pages: [:about, :cookies_information, :terms]
