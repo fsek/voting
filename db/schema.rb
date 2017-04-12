@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319210719) do
+ActiveRecord::Schema.define(version: 20170412071716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20170319210719) do
     t.integer  "pdf_file_size"
     t.datetime "pdf_updated_at"
     t.string   "title",            limit: 255
-    t.boolean  "public"
+    t.boolean  "public",                       default: true, null: false
     t.string   "category",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
