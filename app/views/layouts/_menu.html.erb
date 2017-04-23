@@ -19,6 +19,11 @@
               <%= link_to t('agenda.name'), admin_agendas_path %>
             </li>
           <% end %>
+          <% if can_administrate? :modify, Document %>
+            <li>
+              <%= link_to models_name(Document), admin_documents_path %>
+            </li>
+          <% end %>
         </ul>
       </li>
     <% end %>
