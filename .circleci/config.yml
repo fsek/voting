@@ -1,0 +1,44 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/voting
+    docker:
+      - image: circleci/ruby:2.4.1-node
+        environment:
+          PGHOST: 127.0.0.1
+          PGUSER: user
+          RAILS_ENV: test
+      - image: circleci/postgres:9.6.3-alpine
+        environment:
+          POSTGRES_USER: user
+          POSTGRES_DB: voting_test
+          POSTGRES_PASSWORD: ""
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - gem-cache-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - gem-cache-{{ .Branch }}
+            - gem-cache
+
+      - run: bundle install --path vendor/bundle
+
+      - save_cache:
+          key: gem-cache-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Database setup
+          command: bin/rake db:schema:load --trace
+
+      - run:
+          name: Run rspec
+          command: |
+            bundle exec rspec --profile 10 \
+                              --format progress
