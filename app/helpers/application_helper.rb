@@ -7,20 +7,12 @@ module ApplicationHelper
     end
   end
 
-  def fa_icon(icon_name)
-    content_tag :i, nil, class: ("fa fa-" + icon_name)
-  end
-
   def model_name(model)
-    if model.instance_of?(Class)
-      model.model_name.human
-    end
+    model.model_name.human if model.instance_of?(Class)
   end
 
   def models_name(model)
-    if model.instance_of?(Class)
-      return model.model_name.human(count: 2)
-    end
+    model.model_name.human(count: 2) if model.instance_of?(Class)
   end
 
   def title(page_title)
@@ -46,5 +38,15 @@ module ApplicationHelper
       end
     end
     content_tag :div, raw(html.to_html), class: 'form-group'
+  end
+
+  def menu_dropdown_link(title)
+    link_to(safe_join([title, ' ', fa_icon('angle-down')]),
+            '#',
+            class: 'dropdown-toggle',
+            data: { toggle: 'dropdown',
+                    hover: 'dropdown',
+                    delay: '0',
+                    close_others: 'false' })
   end
 end
