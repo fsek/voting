@@ -5,7 +5,6 @@ ruby '2.4.1'
 
 gem 'rails', '4.2.8'
 
-gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-sass'
 gem 'cancancan'
 gem 'carrierwave'
@@ -13,15 +12,11 @@ gem 'carrierwave-aws'
 gem 'cocoon'
 gem 'config'
 gem 'cookies_eu'
-gem 'datetimepicker-rails',
-    git: 'https://github.com/zpaulovics/datetimepicker-rails',
-    branch: 'master', submodules: true
 gem 'devise'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
-gem 'momentjs-rails'
 gem 'pagedown-bootstrap-rails'
 gem 'paranoia', '~> 2.0'
 gem 'pg'
