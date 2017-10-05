@@ -2,12 +2,6 @@ class UsersController < ApplicationController
   load_and_authorize_resource
   before_action :set_user
 
-  def index
-  end
-
-  def show
-  end
-
   def edit
     if @tab.nil?
       if params[:tab].present?
