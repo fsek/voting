@@ -1,5 +1,5 @@
 class Admin::AgendasController < Admin::BaseController
-  load_permissions_and_authorize_resource
+  load_and_authorize_resource
 
   def index
     @agenda_grid = initialize_grid(Agenda, include: :parent, order: 'sort_index')

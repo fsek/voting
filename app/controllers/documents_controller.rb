@@ -1,6 +1,6 @@
 # encoding:UTF-8
 class DocumentsController < ApplicationController
-  load_permissions_and_authorize_resource
+  load_and_authorize_resource
 
   def index
     @documents = filter_documents(@documents, params[:category])

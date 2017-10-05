@@ -1,10 +1,7 @@
-# encoding:UTF-8
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_devise_parameters, if: :devise_controller?
-  before_action :set_locale
-
-  before_filter :set_current_user
+  before_action :set_current_user
 
   helper_method :alert_update, :alert_create, :alert_destroy, :can_administrate?
 
@@ -31,9 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
   def model_name(model)
-    if model.instance_of?(Class)
-      model.model_name.human
-    end
+    model.model_name.human if model.instance_of?(Class)
   end
 
   def alert_update(resource)
@@ -62,10 +57,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def self.permission
-    name.gsub('Controller', '').singularize.split('::').last.constantize.name rescue nil
-  end
-
   def current_ability
     @current_ability ||= Ability.new(current_user)
   end
@@ -76,43 +67,6 @@ class ApplicationController < ActionController::Base
 
   def can_administrate?(*args)
     current_admin_ability.can?(*args)
-  end
-
-  # load the permissions for the current user so that UI can be manipulated
-  def load_permissions
-    return unless current_user
-    @current_permissions = current_user.permissions.map { |i| [i.subject_class, i.action] }
-  end
-
-  # Enables authentication and
-  def self.load_permissions_and_authorize_resource(*args)
-    load_and_authorize_resource(*args)
-    before_action(:load_permissions, *args)
-  end
-
-  # To be used with controllers without models as resource
-  def self.load_permissions_then_authorize_resource(*args)
-    authorize_resource(*args)
-    before_action(:load_permissions, *args)
-  end
-
-  def self.skip_authorization(*args)
-    skip_authorization_check(*args)
-    skip_before_filter(:load_permissions, *args)
-  end
-
-  def set_locale
-    locale = 'sv'
-    langs = %w{ sv en }
-
-    if params[:locale]
-      lang = params[:locale]
-      if langs.include? lang
-        locale = lang
-      end
-    end
-    I18n.locale = locale
-    redirect_to(:back) if params[:locale]
   end
 
   def referring_action

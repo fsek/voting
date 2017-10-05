@@ -1,5 +1,5 @@
 class VotePostsController < ApplicationController
-  load_permissions_and_authorize_resource
+  load_and_authorize_resource
 
   def new
     @vote = Vote.find(params[:vote_id])
