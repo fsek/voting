@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171005140456) do
+ActiveRecord::Schema.define(version: 20171005143058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,15 +90,6 @@ ActiveRecord::Schema.define(version: 20171005140456) do
   end
 
   add_index "news", ["user_id"], name: "index_news_on_user_id", using: :btree
-
-  create_table "notices", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.text     "description"
-    t.boolean  "public"
-    t.integer  "sort"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "permission_users", force: :cascade do |t|
     t.integer  "user_id",       null: false

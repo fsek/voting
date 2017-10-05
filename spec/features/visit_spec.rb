@@ -4,7 +4,6 @@ RSpec.feature 'visits paths' do
   paths = {
     contacts: [:index],
     documents: [:index],
-    news: [:show],
     votes: [:index],
     static_pages: [:about, :cookies_information, :terms]
   }

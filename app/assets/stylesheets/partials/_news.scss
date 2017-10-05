@@ -1,6 +1,10 @@
 .news {
+  border-bottom: 1px solid $gray-text;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+
   span {
-    display: block;
+    display: inline-block;
     font-style: italic;
     margin-left: 5px;
   }
