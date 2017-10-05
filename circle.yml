@@ -1,8 +1,0 @@
-machine:
-  ruby:
-    version: 2.4.0
-
-database:
-  override:
-    - cp config/database.yml.circle config/database.yml
-    - bundle exec rake db:create db:migrate --trace

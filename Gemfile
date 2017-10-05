@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Do not forget to update in .ruby-version and circle.yml
-ruby '2.4.0'
+ruby '2.4.1'
 
 gem 'rails', '4.2.8'
 
@@ -18,7 +18,6 @@ gem 'datetimepicker-rails',
     branch: 'master', submodules: true
 gem 'devise'
 gem 'font-awesome-rails'
-gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
@@ -48,7 +47,6 @@ group :development, :test do
   gem 'capybara'
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
-  gem 'i18n-tasks'
   gem 'poltergeist'
   gem 'pry-byebug'
   gem 'pry-rails'
