@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Do not forget to update in .ruby-version and circle.yml
 ruby '2.4.1'
 
-gem 'rails', '4.2.8'
+gem 'rails', '4.2.9'
 
 gem 'bootstrap-sass'
 gem 'cancancan'
