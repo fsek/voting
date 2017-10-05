@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170412071716) do
+ActiveRecord::Schema.define(version: 20171005121652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,12 @@ ActiveRecord::Schema.define(version: 20170412071716) do
   add_index "agendas", ["deleted_at"], name: "index_agendas_on_deleted_at", using: :btree
   add_index "agendas", ["parent_id"], name: "index_agendas_on_parent_id", using: :btree
 
+  create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id"
     t.string   "auditable_type"
@@ -62,17 +68,6 @@ ActiveRecord::Schema.define(version: 20170412071716) do
   add_index "audits", ["updater_id"], name: "index_audits_on_updater_id", using: :btree
   add_index "audits", ["user_id"], name: "index_audits_on_user_id", using: :btree
   add_index "audits", ["vote_id"], name: "index_audits_on_vote_id", using: :btree
-
-  create_table "contacts", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "email",      limit: 255
-    t.text     "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "slug"
-  end
-
-  add_index "contacts", ["slug"], name: "index_contacts_on_slug", using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.string   "pdf_file_name",    limit: 255
