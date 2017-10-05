@@ -6,15 +6,7 @@
 </div>
 
 <div class="col-md-6 col-sm-12">
-  <%= render @start_page.notices %>
-
   <% if @start_page.news.present? %>
-    <div class="headline headline-md">
-      <h3><%= models_name(News) %></h3>
-    </div>
-    <%= render @start_page.news%>
-    <%= link_to news_index_path do%>
-    <%= fa_icon('plus') %> <%= t('news.more') %>
-    <% end %>
+    <%= render @start_page.news %>
   <% end %>
 </div>

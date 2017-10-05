@@ -18,11 +18,6 @@ namespace :db do
     a.confirmed_at = Time.zone.now
     a.password = 'passpass'
     a.save!
-
-    # Notice
-    Notice.find_or_create_by!(FactoryGirl.attributes_for(:notice))
-    Notice.find_or_create_by!(FactoryGirl.attributes_for(:notice))
-
     # News
     News.find_or_create_by!(title: 'Ett helt nytt användarsystem',
                             content: 'Nu har vi en himla massa roliga funktioner som blir mycket lättare att lägga in, det är ju <br>toppen.',

@@ -19,30 +19,4 @@ RSpec.describe StartPage do
                                          'Fifth'])
     end
   end
-
-  describe '#notices' do
-    it 'lists public published notices' do
-      create(:notice, title: 'First',
-                      public: true)
-      create(:notice, title: 'Second - private',
-                      public: false)
-
-      start = StartPage.new(signed_in: false)
-
-      start.notices.map(&:title).should eq(['First'])
-    end
-
-    it 'lists all published notices for signed in' do
-      create(:notice, title: 'Second - private',
-                      public: false,
-                      sort: 20)
-      create(:notice, title: 'First',
-                      public: true,
-                      sort: 10)
-
-      start = StartPage.new(signed_in: true)
-
-      start.notices.map(&:title).should eq(['First', 'Second - private'])
-    end
-  end
 end

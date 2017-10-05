@@ -19,7 +19,7 @@ class Admin::NewsController < Admin::BaseController
     @news = News.new(news_params)
     @news.user = current_user
     if @news.save
-      redirect_to news_path(@news), notice: alert_create(News)
+      redirect_to admin_news_index_path, notice: alert_create(News)
     else
       render :new, status: 422
     end
@@ -28,7 +28,7 @@ class Admin::NewsController < Admin::BaseController
   def update
     @news = News.find(params[:id])
     if @news.update(news_params)
-      redirect_to news_path(@news), notice: alert_update(News)
+      redirect_to admin_news_index_path, notice: alert_update(News)
     else
       render :edit, status: 422
     end

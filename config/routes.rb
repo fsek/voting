@@ -77,7 +77,6 @@ Rails.application.routes.draw do
 
     namespace :admin do
       resources :menus, path: :meny, except: :show
-      resources :notices, path: :notiser, except: :show
     end
 
     resources :contacts, path: :kontakt, only: [:index] do
@@ -87,8 +86,6 @@ Rails.application.routes.draw do
     namespace :admin do
       resources :news, path: :nyheter, except: [:show]
     end
-
-    resources :news, path: :nyheter, only: [:index, :show]
 
     resources :documents, path: :dokument, only: [:index, :show]
 

@@ -1,25 +1,25 @@
 <div class="news">
-  <h4><%= link_to(news, news_path(news)) %></h4>
-  <%= simple_format(truncate(news.content,
-                             length: 140,
-                             separator: '',
-                             escape: false){
-                               link_to(t(:read_more), news_path(news))
-                             }) %>
-  <%= news_url(news) %>
+  <div class="headline">
+    <h3><%= news.title %></h3>
+  </div>
 
-  <span class="date">
-    <%= fa_icon('calendar') %> <%= l(news.created_at) %>
-  </span>
-
-  <%= news_user(news) %>
-
-  <% if can_administrate?(:manage, news) %>
-    <span class="edit">
-      <%= link_to(edit_admin_news_path(news)) do %>
-        <%= fa_icon('cog') %> <%= t(:edit) %>
-      <% end %>
+  <div class="info">
+    <%= news_user(news) %>
+    <span class="date">
+      <%= l(news.created_at) %>
     </span>
-  <% end %>
-  <hr>
+  </div>
+
+  <div class="margin-bottom-20">
+    <%= markdown(news.content) %>
+  </div>
+
+
+   <% if can_administrate?(:modify, news) %>
+     <span class="edit">
+       <%= link_to(edit_admin_news_path(news)) do %>
+         <%= fa_icon('cog') %> <%= t(:edit) %>
+       <% end %>
+     </span>
+   <% end %>
 </div>
