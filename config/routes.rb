@@ -80,12 +80,8 @@ Rails.application.routes.draw do
       resources :notices, path: :notiser, except: :show
     end
 
-    namespace :admin do
-      resources :contacts, path: :kontakt, except: :show
-    end
-
-    resources :contacts, path: :kontakt, only: [:index, :show] do
-      post :mail, on: :member
+    resources :contacts, path: :kontakt, only: [:index] do
+      post :mail, on: :collection
     end
 
     namespace :admin do

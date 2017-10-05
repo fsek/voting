@@ -1,4 +1,11 @@
 sv:
+  contacts:
+    index:
+      description: Vi styr Röstsystemet och kan hjälpa till om ni har problem.
+      rostiga: Röstiga
+      title: Kontakt
+      send_message: Skicka meddelande
+
   contact:
     admin_index: Administration
     back_to_index: Tillbaka till Kontakter
@@ -6,8 +13,8 @@ sv:
     destroy: Förinta kontakt
     edit: Redigera kontakt
     index: Kontaktsida
-    message_sent: Meddelandet skickades.
     message_sent_via: Meddelande skickat via Fsektionen.se
+    message_sent: Meddelandet skickades.
     name_or_post: Välj en post eller fyll i ett namn.
     new: Ny kontakt
     send_message: Skicka meddelande

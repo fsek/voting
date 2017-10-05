@@ -7,18 +7,17 @@ class Ability
     # Abilities that everyone get.
     can :read, Document, public: true
     can :read, News
-    can [:mail, :read], Contact
-    can [:index, :about, :cookies_information, :terms], :static_pages
-    can [:index, :show], Agenda
+    can %i(mail read), :contact
+    can %i(index about cookies_information terms), :static_pages
+    can %i(index show), Agenda
 
     # Abilities all signed in users get
     if user.id.present?
-      can [:edit, :show, :update,
-           :set_card_number, :update_password,
-           :update_account], User, id: user.id
+      can %i(edit show update set_card_number update_password
+             update_account), User, id: user.id
       can :read, Document
-      can [:index], Vote
-      can [:new, :create], VotePost
+      can :index, Vote
+      can %i(new create), VotePost
     end
   end
 end

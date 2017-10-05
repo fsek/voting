@@ -1,16 +1,17 @@
-<%= provide(:title, t('contact.index')) %>
+<%= provide(:title, t('.title')) %>
 <div class='headline'>
-  <h1 id='contacts_title'><%= t('contact.index') %></h1>
+  <h1 id='contacts_title'><%= t('.title') %></h1>
 </div>
 
-<div class="col-md-12">
-  <ul class="list-group">
-    <% @contacts.each do |contact| %>
-      <li class="list-group-item">
-        <%= link_to(t('contact.contact'), contact_path(contact), class: 'btn primary pull-right') %>
-        <h4 class="list-group-item-heading"><%= contact.to_s %></h4>
-        <p class="list-group-item-text"> <%= contact.text %></p>
-      </li>
-    <% end %>
-  </ul>
+<div class="col-md-6 col-md-offset-3 col-sm-12">
+  <%= simple_format(t('.description')) %>
+
+  <%= simple_form_for(@message,
+                      method: :post,
+                      url: mail_contacts_path) do |f| %>
+    <%= f.input :name, required: true %>
+    <%= f.input :email, required: true %>
+    <%= f.input :message, as: :text %>
+    <%= f.button :submit, t('.send_message') %>
+  <% end %>
 </div>

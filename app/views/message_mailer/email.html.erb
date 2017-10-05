@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h2><%= t('contact.message_sent_via') %></h2>
+    <table>
+      <tr>
+        <td><%= Message.human_attribute_name(:name) %></td>
+        <td><%= @message.name %></td>
+      </tr>
+      <tr>
+        <td><%= Message.human_attribute_name(:email) %></td>
+        <td><%= @message.email %></td>
+      </tr>
+      <tr>
+        <td><%= Message.human_attribute_name(:message) %></td>
+        <td><%= simple_format(@message.message) %></td>
+      </tr>
+    </table>
+  </body>
+</html>

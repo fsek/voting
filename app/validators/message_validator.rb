@@ -1,4 +1,4 @@
-module ContactMessageValidator
+module MessageValidator
   def self.validate(message)
     message.present? &&
       validate_name(message) &&

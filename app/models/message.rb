@@ -1,4 +1,4 @@
-class ContactMessage
+class Message
   include ActiveModel::Model
 
   attr_accessor :message, :name, :email
@@ -11,7 +11,12 @@ class ContactMessage
     @email = attributes[:email]
   end
 
-  def validate!
-    ContactMessageValidator.validate(self)
+  def send!
+    if MessageValidator.validate(self)
+      MessageMailer.email(self).deliver_now
+      true
+    else
+      false
+    end
   end
 end
