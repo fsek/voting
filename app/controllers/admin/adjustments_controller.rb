@@ -1,5 +1,5 @@
 class Admin::AdjustmentsController < Admin::BaseController
-  load_permissions_and_authorize_resource
+  load_and_authorize_resource
 
   def new
     @adjustment = Adjustment.new(user_id: params[:user_id])

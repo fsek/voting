@@ -1,5 +1,5 @@
 class AgendasController < ApplicationController
-  load_permissions_and_authorize_resource
+  load_and_authorize_resource
 
   def index
     @agendas = Agenda.index.where(parent_id: nil).includes(:children)

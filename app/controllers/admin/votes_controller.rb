@@ -1,5 +1,5 @@
 class Admin::VotesController < Admin::BaseController
-  load_permissions_and_authorize_resource
+  load_and_authorize_resource
 
   def index
     @vote_status_view = VoteStatusView.new

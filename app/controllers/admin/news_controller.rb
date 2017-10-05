@@ -1,5 +1,5 @@
 class Admin::NewsController < Admin::BaseController
-  load_permissions_and_authorize_resource
+  load_and_authorize_resource
 
   def index
     @news_grid = initialize_grid(News, include: :user,

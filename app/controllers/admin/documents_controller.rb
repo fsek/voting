@@ -1,5 +1,5 @@
 class Admin::DocumentsController < Admin::BaseController
-  load_permissions_and_authorize_resource
+  load_and_authorize_resource
 
   def index
     documents = filter_documents(Document.all, params[:category])
