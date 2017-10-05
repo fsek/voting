@@ -4,7 +4,6 @@ RSpec.describe Ability do
 
   ab_not_signed = {
     Document.new(public: true) => { yes: [:read], no: [:create, :update, :destroy] },
-    Menu.new => { yes: [], no: standard },
     News.new => { yes: [:read], no: [:create, :update, :destroy] },
     Notice.new => { no: standard },
     Permission.new => { yes: [], no: standard }
@@ -12,7 +11,6 @@ RSpec.describe Ability do
 
   ab_signed = {
     Document.new => { yes: [:read], no: [:create, :update, :destroy] },
-    Menu.new => { yes: [], no: standard },
     News.new => { yes: [:read], no: [:create, :update, :destroy] },
     Notice.new => { no: standard },
     Permission.new => { yes: [], no: standard }

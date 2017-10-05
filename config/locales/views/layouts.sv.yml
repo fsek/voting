@@ -1,0 +1,12 @@
+sv:
+  layouts:
+    menu:
+      about: Om
+      administrate: Administrera
+      agenda: Dagordning
+      contact: Kontakt
+      documents: Dokument
+      info: Information
+      terms: Användarvillkor
+      votes: Voteringar
+      voting: Röstning
