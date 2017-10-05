@@ -1,6 +1,6 @@
 <div class="collapse navbar-collapse navbar-responsive-collapse">
   <ul class="nav navbar-nav navbar-right">
-    <% if current_user.present? && current_user.permissions.count > 0 %>
+    <% if current_user.present? && !current_user.user? %>
       <li class="dropdown">
         <%= menu_dropdown_link(t('.administrate')) %>
         <ul class="dropdown-menu">

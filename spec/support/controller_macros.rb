@@ -4,7 +4,6 @@ module ControllerMacros
       @ability = Object.new
       @ability.extend(CanCan::Ability)
       controller.stub(:current_ability).and_return(@ability)
-      controller.stub(:load_permissions).and_return(nil)
     end
   end
 

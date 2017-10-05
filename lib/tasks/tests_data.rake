@@ -1,17 +1,13 @@
 namespace :db do
   desc 'Loads some stuff into the database for local testing'
   task(populate_test: :environment) do
-    # Permissions
-    Rake::Task['permissions:load'].invoke
-    perm_admin = Permission.find_or_create_by!(subject_class: :all, action: :manage)
-
     u = User.find_or_initialize_by(email: 'admin123@student.lu.se',
-                                   firstname: 'Hilbert-Admin', lastname: 'Älg')
+                                   firstname: 'Hilbert-Admin',
+                                   lastname: 'Älg',
+                                   role: :admin)
     u.password = 'passpass'
     u.confirmed_at = Time.zone.now
     u.save!
-
-    PermissionUser.find_or_create_by!(permission: perm_admin, user: u)
 
     a = User.find_or_initialize_by(email: 'user1234@student.lu.se',
                                    firstname: 'Hilbert', lastname: 'Älg')

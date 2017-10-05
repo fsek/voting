@@ -18,9 +18,9 @@ class User < ActiveRecord::Base
 
   validate :confirmed_to_vote
 
+  enum(role: { user: 0, adjuster: 1, secretary: 2, chairman: 3, admin: 4 })
+
   # Associations
-  has_many :permissions, through: :permission_users
-  has_many :permission_users
   has_many :audits, as: :auditable
   has_many :adjustments
 

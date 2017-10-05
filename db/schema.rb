@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171005143058) do
+ActiveRecord::Schema.define(version: 20171005151807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,24 +91,6 @@ ActiveRecord::Schema.define(version: 20171005143058) do
 
   add_index "news", ["user_id"], name: "index_news_on_user_id", using: :btree
 
-  create_table "permission_users", force: :cascade do |t|
-    t.integer  "user_id",       null: false
-    t.integer  "permission_id", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "permission_users", ["permission_id"], name: "index_permission_users_on_permission_id", using: :btree
-  add_index "permission_users", ["user_id"], name: "index_permission_users_on_user_id", using: :btree
-
-  create_table "permissions", force: :cascade do |t|
-    t.string   "name",          limit: 255
-    t.string   "subject_class", limit: 255
-    t.string   "action",        limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",    null: false
     t.string   "firstname",              limit: 255, default: "",    null: false
@@ -132,6 +114,7 @@ ActiveRecord::Schema.define(version: 20171005143058) do
     t.boolean  "presence",                           default: false, null: false
     t.string   "votecode"
     t.string   "card_number"
+    t.integer  "role",                               default: 0,     null: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

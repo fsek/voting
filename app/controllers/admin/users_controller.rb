@@ -1,8 +1,8 @@
 class Admin::UsersController < Admin::BaseController
-  load_permissions_and_authorize_resource
+  load_and_authorize_resource
 
   def index
-    @users_grid = initialize_grid(User, include: :permissions)
+    @users_grid = initialize_grid(User)
   end
 
   def edit
@@ -22,6 +22,6 @@ class Admin::UsersController < Admin::BaseController
   private
 
   def user_params
-    params.require(:user).permit(:card_number, :firstname, :lastname)
+    params.require(:user).permit(:card_number, :firstname, :lastname, :role)
   end
 end

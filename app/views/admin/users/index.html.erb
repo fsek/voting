@@ -18,8 +18,9 @@
     g.column(name: User.human_attribute_name(:name), attribute: 'firstname') do |user|
       link_to(admin_print_user(user), edit_admin_user_path(user))
     end
-    g.column(name: models_name(Permission), assoc: :permissions, attribute: 'name') do |user|
-      permission_list(user)
+    g.column(name: User.human_attribute_name(:role),
+             attribute: 'role', filter: false) do |user|
+      user_role(user.role)
     end
     g.column(name: User.human_attribute_name(:email), attribute: 'email')
     g.column(name: User.human_attribute_name(:confirmed_at), attribute: 'confirmed_at',
