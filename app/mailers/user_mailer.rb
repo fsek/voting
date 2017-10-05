@@ -17,16 +17,6 @@ class UserMailer < Devise::Mailer
     super
   end
 
-  def unlock_instructions(record, token, opts = {})
-    set_message_id
-    super
-  end
-
-  def password_change(record, opts = {})
-    set_message_id
-    super
-  end
-
   private
 
   def set_message_id

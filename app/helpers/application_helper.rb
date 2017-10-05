@@ -28,18 +28,6 @@ module ApplicationHelper
     end
   end
 
-  def form_group &block
-    html = Nokogiri::HTML.fragment capture_haml &block
-    html.xpath('input|textarea').each do |e|
-      if e['class']
-        e['class'] += ' form-control '
-      else
-        e['class'] = 'form-control '
-      end
-    end
-    content_tag :div, raw(html.to_html), class: 'form-group'
-  end
-
   def menu_dropdown_link(title)
     link_to(safe_join([title, ' ', fa_icon('angle-down')]),
             '#',
