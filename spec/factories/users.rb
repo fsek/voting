@@ -1,4 +1,3 @@
-# encoding: UTF-8
 FactoryGirl.define do
   factory :user do
     email
@@ -6,11 +5,10 @@ FactoryGirl.define do
     firstname
     lastname
     confirmed_at { 10.days.ago }
+    role :user
 
     trait :admin do
-      permission_users do
-        [association(:permission_user, :admin, strategy: @build_strategy.class)]
-      end
+      role :admin
     end
   end
 

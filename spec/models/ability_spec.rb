@@ -5,13 +5,11 @@ RSpec.describe Ability do
   ab_not_signed = {
     Document.new(public: true) => { yes: [:read], no: [:create, :update, :destroy] },
     News.new => { yes: [:read], no: [:create, :update, :destroy] },
-    Permission.new => { yes: [], no: standard }
   }
 
   ab_signed = {
     Document.new => { yes: [:read], no: [:create, :update, :destroy] },
     News.new => { yes: [:read], no: [:create, :update, :destroy] },
-    Permission.new => { yes: [], no: standard }
   }
 
   let(:signed) { build_stubbed(:user) }

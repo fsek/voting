@@ -92,12 +92,6 @@ Rails.application.routes.draw do
     namespace :admin do
       resources :documents, path: :dokument, except: :show
     end
-
-    namespace :admin do
-      resources :permission_users, path: :rattigheter,
-                                   controller: :permission_users,
-                                   except: [:show, :update]
-    end
   end
 
   root 'static_pages#index'

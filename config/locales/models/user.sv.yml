@@ -16,6 +16,7 @@ sv:
         password_confirmation: Bekräfta lösenord
         presence: Närvaro
         remember_me: Kom ihåg mig
+        role: Roll
         unconfirmed_email: Obekräftad epost
         votecode: Röstkod
   user:
@@ -33,3 +34,12 @@ sv:
     settings: Kontoinställningar
     vote_administration: Justeringar
     submit_card_number: Spara kortnummer
+
+  model:
+    user:
+      roles:
+        adjuster: Justerare
+        admin: Administratör
+        chairman: Mötesordförande
+        secretary: Sekreterare
+        user: Vanlig användare

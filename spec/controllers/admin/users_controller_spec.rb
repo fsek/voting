@@ -29,9 +29,11 @@ RSpec.describe Admin::UsersController, type: :controller do
   describe 'PATCH #update' do
     it 'valid parameters' do
       user = create(:user, firstname: 'Hilbert', lastname: 'Älg',
-                           card_number: '1234-1234-1234-1234')
+                           card_number: '1234-1234-1234-1234',
+                           role: :user)
       attributes = { firstname: 'Helge', lastname: 'Älge',
-                     card_number: '4321-4321-4321-4321' }
+                     card_number: '4321-4321-4321-4321',
+                     role: :chairman }
 
       patch(:update, id: user.to_param, user: attributes)
       user.reload
@@ -40,6 +42,7 @@ RSpec.describe Admin::UsersController, type: :controller do
       user.firstname.should eq('Helge')
       user.lastname.should eq('Älge')
       user.card_number.should eq('4321-4321-4321-4321')
+      user.chairman?.should be_truthy
     end
 
     it 'invalid parameters' do
