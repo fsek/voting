@@ -1,4 +1,4 @@
-$(document).on('page:change', function () {
+const refresh = function () {
   var $voteStatus = $('#vote-status');
   var voteStatus;
   var position;
@@ -19,4 +19,6 @@ $(document).on('page:change', function () {
       clearInterval(voteStatus);
     }
   }
-});
+};
+
+$(document).on('turbolinks:load', refresh);

@@ -1,20 +1,22 @@
-var sel;
-sel = function() {
-  $('.select2').select2({
+const sel = function() {
+  $('.select2-single').select2({
     theme: 'bootstrap'
   });
 };
 
-var selTag;
-selTag = function() {
-  $('.select2_tags').select2({
+const selTag = function() {
+  $('.select2-tags').select2({
     tags: true,
     theme: 'bootstrap'
   });
 };
 
-$(document).ready(sel);
-$(document).on('page:load', sel);
+// Turbolinks 5 fix
+const clear = function() {
+  $('.select2-single').select2('destroy');
+  $('.select2-tags').select2('destroy');
+}
 
-$(document).ready(selTag);
-$(document).on('page:load', selTag);
+$(document).on('turbolinks:load', sel);
+$(document).on('turbolinks:load', selTag);
+$(document).on('turbolinks:before-cache', clear);
