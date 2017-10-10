@@ -1,6 +1,6 @@
 <%= simple_form_for [:admin, @adjustment] do |f| %>
   <%= f.association :agenda, collection: Agenda.index, label_method: :to_s, include_hidden: false,
-                             include_blank: false, input_html: { class: 'select2' } %>
+                             include_blank: false, input_html: { class: 'select2-single' } %>
   <%= f.input :presence, include_blank: false, collection: adjustment_collection %>
   <%= f.hidden_field :user_id, value: @adjustment.user_id %>
   <div class="table">
