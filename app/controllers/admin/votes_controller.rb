@@ -13,7 +13,6 @@ class Admin::VotesController < Admin::BaseController
 
   def create
     @vote = Vote.new(vote_params)
-
     if @vote.save
       redirect_to edit_admin_vote_path(@vote), notice: alert_create(Vote)
     else

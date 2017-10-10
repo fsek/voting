@@ -25,7 +25,7 @@ RSpec.describe Admin::AgendasController, type: :controller do
     it 'assigns given agenda as @agenda' do
       agenda = create(:agenda)
 
-      get(:edit, id: agenda.to_param)
+      get(:edit, params: { id: agenda.to_param })
       assigns(:agenda).should eq(agenda)
     end
   end
@@ -46,7 +46,7 @@ RSpec.describe Admin::AgendasController, type: :controller do
                      description: '## Waow' }
 
       lambda do
-        post :create, agenda: attributes
+        post(:create, params: { agenda: attributes })
       end.should change(Agenda, :count).by(1)
 
       response.should redirect_to(new_admin_agenda_path)
@@ -55,7 +55,7 @@ RSpec.describe Admin::AgendasController, type: :controller do
 
     it 'invalid parameters' do
       lambda do
-        post :create, agenda: { title: '' }
+        post(:create, params: { agenda: { title: '' } })
       end.should change(Agenda, :count).by(0)
 
       response.status.should eq(422)
@@ -67,7 +67,8 @@ RSpec.describe Admin::AgendasController, type: :controller do
     it 'valid parameters' do
       agenda = create(:agenda, title: 'A Bad Title')
 
-      patch :update, id: agenda.to_param, agenda: { title: 'A Good Title' }
+      patch(:update, params: { id: agenda.to_param,
+                               agenda: { title: 'A Good Title' } })
       agenda.reload
 
       response.should redirect_to(edit_admin_agenda_path(agenda))
@@ -77,7 +78,8 @@ RSpec.describe Admin::AgendasController, type: :controller do
     it 'invalid parameters' do
       agenda = create(:agenda, title: 'A Bad Title')
 
-      patch :update, id: agenda.to_param, agenda: { title: '' }
+      patch(:update, params: { id: agenda.to_param,
+                               agenda: { title: '' } })
       agenda.reload
 
       response.status.should eq(422)
@@ -91,7 +93,7 @@ RSpec.describe Admin::AgendasController, type: :controller do
       agenda = create(:agenda)
 
       lambda do
-        delete :destroy, id: agenda.to_param
+        delete(:destroy, params: { id: agenda.to_param })
       end.should change(Agenda, :count).by(-1)
 
       agenda.reload
@@ -104,7 +106,7 @@ RSpec.describe Admin::AgendasController, type: :controller do
       agenda = create(:agenda, status: Agenda::CURRENT)
 
       lambda do
-        delete :destroy, id: agenda.to_param
+        delete(:destroy, params: { id: agenda.to_param })
       end.should_not change(Agenda, :count)
 
       agenda.reload
@@ -119,7 +121,7 @@ RSpec.describe Admin::AgendasController, type: :controller do
       child = create(:agenda, status: Agenda::CURRENT, parent: agenda)
 
       lambda do
-        delete :destroy, id: agenda.to_param
+        delete(:destroy, params: { id: agenda.to_param })
       end.should_not change(Agenda, :count)
 
       agenda.reload
@@ -137,7 +139,7 @@ RSpec.describe Admin::AgendasController, type: :controller do
       grandchild = create(:agenda, status: Agenda::CURRENT, parent: child)
 
       lambda do
-        delete :destroy, id: agenda.to_param
+        delete(:destroy, params: { id: agenda.to_param })
       end.should_not change(Agenda, :count)
 
       agenda.reload
@@ -159,7 +161,7 @@ RSpec.describe Admin::AgendasController, type: :controller do
       grandchild = create(:agenda, parent: child2)
 
       lambda do
-        delete :destroy, id: agenda.to_param
+        delete(:destroy, params: { id: agenda.to_param })
       end.should change(Agenda, :count).by(-4)
 
       agenda.reload
@@ -181,7 +183,7 @@ RSpec.describe Admin::AgendasController, type: :controller do
     it 'makes closed @agenda current' do
       agenda = create(:agenda, status: Agenda::CLOSED)
 
-      xhr(:patch, :set_current, id: agenda.to_param)
+      patch(:set_current, xhr: true, params: { id: agenda.to_param })
 
       agenda.reload
       assigns(:agenda).should eq(agenda)
@@ -194,7 +196,7 @@ RSpec.describe Admin::AgendasController, type: :controller do
       current_agenda = create(:agenda, status: Agenda::CURRENT)
       agenda = create(:agenda, status: Agenda::CLOSED)
 
-      xhr(:patch, :set_current, id: agenda.to_param)
+      patch(:set_current, xhr: true, params: { id: agenda.to_param })
 
       agenda.reload
       assigns(:agenda).should eq(agenda)
@@ -207,7 +209,7 @@ RSpec.describe Admin::AgendasController, type: :controller do
     it 'makes current @agenda closed' do
       agenda = create(:agenda, status: Agenda::CURRENT)
 
-      xhr(:patch, :set_closed, id: agenda.to_param)
+      patch(:set_closed, xhr: true, params: { id: agenda.to_param })
 
       agenda.reload
       assigns(:agenda).should eq(agenda)
@@ -220,7 +222,7 @@ RSpec.describe Admin::AgendasController, type: :controller do
       agenda = create(:agenda, status: Agenda::CURRENT)
       create(:vote, status: Vote::OPEN, agenda: agenda)
 
-      xhr(:patch, :set_closed, id: agenda.to_param)
+      patch(:set_closed, xhr: true, params: { id: agenda.to_param })
 
       agenda.reload
       assigns(:agenda).should eq(agenda)

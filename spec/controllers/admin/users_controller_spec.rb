@@ -20,7 +20,7 @@ RSpec.describe Admin::UsersController, type: :controller do
     it 'sets users by id and renders if admin' do
       user = create(:user)
 
-      get(:edit, id: user.to_param)
+      get(:edit, params: { id: user.to_param })
       response.status.should eq(200)
       assigns(:user).should eq(user)
     end
@@ -35,7 +35,7 @@ RSpec.describe Admin::UsersController, type: :controller do
                      card_number: '4321-4321-4321-4321',
                      role: :chairman }
 
-      patch(:update, id: user.to_param, user: attributes)
+      patch(:update, params: { id: user.to_param, user: attributes })
       user.reload
 
       response.should redirect_to(edit_admin_user_path(user))
@@ -50,7 +50,7 @@ RSpec.describe Admin::UsersController, type: :controller do
                            card_number: '1234-1234-1234-1234')
       attributes = { firstname: '' }
 
-      patch(:update, id: user.to_param, user: attributes)
+      patch(:update, params: { id: user.to_param, user: attributes })
       user.reload
 
       response.status.should eq(422)
