@@ -1,7 +1,10 @@
-# encoding:UTF-8
+# frozen_string_literal: true
+
+# Delivers emails to users regarding their accounts
 class UserMailer < Devise::Mailer
   default(template_path: 'devise/mailer')
-  helper :application # gives access to all helpers defined within `application_helper`.
+  # gives access to all helpers defined within `application_helper`.
+  helper :application
 
   def confirmation_instructions(record, token, opts = {})
     set_message_id
@@ -21,6 +24,6 @@ class UserMailer < Devise::Mailer
 
   def set_message_id
     str = Time.zone.now.to_i.to_s
-    headers['Message-ID'] = "<#{Digest::SHA2.hexdigest(str)}@fsektionen.se>"
+    headers['Message-ID'] = "<#{Digest::SHA2.hexdigest(str)}@rostsystem.se>"
   end
 end
