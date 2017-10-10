@@ -1,9 +1,9 @@
 <%= simple_form_for([:admin, @document]) do |f| %>
   <%= f.input :title %>
-  <%= f.input :category, collection: @categories, input_html: { class: 'select2_tags' },
+  <%= f.input :category, collection: @categories, input_html: { class: 'select2-tags' },
               include_blank: false %>
   <%= f.association :agenda, collection: Agenda.index, label_method: :to_s, include_hidden: false,
-                             input_html: { class: 'select2' }, required: false %>
+                             input_html: { class: 'select2-single' }, required: false %>
   <% if @document.pdf.present? %>
     <p><%= link_to(@document.pdf_file_name, @document)%></p>
   <% end %>
