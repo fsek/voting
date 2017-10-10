@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 # Do not forget to update in .ruby-version and circle.yml
 ruby '2.4.1'
 
-gem 'rails', '4.2.9'
+gem 'rails', '5.0.4'
 
 gem 'bootstrap-sass'
 gem 'cancancan'
@@ -27,9 +27,10 @@ gem 'rollbar'
 gem 'sass-rails'
 gem 'select2-rails'
 gem 'simple_form'
-gem 'turbolinks', '>= 2.5.3', '< 5.0'
+gem 'turbolinks'
 gem 'uglifier'
-gem 'wice_grid', git: 'https://github.com/leikind/wice_grid.git', branch: 'rails3'
+gem 'wice_grid', git: 'https://github.com/leikind/wice_grid.git',
+                 branch: 'rails3'
 
 group :production do
   gem 'rails_12factor'
@@ -45,8 +46,10 @@ group :development, :test do
   gem 'poltergeist'
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'rails-controller-testing'
   gem 'rspec-example_steps'
   gem 'rspec-rails'
+  gem 'rubocop'
 end
 
 group :development do
