@@ -1,5 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
+require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   let(:user) { create(:user) }
   let(:other) { create(:user) }
@@ -12,7 +13,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'GET #show' do
     it 'assigns the requested user as @user' do
-      get(:show, id: other.to_param)
+      get(:show, params: { id: other.to_param })
       assigns(:user).should eq(other)
     end
   end
@@ -26,8 +27,8 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'PATCH #update_account' do
     it 'updates account' do
-      patch :update_account, user: { email: 'tfy16hal@student.lu.se',
-                                     current_password: '12345678' }
+      patch(:update_account, params: { user: { email: 'tfy16hal@student.lu.se',
+                                               current_password: '12345678' } })
       user.reload
       user.unconfirmed_email.should eq('tfy16hal@student.lu.se')
     end
@@ -35,9 +36,10 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'PATCH #update_password' do
     it 'updates password' do
-      patch :update_password, user: { password: 'testatesta',
-                                      password_confirmation: 'testatesta',
-                                      current_password: '12345678' }
+      patch(:update_password,
+            params: { user: { password: 'testatesta',
+                              password_confirmation: 'testatesta',
+                              current_password: '12345678' } })
       user.reload
       user.valid_password?('testatesta').should be_truthy
     end
@@ -48,7 +50,7 @@ RSpec.describe UsersController, type: :controller do
       user = create(:user, card_number: nil)
       allow(controller).to receive(:current_user) { user }
 
-      patch(:update, user: { card_number: '6122-6122-6122-6122' })
+      patch(:update, params: { user: { card_number: '6122-6122-6122-6122' } })
 
       user.reload
       response.status.should eq(200)

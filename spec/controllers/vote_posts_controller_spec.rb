@@ -14,7 +14,7 @@ RSpec.describe VotePostsController, type: :controller do
       agenda = create(:agenda, status: Agenda::CURRENT)
       vote = create(:vote, status: Vote::OPEN, agenda: agenda)
 
-      get(:new, vote_id: vote)
+      get(:new, params: { vote_id: vote })
 
       assigns(:vote).should eq(vote)
       assigns(:vote_post).new_record?.should be_truthy
@@ -25,7 +25,7 @@ RSpec.describe VotePostsController, type: :controller do
     it 'redirects if vote is closed' do
       vote = create(:vote, status: Vote::CLOSED)
 
-      get(:new, vote_id: vote.to_param)
+      get(:new, params: { vote_id: vote })
 
       assigns(:vote).should eq(vote)
       response.should redirect_to(votes_path)
@@ -35,7 +35,7 @@ RSpec.describe VotePostsController, type: :controller do
     it 'redirects if vote is future' do
       vote = create(:vote, status: Vote::FUTURE)
 
-      get(:new, vote_id: vote.to_param)
+      get(:new, params: { vote_id: vote })
 
       assigns(:vote).should eq(vote)
       response.should redirect_to(votes_path)
@@ -52,7 +52,7 @@ RSpec.describe VotePostsController, type: :controller do
                      vote_option_ids: [vote.vote_options.first.id] }
 
       lambda do
-        post(:create, vote_id: vote.to_param, vote_post: attributes)
+        post(:create, params: { vote_id: vote.to_param, vote_post: attributes })
       end.should change(VotePost, :count).by(1)
 
       response.should redirect_to(votes_path)
@@ -65,7 +65,7 @@ RSpec.describe VotePostsController, type: :controller do
       attributes = { votecode: 'abcd123' }
 
       lambda do
-        post(:create, vote_id: vote.to_param, vote_post: attributes)
+        post(:create, params: { vote_id: vote.to_param, vote_post: attributes })
       end.should change(VotePost, :count).by(1)
 
       response.should redirect_to(votes_path)
@@ -79,7 +79,7 @@ RSpec.describe VotePostsController, type: :controller do
                      vote_option_ids: [vote.vote_options.first.id] }
 
       lambda do
-        post(:create, vote_id: vote.to_param, vote_post: attributes)
+        post(:create, params: { vote_id: vote.to_param, vote_post: attributes })
       end.should change(VotePost, :count).by(0)
 
       response.status.should eq(422)

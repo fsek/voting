@@ -25,7 +25,7 @@ RSpec.describe Admin::VotesController, type: :controller do
     it 'assigns given vote as @vote' do
       vote = create(:vote)
 
-      get(:show, id: vote.to_param)
+      get(:show, params: { id: vote.to_param })
       assigns(:vote).should eq(vote)
       assigns(:audit_grid).should be_present
     end
@@ -35,14 +35,14 @@ RSpec.describe Admin::VotesController, type: :controller do
     it 'assigns given vote as @vote' do
       vote = create(:vote)
 
-      get(:edit, id: vote.to_param)
+      get(:edit, params: { id: vote.to_param })
       assigns(:vote).should eq(vote)
     end
 
     it 'works if the vote is closed' do
       vote = create(:vote, status: Vote::CLOSED)
 
-      get(:edit, id: vote.to_param)
+      get(:edit, params: { id: vote.to_param })
       assigns(:vote).should eq(vote)
       response.status.should eq(200)
     end
@@ -50,7 +50,7 @@ RSpec.describe Admin::VotesController, type: :controller do
     it 'works if the vote is future' do
       vote = create(:vote, status: Vote::FUTURE)
 
-      get(:edit, id: vote.to_param)
+      get(:edit, params: { id: vote.to_param })
       assigns(:vote).should eq(vote)
       response.status.should eq(200)
     end
@@ -59,7 +59,7 @@ RSpec.describe Admin::VotesController, type: :controller do
       agenda = create(:agenda, status: Agenda::CURRENT)
       vote = create(:vote, status: Vote::OPEN, agenda: agenda)
 
-      get(:edit, id: vote.to_param)
+      get(:edit, params: { id: vote.to_param })
 
       assigns(:vote).should eq(vote)
       flash[:alert].should eq(I18n.t('vote.cannot_edit'))
@@ -82,7 +82,7 @@ RSpec.describe Admin::VotesController, type: :controller do
                      vote_options_attributes: option_attr }
 
       lambda do
-        post :create, vote: attributes
+        post(:create, params: { vote: attributes })
       end.should change(Vote, :count).by(1)
 
       response.should redirect_to(edit_admin_vote_path(Vote.last))
@@ -91,7 +91,7 @@ RSpec.describe Admin::VotesController, type: :controller do
 
     it 'invalid parameters' do
       lambda do
-        post :create, vote: { title: '' }
+        post(:create, params: { vote: { title: '' } })
       end.should change(Vote, :count).by(0)
 
       response.status.should eq(422)
@@ -103,7 +103,8 @@ RSpec.describe Admin::VotesController, type: :controller do
     it 'valid parameters and future vote' do
       vote = create(:vote, title: 'A Bad Title')
 
-      patch :update, id: vote.to_param, vote: { title: 'A Good Title' }
+      patch(:update, params: { id: vote.to_param,
+                               vote: { title: 'A Good Title' } })
       vote.reload
 
       vote.title.should eq('A Good Title')
@@ -113,7 +114,8 @@ RSpec.describe Admin::VotesController, type: :controller do
     it 'valid parameters and closed vote' do
       vote = create(:vote, title: 'A Bad Title', status: Vote::CLOSED)
 
-      patch :update, id: vote.to_param, vote: { title: 'A Good Title' }
+      patch(:update, params: { id: vote.to_param,
+                               vote: { title: 'A Good Title' } })
       vote.reload
 
       vote.title.should eq('A Good Title')
@@ -124,7 +126,8 @@ RSpec.describe Admin::VotesController, type: :controller do
       agenda = create(:agenda, status: Agenda::CURRENT)
       vote = create(:vote, title: 'A Bad Title', status: Vote::OPEN, agenda: agenda)
 
-      patch :update, id: vote.to_param, vote: { title: 'A Good Title' }
+      patch(:update, params: { id: vote.to_param,
+                               vote: { title: 'A Good Title' } })
       vote.reload
 
       vote.title.should eq('A Bad Title')
@@ -135,7 +138,8 @@ RSpec.describe Admin::VotesController, type: :controller do
     it 'invalid parameters' do
       vote = create(:vote, title: 'A Bad Title')
 
-      patch :update, id: vote.to_param, vote: { title: '' }
+      patch(:update, params: { id: vote.to_param,
+                               vote: { title: '' } })
       vote.reload
 
       response.status.should eq(422)
@@ -149,7 +153,7 @@ RSpec.describe Admin::VotesController, type: :controller do
       vote = create(:vote)
 
       lambda do
-        delete :destroy, id: vote.to_param
+        delete(:destroy, params: { id: vote.to_param })
       end.should change(Vote, :count).by(-1)
 
       response.should redirect_to(admin_votes_path)
@@ -161,7 +165,7 @@ RSpec.describe Admin::VotesController, type: :controller do
       agenda = create(:agenda, status: Agenda::CURRENT)
       vote = create(:vote, status: Vote::FUTURE, agenda: agenda)
 
-      patch(:open, id: vote)
+      patch(:open, params: { id: vote })
 
       response.should redirect_to(admin_votes_path)
       flash[:notice].should eq(I18n.t('vote.made_open'))
@@ -173,7 +177,7 @@ RSpec.describe Admin::VotesController, type: :controller do
       agenda = create(:agenda, status: Agenda::CURRENT)
       vote = create(:vote, status: Vote::FUTURE, agenda: agenda)
 
-      patch(:open, id: vote, route: :show)
+      patch(:open, params: { id: vote, route: :show })
 
       response.should redirect_to(admin_vote_path(vote))
       flash[:notice].should eq(I18n.t('vote.made_open'))
@@ -186,7 +190,7 @@ RSpec.describe Admin::VotesController, type: :controller do
       create(:vote, status: Vote::OPEN, agenda: agenda)
       vote = create(:vote, status: Vote::FUTURE, agenda: agenda)
 
-      patch(:open, id: vote)
+      patch(:open, params: { id: vote })
 
       response.should redirect_to(admin_votes_path)
       flash[:alert].should eq(I18n.t('vote.already_one_open'))
@@ -199,7 +203,7 @@ RSpec.describe Admin::VotesController, type: :controller do
       agenda = create(:agenda, status: Agenda::FUTURE)
       vote = create(:vote, status: Vote::FUTURE, agenda: agenda)
 
-      patch(:open, id: vote)
+      patch(:open, params: { id: vote })
 
       response.should redirect_to(admin_votes_path)
       flash[:alert].should eq(I18n.t('vote.wrong_agenda'))
@@ -213,7 +217,7 @@ RSpec.describe Admin::VotesController, type: :controller do
       agenda = create(:agenda, status: Agenda::CURRENT)
       vote = create(:vote, status: Vote::OPEN, agenda: agenda)
 
-      patch(:close, id: vote)
+      patch(:close, params: { id: vote })
 
       response.should redirect_to(admin_votes_path)
       flash[:notice].should eq(I18n.t('vote.made_closed'))
@@ -233,7 +237,7 @@ RSpec.describe Admin::VotesController, type: :controller do
       vote.vote_options.sum(:count).should eq 2
       vote.vote_posts.count.should eq 2
 
-      patch(:reset, id: vote)
+      patch(:reset, params: { id: vote })
 
       response.should redirect_to(admin_vote_path(vote))
       flash[:notice].should eq(I18n.t('vote.reset_ok'))
@@ -253,7 +257,7 @@ RSpec.describe Admin::VotesController, type: :controller do
       vote.vote_options.sum(:count).should eq 2
       vote.vote_posts.count.should eq 2
 
-      patch(:reset, id: vote)
+      patch(:reset, params: { id: vote })
 
       response.should redirect_to(admin_vote_path(vote))
       flash[:alert].should eq(I18n.t('vote.cannot_reset'))

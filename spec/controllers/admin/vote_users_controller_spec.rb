@@ -25,7 +25,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
     it 'assigns given user as @user' do
       user = create(:user)
 
-      get(:show, id: user.to_param)
+      get(:show, params: { id: user.to_param })
       assigns(:user).should eq(user)
       assigns(:audit_grid).should be_present
     end
@@ -37,7 +37,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       create(:vote, status: Vote::FUTURE)
       create(:agenda, status: Agenda::CURRENT)
 
-      xhr(:patch, :present, id: user.to_param)
+      patch(:present, xhr: true, params: { id: user.to_param })
 
       user.reload
       assigns(:user).should eq(user)
@@ -50,7 +50,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       create(:vote, status: Vote::FUTURE)
       create(:agenda, status: Agenda::CURRENT)
 
-      xhr(:patch, :present, id: user.to_param)
+      patch(:present, xhr: true, params: { id: user.to_param })
 
       user.reload
       assigns(:user).should eq(user)
@@ -63,7 +63,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       agenda = create(:agenda, status: Agenda::CURRENT)
       create(:vote, status: Vote::OPEN, agenda: agenda)
 
-      xhr(:patch, :present, id: user.to_param)
+      patch(:present, xhr: true, params: { id: user.to_param })
 
       user.reload
       assigns(:user).should eq(user)
@@ -76,7 +76,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       create(:vote, status: Vote::FUTURE)
       create(:agenda)
 
-      xhr(:patch, :present, id: user.to_param)
+      patch(:present, xhr: true, params: { id: user.to_param })
 
       user.reload
       assigns(:user).should eq(user)
@@ -91,7 +91,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       create(:vote, status: Vote::FUTURE)
       create(:agenda, status: Agenda::CURRENT)
 
-      xhr(:patch, :not_present, id: user.to_param)
+      patch(:not_present, xhr: true, params: { id: user.to_param })
 
       user.reload
       assigns(:user).should eq(user)
@@ -104,7 +104,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       create(:agenda, status: Agenda::CURRENT)
       create(:vote, status: Vote::FUTURE)
 
-      xhr(:patch, :not_present, id: user.to_param)
+      patch(:not_present, xhr: true, params: { id: user.to_param })
 
       user.reload
       assigns(:user).should eq(user)
@@ -117,7 +117,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       agenda = create(:agenda, status: Agenda::CURRENT)
       create(:vote, status: Vote::OPEN, agenda: agenda)
 
-      xhr(:patch, :not_present, id: user.to_param)
+      patch(:not_present, xhr: true, params: { id: user.to_param })
 
       user.reload
       assigns(:user).should eq(user)
@@ -130,7 +130,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       create(:agenda)
       create(:vote, status: Vote::FUTURE)
 
-      xhr(:patch, :not_present, id: user.to_param)
+      patch(:not_present, xhr: true, params: { id: user.to_param })
 
       user.reload
       assigns(:user).should eq(user)
@@ -193,7 +193,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
     it 'sets new votecode' do
       user = create(:user, votecode: 'abcd123')
 
-      xhr(:patch, :new_votecode, id: user)
+      patch(:new_votecode, xhr: true, params: { id: user })
 
       user.reload
       user.votecode.should_not eq('abcd123')
@@ -205,7 +205,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       user = create(:user, votecode: 'abcd123')
       allow(VoteService).to receive(:set_votecode) { false }
 
-      xhr(:patch, :new_votecode, id: user)
+      patch(:new_votecode, xhr: true, params: { id: user })
 
       user.reload
       user.votecode.should eq('abcd123')
@@ -217,9 +217,12 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
   describe 'POST #search' do
     it 'finds user with card number' do
       create(:user, firstname: 'The one', card_number: '1234-1234-1234-1234')
-      create(:user, firstname: 'Not the one', card_number: '4321-4321-4321-4321')
+      create(:user, firstname: 'Not the one',
+                    card_number: '4321-4321-4321-4321')
 
-      xhr(:post, :search, vote_user: { card_number: '1234-1234-1234-1234' })
+      post(:search,
+           xhr: true,
+           params: { vote_user: { card_number: '1234-1234-1234-1234' } })
       assigns(:vote_users).map(&:firstname).should eq(['The one'])
     end
   end

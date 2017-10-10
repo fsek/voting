@@ -26,7 +26,7 @@ RSpec.describe Admin::AdjustmentsController, type: :controller do
     it 'assigns new adjustment with user' do
       user = create(:user)
 
-      get(:new, user_id: user.to_param)
+      get(:new, params: { user_id: user.to_param })
       assigns(:adjustment).instance_of?(Adjustment).should be_truthy
       assigns(:adjustment).new_record?.should be_truthy
       assigns(:adjustment).user.should eq(user)
@@ -37,7 +37,7 @@ RSpec.describe Admin::AdjustmentsController, type: :controller do
     it 'assigns given adjustment as @adjustment' do
       adjustment = create(:adjustment)
 
-      get(:edit, id: adjustment.to_param)
+      get(:edit, params: { id: adjustment.to_param })
       assigns(:adjustment).should eq(adjustment)
     end
   end
@@ -51,7 +51,7 @@ RSpec.describe Admin::AdjustmentsController, type: :controller do
                      presence: true }
 
       lambda do
-        post :create, adjustment: attributes
+        post(:create, params: { adjustment: attributes })
       end.should change(Adjustment, :count).by(1)
 
       response.should redirect_to(admin_vote_user_path(user.to_param))
@@ -59,7 +59,7 @@ RSpec.describe Admin::AdjustmentsController, type: :controller do
 
     it 'invalid parameters' do
       lambda do
-        post :create, adjustment: { presence: false }
+        post(:create, params: { adjustment: { presence: false } })
       end.should change(Adjustment, :count).by(0)
 
       response.status.should eq(422)
@@ -71,7 +71,8 @@ RSpec.describe Admin::AdjustmentsController, type: :controller do
     it 'valid parameters' do
       adjustment = create(:adjustment, presence: true)
 
-      patch :update, id: adjustment.to_param, adjustment: { presence: false }
+      patch(:update, params: { id: adjustment.to_param,
+                               adjustment: { presence: false } })
       adjustment.reload
 
       response.should redirect_to(edit_admin_adjustment_path(adjustment))
@@ -82,7 +83,8 @@ RSpec.describe Admin::AdjustmentsController, type: :controller do
       user = create(:user)
       adjustment = create(:adjustment, user: user, presence: true)
 
-      patch :update, id: adjustment.to_param, adjustment: { user_id: nil }
+      patch(:update, params: { id: adjustment.to_param,
+                               adjustment: { user_id: false } })
       adjustment.reload
 
       response.status.should eq(422)
@@ -97,7 +99,7 @@ RSpec.describe Admin::AdjustmentsController, type: :controller do
       adjustment = create(:adjustment, user: user)
 
       lambda do
-        delete :destroy, id: adjustment.to_param
+        delete(:destroy, params: { id: adjustment.to_param })
       end.should change(Adjustment, :count).by(-1)
 
       response.status.should eq(200)
@@ -111,9 +113,9 @@ RSpec.describe Admin::AdjustmentsController, type: :controller do
       a2 = create(:adjustment, user: user)
       a3 = create(:adjustment, user: user)
 
-      get(:update_row_order, id: a3.to_param, adjustment: { row_order_position: 0 })
+      get(:update_row_order, params: { id: a3.to_param,
+                                       adjustment: { row_order_position: 0 } })
       response.status.should eq(200)
-
       user.adjustments.rank(:row_order).should eq [a3, a1, a2]
     end
   end

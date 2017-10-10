@@ -1,4 +1,5 @@
-# encoding:UTF-8
+# frozen_string_literal: true
+
 class DocumentsController < ApplicationController
   load_and_authorize_resource
 

@@ -29,7 +29,7 @@ RSpec.describe Admin::NewsController, type: :controller do
   describe 'POST #create' do
     it 'posts new news' do
       lambda do
-        post :create, news: attributes_for(:news)
+        post(:create, params: { news: attributes_for(:news) })
       end.should change(News, :count).by(1)
 
       response.should redirect_to(admin_news_index_path)
@@ -38,7 +38,7 @@ RSpec.describe Admin::NewsController, type: :controller do
 
   describe 'PATCH #update' do
     it 'update news' do
-      patch :update, id: news.to_param, news: { title: 'Hej' }
+      patch(:update, params: { id: news.to_param, news: { title: 'Hej' } })
       news.reload
       news.title.should eq('Hej')
       response.should redirect_to(admin_news_index_path)
