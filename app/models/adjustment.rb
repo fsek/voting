@@ -1,11 +1,12 @@
-class Adjustment < ActiveRecord::Base
+# frozen_string_literal: true
+
+# Presence adjustment for Voters
+class Adjustment < ApplicationRecord
   acts_as_paranoid
   include RankedModel
 
   belongs_to :agenda, -> { with_deleted }
   belongs_to :user
-
-  validates :agenda_id, :user_id, presence: true
 
   after_update :log_update
   after_destroy :log_destroy
@@ -15,14 +16,15 @@ class Adjustment < ActiveRecord::Base
   private
 
   def log_update
-    if update_changes.present?
-      Audit.create!(auditable: self, user_id: user_id, audited_changes: update_changes,
-                    action: 'update', updater_id: updater)
-    end
+    return unless update_changes.present?
+    Audit.create!(auditable: self, user_id: user_id,
+                  audited_changes: update_changes,
+                  action: 'update', updater_id: updater)
   end
 
   def log_destroy
-    Audit.create!(auditable: self, user_id: user_id, audited_changes: destroy_changes,
+    Audit.create!(auditable: self, user_id: user_id,
+                  audited_changes: destroy_changes,
                   action: 'destroy', updater_id: updater)
   end
 
@@ -32,11 +34,7 @@ class Adjustment < ActiveRecord::Base
 
   def destroy_changes
     diff = changes.extract!(:agenda_id, :presence)
-
-    if agenda.present? && !diff.key?('agenda_id')
-      diff[:name] = agenda.to_s
-    end
-
+    diff[:name] = agenda.to_s if agenda.present? && !diff.key?('agenda_id')
     diff
   end
 

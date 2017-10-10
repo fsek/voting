@@ -1,9 +1,12 @@
-class Vote < ActiveRecord::Base
+# frozen_string_literal: true
+
+# Represent a specifi voting round
+class Vote < ApplicationRecord
   acts_as_paranoid
 
   has_many :audits, as: :auditable
 
-  belongs_to :agenda
+  belongs_to :agenda, optional: true
   has_many :vote_options, dependent: :destroy
   has_many :vote_posts, dependent: :destroy
 

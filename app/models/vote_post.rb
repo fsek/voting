@@ -1,4 +1,7 @@
-class VotePost < ActiveRecord::Base
+# frozen_string_literal: true
+
+# Holds a users vote for a specific voting
+class VotePost < ApplicationRecord
   acts_as_paranoid
 
   belongs_to :vote
@@ -8,7 +11,7 @@ class VotePost < ActiveRecord::Base
 
   attr_accessor :vote_option_ids, :votecode
 
-  validates :vote_id, :votecode, :user_id, presence: true
+  validates :user_id, :vote_id, :votecode, presence: true
   validates :user_id, uniqueness: { scope: :vote_id,
                                     message: I18n.t('vote_post.already_voted') }
   validate :vote_open, :user_details, :option_details
@@ -16,7 +19,6 @@ class VotePost < ActiveRecord::Base
   after_create :log_create
   after_update :log_update
   after_destroy :log_destroy
-
 
   def log_create
     Audit.create!(auditable: self, user_id: user_id, vote_id: vote_id,

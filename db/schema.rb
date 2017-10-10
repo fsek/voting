@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -24,11 +23,10 @@ ActiveRecord::Schema.define(version: 20171005151807) do
     t.datetime "updated_at",                 null: false
     t.datetime "deleted_at"
     t.integer  "row_order"
+    t.index ["agenda_id"], name: "index_adjustments_on_agenda_id", using: :btree
+    t.index ["deleted_at"], name: "index_adjustments_on_deleted_at", using: :btree
+    t.index ["user_id"], name: "index_adjustments_on_user_id", using: :btree
   end
-
-  add_index "adjustments", ["agenda_id"], name: "index_adjustments_on_agenda_id", using: :btree
-  add_index "adjustments", ["deleted_at"], name: "index_adjustments_on_deleted_at", using: :btree
-  add_index "adjustments", ["user_id"], name: "index_adjustments_on_user_id", using: :btree
 
   create_table "agendas", force: :cascade do |t|
     t.integer  "parent_id"
@@ -41,10 +39,9 @@ ActiveRecord::Schema.define(version: 20171005151807) do
     t.datetime "deleted_at"
     t.text     "description"
     t.string   "short"
+    t.index ["deleted_at"], name: "index_agendas_on_deleted_at", using: :btree
+    t.index ["parent_id"], name: "index_agendas_on_parent_id", using: :btree
   end
-
-  add_index "agendas", ["deleted_at"], name: "index_agendas_on_deleted_at", using: :btree
-  add_index "agendas", ["parent_id"], name: "index_agendas_on_parent_id", using: :btree
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id"
@@ -56,12 +53,11 @@ ActiveRecord::Schema.define(version: 20171005151807) do
     t.string   "action"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.index ["auditable_type", "auditable_id"], name: "index_audits_on_auditable_type_and_auditable_id", using: :btree
+    t.index ["updater_id"], name: "index_audits_on_updater_id", using: :btree
+    t.index ["user_id"], name: "index_audits_on_user_id", using: :btree
+    t.index ["vote_id"], name: "index_audits_on_vote_id", using: :btree
   end
-
-  add_index "audits", ["auditable_type", "auditable_id"], name: "index_audits_on_auditable_type_and_auditable_id", using: :btree
-  add_index "audits", ["updater_id"], name: "index_audits_on_updater_id", using: :btree
-  add_index "audits", ["user_id"], name: "index_audits_on_user_id", using: :btree
-  add_index "audits", ["vote_id"], name: "index_audits_on_vote_id", using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.string   "pdf_file_name",    limit: 255
@@ -75,10 +71,9 @@ ActiveRecord::Schema.define(version: 20171005151807) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "agenda_id"
+    t.index ["agenda_id"], name: "index_documents_on_agenda_id", using: :btree
+    t.index ["user_id"], name: "index_documents_on_user_id", using: :btree
   end
-
-  add_index "documents", ["agenda_id"], name: "index_documents_on_agenda_id", using: :btree
-  add_index "documents", ["user_id"], name: "index_documents_on_user_id", using: :btree
 
   create_table "news", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -87,9 +82,8 @@ ActiveRecord::Schema.define(version: 20171005151807) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "url"
+    t.index ["user_id"], name: "index_news_on_user_id", using: :btree
   end
-
-  add_index "news", ["user_id"], name: "index_news_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",    null: false
@@ -115,13 +109,12 @@ ActiveRecord::Schema.define(version: 20171005151807) do
     t.string   "votecode"
     t.string   "card_number"
     t.integer  "role",                               default: 0,     null: false
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+    t.index ["deleted_at"], name: "index_users_on_deleted_at", using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["votecode"], name: "index_users_on_votecode", unique: true, using: :btree
   end
-
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-  add_index "users", ["deleted_at"], name: "index_users_on_deleted_at", using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["votecode"], name: "index_users_on_votecode", unique: true, using: :btree
 
   create_table "vote_options", force: :cascade do |t|
     t.string   "title"
@@ -130,10 +123,9 @@ ActiveRecord::Schema.define(version: 20171005151807) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_vote_options_on_deleted_at", using: :btree
+    t.index ["vote_id"], name: "index_vote_options_on_vote_id", using: :btree
   end
-
-  add_index "vote_options", ["deleted_at"], name: "index_vote_options_on_deleted_at", using: :btree
-  add_index "vote_options", ["vote_id"], name: "index_vote_options_on_vote_id", using: :btree
 
   create_table "vote_posts", force: :cascade do |t|
     t.integer  "vote_id"
@@ -142,11 +134,10 @@ ActiveRecord::Schema.define(version: 20171005151807) do
     t.datetime "deleted_at"
     t.integer  "user_id"
     t.integer  "selected",   default: 0, null: false
+    t.index ["deleted_at"], name: "index_vote_posts_on_deleted_at", using: :btree
+    t.index ["user_id"], name: "index_vote_posts_on_user_id", using: :btree
+    t.index ["vote_id"], name: "index_vote_posts_on_vote_id", using: :btree
   end
-
-  add_index "vote_posts", ["deleted_at"], name: "index_vote_posts_on_deleted_at", using: :btree
-  add_index "vote_posts", ["user_id"], name: "index_vote_posts_on_user_id", using: :btree
-  add_index "vote_posts", ["vote_id"], name: "index_vote_posts_on_vote_id", using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.string   "title"
@@ -157,10 +148,9 @@ ActiveRecord::Schema.define(version: 20171005151807) do
     t.integer  "agenda_id"
     t.string   "status",        default: "future", null: false
     t.integer  "present_users", default: 0,        null: false
+    t.index ["agenda_id"], name: "index_votes_on_agenda_id", using: :btree
+    t.index ["deleted_at"], name: "index_votes_on_deleted_at", using: :btree
   end
-
-  add_index "votes", ["agenda_id"], name: "index_votes_on_agenda_id", using: :btree
-  add_index "votes", ["deleted_at"], name: "index_votes_on_deleted_at", using: :btree
 
   add_foreign_key "adjustments", "agendas"
   add_foreign_key "adjustments", "users"

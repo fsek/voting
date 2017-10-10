@@ -1,9 +1,12 @@
-class VoteOption < ActiveRecord::Base
+# frozen_string_literal: true
+
+# Different options to select during votes
+class VoteOption < ApplicationRecord
   acts_as_paranoid
 
   has_many :audits, as: :auditable
 
-  belongs_to :vote
+  belongs_to :vote, optional: true
   validates :title, presence: true
 
   after_create :log_create

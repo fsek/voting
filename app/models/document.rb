@@ -1,8 +1,10 @@
-# encoding: UTF-8
-class Document < ActiveRecord::Base
+# frozen_string_literal: true
+
+# Allows uploading a document for viewing
+class Document < ApplicationRecord
   include CarrierWave::Compatibility::Paperclip
-  belongs_to :user
-  belongs_to :agenda
+  belongs_to :user, optional: true
+  belongs_to :agenda, optional: true
 
   validates :title, :category, presence: true
 
