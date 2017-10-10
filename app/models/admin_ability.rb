@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Defines what admins are allowed to do
 class AdminAbility
   include CanCan::Ability
 

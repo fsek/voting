@@ -1,21 +1,27 @@
-class Agenda < ActiveRecord::Base
+# frozen_string_literal: true
+
+# An agenda item for displaying the meeting agenda.
+class Agenda < ApplicationRecord
   acts_as_paranoid
 
-  before_destroy :destroy_validation  # Must be placed above has_many :children!
+  before_destroy :destroy_validation # Must be placed above has_many :children!
   before_save :set_sort_index
 
   has_many :adjustments
   has_many :votes
   has_many :documents, dependent: :nullify
-  has_many :children, class_name: 'Agenda', foreign_key: 'parent_id', dependent: :destroy
-  belongs_to :parent, class_name: 'Agenda'
+  has_many :children, class_name: 'Agenda',
+                      foreign_key: 'parent_id',
+                      dependent: :destroy
+  belongs_to :parent, class_name: 'Agenda', optional: true
 
-  CURRENT = 'current'.freeze
-  CLOSED = 'closed'.freeze
-  FUTURE = 'future'.freeze
+  CURRENT = 'current'
+  CLOSED = 'closed'
+  FUTURE = 'future'
 
   validates :title, :status, presence: true
-  validates :index, presence: true, numericality: { greater_than_or_equal_to: 1 }
+  validates :index, presence: true,
+                    numericality: { greater_than_or_equal_to: 1 }
   validate :parent_validation, :only_one_current, :no_open_votes
 
   scope :index, -> { includes(:parent).order(:sort_index) }
@@ -28,11 +34,7 @@ class Agenda < ActiveRecord::Base
 
   def to_s
     str = '§' + order + ' ' + title
-
-    if deleted?
-      str += I18n.t('agenda.deleted')
-    end
-
+    str += I18n.t('agenda.deleted') if deleted?
     str
   end
 
@@ -54,11 +56,7 @@ class Agenda < ActiveRecord::Base
 
   def list_str
     str = '§' + order
-
-    if deleted?
-      str += I18n.t('agenda.deleted')
-    end
-
+    str += I18n.t('agenda.deleted') if deleted?
     str
   end
 
@@ -67,7 +65,7 @@ class Agenda < ActiveRecord::Base
   end
 
   def current_status
-    if status == CLOSED && children.where(status: CURRENT).count > 0
+    if status == CLOSED && children.where(status: CURRENT).count.positive?
       CURRENT
     else
       status
@@ -75,11 +73,8 @@ class Agenda < ActiveRecord::Base
   end
 
   def start_page?
-    if status == CLOSED && children.where(status: CLOSED).count == children.count
-      false
-    else
-      true
-    end
+    !(status == CLOSED &&
+      children.where(status: CLOSED).count == children.count)
   end
 
   private

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Message sent via contact form
 class Message
   include ActiveModel::Model
 

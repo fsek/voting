@@ -1,8 +1,11 @@
-class Audit < ActiveRecord::Base
+# frozen_string_literal: true
+
+# For creating auditing logs of all changes
+class Audit < ApplicationRecord
   belongs_to :auditable, -> { with_deleted }, polymorphic: true
-  belongs_to :user, -> { with_deleted }
-  belongs_to :updater, class_name: 'User'
-  belongs_to :vote, -> { with_deleted }
+  belongs_to :user, -> { with_deleted }, optional: true
+  belongs_to :updater, class_name: 'User', optional: true
+  belongs_to :vote, -> { with_deleted }, optional: true
 
   attr_accessor :skip_presence_validation
 

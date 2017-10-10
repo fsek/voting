@@ -1,5 +1,7 @@
-# encoding:UTF-8
-class User < ActiveRecord::Base
+# frozen_string_literal: true
+
+# Model for allowing users to identify and sign in
+class User < ApplicationRecord
   acts_as_paranoid
   devise(:database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
@@ -34,9 +36,8 @@ class User < ActiveRecord::Base
   scope :all_attended, -> { includes(:adjustments).where.not(adjustments: { id: nil }) }
 
   def self.card_number(card)
-    if card != '____-____-____-____'
-      User.where('card_number LIKE ?', "%#{card}%")
-    end
+    return if card == '____-____-____-____'
+    User.where('card_number LIKE ?', "%#{card}%")
   end
 
   def to_s
@@ -67,9 +68,8 @@ class User < ActiveRecord::Base
   end
 
   def log_update
-    if log_changes.present?
-      log('update')
-    end
+    return unless log_changes.present?
+    log('update')
   end
 
   def log_destroy
@@ -100,14 +100,11 @@ class User < ActiveRecord::Base
   private
 
   def confirmed_to_vote
-    unless confirmed?
-      if presence
-        errors.add(:presence, I18n.t('vote_user.presence_error'))
-      end
+    return if confirmed?
 
-      if votecode.present?
-        errors.add(:votecode, I18n.t('vote_user.votecode_error'))
-      end
-    end
+    errors.add(:presence, I18n.t('vote_user.presence_error')) if presence
+
+    return unless votecode.present?
+    errors.add(:votecode, I18n.t('vote_user.votecode_error'))
   end
 end
