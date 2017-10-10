@@ -15,7 +15,7 @@ const selTag = function() {
 const clear = function() {
   $('.select2-single').select2('destroy');
   $('.select2-tags').select2('destroy');
-}
+};
 
 $(document).on('turbolinks:load', sel);
 $(document).on('turbolinks:load', selTag);
