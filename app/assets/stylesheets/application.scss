@@ -1,25 +1,25 @@
 // Importing Bootstrap
-@import "bootstrap-sprockets";
-@import "bootstrap";
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
 
 // Include colors and mixins
-@import "colors";
-@import "lth";
-@import "mixins";
-@import "fonts";
-@import "media-queries";
+@import 'colors';
+@import 'lth';
+@import 'mixins';
+@import 'fonts';
+@import 'media-queries';
 
 // Include partials
-@import "partials/*";
-@import "style/*";
-@import "plugins/*";
+@import 'partials/*';
+@import 'style/*';
+@import 'plugins/*';
 
 // Include gems
-@import "font-awesome";
-@import "select2";
-@import "select2-bootstrap";
-@import "cookies_eu";
-@import "pagedown_bootstrap";
+@import 'font-awesome';
+@import 'select2';
+@import 'select2-bootstrap';
+@import 'cookies_eu';
+@import 'pagedown_bootstrap';
 
 html {
   min-height: 100%;
