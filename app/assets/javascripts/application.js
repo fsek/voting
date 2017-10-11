@@ -18,7 +18,6 @@
 //= require select2_locale_sv
 //= require turbolinks
 //= require wice_grid
-//= require jquery.countdown.min
 //= require cookies_eu
 //= require cocoon
 //= require inputmask
