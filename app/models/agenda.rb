@@ -114,9 +114,7 @@ class Agenda < ApplicationRecord
 
     if destroyed_by_parent.blank? && (current? || current_child_to?(self))
       errors.add(:destroy, I18n.t('agenda.error_deleting'))
-      false
-    else
-      true
+      throw :abort
     end
   end
 
