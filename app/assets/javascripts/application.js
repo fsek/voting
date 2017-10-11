@@ -11,14 +11,11 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
-//= require jquery-ui/effect.all
 //= require jquery-ui/widgets/sortable
 //= require bootstrap-sprockets
 //= require select2
 //= require select2_locale_sv
-//= require_tree .
 //= require turbolinks
 //= require wice_grid
 //= require jquery.countdown.min
@@ -26,4 +23,4 @@
 //= require cocoon
 //= require inputmask
 //= require pagedown_bootstrap
-//= require pagedown_init
+//= require_tree .
