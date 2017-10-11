@@ -1,4 +1,4 @@
-const refresh = function () {
+function refresh() {
   var $voteStatus = $('#vote-status');
   var voteStatus;
   var position;
