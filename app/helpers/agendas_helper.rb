@@ -18,21 +18,13 @@ module AgendasHelper
   end
 
   def agenda_status_str(state)
-    if state == Agenda::CURRENT
-      Agenda.human_attribute_name('current')
-    elsif state == Agenda::FUTURE
-      Agenda.human_attribute_name('future')
-    elsif state == Agenda::CLOSED
-      Agenda.human_attribute_name('closed')
-    else
-      ''
-    end
+    t("model.agenda.statuses.#{state}")
   end
 
   def agenda_status_collection
-    [[Agenda.human_attribute_name('future'), Agenda::FUTURE],
-     [Agenda.human_attribute_name('current'), Agenda::CURRENT],
-     [Agenda.human_attribute_name('closed'), Agenda::CLOSED]]
+    Agenda.statuses.keys.map do |s|
+      [agenda_status_str(s), s]
+    end
   end
 
   def agenda_link(agenda)

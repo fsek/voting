@@ -56,7 +56,7 @@ RSpec.describe Admin::VotesController, type: :controller do
     end
 
     it 'fails if the vote is open' do
-      agenda = create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: :current)
       vote = create(:vote, status: Vote::OPEN, agenda: agenda)
 
       get(:edit, params: { id: vote.to_param })
@@ -123,7 +123,7 @@ RSpec.describe Admin::VotesController, type: :controller do
     end
 
     it 'fails if the vote is open' do
-      agenda = create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: :current)
       vote = create(:vote, title: 'A Bad Title', status: Vote::OPEN, agenda: agenda)
 
       patch(:update, params: { id: vote.to_param,
@@ -162,7 +162,7 @@ RSpec.describe Admin::VotesController, type: :controller do
 
   describe 'PATCH #open' do
     it 'opens the vote default to index' do
-      agenda = create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: :current)
       vote = create(:vote, status: Vote::FUTURE, agenda: agenda)
 
       patch(:open, params: { id: vote })
@@ -174,7 +174,7 @@ RSpec.describe Admin::VotesController, type: :controller do
     end
 
     it 'opens the vote with route show' do
-      agenda = create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: :current)
       vote = create(:vote, status: Vote::FUTURE, agenda: agenda)
 
       patch(:open, params: { id: vote, route: :show })
@@ -186,7 +186,7 @@ RSpec.describe Admin::VotesController, type: :controller do
     end
 
     it 'cannot open the vote if another vote is open' do
-      agenda = create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: :current)
       create(:vote, status: Vote::OPEN, agenda: agenda)
       vote = create(:vote, status: Vote::FUTURE, agenda: agenda)
 
@@ -199,8 +199,8 @@ RSpec.describe Admin::VotesController, type: :controller do
     end
 
     it 'cannot open the vote on the wrong agenda' do
-      create(:agenda, status: Agenda::CURRENT)
-      agenda = create(:agenda, status: Agenda::FUTURE)
+      create(:agenda, status: :current)
+      agenda = create(:agenda, status: :future)
       vote = create(:vote, status: Vote::FUTURE, agenda: agenda)
 
       patch(:open, params: { id: vote })
@@ -214,7 +214,7 @@ RSpec.describe Admin::VotesController, type: :controller do
 
   describe 'PATCH #close' do
     it 'closes the vote' do
-      agenda = create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: :current)
       vote = create(:vote, status: Vote::OPEN, agenda: agenda)
 
       patch(:close, params: { id: vote })
@@ -247,7 +247,7 @@ RSpec.describe Admin::VotesController, type: :controller do
     end
 
     it 'fails if the vote is open' do
-      agenda = create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: :current)
       vote = create(:vote, status: Vote::OPEN, agenda: agenda)
       create(:vote_option, vote: vote, count: 1)
       create(:vote_option, vote: vote, count: 1)

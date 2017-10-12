@@ -20,7 +20,7 @@ RSpec.describe VotePost, type: :model do
   describe 'validations' do
     context 'user' do
       it 'is present' do
-        agenda = create(:agenda, status: Agenda::CURRENT)
+        agenda = create(:agenda, status: :current)
         create(:vote, status: Vote::OPEN, agenda: agenda)
         vote_post = build(:vote_post)
 
@@ -28,7 +28,7 @@ RSpec.describe VotePost, type: :model do
       end
 
       it 'is unique to vote' do
-        agenda = create(:agenda, status: Agenda::CURRENT)
+        agenda = create(:agenda, status: :current)
         vote = create(:vote, status: Vote::OPEN, agenda: agenda)
         vote_post = build(:vote_post, user: user, vote: vote)
         vote_post.should validate_uniqueness_of(:user_id).scoped_to(:vote_id).with_message(I18n.t('vote_post.already_voted'))
@@ -67,7 +67,7 @@ RSpec.describe VotePost, type: :model do
       end
 
       it 'is open' do
-        agenda = create(:agenda, status: Agenda::CURRENT)
+        agenda = create(:agenda, status: :current)
         vote = build(:vote, status: Vote::OPEN, agenda: agenda)
         vote_post = build(:vote_post, vote: vote)
         vote_post.valid?

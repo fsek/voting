@@ -35,7 +35,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
     it 'makes not present @user present' do
       user = create(:user, presence: false)
       create(:vote, status: Vote::FUTURE)
-      create(:agenda, status: Agenda::CURRENT)
+      create(:agenda, status: :current)
 
       patch(:present, xhr: true, params: { id: user.to_param })
 
@@ -48,7 +48,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
     it 'makes already present @user stay present' do
       user = create(:user, presence: true)
       create(:vote, status: Vote::FUTURE)
-      create(:agenda, status: Agenda::CURRENT)
+      create(:agenda, status: :current)
 
       patch(:present, xhr: true, params: { id: user.to_param })
 
@@ -60,7 +60,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
 
     it 'works even if a vote is open' do
       user = create(:user, presence: false)
-      agenda = create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: :current)
       create(:vote, status: Vote::OPEN, agenda: agenda)
 
       patch(:present, xhr: true, params: { id: user.to_param })
@@ -89,7 +89,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
     it 'makes present @user not present' do
       user = create(:user, presence: true)
       create(:vote, status: Vote::FUTURE)
-      create(:agenda, status: Agenda::CURRENT)
+      create(:agenda, status: :current)
 
       patch(:not_present, xhr: true, params: { id: user.to_param })
 
@@ -101,7 +101,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
 
     it 'makes already not present @user stay not present' do
       user = create(:user, presence: false)
-      create(:agenda, status: Agenda::CURRENT)
+      create(:agenda, status: :current)
       create(:vote, status: Vote::FUTURE)
 
       patch(:not_present, xhr: true, params: { id: user.to_param })
@@ -114,7 +114,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
 
     it 'doesnt work if a vote is open' do
       user = create(:user, presence: true)
-      agenda = create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: :current)
       create(:vote, status: Vote::OPEN, agenda: agenda)
 
       patch(:not_present, xhr: true, params: { id: user.to_param })
@@ -146,7 +146,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       create(:user, presence: true)
       create(:user, presence: true)
       create(:vote, status: Vote::FUTURE)
-      create(:agenda, status: Agenda::CURRENT)
+      create(:agenda, status: :current)
 
       patch(:all_not_present)
 
@@ -162,7 +162,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       create(:user, presence: true)
       create(:user, presence: true)
 
-      agenda = create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: :current)
       create(:vote, status: Vote::OPEN, agenda: agenda)
 
       patch(:all_not_present)

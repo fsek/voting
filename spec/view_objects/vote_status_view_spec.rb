@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe VoteStatusView do
   describe 'initialisation' do
     it 'sets current' do
-      agenda = create(:agenda, status: Agenda::CURRENT)
-      create(:agenda, status: Agenda::CLOSED)
+      agenda = create(:agenda, status: :current)
+      create(:agenda, status: :closed)
       vote = create(:vote, status: Vote::OPEN, agenda: agenda)
       create(:vote, status: Vote::CLOSED)
       create(:user, presence: true)
