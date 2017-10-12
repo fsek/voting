@@ -32,7 +32,7 @@
       <h4><%= t('agenda.children') %></h4>
     </div>
     <ul class="list">
-      <% @agenda.children.index.each do |agenda| %>
+      <% @agenda.children.by_index.each do |agenda| %>
         <li><%= link_to(agenda, agenda_path(agenda)) %></li>
       <% end %>
     </ul>

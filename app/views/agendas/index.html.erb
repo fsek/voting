@@ -14,7 +14,7 @@
       </span>
       <p class="list-group-item-text">
         <% if agenda.children.present? %>
-          <% agenda.children.index.each do |a| %>
+          <% agenda.children.by_index.each do |a| %>
             <%= agenda_link(a) %>
             <br>
           <% end %>
