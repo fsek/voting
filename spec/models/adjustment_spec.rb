@@ -5,7 +5,7 @@ RSpec.describe Adjustment, type: :model do
     it 'adds new adjustments to the bottom' do
       user = create(:user)
 
-      agenda1 = create(:agenda, status: Agenda::CURRENT)
+      agenda1 = create(:agenda, status: :current)
       agenda2 = create(:agenda)
       agenda3 = create(:agenda)
 
@@ -19,7 +19,7 @@ RSpec.describe Adjustment, type: :model do
     it 'moves the last adjustment to the top' do
       user = create(:user)
 
-      agenda1 = create(:agenda, status: Agenda::CURRENT)
+      agenda1 = create(:agenda, status: :current)
       agenda2 = create(:agenda)
       agenda3 = create(:agenda)
 
@@ -35,7 +35,7 @@ RSpec.describe Adjustment, type: :model do
     it 'deltes an adjustment' do
       user = create(:user)
 
-      agenda1 = create(:agenda, status: Agenda::CURRENT)
+      agenda1 = create(:agenda, status: :current)
       agenda2 = create(:agenda)
       agenda3 = create(:agenda)
 
@@ -51,7 +51,7 @@ RSpec.describe Adjustment, type: :model do
     it 'moves up an adjustment' do
       user = create(:user)
 
-      agenda = create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: :current)
 
       a1 = create(:adjustment, user: user, agenda: agenda)
       a2 = create(:adjustment, user: user, agenda: agenda)

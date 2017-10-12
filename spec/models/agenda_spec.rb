@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Agenda, type: :model do
   describe 'validations' do
     it 'can only have one open agenda' do
-      create(:agenda, status: Agenda::CURRENT)
-      agenda = build(:agenda, status: Agenda::CURRENT)
+      create(:agenda, status: :current)
+      agenda = build(:agenda, status: :current)
       agenda.valid?
 
       agenda.errors[:status].should include I18n.t('agenda.too_many_open')
@@ -45,9 +45,9 @@ RSpec.describe Agenda, type: :model do
     end
 
     it 'can not close if a associated vote is open' do
-      agenda = create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: :current)
       create(:vote, status: Vote::OPEN, agenda: agenda)
-      agenda.status = Agenda::CLOSED
+      agenda.update(status: :closed)
       agenda.valid?
 
       agenda.errors[:status].should include I18n.t('agenda.vote_open')

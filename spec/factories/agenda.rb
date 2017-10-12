@@ -3,7 +3,7 @@ FactoryGirl.define do
     title
     index { generate(:agenda_index) }
     sort_index { sort_order }
-    status Agenda::FUTURE
+    status :future
   end
 
   sequence(:agenda_index) { |n| n }

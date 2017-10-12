@@ -2,7 +2,8 @@ class Admin::AgendasController < Admin::BaseController
   load_and_authorize_resource
 
   def index
-    @agenda_grid = initialize_grid(Agenda, include: :parent, order: 'sort_index')
+    @agenda_grid = initialize_grid(Agenda, include: :parent,
+                                           order: 'sort_index')
   end
 
   def new
@@ -51,14 +52,14 @@ class Admin::AgendasController < Admin::BaseController
   def set_current
     @agenda = Agenda.find(params[:id])
     expire_fragment('agenda_startpage')
-    @success = @agenda.update(status: Agenda::CURRENT)
+    @success = @agenda.update(status: :current)
     render
   end
 
   def set_closed
     @agenda = Agenda.find(params[:id])
     expire_fragment('agenda_startpage')
-    @success = @agenda.update(status: Agenda::CLOSED)
+    @success = @agenda.update(status: :closed)
     render
   end
 

@@ -103,7 +103,7 @@ RSpec.describe Admin::AgendasController, type: :controller do
     end
 
     it 'fails if the agenda is current' do
-      agenda = create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: :current)
 
       lambda do
         delete(:destroy, params: { id: agenda.to_param })
@@ -118,7 +118,7 @@ RSpec.describe Admin::AgendasController, type: :controller do
 
     it 'fails if the agenda has a current child' do
       agenda = create(:agenda)
-      child = create(:agenda, status: Agenda::CURRENT, parent: agenda)
+      child = create(:agenda, status: :current, parent: agenda)
 
       lambda do
         delete(:destroy, params: { id: agenda.to_param })
@@ -136,7 +136,7 @@ RSpec.describe Admin::AgendasController, type: :controller do
     it 'fails if the agenda has a current grandchild' do
       agenda = create(:agenda)
       child = create(:agenda, parent: agenda)
-      grandchild = create(:agenda, status: Agenda::CURRENT, parent: child)
+      grandchild = create(:agenda, status: :current, parent: child)
 
       lambda do
         delete(:destroy, params: { id: agenda.to_param })
@@ -157,7 +157,7 @@ RSpec.describe Admin::AgendasController, type: :controller do
     it 'works if the agenda has non-current children' do
       agenda = create(:agenda)
       child1 = create(:agenda, parent: agenda)
-      child2 = create(:agenda, status: Agenda::CLOSED, parent: agenda)
+      child2 = create(:agenda, status: :closed, parent: agenda)
       grandchild = create(:agenda, parent: child2)
 
       lambda do
@@ -181,45 +181,45 @@ RSpec.describe Admin::AgendasController, type: :controller do
 
   describe 'PATCH #set_current' do
     it 'makes closed @agenda current' do
-      agenda = create(:agenda, status: Agenda::CLOSED)
+      agenda = create(:agenda, status: :closed)
 
       patch(:set_current, xhr: true, params: { id: agenda.to_param })
 
       agenda.reload
       assigns(:agenda).should eq(agenda)
       assigns(:success).should be_truthy
-      agenda.status.should eq(Agenda::CURRENT)
-      Agenda.current.should eq(agenda)
+      agenda.current?.should be_truthy
+      Agenda.now.should eq(agenda)
     end
 
     it 'doesnt work if there already is a current agenda' do
-      current_agenda = create(:agenda, status: Agenda::CURRENT)
-      agenda = create(:agenda, status: Agenda::CLOSED)
+      current_agenda = create(:agenda, status: :current)
+      agenda = create(:agenda, status: :closed)
 
       patch(:set_current, xhr: true, params: { id: agenda.to_param })
 
       agenda.reload
       assigns(:agenda).should eq(agenda)
       assigns(:success).should be_falsey
-      Agenda.current.should eq(current_agenda)
+      Agenda.now.should eq(current_agenda)
     end
   end
 
   describe 'PATCH #set_closed' do
     it 'makes current @agenda closed' do
-      agenda = create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: :current)
 
       patch(:set_closed, xhr: true, params: { id: agenda.to_param })
 
       agenda.reload
       assigns(:agenda).should eq(agenda)
       assigns(:success).should be_truthy
-      agenda.status.should eq(Agenda::CLOSED)
-      Agenda.current.should be_nil
+      agenda.closed?.should be_truthy
+      Agenda.now.should be_nil
     end
 
     it 'doesnt work if a associated vote is open' do
-      agenda = create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: :current)
       create(:vote, status: Vote::OPEN, agenda: agenda)
 
       patch(:set_closed, xhr: true, params: { id: agenda.to_param })
@@ -227,8 +227,8 @@ RSpec.describe Admin::AgendasController, type: :controller do
       agenda.reload
       assigns(:agenda).should eq(agenda)
       assigns(:success).should be_falsey
-      agenda.status.should eq(Agenda::CURRENT)
-      Agenda.current.should eq agenda
+      agenda.current?.should be_truthy
+      Agenda.now.should eq agenda
     end
   end
 end

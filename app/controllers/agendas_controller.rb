@@ -6,7 +6,7 @@ class AgendasController < ApplicationController
   end
 
   def show
-    @agenda = Agenda.includes(:documents).includes(children: :parent).find(params[:id])
-    @current_agenda = Agenda.current
+    @agenda = Agenda.includes(:documents, children: :parent).find(params[:id])
+    @current_agenda = Agenda.now
   end
 end

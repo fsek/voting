@@ -1,63 +1,57 @@
 module VoteService
   def self.user_vote(post)
-    begin
-      VotePost.transaction do
-        if post.vote_option_ids.present?
-          post.trim_votecode
-          post.selected = post.vote_option_ids.length
-          ret = VoteOption.increment_counter(:count, post.vote_option_ids)
-          unless ret == post.vote_option_ids.length
-            throw ActiveRecord::RecordInvalid
-          end
-        else
-          post.selected = 0
+    VotePost.transaction do
+      if post.vote_option_ids.present?
+        post.trim_votecode
+        post.selected = post.vote_option_ids.length
+        ret = VoteOption.increment_counter(:count, post.vote_option_ids)
+        unless ret == post.vote_option_ids.length
+          throw ActiveRecord::RecordInvalid
         end
-        post.save!
+      else
+        post.selected = 0
       end
-      true
-    rescue
-      false
+      post.save!
     end
+    true
+  rescue
+    false
   end
 
   def self.set_present(user)
+    return false unless Agenda.now.present?
     state = false
-    if !Agenda.current.nil?
-      begin
-        user.update!(presence: true)
-        Adjustment.create!(user: user, agenda: Agenda.current, presence: true)
-        state = true
-      rescue
-        state = false
-      end
+    begin
+      user.update!(presence: true)
+      Adjustment.create!(user: user, agenda: Agenda.now, presence: true)
+      state = true
+    rescue
+      state = false
     end
     state
   end
 
   def self.set_not_present(user)
     state = false
-    if Vote.current.nil? && !Agenda.current.nil?
-      begin
-        user.update!(presence: false)
-        Adjustment.create!(user: user, agenda: Agenda.current, presence: false)
-        state = true
-      rescue
-        state = false
-      end
+    return state if Vote.current.present? || Agenda.now.nil?
+    begin
+      user.update!(presence: false)
+      Adjustment.create!(user: user, agenda: Agenda.now, presence: false)
+      state = true
+    rescue
+      state = false
     end
     state
   end
 
   def self.set_all_not_present
-    agenda = Agenda.current
-    if Vote.current.nil? && !agenda.nil?
-      User.transaction do
-        User.present.each do |u|
-          u.update!(presence: false)
-          Adjustment.create!(user: u, agenda: agenda, presence: false)
-        end
+    agenda = Agenda.now
+    return if Vote.current.present? || agenda.nil?
+    User.transaction do
+      User.present.each do |u|
+        u.update!(presence: false)
+        Adjustment.create!(user: u, agenda: agenda, presence: false)
       end
-      true
     end
   end
 
@@ -74,7 +68,7 @@ module VoteService
 
   def self.votecode_generator
     votecode = Array.new(7) { [*'0'..'9', *'a'..'z'].sample }.join
-    (User.with_deleted.any? { |x| x.votecode == votecode }) ? votecode_generator : votecode
+    User.with_deleted.any? { |x| x.votecode == votecode } ? votecode_generator : votecode
   end
 
   def self.reset(vote)

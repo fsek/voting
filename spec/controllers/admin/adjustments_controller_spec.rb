@@ -12,7 +12,7 @@ RSpec.describe Admin::AdjustmentsController, type: :controller do
 
   describe 'GET #index' do
     it 'assigns an agenda' do
-      agenda = create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: :current)
       vote = create(:vote, status: Vote::OPEN, agenda: agenda)
 
       get(:index)
@@ -44,7 +44,7 @@ RSpec.describe Admin::AdjustmentsController, type: :controller do
 
   describe 'POST #create' do
     it 'valid parameters' do
-      agenda = create(:agenda, status: Agenda::CURRENT)
+      agenda = create(:agenda, status: :current)
       user = create(:user)
       attributes = { agenda_id: agenda.to_param,
                      user_id: user.to_param,
