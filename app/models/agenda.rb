@@ -15,9 +15,7 @@ class Agenda < ApplicationRecord
                       dependent: :destroy
   belongs_to :parent, class_name: 'Agenda', optional: true
 
-  CURRENT = 'current'
-  CLOSED = 'closed'
-  FUTURE = 'future'
+  enum(status: { future: 0, current: 5, closed: 10 })
 
   validates :title, :status, presence: true
   validates :index, presence: true,
@@ -28,8 +26,8 @@ class Agenda < ApplicationRecord
 
   attr_accessor :destroyed_by_parent
 
-  def self.current
-    Agenda.where(status: CURRENT).first
+  def self.now
+    Agenda.current.first
   end
 
   def to_s
@@ -48,9 +46,9 @@ class Agenda < ApplicationRecord
 
   def sort_order
     if parent
-      parent.sort_order.to_s + '.' + ('%02d' % index).to_s
+      parent.sort_order.to_s + '.' + format('%02d', index).to_s
     else
-      ('%02d' % index).to_s
+      format('%02d', index).to_s
     end
   end
 
@@ -60,21 +58,12 @@ class Agenda < ApplicationRecord
     str
   end
 
-  def current?
-    status == CURRENT
-  end
-
   def current_status
-    if status == CLOSED && children.where(status: CURRENT).count.positive?
-      CURRENT
-    else
-      status
-    end
+    closed? && children.current.any? ? :current : status
   end
 
   def start_page?
-    !(status == CLOSED &&
-      children.where(status: CLOSED).count == children.count)
+    !(closed? && children.closed.count == children.count)
   end
 
   private
@@ -82,7 +71,7 @@ class Agenda < ApplicationRecord
   def parent_validation
     p = parent
 
-    while !p.nil?
+    until p.nil?
       if p.id == id
         errors.add(:parent_id, I18n.t('agenda.recursion'))
         break
@@ -92,17 +81,16 @@ class Agenda < ApplicationRecord
   end
 
   def only_one_current
-    if current? && Agenda.current.present? && Agenda.current != self
-      errors.add(:status, I18n.t('agenda.too_many_open'))
-    end
+    return unless current? && Agenda.now.present? && Agenda.now != self
+    errors.add(:status, I18n.t('agenda.too_many_open'))
   end
 
   def no_open_votes
-    if status_changed?(from: CURRENT) && votes.present?
-      unless votes.current.blank?
-        errors.add(:status, I18n.t('agenda.vote_open'))
-      end
-    end
+    return unless status_changed?(from: 'current') &&
+                  votes.present? &&
+                  !votes.current.blank?
+
+    errors.add(:status, I18n.t('agenda.vote_open'))
   end
 
   def set_sort_index
@@ -119,12 +107,11 @@ class Agenda < ApplicationRecord
   end
 
   def current_child_to?(parent)
-    agenda = Agenda.current
+    agenda = Agenda.now
+    return unless agenda.present?
 
-    if agenda.present?
-      while agenda.parent.present?
-        (agenda.parent == parent) ? (return true) : (agenda = agenda.parent)
-      end
+    while agenda.parent.present?
+      agenda.parent == parent ? (return true) : (agenda = agenda.parent)
     end
 
     false

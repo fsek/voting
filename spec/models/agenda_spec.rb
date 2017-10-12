@@ -52,5 +52,13 @@ RSpec.describe Agenda, type: :model do
 
       agenda.errors[:status].should include I18n.t('agenda.vote_open')
     end
+
+    it 'current_status from child' do
+      agenda = create(:agenda, status: :closed)
+      child = create(:agenda, status: :current, parent: agenda)
+
+      agenda.current_status.to_s.should eq('current')
+
+    end
   end
 end
