@@ -3,7 +3,7 @@
   <%= f.input :index, as: :integer, input_html: { min: '1'} %>
   <%= f.input :status, collection: agenda_status_collection,
                        input_html: { class: 'select2-single' }, include_blank: false %>
-  <%= f.association :parent, collection: Agenda.index, label_method: :to_s, include_hidden: false,
+  <%= f.association :parent, collection: Agenda.by_index, label_method: :to_s, include_hidden: false,
                 input_html: { class: 'select2-single' }, required: false %>
   <%= f.input :short, hint: t('agenda.hint.short') %>
   <%= f.input :description, as: :pagedown, input_html: { preview: true, rows: 10 },

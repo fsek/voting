@@ -22,7 +22,7 @@ class Agenda < ApplicationRecord
                     numericality: { greater_than_or_equal_to: 1 }
   validate :parent_validation, :only_one_current, :no_open_votes
 
-  scope :index, -> { includes(:parent).order(:sort_index) }
+  scope :by_index, -> { includes(:parent).order(:sort_index) }
 
   attr_accessor :destroyed_by_parent
 
@@ -63,7 +63,7 @@ class Agenda < ApplicationRecord
   end
 
   def start_page?
-    !(closed? && children.closed.count == children.count)
+    current? || children.closed.count != children.count
   end
 
   private
