@@ -1,4 +1,11 @@
 sv:
+  model:
+    agenda:
+      statuses:
+        closed: Stängd
+        current: Aktuell
+        future: Framtida
+
   activerecord:
     models:
       agenda:
