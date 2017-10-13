@@ -1,48 +1,50 @@
-class Admin::NewsController < Admin::BaseController
-  load_and_authorize_resource
+# frozen_string_literal: true
 
-  def index
-    @news_grid = initialize_grid(News, include: :user,
-                                       order: 'news.created_at',
-                                       order_direction: :desc)
-  end
+module Admin
+  # Handles creation and update of news
+  class NewsController < Admin::BaseController
+    authorize_resource
 
-  def new
-    @news = News.new
-  end
-
-  def edit
-    @news = News.find(params[:id])
-  end
-
-  def create
-    @news = News.new(news_params)
-    @news.user = current_user
-    if @news.save
-      redirect_to admin_news_index_path, notice: alert_create(News)
-    else
-      render :new, status: 422
+    def index
+      @news = News.order(:created_at).includes(:user)
     end
-  end
 
-  def update
-    @news = News.find(params[:id])
-    if @news.update(news_params)
-      redirect_to admin_news_index_path, notice: alert_update(News)
-    else
-      render :edit, status: 422
+    def new
+      @news = News.new
     end
-  end
 
-  def destroy
-    @news = News.find(params[:id])
-    @news.destroy!
-    redirect_to admin_news_index_path, notice: alert_destroy(News)
-  end
+    def edit
+      @news = News.find(params[:id])
+    end
 
-  private
+    def create
+      @news = News.new(news_params)
+      @news.user = current_user
+      if @news.save
+        redirect_to admin_news_index_path, notice: alert_create(News)
+      else
+        render :new, status: 422
+      end
+    end
 
-  def news_params
-    params.require(:news).permit(:title, :content, :url)
+    def update
+      @news = News.find(params[:id])
+      if @news.update(news_params)
+        redirect_to admin_news_index_path, notice: alert_update(News)
+      else
+        render :edit, status: 422
+      end
+    end
+
+    def destroy
+      News.find(params[:id]).destroy!
+      redirect_to(admin_news_index_path, notice: alert_destroy(News))
+    end
+
+    private
+
+    def news_params
+      params.require(:news).permit(:title, :content, :url)
+    end
   end
 end

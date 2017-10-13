@@ -2,24 +2,33 @@
 <div class="headline">
   <h1><%= models_name(News) %></h1>
 </div>
-<%= link_to t('news.new'), new_admin_news_path, class: 'btn primary' %>
+<div class="col-md-2 col-sm-12">
+  <%= link_to t('news.new'), new_admin_news_path, class: 'btn primary' %>
+</div>
 
-<%= grid(@news_grid) do |g|
-  g.column name: News.human_attribute_name(:title), attribute: 'title', filter: false
-  g.column name: News.human_attribute_name(:url), attribute: 'url', filter: false
-  g.column name: News.human_attribute_name(:created_at), attribute: 'created_at', filter: false do |news|
-    l(news.created_at)
-  end
-  g.column name: News.human_attribute_name(:user), assoc: :user,
-    attribute: 'id', filter: false do |post|
-    if post.user.present?
-      link_to(post.user, user_path(post.user))
-    end
-  end
-  g.column name: News.human_attribute_name(:updated_at), attribute: 'updated_at', filter: false do |news|
-    l(news.updated_at)
-  end
-  g.column name: t(:edit) do |link|
-    link_to(t(:edit), edit_admin_news_path(link))
-  end
-end -%>
+<div class="col-md-10 col-sm-12">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th><%= News.human_attribute_name(:title) %></th>
+        <th><%= News.human_attribute_name(:url) %></th>
+        <th><%= News.human_attribute_name(:created_at) %></th>
+        <th><%= News.human_attribute_name(:user) %></th>
+        <th><%= News.human_attribute_name(:updated_at) %></th>
+        <th><%= t(:edit) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @news.each do |n| %>
+        <tr>
+          <td><%= n.title %></td>
+          <td><%= n.url %></td>
+          <td><%= l(n.created_at) %></td>
+          <td><%= n.user %></td>
+          <td><%= l(n.updated_at) %></td>
+          <td><%= link_to(t(:edit), edit_admin_news_path(n)) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
