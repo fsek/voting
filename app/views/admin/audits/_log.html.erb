@@ -1,0 +1,29 @@
+<% votes ||= [] %>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th><%= t('log.type') %></th>
+      <th><%= t('log.action') %></th>
+      <th><%= t('log.change') %></th>
+      <th><%= model_name(secondary) %></th>
+      <th><%= t('log.updated_by') %></th>
+      <th><%= t('log.date') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% audits.each do |audit| %>
+      <tr>
+        <td><%= Audit.human_attribute_name(audit.auditable_type) %></td>
+        <td><%= User.human_attribute_name(audit.action) %></td>
+        <td><%= split_audit_hashes(audit.audited_changes, primary) %></td>
+        <% if votes.any? %>
+          <td><%= vote_str(votes, audit.vote_id) %></td>
+        <% else %>
+          <td><%= audit.user %></td>
+        <% end %>
+        <td><%= audit.updater %></td>
+        <td><%= audit.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

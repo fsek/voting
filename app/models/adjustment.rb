@@ -4,6 +4,7 @@
 class Adjustment < ApplicationRecord
   acts_as_paranoid
   include RankedModel
+  paginates_per(100)
 
   belongs_to :agenda, -> { with_deleted }
   belongs_to :user
