@@ -4,35 +4,34 @@
   </div>
   <table class="table">
     <tr>
-      <td><%= t('attributes.name') %></td>
+      <td><%= User.human_attribute_name(:name) %></td>
       <td><%= @user.to_s %></td>
     </tr>
     <tr>
-      <td><%= t('vote_user.votecode') %></td>
-      <td>
-        <%= @user.votecode %><br>
-    </td>
+      <td><%= User.human_attribute_name(:votecode) %></td>
+      <td><%= @user.votecode %><br></td>
     </tr>
     <tr>
       <td><%= User.human_attribute_name(:presence) %></td>
-      <td>
-        <%= presence_string(@user.presence) %><br>
-      </td>
+      <td><%= presence_string(@user.presence) %><br></td>
     </tr>
     <tr>
       <td><%= User.human_attribute_name(:confirmed_at) %></td>
-      <td>
-        <%= user_confirmed(@user) %>
-      </td>
+      <td><%= user_confirmed(@user) %></td>
     </tr>
   </table>
+
+  <%= link_to t('vote_user.administrate'), admin_vote_users_path, class: 'btn secondary' %>
+  <hr />
+
   <div class="headline">
     <h3><%= models_name(Adjustment) %></h3>
   </div>
   <%= render 'adjustments', user: @user %>
+
   <div class="headline">
     <h3><%= t('log.title') %></h3>
   </div>
-  <%= render 'log', votes: @votes %>
-  <%= link_to t('vote_user.administrate'), admin_vote_users_path, class: 'btn secondary' %>
+  <%= render '/admin/audits/log', audits: @audits, votes: @votes, primary: User, secondary: Vote %>
+
 </div>

@@ -1,4 +1,11 @@
 sv:
+  admin:
+    users:
+      index:
+        all: Alla användare
+        paginated: Begränsat
+        show_vote_user: Visa mötesanvändare
+
   user:
     account: Konto
     admin_index: Administrera användare

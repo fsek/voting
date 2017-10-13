@@ -3,25 +3,14 @@ class Admin::VoteUsersController < Admin::BaseController
 
   def index
     @vote_status_view = VoteStatusView.new
-    @vote_users_grid = initialize_grid(User, order: 'firstname')
+    @vote_users = User.order(:firstname, :lastname).page(params[:page])
   end
 
   def show
     @user = User.find(params[:id])
     @votes = Vote.with_deleted
-    @adjustments = @user.adjustments.rank(:row_order)
-    @audit_grid = initialize_grid(Audit.where(user_id: @user.id),
-                                  include: :updater,
-                                  order: 'created_at',
-                                  order_direction: 'desc')
-  end
-
-  def attendance_list
-    @attend_grid = initialize_grid(User.all_attended,
-                                   enable_export_to_csv: true,
-                                   csv_field_separator: ';',
-                                   name: 'attendance')
-    export_grid_if_requested
+    @adjustments = @user.adjustments.includes(agenda: :parent).rank(:row_order)
+    @audits = @user.audits.includes(:updater)
   end
 
   def present
