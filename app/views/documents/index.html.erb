@@ -3,37 +3,43 @@
   <h1><%= t('document.title') %></h1>
 </div>
 <div class="col-md-2 col-sm-12 cafe competition margin-bottom-20">
-  <%= document_dropdown_button(collection: @documents.categories,
-                               current: @documents.current_category) %>
-  <button class="wg-external-submit-button btn secondary" data-grid-name="grid">
-    <%= t('document.filter') %>
-  </button>
-  <button class="wg-external-reset-button btn secondary" data-grid-name="grid">
-    <%= t('document.reset_filter') %>
-  </button>
+  <%= document_dropdown_button(collection: @display.categories,
+                               current: @display.current_category,
+                               page: @display.page) %>
   <% if can_administrate?(:index, Document) %>
-    <hr>
     <%= link_to(t('document.admin.index'), admin_documents_path, class: 'btn secondary') %>
   <% end %>
 </div>
 
 
-<div class="col-md-10 col-sm-12">
-  <%= grid(@documents.grid, hide_submit_button: true, hide_reset_button: true) do |g|
-    g.column(name: Document.human_attribute_name(:title), attribute: 'title') do |document|
-      link_to(document, document_path(document), target: :blank)
-    end
-    g.column(name: Document.human_attribute_name(:category), attribute: 'category',
-             filter: false)
-    g.column(name: Document.human_attribute_name(:updated_at), attribute: 'updated_at',
-             filter: false)
-    if can_administrate?(:manage, Document)
-      g.column(name: t(:edit)) do |document|
-        link_to(edit_admin_document_path(document)) do
-          fa_icon('cog', text: t(:edit))
-        end
-      end
-    end
-  end -%>
-  <%= simple_format(t('document.filter_explanation')) %>
+<div class="col-md-10 col-sm-12 table-responsive">
+  <%= paginate(@display.documents) %>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th><%= Document.human_attribute_name(:title) %></th>
+        <th><%= Document.human_attribute_name(:category) %></th>
+        <th><%= Document.human_attribute_name(:updated_at) %></th>
+        <% if can_administrate?(:manage, Document) %>
+          <th><%= t(:edit) %></th>
+        <% end %>
+      </tr>
+      <tbody>
+        <% @display.documents.each do |d| %>
+          <tr>
+            <td> <%= link_to(d, document_path(d), target: :blank) %></td>
+            <td> <%= d.category %></td>
+            <td> <%= l(d.updated_at) %></td>
+            <% if can_administrate?(:manage, Document) %>
+              <td>
+                <%= link_to(fa_icon('cog', text: t(:edit)),
+                            edit_admin_document_path(d)) %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </thead>
+  </table>
+  <%= paginate(@display.documents) %>
 </div>
