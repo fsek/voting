@@ -220,7 +220,7 @@ RSpec.describe Admin::AgendasController, type: :controller do
 
     it 'doesnt work if a associated vote is open' do
       agenda = create(:agenda, status: :current)
-      create(:vote, status: Vote::OPEN, agenda: agenda)
+      create(:vote, status: :open, agenda: agenda)
 
       patch(:set_closed, xhr: true, params: { id: agenda.to_param })
 

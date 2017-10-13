@@ -4,7 +4,7 @@ class VoteStatusView
 
   def initialize
     @adjusted = User.present.count
-    @agenda = Agenda.includes(:votes).current.first
+    @agenda = Agenda.includes(:votes).now
     @vote = Vote.current
   end
 end

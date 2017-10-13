@@ -6,7 +6,7 @@ RSpec.feature 'votes' do
       agenda = create(:agenda, status: :current)
       vote = create(:vote, :with_options, agenda: agenda)
       user = create(:user, presence: true, votecode: 'abcd123')
-      vote.update!(status: Vote::OPEN)
+      vote.update!(status: :open)
       LoginPage.new.visit_page.login(user)
 
       page.visit votes_path
