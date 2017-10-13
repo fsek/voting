@@ -2,13 +2,12 @@
 
 # Allows uploading a document for viewing
 class Document < ApplicationRecord
-  include CarrierWave::Compatibility::Paperclip
   belongs_to :user, optional: true
   belongs_to :agenda, optional: true
 
   validates :title, :category, presence: true
 
-  mount_uploader :pdf, DocumentUploader, mount_on: :pdf_file_name
+  mount_uploader :pdf, DocumentUploader
 
   # For caching pdf in form
   attr_accessor :pdf_cache
@@ -20,10 +19,10 @@ class Document < ApplicationRecord
   end
 
   def self.categories
-    where.not(category: nil).
-      where.not(category: '').
-      order(:category).
-      pluck(:category).uniq
+    where.not(category: nil)
+         .where.not(category: '')
+         .order(:category)
+         .pluck(:category).uniq
   end
 
   def view
