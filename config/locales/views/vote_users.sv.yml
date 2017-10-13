@@ -1,14 +1,30 @@
 sv:
+  admin:
+    vote_users:
+      index:
+        title: Administrera justeringar
+        change_state: Justera in/ut
+        confirm_reset: "Vill du verkligen nollställa röstkoden?"
+        reset_votecode: Nollställ röstkod
+        reset: Nollställ
+        attendance_list: Närvarolista
+        manage_vote: Hantera voteringar
+        manage_agenda: Hantera dagordning
+        make_all_not_present: Justera ut alla användare
+        quick_adjustments: Snabbjustering
+
+      attendance_list:
+        manage_agenda: Hantera dagordning
+        manage_users: Hantera användare
+        manage_vote: Hantera voteringar
+        title: Närvarolista
+
   vote_user:
     administrate: Administrera justeringar
-    attendance_list: Närvarolista
     card_number_present: Kortnummer angivet
     card_number_not_present: Kortnummer ej angivet
-    change_state: Justera in/ut
     confirm_all_not_present: "Är du säker på att du vill justera ut ALLA användare?"
-    confirm_reset: "Vill du verkligen nollställa röstkoden?"
     edit: Redigera användare
-    make_all_not_present: Justera ut alla användare
     make_not_present: Justera ut
     make_present: Justera in
     manage: Hantera justeringar
@@ -16,8 +32,6 @@ sv:
     present: Närvarande
     present_count: Antal injusterade
     presence_error: Användare kunde inte justeras in, har eposten bekräftats?
-    reset: Nollställ
-    reset_votecode: Nollställ röstkod
     votecode: Röstkod
     votecode_error: Ny röstkod kunde inte ges ut, har användare bekräftat sin epost?
     votecode_error_short: Kunde inte nollställa
@@ -41,4 +55,3 @@ sv:
       present: Injusterad
       short_error_not_present: Utjustering misslyckades
       short_error_present: Injustering misslyckades
-

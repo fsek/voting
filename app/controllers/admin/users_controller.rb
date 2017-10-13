@@ -1,8 +1,12 @@
+# frozen_string_literal: true
+
+# Handles administration for users, roles and sign in
 class Admin::UsersController < Admin::BaseController
-  load_and_authorize_resource
+  authorize_resource
 
   def index
-    @users_grid = initialize_grid(User)
+    @users = User.order(:id).page(params[:page])
+    @users = @users.per(User.count) if params['all'].present?
   end
 
   def edit

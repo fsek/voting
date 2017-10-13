@@ -3,6 +3,7 @@
 # Model for allowing users to identify and sign in
 class User < ApplicationRecord
   acts_as_paranoid
+  paginates_per(40)
   devise(:database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
          :validatable, :confirmable)
