@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
 class DocumentsController < ApplicationController
-  load_and_authorize_resource
+  authorize_resource
 
   def index
-    @documents = filter_documents(@documents, params[:category])
-    grid = initialize_grid(@documents, order: 'documents.updated_at',
-                                       order_direction: 'desc')
-
-    @documents = DocumentView.new(grid: grid,
-                                  categories: Document.categories,
-                                  current_category: params[:category])
+    documents = Document.all.order(:title)
+    documents = filter_documents(documents, params[:category], params[:page])
+    @display = DisplayDocuments.new(documents: documents,
+                                    categories: Document.categories,
+                                    current_category: params[:category],
+                                    page: params[:page])
   end
 
   def show
@@ -24,11 +23,9 @@ class DocumentsController < ApplicationController
 
   private
 
-  def filter_documents(documents, category)
-    if category.present?
-      documents.where(category: category)
-    else
-      documents
-    end
+  def filter_documents(documents, category, page)
+    documents = documents.page(page)
+    documents = documents.where(category: category) if category.present?
+    documents
   end
 end

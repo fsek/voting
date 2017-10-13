@@ -5,7 +5,7 @@
   <%= f.association :agenda, collection: Agenda.by_index, label_method: :to_s, include_hidden: false,
                              input_html: { class: 'select2-single' }, required: false %>
   <% if @document.pdf.present? %>
-    <p><%= link_to(@document.pdf_file_name, @document)%></p>
+    <p><%= link_to(@document.pdf, @document)%></p>
   <% end %>
   <%= f.input :pdf, as: :file %>
   <%= f.input :public, as: :boolean %>
