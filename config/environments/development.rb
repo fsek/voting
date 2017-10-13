@@ -56,5 +56,8 @@ Rails.application.configure do
     Bullet.enable = true
     Bullet.add_footer = true
   end
+
   PUBLIC_URL = 'localhost:3000'.freeze
+  config.action_mailer.default_url_options = { host: PUBLIC_URL }
+  config.action_mailer.asset_host = PUBLIC_URL
 end
