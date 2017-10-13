@@ -1,32 +1,42 @@
 <div class="headline">
-  <h1><%= t('agenda.title') %></h1>
+  <h1><%= t('.title') %></h1>
 </div>
 <div class="col-md-12">
-  <%= link_to t('agenda.new'), new_admin_agenda_path, class: 'btn primary' %>
+  <%= link_to t('.new_agenda'), new_admin_agenda_path, class: 'btn primary' %>
   <% if can_administrate? :manage, Vote %>
-    <%= link_to t('vote.manage'), admin_votes_path, class: 'btn secondary' %>
+    <%= link_to t('.manage_voting'), admin_votes_path, class: 'btn secondary' %>
   <% end %>
   <% if can_administrate? :manage_voting, User %>
-    <%= link_to t('vote_user.manage'), admin_vote_users_path, class: 'btn secondary' %>
+    <%= link_to t('.manage_vote_users'), admin_vote_users_path, class: 'btn secondary' %>
   <% end %>
 </div>
 <div class="col-md-12">
-  <%= grid(@agenda_grid, class: 'admin-grid') do |grid|
-    grid.row_attributes do |a|
-      {id: dom_id(a), class: a.current? ? 'highlight' : 'no-highlight'}
-    end
-    grid.column name: Agenda.human_attribute_name(:index), attribute: 'sort_index' do |a|
-      link_to a, edit_admin_agenda_path(a)
-    end
-    grid.column name: Agenda.human_attribute_name(:status), attribute: 'status', class: 'status' do |a|
-      agenda_status_str(a.status)
-    end
-    grid.column name: t('agenda.change_status'), class: 'state' do |a|
-      agenda_state_link(a)
-    end
-    grid.column name: t('remove') do |a|
-      link_to(t('remove'), admin_agenda_path(a), method: :delete,
-              data: {confirm: t('vote.confirm_remove') + a.title + '?'})
-    end
-  end -%>
+  <%= paginate(@agendas) %>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th><%= Agenda.human_attribute_name(:index) %></th>
+        <th><%= Agenda.human_attribute_name(:status) %></th>
+        <th><%= t('.change_status') %></th>
+        <th><%= t(:remove) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @agendas.each do |agenda| %>
+        <tr id="<%= dom_id(agenda) %>"
+            class="<%= agenda.current? ? 'highlight' : 'no-highlight' %>">
+          <td><%= link_to(agenda, edit_admin_agenda_path(agenda))%></td>
+          <td><%= agenda_status_str(agenda.status) %></td>
+          <td><%= agenda_state_link(agenda) %></td>
+          <td>
+            <%= link_to(t(:remove), admin_agenda_path(agenda),
+                        method: :delete,
+                        data: { confirm: t('.confirm_remove',
+                                           title: agenda.title) }) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate(@agendas) %>
 </div>

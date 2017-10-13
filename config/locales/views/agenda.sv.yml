@@ -1,8 +1,17 @@
 sv:
+  admin:
+    agendas:
+      index:
+        change_status: Ändra status
+        confirm_remove: "Är du säker på att du vill ta bort %{title}?"
+        manage_vote_users: Hantera deltagare
+        manage_voting: Hantera voteringar
+        new_agenda: Ny dagordningspunkt
+        title: Administrera dagordning
+
   agenda:
     admin: Administrera dagordning
     all: Visa hela dagordningen
-    change_status: Ändra status
     children: Underpunkter
     close: Stäng
     current: Aktuell dagordningspunkt
