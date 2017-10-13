@@ -5,7 +5,7 @@
 
 <div class="col-md-3 col-sm-12">
   <% if can_administrate? :manage_voting, User %>
-    <%= link_to t('vote_user.attendance_list'), attendance_list_admin_vote_users_path,
+    <%= link_to t('vote_user.attendance_list'), admin_attendance_list_path,
                 class: 'btn primary' %>
     <%= link_to t('vote_user.manage'), admin_vote_users_path, class: 'btn secondary' %>
   <% end %>

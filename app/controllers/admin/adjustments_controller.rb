@@ -40,7 +40,6 @@ class Admin::AdjustmentsController < Admin::BaseController
 
   def destroy
     adjustment = Adjustment.find(params[:id])
-    user = adjustment.user
     adjustment.destroy!
 
     render json: nil, status: :ok
