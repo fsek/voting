@@ -9,7 +9,7 @@ RSpec.feature 'User update' do
       page.status_code.should eq(200)
 
       within('.user.status') do
-        first(:linkhref, own_user_path).click
+        first(:linkhref, user_path).click
       end
 
       page.status_code.should eq(200)

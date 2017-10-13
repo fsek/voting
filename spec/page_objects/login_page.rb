@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
+# Used for signing in in feature specs
 class LoginPage
   include Capybara::DSL
 
   def visit_page
-    visit '/logga_in'
+    visit '/logga-in'
     self
   end
 

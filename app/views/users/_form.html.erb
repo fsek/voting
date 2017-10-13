@@ -1,4 +1,4 @@
-<%= simple_form_for(user, url: own_user_path, html: {class: 'reg-page'}) do |f| %>
+<%= simple_form_for(user, html: {class: 'reg-page'}) do |f| %>
   <table class="table">
     <tr>
       <td><%= User.human_attribute_name(:firstname) %></td>

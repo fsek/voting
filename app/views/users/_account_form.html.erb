@@ -1,4 +1,6 @@
-<%= simple_form_for(user, url: account_own_user_path, method: :patch, html: { class: 'reg-page' }) do |f| %>
+<%= simple_form_for(user, url: account_user_path,
+                          method: :patch,
+                          html: { class: 'reg-page' }) do |f| %>
   <div class="headline">
     <h2>
       <%= fa_icon('envelope') %>
