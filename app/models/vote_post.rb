@@ -27,9 +27,7 @@ class VotePost < ApplicationRecord
   end
 
   def log_update
-    if log_changes.present?
-      log('update')
-    end
+    log('update') if log_changes.present?
   end
 
   def log_destroy
@@ -43,11 +41,11 @@ class VotePost < ApplicationRecord
   end
 
   def create_changes
-    changes.except(:created_at, :updated_at, :deleted_at, :id, :selected)
+    saved_changes.except(:created_at, :updated_at, :deleted_at, :id, :selected)
   end
 
   def log_changes
-    changes.except(:created_at, :updated_at, :deleted_at, :id)
+    saved_changes.except(:created_at, :updated_at, :deleted_at, :id)
   end
 
   def updater

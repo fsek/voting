@@ -64,9 +64,9 @@ class Vote < ApplicationRecord
   end
 
   def log_changes
-    diff = changes.except(:created_at, :updated_at,
-                          :deleted_at, :id,
-                          :vote_options)
+    diff = saved_changes.except(:created_at, :updated_at,
+                                :deleted_at, :id,
+                                :vote_options)
     diff[:reset] = '' if reset.present? && reset
     diff
   end

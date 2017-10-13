@@ -69,8 +69,7 @@ class User < ApplicationRecord
   end
 
   def log_update
-    return unless log_changes.present?
-    log('update')
+    log('update') if log_changes.present?
   end
 
   def log_destroy
@@ -83,7 +82,7 @@ class User < ApplicationRecord
   end
 
   def log_changes
-    changes.extract!(:presence, :votecode)
+    saved_changes.extract!(:presence, :votecode)
   end
 
   def self.current=(user)

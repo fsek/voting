@@ -7,7 +7,7 @@ class Adjustment < ApplicationRecord
   paginates_per(100)
 
   belongs_to :agenda, -> { with_deleted }
-  belongs_to :user
+  belongs_to :user, optional: false
 
   after_update :log_update
   after_destroy :log_destroy
@@ -30,11 +30,11 @@ class Adjustment < ApplicationRecord
   end
 
   def update_changes
-    changes.extract!(:agenda_id, :presence)
+    saved_changes.extract!(:agenda_id, :presence)
   end
 
   def destroy_changes
-    diff = changes.extract!(:agenda_id, :presence)
+    diff = saved_changes.extract!(:agenda_id, :presence)
     diff[:name] = agenda.to_s if agenda.present? && !diff.key?('agenda_id')
     diff
   end
