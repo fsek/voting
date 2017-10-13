@@ -29,8 +29,6 @@ gem 'select2-rails'
 gem 'simple_form'
 gem 'turbolinks'
 gem 'uglifier'
-gem 'wice_grid', git: 'https://github.com/leikind/wice_grid.git',
-                 branch: 'rails3'
 
 group :production do
   gem 'rails_12factor'

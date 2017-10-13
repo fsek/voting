@@ -17,7 +17,6 @@
 //= require select2
 //= require select2_locale_sv
 //= require turbolinks
-//= require wice_grid
 //= require cookies_eu
 //= require cocoon
 //= require inputmask

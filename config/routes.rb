@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'attendance_list/index'
+
   get :cookies_information, controller: :static_pages,
                             as: :cookies, path: :cookies
   get :about, controller: :static_pages, path: :om
@@ -45,9 +47,10 @@ Rails.application.routes.draw do
         patch :not_present, on: :member
         patch :new_votecode, on: :member
         patch :all_not_present, on: :collection
-        get :attendance_list, on: :collection
         post :search, on: :collection
       end
+
+      resource :attendance_list, path: :narvarolista, only: :show
     end
 
     namespace :admin do
