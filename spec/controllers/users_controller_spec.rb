@@ -11,13 +11,6 @@ RSpec.describe UsersController, type: :controller do
 
   allow_user_to :manage, User
 
-  describe 'GET #show' do
-    it 'assigns the requested user as @user' do
-      get(:show, params: { id: other.to_param })
-      assigns(:user).should eq(other)
-    end
-  end
-
   describe 'GET #edit' do
     it 'should render edit page' do
       get(:edit)

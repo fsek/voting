@@ -8,11 +8,12 @@
         <% end %>
 
         <li class="dropdown">
-          <%= link_to(current_user, class: 'dropdown-toggle', data: { toggle: 'dropdown', delay: '0' }) do %>
+          <%= link_to('#', class: 'dropdown-toggle',
+                           data: { toggle: 'dropdown', delay: '0' }) do %>
             <%= fa_icon("user") %> <%= current_user %>
           <% end %>
           <ul class="dropdown-menu pull-right">
-            <li><%= link_to t('user.settings'), :own_user %></li>
+            <li><%= link_to t('user.settings'), :user %></li>
             <li><%= link_to t('devise.sign_out'), :destroy_user_session, method: :delete %></li>
           </ul>
         </li>
