@@ -9,7 +9,7 @@
 <div class="col-md-2 col-sm-12 vote margin">
   <span class="choices">
     <span class="title">
-    <%= Vote.human_attribute_name(:choices) %> 
+    <%= Vote.human_attribute_name(:choices) %>
     </span>
     <span class="value">
       <%= fa_icon('hashtag') %> <%= @vote.choices %>
@@ -109,5 +109,5 @@
     <h2><%= models_name(Audit) %></h2>
   </div>
 
-  <%= render '/admin/votes/audits', audit_grid: @audit_grid %>
+  <%= render '/admin/audits/log', primary: Vote, secondary: User, audits: @audits %>
 </div>

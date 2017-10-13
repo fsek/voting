@@ -1,4 +1,14 @@
 sv:
+  admin:
+    votes:
+      index:
+        manage_agenda: Hantera dagordning
+        manage_vote_users: Hantera justeringar
+        new_vote: Ny votering
+        title: Administrera voteringar
+        open_close: Öppna/stäng
+        confirm_remove: "Är du säker på att du vill ta bort %{title}?"
+
   vote:
     2_3_majority: För 2/3 majoritet krävs
     add_option: Lägg till
@@ -9,7 +19,6 @@ sv:
     cannot_reset: Voteringen är öppen och kan därmed inte nollställas
     closed: Stängd
     closing_failed: Stängningen misslyckades
-    confirm_remove: "Är du säker på att du vill ta bort "
     confirm_reset: Är du helt säker på att du vill nollställa voteringen?
     count: Antal
     current: Aktuell omröstning
@@ -23,7 +32,6 @@ sv:
     made_closed: Stängdes
     made_open: Öppnades
     manage: Hantera voteringar
-    new_vote: Ny votering
     no_votes_open: "Just nu finns det tyvärr ingen votering som är öppen."
     number_of_votes: Röster / Injusterade
     open: Öppen

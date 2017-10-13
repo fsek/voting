@@ -60,9 +60,11 @@ module VoteService
     begin
       user.update!(votecode: votecode)
       VoteMailer.votecode(user).deliver_now
-      true
-    rescue
-      false
+      return true
+    rescue => e
+      puts 'New votecode failed'
+      puts e
+      return false
     end
   end
 

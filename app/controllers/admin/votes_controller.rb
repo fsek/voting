@@ -3,7 +3,6 @@ class Admin::VotesController < Admin::BaseController
 
   def index
     @vote_status_view = VoteStatusView.new
-    @votes_grid = initialize_grid(Vote, include: :agenda, order: 'agendas.sort_index')
   end
 
   def new
@@ -23,9 +22,7 @@ class Admin::VotesController < Admin::BaseController
   def edit
     @vote = Vote.find(params[:id])
 
-    if @vote.open?
-      redirect_to admin_votes_path, alert: t('vote.cannot_edit')
-    end
+    redirect_to admin_votes_path, alert: t('vote.cannot_edit') if @vote.open?
   end
 
   def update
@@ -52,10 +49,7 @@ class Admin::VotesController < Admin::BaseController
     # @vote holds visited vote
     @vote = Vote.find(params[:id])
     @vote_status = VoteStatusView.new
-    @audit_grid = initialize_grid(Audit.where(vote_id: @vote.id),
-                                  include: [:user, :updater],
-                                  order: 'created_at',
-                                  order_direction: 'desc')
+    @audits = Audit.where(vote: @vote).includes(:user, :updater)
   end
 
   def open
