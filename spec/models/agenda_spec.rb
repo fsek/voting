@@ -46,7 +46,7 @@ RSpec.describe Agenda, type: :model do
 
     it 'can not close if a associated vote is open' do
       agenda = create(:agenda, status: :current)
-      create(:vote, status: Vote::OPEN, agenda: agenda)
+      create(:vote, status: :open, agenda: agenda)
       agenda.update(status: :closed)
       agenda.valid?
 

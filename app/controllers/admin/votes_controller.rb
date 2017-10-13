@@ -61,7 +61,7 @@ class Admin::VotesController < Admin::BaseController
   def open
     vote = Vote.find(params[:id])
 
-    if vote.update(status: Vote::OPEN)
+    if vote.update(status: :open)
       flash[:notice] = I18n.t('vote.made_open')
     else
       flash[:alert] = vote.errors[:status].to_sentence
@@ -72,7 +72,7 @@ class Admin::VotesController < Admin::BaseController
 
   def close
     vote = Vote.find(params[:id])
-    vote.update!(status: Vote::CLOSED)
+    vote.update!(status: :closed)
 
     flash[:notice] = I18n.t('vote.made_closed')
 
