@@ -385,6 +385,7 @@ DEPENDENCIES
   font-awesome-rails
   jquery-rails
   jquery-ui-rails
+  kaminari
   pagedown-bootstrap-rails
   paranoia (~> 2.0)
   pg
