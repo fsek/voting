@@ -1,13 +1,14 @@
-<div class="col-md-8 col-md-offset-2 col-sm-12 reg-page">
-  <div class="headline">
-    <h1><%= t('news.edit') %></h1>
-  </div>
-  <%= render 'form'%>
-  <hr>
-  <%= link_to(t(:show_attr, attr: model_name(News)),
-              news_path(@news), class: 'btn secondary') %>
-  <%= link_to(t(:destroy_attr, attr: model_name(News)),
-              admin_news_path(@news), method: :delete,  class: 'btn danger') %>
-  <%= link_to(t(:index_attr, attr: models_name(News)),
+<div class="headline">
+  <h1><%= t('.title') %></h1>
+</div>
+
+<div class="col-md-2 col-sm-12">
+  <%= link_to(t('.all_news'),
               admin_news_index_path, class: 'btn secondary') %>
+  <%= link_to(t('.destroy'),
+              admin_news_path(@news), method: :delete,  class: 'btn danger') %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= render 'form', news: @news %>
 </div>
