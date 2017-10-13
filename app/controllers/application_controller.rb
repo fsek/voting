@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  rescue_from ActiveRecord::RecordInvalid do |ex|
+  rescue_from ActiveRecord::RecordInvalid do
     flash[:alert] = "Fel i formulär"
     render referring_action, status: :unprocessable_entity
   end
@@ -21,10 +21,6 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound do
     # translate record not found -> HTTP 404
     fail ActionController::RoutingError.new 'not found'
-  end
-
-  rescue_from ActionController::RedirectBackError do
-    redirect_to :root
   end
 
   def model_name(model)

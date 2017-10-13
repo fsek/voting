@@ -8,7 +8,8 @@ class Admin::AdjustmentsController < Admin::BaseController
   def create
     @adjustment = Adjustment.new(adjustment_params)
     if @adjustment.save
-      redirect_to admin_vote_user_path(@adjustment.user_id), notice: alert_update(Adjustment)
+      redirect_to admin_vote_user_path(@adjustment.user),
+                  notice: alert_update(Adjustment)
     else
       render :new, status: 422
     end

@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 source 'https://rubygems.org'
 
-# Do not forget to update in .ruby-version and circle.yml
+# Do not forget to update in .ruby-version and .circleci/config.yml
 ruby '2.4.1'
 
-gem 'rails', '5.0.4'
+gem 'rails', '5.1.4'
 
 gem 'bootstrap-sass'
 gem 'cancancan'
