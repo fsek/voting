@@ -10,14 +10,13 @@ RSpec.describe Admin::AgendasController, type: :controller do
   end
 
   describe 'GET #index' do
-    it 'assigns a agenda grid' do
+    it 'shows all agendas' do
       create(:agenda, title: 'First')
       create(:agenda, title: 'Second')
       create(:agenda, title: 'Third')
 
       get(:index)
       response.status.should eq(200)
-      assigns(:agenda_grid).should be_present
     end
   end
 
@@ -26,7 +25,7 @@ RSpec.describe Admin::AgendasController, type: :controller do
       agenda = create(:agenda)
 
       get(:edit, params: { id: agenda.to_param })
-      assigns(:agenda).should eq(agenda)
+      response.status.should eq(200)
     end
   end
 

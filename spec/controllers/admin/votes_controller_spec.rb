@@ -10,49 +10,45 @@ RSpec.describe Admin::VotesController, type: :controller do
   end
 
   describe 'GET #index' do
-    it 'assigns a vote grid' do
+    it 'render vote index' do
       create(:vote, title: 'Second vote')
       create(:vote, title: 'First vote')
       create(:vote, title: 'Third vote')
 
       get(:index)
-      response.status.should eq(200)
-      assigns(:votes_grid).should be_present
+      response.should have_http_status(200)
     end
   end
 
   describe 'GET #show' do
-    it 'assigns given vote as @vote' do
+    it 'shows vote' do
       vote = create(:vote)
 
       get(:show, params: { id: vote.to_param })
-      assigns(:vote).should eq(vote)
-      assigns(:audit_grid).should be_present
+      response.should have_http_status(200)
     end
   end
 
   describe 'GET #edit' do
-    it 'assigns given vote as @vote' do
+    it 'edits vote' do
       vote = create(:vote)
 
       get(:edit, params: { id: vote.to_param })
-      assigns(:vote).should eq(vote)
+      response.should have_http_status(200)
     end
 
     it 'works if the vote is closed' do
       vote = create(:vote, status: :closed)
 
       get(:edit, params: { id: vote.to_param })
-      assigns(:vote).should eq(vote)
-      response.status.should eq(200)
+      response.should have_http_status(200)
     end
 
     it 'works if the vote is future' do
       vote = create(:vote, status: :future)
 
       get(:edit, params: { id: vote.to_param })
-      assigns(:vote).should eq(vote)
-      response.status.should eq(200)
+      response.should have_http_status(200)
     end
 
     it 'fails if the vote is open' do
@@ -61,17 +57,15 @@ RSpec.describe Admin::VotesController, type: :controller do
 
       get(:edit, params: { id: vote.to_param })
 
-      assigns(:vote).should eq(vote)
       flash[:alert].should eq(I18n.t('vote.cannot_edit'))
       response.should redirect_to(admin_votes_path)
     end
   end
 
   describe 'GET #new' do
-    it 'assigns a new vote as @vote' do
+    it 'is successful' do
       get(:new)
-      assigns(:vote).instance_of?(Vote).should be_truthy
-      assigns(:vote).new_record?.should be_truthy
+      response.should have_http_status(200)
     end
   end
 
@@ -142,7 +136,7 @@ RSpec.describe Admin::VotesController, type: :controller do
                                vote: { title: '' } })
       vote.reload
 
-      response.status.should eq(422)
+      response.should have_http_status(422)
       response.should render_template(:edit)
       vote.title.should eq('A Bad Title')
     end

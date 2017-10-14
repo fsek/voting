@@ -11,14 +11,13 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
   end
 
   describe 'GET #index' do
-    it 'assigns a vote user grid' do
+    it 'renders all vote users' do
       create(:user, firstname: 'First')
       create(:user, firstname: 'Second')
       create(:user, firstname: 'Third')
 
       get(:index)
-      response.status.should eq(200)
-      assigns(:vote_users_grid).should be_present
+      response.should have_http_status(200)
     end
   end
 
@@ -27,8 +26,7 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       user = create(:user)
 
       get(:show, params: { id: user.to_param })
-      assigns(:user).should eq(user)
-      assigns(:audit_grid).should be_present
+      response.should have_http_status(200)
     end
   end
 
@@ -41,9 +39,8 @@ RSpec.describe Admin::VoteUsersController, type: :controller do
       patch(:present, xhr: true, params: { id: user.to_param })
 
       user.reload
-      assigns(:user).should eq(user)
-      assigns(:success).should be_truthy
       user.presence.should be_truthy
+      response.should have_http_status(200)
     end
 
     it 'makes already present @user stay present' do

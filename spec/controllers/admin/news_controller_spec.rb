@@ -19,7 +19,6 @@ RSpec.describe Admin::NewsController, type: :controller do
   end
 
   describe 'GET #index' do
-    include Wice::Controller
     it 'assigns news sorted as @news' do
       get(:index)
       response.status.should eq(200)
