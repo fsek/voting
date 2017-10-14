@@ -12,7 +12,6 @@ RSpec.describe Admin::UsersController, type: :controller do
 
       get(:index)
       response.status.should eq(200)
-      assigns(:users_grid).should be_present
     end
   end
 

@@ -62,8 +62,6 @@ module VoteService
       VoteMailer.votecode(user).deliver_now
       return true
     rescue => e
-      puts 'New votecode failed'
-      puts e
       return false
     end
   end
