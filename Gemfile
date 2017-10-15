@@ -32,7 +32,6 @@ gem 'turbolinks'
 gem 'uglifier'
 
 group :production do
-  gem 'rails_12factor'
   gem 'therubyracer', platform: :ruby
 end
 
