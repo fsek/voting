@@ -1,8 +1,7 @@
 require 'rails_helper'
 RSpec.feature 'Confirm account' do
-  let(:user) { create(:user, :unconfirmed) }
-
   scenario 'confirm' do
+    user = create(:user, :unconfirmed)
     page.visit(user_confirmation_url(confirmation_token: user.confirmation_token))
     page.status_code.should eq(200)
 
