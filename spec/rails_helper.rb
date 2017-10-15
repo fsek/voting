@@ -10,7 +10,6 @@ require 'rspec/rails'
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 # Do preferebly add it to 'spec/support/*'
 require 'shoulda/matchers'
-require 'rspec/example_steps'
 require 'devise'
 
 ActiveRecord::Migration.maintain_test_schema!
@@ -20,6 +19,7 @@ Dir[Rails.root.join('spec/page_objects/**/*.rb')].each { |f| require f }
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
+  config.use_transactional_fixtures = true
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
@@ -36,6 +36,7 @@ RSpec.configure do |config|
 
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.extend ControllerMacros
+  config.include RequestMacro, type: :request
 
   # Clear uploaded files
   config.after(:each) do
