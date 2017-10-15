@@ -164,9 +164,18 @@ GEM
     js_cookie_rails (2.1.4)
       railties (>= 3.1)
     json (2.1.0)
-    kaminari (0.17.0)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
+    kaminari (1.1.0)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.1.0)
+      kaminari-activerecord (= 1.1.0)
+      kaminari-core (= 1.1.0)
+    kaminari-actionview (1.1.0)
+      actionview
+      kaminari-core (= 1.1.0)
+    kaminari-activerecord (1.1.0)
+      activerecord
+      kaminari-core (= 1.1.0)
+    kaminari-core (1.1.0)
     libv8 (3.16.14.19)
     loofah (2.1.1)
       crass (~> 1.0.2)
@@ -232,11 +241,6 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
-    rails_12factor (0.0.3)
-      rails_serve_static_assets
-      rails_stdout_logging
-    rails_serve_static_assets (0.0.5)
-    rails_stdout_logging (0.0.5)
     railties (5.1.4)
       actionpack (= 5.1.4)
       activesupport (= 5.1.4)
@@ -377,7 +381,6 @@ DEPENDENCIES
   puma
   rails (= 5.1.4)
   rails-controller-testing
-  rails_12factor
   ranked-model
   redcarpet
   rollbar
