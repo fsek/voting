@@ -41,14 +41,13 @@ Rails.application.routes.draw do
       end
 
       resources :vote_users, path: :motesanvandare, only: %i[show index] do
-        patch :present, on: :member
-        patch :not_present, on: :member
-        patch :new_votecode, on: :member
-        patch :all_not_present, on: :collection
         post :search, on: :collection
       end
 
-      resource :attendance_list, path: :narvarolista, only: :show
+      resources :votecodes, path: :rostkod, only: :update
+      resources :attendances, path: :narvaro, only: %i[index update destroy] do
+        delete('', action: :destroy_all, on: :collection)
+      end
     end
 
     namespace :admin do

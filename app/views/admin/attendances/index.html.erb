@@ -11,7 +11,7 @@
   <% if can_administrate? :manage, Agenda %>
     <%= link_to t('.manage_agenda'), admin_agendas_path, class: 'btn secondary' %>
   <% end %>
-  <%= link_to t('.export'), admin_attendance_list_path(format: :csv), class: 'btn secondary' %>
+  <%= link_to t('.export'), admin_attendances_path(format: :csv), class: 'btn secondary' %>
 </div>
 <div class="col-md-12">
   <table class="table table-striped table-bordered">

@@ -34,7 +34,9 @@ class User < ApplicationRecord
   scope :all_firstname, -> { order(firstname: :asc) }
   scope :present, -> { where(presence: true) }
   scope :not_present, -> { where(presence: false) }
-  scope :all_attended, -> { includes(:adjustments).where.not(adjustments: { id: nil }) }
+  scope :all_attended, (lambda do
+    includes(adjustments: :agenda).where.not(adjustments: { id: nil })
+  end)
 
   def self.card_number(card)
     return if card == '____-____-____-____'

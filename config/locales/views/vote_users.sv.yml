@@ -4,6 +4,7 @@ sv:
       index:
         title: Administrera justeringar
         change_state: Justera in/ut
+        confirm_all_not_present: "Är du säker på att du vill justera ut ALLA användare?"
         confirm_reset: "Vill du verkligen nollställa röstkoden?"
         reset_votecode: Nollställ röstkod
         reset: Nollställ
@@ -23,7 +24,6 @@ sv:
     administrate: Administrera justeringar
     card_number_present: Kortnummer angivet
     card_number_not_present: Kortnummer ej angivet
-    confirm_all_not_present: "Är du säker på att du vill justera ut ALLA användare?"
     edit: Redigera användare
     make_not_present: Justera ut
     make_present: Justera in

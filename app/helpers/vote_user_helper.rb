@@ -2,10 +2,10 @@ module VoteUserHelper
   def vote_user_state_link(user)
     return unless user.present?
     if user.presence
-      link_to(t('user.make_not_present'), not_present_admin_vote_user_path(user),
-              method: :patch, remote: true)
+      link_to(t('user.make_not_present'), admin_attendance_path(user),
+              method: :delete, remote: true)
     else
-      link_to(t('user.make_present'), present_admin_vote_user_path(user),
+      link_to(t('user.make_present'), admin_attendance_path(user),
               method: :patch, remote: true)
     end
   end
