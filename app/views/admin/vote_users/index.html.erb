@@ -3,7 +3,7 @@
 </div>
 
 <div class="col-md-12">
-  <%= link_to t('.attendance_list'), admin_attendance_list_path,
+  <%= link_to t('.attendance_list'), admin_attendances_path,
               class: 'btn primary' %>
   <%= link_to t('.quick_adjustments'), admin_adjustments_path,
               class: 'btn primary' %>
@@ -13,8 +13,8 @@
   <% if can? :manage, Agenda %>
     <%= link_to t('.manage_agenda'), admin_agendas_path, class: 'btn secondary' %>
   <% end %>
-  <%= link_to(t('.make_all_not_present'), all_not_present_admin_vote_users_path,
-              method: :patch, class: 'btn secondary',
+  <%= link_to(t('.make_all_not_present'), admin_attendances_path,
+              method: :delete, class: 'btn secondary',
               data: {confirm: t('.confirm_all_not_present')}) %>
   <hr>
 </div>
@@ -41,7 +41,7 @@
             <td class="adjust"> <%= vote_user_state_link(user) %></td>
             <td class="votecode-reset">
               <%= link_to(t('.reset'),
-                          new_votecode_admin_vote_user_path(user),
+                          admin_votecode_path(user),
                           method: :patch, remote: true,
                           data: { confirm: t('.confirm_reset') }) %>
             </td>

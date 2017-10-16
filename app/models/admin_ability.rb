@@ -11,11 +11,15 @@ class AdminAbility
       can(:manage, Adjustment)
       can(:manage, Agenda)
       can(:manage, :vote_user)
+      can(:manage, :votecode)
+      can(:manage, :attendance)
     elsif user.secretary?
       can(:manage, Adjustment)
       can(:manage, Agenda)
       can(:manage, Document)
       can(:manage, :vote_user)
+      can(:manage, :votecode)
+      can(:manage, :attendance)
     elsif user.chairman?
       can(:manage, Agenda)
       can(:manage, Vote)
