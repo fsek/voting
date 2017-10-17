@@ -82,8 +82,7 @@
   <% unless @vote.open? %>
     <%= link_to(t('vote.edit'), edit_admin_vote_path(@vote),
                 class: 'btn secondary vote button') %>
-    <%= link_to(t('vote.reset'), reset_admin_vote_path(@vote),
-                method: :patch,
+    <%= button_to(t('vote.reset'), admin_vote_reset_path(@vote),
                 class: 'btn danger vote button',
                 data: { confirm: t('vote.confirm_reset') }) %>
   <% end %>

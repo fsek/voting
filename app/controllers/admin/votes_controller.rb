@@ -54,41 +54,6 @@ module Admin
       @audits = Audit.where(vote: @vote).includes(:user, :updater)
     end
 
-    def open
-      vote = Vote.find(params[:id])
-
-      if vote.update(status: :open)
-        flash[:notice] = I18n.t('vote.made_open')
-      else
-        flash[:alert] = vote.errors[:status].to_sentence
-      end
-
-      redirect_back(fallback_location: admin_votes_path)
-    end
-
-    def close
-      vote = Vote.find(params[:id])
-      vote.update!(status: :closed)
-
-      flash[:notice] = I18n.t('vote.made_closed')
-
-      redirect_back(fallback_location: admin_votes_path)
-    end
-
-    def reset
-      vote = Vote.find(params[:id])
-
-      if vote.open?
-        flash[:alert] = I18n.t('vote.cannot_reset')
-      elsif VoteService.reset(vote)
-        flash[:notice] = I18n.t('vote.reset_ok')
-      else
-        flash[:alert] = I18n.t('vote.reset_failed')
-      end
-
-      redirect_to admin_vote_path(vote)
-    end
-
     def refresh_count
       @vote = Vote.find(params[:id])
     end
