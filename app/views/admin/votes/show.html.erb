@@ -77,7 +77,7 @@
 </div>
 
 <div class="col-md-1 col-sm-12 vote margin">
-  <%= vote_state_link(@vote, type: 'btn primary vote button', route: :show) %>
+  <%= vote_state_link(@vote, type: 'btn primary vote button') %>
 
   <% unless @vote.open? %>
     <%= link_to(t('vote.edit'), edit_admin_vote_path(@vote),

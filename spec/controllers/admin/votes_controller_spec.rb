@@ -171,7 +171,8 @@ RSpec.describe Admin::VotesController, type: :controller do
       agenda = create(:agenda, status: :current)
       vote = create(:vote, status: :future, agenda: agenda)
 
-      patch(:open, params: { id: vote, route: :show })
+      request.env['HTTP_REFERER'] = admin_vote_path(vote)
+      patch(:open, params: { id: vote })
 
       response.should redirect_to(admin_vote_path(vote))
       flash[:notice].should eq(I18n.t('vote.made_open'))
