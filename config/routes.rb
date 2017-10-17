@@ -15,23 +15,38 @@ Rails.application.routes.draw do
 
   # Scope to change urls to swedish
   scope path_names: { new: 'ny', edit: 'redigera' } do
-    namespace :admin do
-      resources :users, path: :anvandare, only: %i[index edit update]
+    resources :contacts, path: :kontakt, only: [:index] do
+      post :mail, on: :collection
     end
-
+    resources :documents, path: :dokument, only: %i[index show]
     resource :user, path: :anvandare, only: [:update] do
       get '', action: :edit, as: :edit
       patch :password, path: :losenord, action: :update_password
       patch :account, path: :konto, action: :update_account
     end
 
+    resources :agendas, path: :dagordning, only: %i[index show]
     resources :votes, path: :voteringar, only: :index do
       resources :vote_posts, only: %i[new create]
     end
 
-    resources :agendas, path: :dagordning, only: %i[index show]
-
     namespace :admin do
+      resources :documents, path: :dokument, except: :show
+      resources :news, path: :nyheter, except: [:show]
+
+      resources :adjustments, path: :justering, except: [:show] do
+        post :update_row_order, on: :collection
+      end
+
+      resources :agendas, path: :dagordning, except: [:show]
+      resources :current_agendas, path: 'aktuell-dagordning',
+                                  only: %i[update destroy]
+
+      resources :attendances, path: :narvaro, only: %i[index update destroy] do
+        delete('', action: :destroy_all, on: :collection)
+      end
+
+      resources :users, path: :anvandare, only: %i[index edit update]
       resources :votes, path: :voteringar, controller: :votes do
         patch :close, on: :member
         patch :open, on: :member
@@ -45,36 +60,6 @@ Rails.application.routes.draw do
       end
 
       resources :votecodes, path: :rostkod, only: :update
-      resources :attendances, path: :narvaro, only: %i[index update destroy] do
-        delete('', action: :destroy_all, on: :collection)
-      end
-    end
-
-    namespace :admin do
-      resources :agendas, path: :dagordning, except: [:show] do
-        patch :set_current, on: :member
-        patch :set_closed, on: :member
-      end
-    end
-
-    namespace :admin do
-      resources :adjustments, path: :justering, except: [:show] do
-        post :update_row_order, on: :collection
-      end
-    end
-
-    resources :contacts, path: :kontakt, only: [:index] do
-      post :mail, on: :collection
-    end
-
-    namespace :admin do
-      resources :news, path: :nyheter, except: [:show]
-    end
-
-    resources :documents, path: :dokument, only: %i[index show]
-
-    namespace :admin do
-      resources :documents, path: :dokument, except: :show
     end
   end
 
