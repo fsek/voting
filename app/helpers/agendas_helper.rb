@@ -8,12 +8,12 @@ module AgendasHelper
   end
 
   def agenda_close_link(agenda)
-    link_to(t('agenda.close'), set_closed_admin_agenda_path(agenda),
-            method: :patch, remote: true)
+    link_to(t('agenda.close'), admin_current_agenda_path(agenda),
+            method: :delete, remote: true)
   end
 
   def agenda_current_link(agenda)
-    link_to(t('agenda.set_current'), set_current_admin_agenda_path(agenda),
+    link_to(t('agenda.set_current'), admin_current_agenda_path(agenda),
             method: :patch, remote: true)
   end
 
