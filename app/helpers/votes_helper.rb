@@ -107,15 +107,15 @@ module VotesHelper
   def vote_state_link(vote, type: nil)
     return unless vote.present?
     if vote.open?
-      link_to(t('vote.do_close'), close_admin_vote_path(vote),
-              method: :patch, class: type)
+      link_to(t('vote.do_close'), admin_vote_opening_path(vote),
+              method: :delete, class: type)
     elsif vote.closed?
-      link_to(t('vote.do_open'), open_admin_vote_path(vote),
-              method: :patch, class: type,
+      link_to(t('vote.do_open'), admin_vote_opening_path(vote),
+              method: :post, class: type,
               data: { confirm: t('vote.reopen') })
     else
-      link_to(t('vote.do_open'), open_admin_vote_path(vote),
-              method: :patch, class: type)
+      link_to(t('vote.do_open'), admin_vote_opening_path(vote),
+              method: :post, class: type)
     end
   end
 

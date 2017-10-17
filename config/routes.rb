@@ -48,9 +48,8 @@ Rails.application.routes.draw do
 
       resources :users, path: :anvandare, only: %i[index edit update]
       resources :votes, path: :voteringar, controller: :votes do
-        patch :close, on: :member
-        patch :open, on: :member
-        patch :reset, on: :member
+        resource :reset, only: :create, path: :aterstall
+        resource :opening, only: %i[create destroy], path: :oppna
         post :refresh_count, on: :member
       end
 
