@@ -12,8 +12,8 @@ function refresh() {
     $voteStatus = $('#vote-status');
     if ($voteStatus.length && $voteStatus.data('position') == position) {
       $.ajax({
-        url: '/admin/voteringar/refresh',
-        method: 'POST'
+        url: '/admin/voteringar',
+        method: 'GET'
       })
     } else {
       clearInterval(voteStatus);

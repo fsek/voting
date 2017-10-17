@@ -51,7 +51,6 @@ Rails.application.routes.draw do
         patch :close, on: :member
         patch :open, on: :member
         patch :reset, on: :member
-        post :refresh, on: :collection
         post :refresh_count, on: :member
       end
 
