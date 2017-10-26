@@ -35,7 +35,7 @@ jobs:
 
       - run:
           name: Database setup
-          command: bin/rake db:schema:load --trace
+          command: bin/rails db:create db:migrate --trace
 
       - run:
           name: Run rspec
