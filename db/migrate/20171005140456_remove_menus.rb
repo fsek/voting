@@ -1,4 +1,4 @@
-class RemoveMenus < ActiveRecord::Migration
+class RemoveMenus < ActiveRecord::Migration[4.2]
   def change
     drop_table "menus" do |t|
       t.string   "location", limit: 255

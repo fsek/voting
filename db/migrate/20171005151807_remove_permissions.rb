@@ -1,4 +1,4 @@
-class RemovePermissions < ActiveRecord::Migration
+class RemovePermissions < ActiveRecord::Migration[4.2]
   def change
     drop_table "permission_users", force: :cascade do |t|
       t.integer  "user_id",       null: false, index: true
