@@ -1,4 +1,4 @@
-class RemoveNotices < ActiveRecord::Migration
+class RemoveNotices < ActiveRecord::Migration[4.2]
   def change
     drop_table :notices do |t|
       t.string   "title", limit: 255
