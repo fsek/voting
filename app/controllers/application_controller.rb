@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :configure_permitted_devise_parameters, if: :devise_controller?
+  before_action :configure_permitted_devise_parameters
   before_action :set_current_user
+  before_action :store_current_location
 
   helper_method :alert_update, :alert_create, :alert_destroy, :can_administrate?
 
@@ -11,16 +14,6 @@ class ApplicationController < ActionController::Base
     else
       redirect_to :root, alert: ex.message
     end
-  end
-
-  rescue_from ActiveRecord::RecordInvalid do
-    flash[:alert] = "Fel i formulär"
-    render referring_action, status: :unprocessable_entity
-  end
-
-  rescue_from ActiveRecord::RecordNotFound do
-    # translate record not found -> HTTP 404
-    fail ActionController::RoutingError.new 'not found'
   end
 
   def model_name(model)
@@ -42,6 +35,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_devise_parameters
+    return unless devise_controller?
     devise_parameter_sanitizer.permit(:sign_in) do |u|
       u.permit(:email, :password, :remember_me)
     end
@@ -65,11 +59,12 @@ class ApplicationController < ActionController::Base
     current_admin_ability.can?(*args)
   end
 
-  def referring_action
-    Rails.application.routes.recognize_path(request.referer)[:action]
-  end
-
   def set_current_user
     User.current = current_user
+  end
+
+  def store_current_location
+    return if devise_controller? || !request.format.html?
+    store_location_for(:user, request.url)
   end
 end
