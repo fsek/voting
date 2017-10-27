@@ -87,7 +87,7 @@ GEM
       aws-sdk-s3 (~> 1.0)
       carrierwave (>= 0.7, < 2.0)
     cliver (0.3.2)
-    cocoon (1.2.10)
+    cocoon (1.2.11)
     codeclimate-test-reporter (1.0.8)
       simplecov (<= 0.13)
     coderay (1.1.2)
