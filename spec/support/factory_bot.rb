@@ -1,11 +1,13 @@
-require 'factory_girl'
+# frozen_string_literal: true
+
+require 'factory_bot'
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   config.before(:suite) do
     begin
       DatabaseCleaner.start
-      FactoryGirl.lint FactoryGirl.factories
+      FactoryBot.lint FactoryBot.factories
     ensure
       DatabaseCleaner.clean
     end
