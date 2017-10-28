@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :agenda do
     title
     index { generate(:agenda_index) }

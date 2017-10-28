@@ -40,7 +40,7 @@ group :development, :test do
   gem 'bullet'
   gem 'capybara'
   gem 'dotenv-rails'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'poltergeist'
   gem 'pry-byebug'
   gem 'pry-rails'
