@@ -1,19 +1,19 @@
-<%= provide(:title, t('adjustment.title')) %>
+<%= provide(:title, t('.title')) %>
 <div class="headline">
-  <h1><%= t('adjustment.title') %></h1>
+  <h1><%= t('.title') %></h1>
 </div>
 
 <div class="col-md-3 col-sm-12">
-  <% if can_administrate? :manage_voting, User %>
-    <%= link_to t('vote_user.attendance_list'), admin_attendance_list_path,
+  <% if can_administrate? :manage, :vote_user %>
+    <%= link_to t('.manage_attendance_list'), admin_attendances_path,
                 class: 'btn primary' %>
-    <%= link_to t('vote_user.manage'), admin_vote_users_path, class: 'btn secondary' %>
+    <%= link_to t('.manage_vote_users'), admin_vote_users_path, class: 'btn secondary' %>
   <% end %>
   <% if can_administrate? :manage, Vote %>
-    <%= link_to t('vote.manage'), admin_votes_path, class: 'btn secondary' %>
+    <%= link_to t('.manage_votes'), admin_votes_path, class: 'btn secondary' %>
   <% end %>
   <% if can_administrate? :manage, Agenda %>
-    <%= link_to t('agenda.manage'), admin_agendas_path, class: 'btn secondary' %>
+    <%= link_to t('.manage_agenda'), admin_agendas_path, class: 'btn secondary' %>
   <% end %>
 </div>
 

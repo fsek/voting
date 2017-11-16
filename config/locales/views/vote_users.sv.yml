@@ -20,6 +20,14 @@ sv:
         manage_vote: Hantera voteringar
         title: Närvarolista
 
+      search_row_header:
+        change_state: Justera in/ut
+        reset_votecode: Nollställ röstkod
+
+      search_row:
+        reset: Nollställ
+        confirm_reset: "Vill du verkligen nollställa röstkoden?"
+
   vote_user:
     administrate: Administrera justeringar
     card_number_present: Kortnummer angivet
