@@ -1,6 +1,12 @@
 sv:
   admin:
     adjustments:
+      index:
+        title: Justeringar
+        manage_vote_users: Hantera justeringar
+        manage_votes: Hantera omröstningar
+        manage_agenda: Hantera dagordning
+        manage_attendance_list: Hantera närvarolista
       info:
         symbols: Teckenförklaring
         card: betyder att användaren har ett kortnummer.

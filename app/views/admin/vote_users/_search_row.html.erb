@@ -5,9 +5,9 @@
       <td><%= user.card_number %></td>
       <td class="adjust"><%= vote_user_state_link(user) %></td>
       <td class="votecode-reset">
-        <%= link_to(t('vote_user.reset'), new_votecode_admin_vote_user_path(user),
+        <%= link_to(t('.reset'), admin_votecode_path(user),
                     method: :patch, remote: true,
-                    data: {confirm: t('vote_user.confirm_reset')},
+                    data: {confirm: t('.confirm_reset')},
                     class: 'btn secondary small') %>
       </td>
     </tr>
