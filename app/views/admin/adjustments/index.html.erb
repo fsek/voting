@@ -22,7 +22,7 @@
 </div>
 
 <div class="col-md-9 col-md-offset-3 col-sm-12">
-  <%= simple_form_for(:vote_user, url: search_admin_vote_users_path, remote: true) do |f| %>
+  <%= simple_form_for(:search, url: card_admin_search_path, remote: true) do |f| %>
     <%= f.input(:card_number, required: false, autofocus: true,
                 label: User.human_attribute_name(:card_number),
                 input_html: {data: {mask: '9999-9999-9999-9999'},
@@ -33,7 +33,7 @@
   </p>
 
   <div class="panel panel-main">
-    <table class=table>
+    <table class="table admin-grid">
       <thead id="adjustment-thead">
       </thead>
       <tbody id="adjustment-tbody">

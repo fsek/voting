@@ -2,31 +2,27 @@ sv:
   admin:
     vote_users:
       index:
-        title: Administrera justeringar
-        change_state: Justera in/ut
-        confirm_all_not_present: "Är du säker på att du vill justera ut ALLA användare?"
-        confirm_reset: "Vill du verkligen nollställa röstkoden?"
-        reset_votecode: Nollställ röstkod
-        reset: Nollställ
         attendance_list: Närvarolista
-        manage_vote: Hantera voteringar
-        manage_agenda: Hantera dagordning
+        confirm_all_not_present: "Är du säker på att du vill justera ut ALLA användare?"
         make_all_not_present: Justera ut alla användare
+        manage_agenda: Hantera dagordning
+        manage_vote: Hantera voteringar
         quick_adjustments: Snabbjustering
+        title: Administrera justeringar
+
+      table_rows:
+        reset: Nollställ
+        confirm_reset: "Vill du verkligen nollställa röstkoden?"
+
+      table_header:
+        change_state: Justera in/ut
+        reset_votecode: Nollställ röstkod
 
       attendance_list:
         manage_agenda: Hantera dagordning
         manage_users: Hantera användare
         manage_vote: Hantera voteringar
         title: Närvarolista
-
-      search_row_header:
-        change_state: Justera in/ut
-        reset_votecode: Nollställ röstkod
-
-      search_row:
-        reset: Nollställ
-        confirm_reset: "Vill du verkligen nollställa röstkoden?"
 
   vote_user:
     administrate: Administrera justeringar
@@ -35,7 +31,6 @@ sv:
     edit: Redigera användare
     make_not_present: Justera ut
     make_present: Justera in
-    manage: Hantera justeringar
     new: Ny användare
     present: Närvarande
     present_count: Antal injusterade

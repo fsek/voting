@@ -13,11 +13,11 @@ RSpec.describe("Allows quick adjustment of users", type: :request) do
     get(admin_adjustments_path)
     expect(response).to have_http_status(200)
 
-    post(search_admin_vote_users_path, params: attributes, xhr: true)
+    post(card_admin_search_path, params: attributes, xhr: true)
     expect(response).to have_http_status(200)
 
     non_existing = { vote_user: { card_number: '2345-2345-2345-2345' } }
-    post(search_admin_vote_users_path, params: non_existing, xhr: true)
+    post(card_admin_search_path, params: non_existing, xhr: true)
     expect(response).to have_http_status(200)
   end
 end
