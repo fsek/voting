@@ -1,0 +1,18 @@
+<%= simple_form_for(:search, url: user_admin_search_path,
+                             wrapper: :inline_form,
+                             html: { class: 'form-inline' },
+                             remote: true) do |f| %>
+  <%= f.input(:firstname, placeholder: User.human_attribute_name(:firstname),
+                          required: false) %>
+  <%= f.input(:lastname, placeholder: User.human_attribute_name(:lastname),
+                         required: false) %>
+  <%= f.input(:presence, as: :boolean,
+                         label: User.human_attribute_name(:presence),
+                         required: false) %>
+  <%= f.button(:submit, t('.search'), class: 'btn primary small') %>
+<% end %>
+
+<br />
+<span class="" id="user-search-status"></span>
+
+<hr />

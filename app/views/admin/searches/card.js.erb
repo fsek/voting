@@ -1,0 +1,9 @@
+<% if @vote_users.present? %>
+  $('#adjustment-status').html('');
+  $('#adjustment-thead').html('<%= j render('/admin/vote_users/table_header') %>');
+  $('#adjustment-tbody').html('<%= j render('/admin/vote_users/table_rows', vote_users: @vote_users) %>');
+<% else %>
+  $('#adjustment-status').html('<%= t('admin.searches.no_results') %>');
+  $('#adjustment-thead').html('');
+  $('#adjustment-tbody').html('');
+<% end %>

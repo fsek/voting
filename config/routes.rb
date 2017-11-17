@@ -53,11 +53,13 @@ Rails.application.routes.draw do
         post :refresh_count, on: :member
       end
 
-      resources :vote_users, path: :motesanvandare, only: %i[show index] do
-        post :search, on: :collection
-      end
+      resources :vote_users, path: :motesanvandare, only: %i[show index]
 
       resources :votecodes, path: :rostkod, only: :update
+      resource :search, path: :sok, only: [] do
+        post(:card)
+        post(:user)
+      end
     end
   end
 
