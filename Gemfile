@@ -28,6 +28,7 @@ gem 'rollbar'
 gem 'sass-rails'
 gem 'select2-rails'
 gem 'simple_form'
+gem 'textacular'
 gem 'turbolinks'
 gem 'uglifier'
 
