@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171013075812) do
+ActiveRecord::Schema.define(version: 20171117103500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_trgm"
 
   create_table "adjustments", id: :serial, force: :cascade do |t|
     t.integer "agenda_id"
