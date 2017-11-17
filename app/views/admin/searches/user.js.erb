@@ -1,0 +1,5 @@
+$('#user-table-body').html('<%= j render('/admin/vote_users/table_rows', vote_users: @vote_users) %>');
+$('#user-search-status').html('');
+<% if @vote_users.none? %>
+  $('#user-search-status').html('<%= t('admin.searches.no_results') %>');
+<% end %>
