@@ -24,29 +24,13 @@
 </div>
 
 <div class="col-md-12">
+  <%= render('admin/searches/user_form') %>
   <%= paginate(@vote_users) %>
   <table class="table table-striped table-bordered admin-grid">
     <thead>
-      <tr>
-        <th><%= User.human_attribute_name(:name) %></th>
-        <th><%= User.human_attribute_name(:presence) %></th>
-        <th><%= t('.change_state') %></th>
-        <th><%= t('.reset_votecode') %></th>
-      </tr>
-      <tbody>
-        <% @vote_users.each do |user| %>
-          <tr id="<%= dom_id(user) %>" class="<%= user.presence ? 'highlight' : 'no-highlight' %>">
-            <td> <%= link_to admin_print_user(user), admin_vote_user_path(user) %></td>
-            <td> <%= yes_no(user.presence) %></td>
-            <td class="adjust"> <%= vote_user_state_link(user) %></td>
-            <td class="votecode-reset">
-              <%= link_to(t('.reset'),
-                          admin_votecode_path(user),
-                          method: :patch, remote: true,
-                          data: { confirm: t('.confirm_reset') }) %>
-            </td>
-          </tr>
-        <% end %>
+      <%= render('table_header') %>
+      <tbody id="user-table-body">
+        <%= render('table_rows', vote_users: @vote_users) %>
       </tbody>
     </thead>
   </table>

@@ -1,14 +1,13 @@
 <% if vote_users.present? %>
-  <%= vote_users.each do |user| %>
-    <tr id="<%= dom_id(user) %>" class="adjustment-box <%= 'highlight' if user.presence %>">
+  <% vote_users.each do |user| %>
+    <tr id="<%= dom_id(user) %>" class="<%= 'highlight' if user.presence %>">
       <td class="name"><%= link_to admin_print_user(user), admin_vote_user_path(user) %></td>
       <td><%= user.card_number %></td>
       <td class="adjust"><%= vote_user_state_link(user) %></td>
       <td class="votecode-reset">
         <%= link_to(t('.reset'), admin_votecode_path(user),
                     method: :patch, remote: true,
-                    data: {confirm: t('.confirm_reset')},
-                    class: 'btn secondary small') %>
+                    data: { confirm: t('.confirm_reset') }) %>
       </td>
     </tr>
   <% end %>

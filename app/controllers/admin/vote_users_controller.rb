@@ -18,15 +18,5 @@ module Admin
                           .rank(:row_order)
       @audits = @user.audits.includes(:updater)
     end
-
-    def search
-      @vote_users = User.card_number(search_params[:card_number])
-    end
-
-    private
-
-    def search_params
-      params.require(:vote_user).permit(:card_number)
-    end
   end
 end
