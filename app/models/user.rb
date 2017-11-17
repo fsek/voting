@@ -38,24 +38,26 @@ class User < ApplicationRecord
     includes(adjustments: :agenda).where.not(adjustments: { id: nil })
   end)
 
-  def self.card_number(card)
-    return if card == '____-____-____-____'
-    User.where('card_number LIKE ?', "%#{card}%")
+  def self.card_number(card_number)
+    return if card_number == '____-____-____-____'
+    User.where('card_number LIKE ?', "%#{card_number}%")
+  end
+
+  def self.search(options)
+    return User.all if options.empty?
+    User.fuzzy_search(options)
+  end
+
+  def self.searchable_columns
+    %i[firstname lastname email]
+  end
+
+  def self.searchable_language
+    'swedish'
   end
 
   def to_s
-    if has_name_data?
-      %(#{firstname} #{lastname})
-    elsif firstname.present?
-      firstname
-    else
-      email
-    end
-  end
-
-  # Check if user has user data (name and lastname)
-  def has_name_data?
-    firstname.present? && lastname.present?
+    %(#{firstname} #{lastname})
   end
 
   def print_id
