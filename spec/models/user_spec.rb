@@ -73,17 +73,6 @@ RSpec.describe User, type: :model do
       it 'to_s full name' do
         user.to_s.should eq(%(#{user.firstname} #{user.lastname}))
       end
-
-      it 'to_s firstname' do
-        user.lastname = nil
-        user.to_s.should eq(%(#{user.firstname}))
-      end
-
-      it 'to_s email' do
-        user.firstname = nil
-        user.lastname = nil
-        user.to_s.should eq(%(#{user.email}))
-      end
     end
   end
 end
