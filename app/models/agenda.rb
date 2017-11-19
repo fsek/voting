@@ -63,7 +63,7 @@ class Agenda < ApplicationRecord
   end
 
   def start_page?
-    current? || children.closed.count != children.count
+    !closed? || children.closed.count != children.count
   end
 
   private
