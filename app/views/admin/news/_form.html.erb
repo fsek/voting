@@ -1,8 +1,6 @@
 <%= simple_form_for([:admin, news]) do |f| %>
   <%= f.input :title %>
-  <%= f.input :content %>
-  <%= f.input :content, as: :pagedown,
-                        input_html: { preview: true, rows: 10 } %>
+  <%= f.input :content, as: :pagedown, input_html: { preview: true, rows: 10 } %>
   <%= f.input :url %>
   <%= f.button :submit %>
 <% end %>
