@@ -9,6 +9,9 @@ sv:
         open_close: Öppna/stäng
         confirm_remove: "Är du säker på att du vill ta bort %{title}?"
 
+      new:
+        title: Ny votering
+
   vote:
     2_3_majority: För 2/3 majoritet krävs
     add_option: Lägg till
