@@ -6,7 +6,7 @@
 
   .navbar-default {
     background: none;
-    border: none;
+    border: 0;
 
     .navbar-nav {
       color: $main-color;
@@ -101,7 +101,7 @@
   }
 
   .dropdown-menu {
-    border: none;
+    border: 0;
     border-left: 1px solid $light-gray-text;
     border-radius: 0;
     border-right: 1px solid $light-gray-text;

@@ -6,17 +6,3 @@
     box-shadow: none;
   }
 }
-
-.form-spacing .form-control {
-  margin-bottom: 15px;
-}
-
-.form {
-  span {
-    &.error {
-      color: $unify-red;
-      display: inline-block;
-      padding: 10px 0;
-    }
-  }
-}

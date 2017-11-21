@@ -30,15 +30,6 @@
     }
   }
 
-  &.post-list {
-    list-style: none;
-    padding-left: 4px;
-
-    li:before {
-      content: "- ";
-    }
-  }
-
   &.status {
     margin-bottom: 20px;
 
