@@ -1,4 +1,11 @@
 sv:
+  model:
+    vote_user:
+      presences:
+        all: Alla
+        not_present: Utjusterade
+        present: Injusterade
+
   activerecord:
     models:
       vote_user: mötesanvändare

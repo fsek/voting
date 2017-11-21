@@ -1,15 +1,16 @@
 <%= simple_form_for(:search, url: user_admin_search_path,
                              wrapper: :inline_form,
-                             html: { class: 'form-inline' },
+                             html: { class: 'form-inline searches' },
                              remote: true) do |f| %>
   <%= f.input(:firstname, placeholder: User.human_attribute_name(:firstname),
                           required: false) %>
   <%= f.input(:lastname, placeholder: User.human_attribute_name(:lastname),
                          required: false) %>
-  <%= f.input(:presence, as: :boolean,
+  <%= f.input(:presence, collection: search_presences,
+                         include_blank: false,
                          label: User.human_attribute_name(:presence),
                          required: false) %>
-  <%= f.button(:submit, t('.search'), class: 'btn primary small') %>
+  <%= f.button(:submit, t('.search'), class: 'small') %>
 <% end %>
 
 <br />
