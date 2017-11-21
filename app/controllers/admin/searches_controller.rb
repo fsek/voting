@@ -19,7 +19,9 @@ module Admin
     end
 
     def presence
-      params.require(:search).fetch(:presence, false)
+      res = params.require(:search).fetch(:presence, '')
+      return [true, false] if res.blank?
+      res
     end
 
     def user_params
