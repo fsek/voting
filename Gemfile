@@ -2,7 +2,7 @@
 source 'https://rubygems.org'
 
 # Do not forget to update in .ruby-version and .circleci/config.yml
-ruby '2.4.3'
+ruby '2.5.0'
 
 gem 'rails', '5.1.4'
 
