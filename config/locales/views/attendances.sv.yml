@@ -1,7 +1,7 @@
 sv:
   admin:
-    attendance_lists:
-      show:
+    attendances:
+      index:
         export: Exportera CSV
         manage_agenda: Hantera dagordning
         manage_users: Hantera användare
