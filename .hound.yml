@@ -1,8 +1,6 @@
 ruby:
   config_file: .rubocop.yml
-  exclude:
-    -"config/initializers/wice_grid_config.rb"
+
 scss:
   exclude:
     -"app/assets/stylesheets/mixins.scss"
-    -"app/assets/stylesheets/plugins/*"
