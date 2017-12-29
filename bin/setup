@@ -27,7 +27,7 @@ chdir APP_ROOT do
   system! 'bin/rails log:clear tmp:clear'
 
   puts "\n== Add development data =="
-  system! 'bin/rails dev:data'
+  system! 'bin/rails dev:data db:seed'
 
   puts "\n== Finished! =="
   puts "\nStart your server with `rails s`"

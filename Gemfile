@@ -6,6 +6,7 @@ ruby '2.4.2'
 
 gem 'rails', '5.1.4'
 
+gem 'acts_as_list'
 gem 'bootstrap-sass'
 gem 'cancancan'
 gem 'carrierwave'
