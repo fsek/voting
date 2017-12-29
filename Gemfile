@@ -2,11 +2,12 @@
 source 'https://rubygems.org'
 
 # Do not forget to update in .ruby-version and .circleci/config.yml
-ruby '2.4.2'
+ruby '2.4.3'
 
 gem 'rails', '5.1.4'
 
 gem 'acts_as_list'
+gem 'bootsnap'
 gem 'bootstrap-sass'
 gem 'cancancan'
 gem 'carrierwave'
@@ -33,10 +34,6 @@ gem 'textacular'
 gem 'turbolinks'
 gem 'uglifier'
 
-group :production do
-  gem 'therubyracer', platform: :ruby
-end
-
 group :development, :test do
   gem 'better_errors'
   gem 'bullet'
@@ -52,7 +49,6 @@ end
 
 group :development do
   gem 'rubocop'
-  gem 'spring'
   gem 'web-console'
 end
 
