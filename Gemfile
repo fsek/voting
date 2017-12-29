@@ -57,6 +57,5 @@ end
 
 group :test do
   gem 'codeclimate-test-reporter', require: false
-  gem 'database_cleaner'
   gem 'shoulda-matchers', require: false
 end
