@@ -47,10 +47,10 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
-  gem 'rubocop'
 end
 
 group :development do
+  gem 'rubocop'
   gem 'spring'
   gem 'web-console'
 end
