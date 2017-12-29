@@ -50,4 +50,25 @@ RSpec.describe('Search for users', type: :request) do
     expect(response.body).to include('ÄlgHär')
     expect(response.body).to_not include('ÄlgInteHär')
   end
+
+  it 'works correctly for full first and last name' do
+    sign_in(adjuster)
+    create(:user, firstname: 'Johan', lastname: 'Winther')
+    search_params = { search: { 'firstname': 'Johan', 'lastname': 'Winther' } }
+
+    post(user_admin_search_path, params: search_params, xhr: true)
+    expect(response).to have_http_status(200)
+    expect(response.body).to include('Johan')
+    expect(response.body).to include('Winther')
+  end
+
+  it 'does not show matches on lastname if search for in firstname' do
+    sign_in(adjuster)
+    create(:user, firstname: 'Johan', lastname: 'Winther')
+    search_params = { search: { firstname: 'Winther' } }
+
+    post(user_admin_search_path, params: search_params, xhr: true)
+    expect(response).to have_http_status(200)
+    expect(response.body).not_to include('Johan')
+  end
 end

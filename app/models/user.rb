@@ -45,7 +45,7 @@ class User < ApplicationRecord
 
   def self.search(options)
     return User.all if options.empty?
-    User.fuzzy_search(options)
+    User.fuzzy_search(options.to_h)
   end
 
   def self.searchable_columns
