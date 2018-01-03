@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 # Do not forget to update in .ruby-version and .circleci/config.yml
@@ -48,6 +49,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'i18n-tasks'
   gem 'rubocop'
   gem 'web-console'
 end
