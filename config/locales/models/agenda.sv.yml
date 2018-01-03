@@ -1,16 +1,6 @@
+---
 sv:
-  model:
-    agenda:
-      statuses:
-        closed: Stängd
-        current: Aktuell
-        future: Framtida
-
   activerecord:
-    models:
-      agenda:
-        one: Punkt
-        other: Punkter
     attributes:
       agenda:
         closed: Stängd
@@ -19,3 +9,13 @@ sv:
         future: Framtida
         parent: Huvudpunkt
         short: Kort beskrivning
+    models:
+      agenda:
+        one: Punkt
+        other: Punkter
+  model:
+    agenda:
+      statuses:
+        closed: Stängd
+        current: Aktuell
+        future: Framtida

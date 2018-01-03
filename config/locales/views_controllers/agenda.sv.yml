@@ -1,14 +1,14 @@
+---
 sv:
   admin:
     agendas:
       index:
         change_status: Ändra status
-        confirm_remove: "Är du säker på att du vill ta bort %{title}?"
+        confirm_remove: Är du säker på att du vill ta bort %{title}?
         manage_vote_users: Hantera deltagare
         manage_voting: Hantera voteringar
         new_agenda: Ny dagordningspunkt
         title: Administrera dagordning
-
   agenda:
     admin: Administrera dagordning
     all: Visa hela dagordningen
@@ -21,24 +21,16 @@ sv:
     destroy: Förinta dagordning
     edit: Redigera punkt
     error_deleting: Öppna punkter kan ej raderas
-    manage: Hantera dagordning
+    hint:
+      description: En längre beskrivning av dagordningspunkten för t.ex. de som inte deltagit eller missat en punkt
+      short: En kort beskrivning som syns bredvid punkten i dagordningen, t.ex. Bifall eller namnet på en vald person
     name: Dagordning
     new: Ny punkt
     parent: Huvudpunkt
     recursion: För många nivåer av rekursion :)
     set_current: Gör aktuell
-    title: Administrera dagordning
-    too_many_open: Nu försöker du ta upp två punkter på dagordningen samtidigt. Så effektiva kan vi inte vara.
-    vote_open: En votering som tillhör denna punkt är fortfarande öppen!
-
-    hint:
-      description: En längre beskrivning av dagordningspunkten för t.ex. de som inte deltagit eller missat en punkt
-      short: En kort beskrivning som syns bredvid punkten i dagordningen, t.ex. Bifall eller namnet på en vald person
-
     state:
-      closed: "%{a} stängdes"
-      current: "%{a} är nu aktuell punkt"
-      error_closing: "%{a} kunde inte stängas"
-      error_current: "%{a} kunde inte väljas till aktuell punkt"
       short_closed_error: Fel vid avmarkering
       short_current_error: Fel vid aktivering
+    too_many_open: Nu försöker du ta upp två punkter på dagordningen samtidigt. Så effektiva kan vi inte vara.
+    vote_open: En votering som tillhör denna punkt är fortfarande öppen!

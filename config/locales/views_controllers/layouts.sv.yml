@@ -1,5 +1,11 @@
+---
 sv:
   layouts:
+    copyright:
+      developed_at: Utvecklad vid
+    email:
+      footer:
+        why_email: Du får detta e-post eftersom du varit inne på Röstsystems webbplats och använt någon av våra tjänster.
     menu:
       about: Om
       administrate: Administrera
@@ -10,3 +16,5 @@ sv:
       terms: Användarvillkor
       votes: Voteringar
       voting: Röstning
+    topbar:
+      settings: Kontoinställningar

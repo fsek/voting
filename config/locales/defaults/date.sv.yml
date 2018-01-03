@@ -1,12 +1,6 @@
+---
 sv:
   date:
-    formats:
-      default: '%e %b %Y'
-      long: '%e %B %Y'
-      short: '%e %b'
-      day_month: '%e %b'
-      day: '%e'
-      month_year: '%b %Y'
     abbr_day_names:
     - sön
     - mån
@@ -16,7 +10,7 @@ sv:
     - fre
     - lör
     abbr_month_names:
-    -
+    - 
     - jan
     - feb
     - mar
@@ -37,8 +31,15 @@ sv:
     - torsdag
     - fredag
     - lördag
+    formats:
+      day: "%e"
+      day_month: "%e %b"
+      default: "%e %b %Y"
+      long: "%e %B %Y"
+      month_year: "%b %Y"
+      short: "%e %b"
     month_names:
-    -
+    - 
     - januari
     - februari
     - mars
@@ -101,11 +102,11 @@ sv:
   time:
     am: ''
     formats:
-      default: '%H:%M, %e %b %Y'
-      long: '%H:%M, %e %B %Y'
-      short: '%H:%M, %e %b'
-      time: '%H:%M'
-      day_month: '%e %b'
-      month_year: '%b %Y'
-      weekday: '%A %H:%M, %e %b %Y'
+      day_month: "%e %b"
+      default: "%H:%M, %e %b %Y"
+      long: "%H:%M, %e %B %Y"
+      month_year: "%b %Y"
+      short: "%H:%M, %e %b"
+      time: "%H:%M"
+      weekday: "%A %H:%M, %e %b %Y"
     pm: ''

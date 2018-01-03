@@ -13,7 +13,7 @@
             <%= fa_icon("user") %> <%= current_user %>
           <% end %>
           <ul class="dropdown-menu pull-right">
-            <li><%= link_to t('user.settings'), :user %></li>
+            <li><%= link_to t('.settings'), :user %></li>
             <li><%= link_to t('devise.sign_out'), :destroy_user_session, method: :delete %></li>
           </ul>
         </li>

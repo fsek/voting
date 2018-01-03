@@ -1,8 +1,9 @@
+---
 sv:
   activerecord:
-    models:
-      vote_option: Alternativ
     attributes:
       vote_option:
-        title: Alternativ
         count: Antal röster
+        title: Alternativ
+    models:
+      vote_option: Alternativ

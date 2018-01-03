@@ -1,0 +1,11 @@
+---
+sv:
+  log:
+    action: Åtgärd
+    change: Ändring
+    date: Datum
+    missing: Saknas
+    title: Logg
+    to: " till "
+    type: Typ
+    updated_by: Uppdaterad av
