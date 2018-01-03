@@ -30,16 +30,10 @@ sv:
         user: Vanlig användare
   user:
     account_updated: Kontoinställningar uppdaterades
-    add_information: Du måste fylla i dina användaruppgifter
-    attributes_missing: du måste fylla i dina användaruppgifter.
     card_number_already_set: Har redan fyllts i, kontakta administratör för att ändra
     card_number_format: Fel format på kortnumret, använd bindestreck mellan, t.ex. 6122-6122-6122-6122
-    edit_information: Redigera användaruppgifter
     password_required: Lösenord måste fyllas i för att ändra uppgifter
     password_required_update: Nuvarande lösenord måste fyllas i för att byta lösenord
     password_updated: Lösenordet uppdaterades.
-    protected_information: Information som endast visas av funktionärer
-    public_information: Publik information
-    settings: Kontoinställningar
     submit_card_number: Spara kortnummer
     vote_administration: Justeringar
