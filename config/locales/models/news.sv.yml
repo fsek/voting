@@ -1,9 +1,6 @@
+---
 sv:
   activerecord:
-    models:
-      news:
-        one: Nyhet
-        other: Nyheter
     attributes:
       news:
         content: Text
@@ -13,3 +10,7 @@ sv:
         title: Titel
         updated_at: Uppdaterad
         user: Upplagd av
+    models:
+      news:
+        one: Nyhet
+        other: Nyheter

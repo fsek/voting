@@ -1,17 +1,16 @@
+---
 sv:
   admin:
     votes:
       index:
+        confirm_remove: Är du säker på att du vill ta bort %{title}?
         manage_agenda: Hantera dagordning
         manage_vote_users: Hantera justeringar
         new_vote: Ny votering
-        title: Administrera voteringar
         open_close: Öppna/stäng
-        confirm_remove: "Är du säker på att du vill ta bort %{title}?"
-
+        title: Administrera voteringar
       new:
         title: Ny votering
-
   vote:
     2_3_majority: För 2/3 majoritet krävs
     add_option: Lägg till
@@ -20,27 +19,24 @@ sv:
     automatic_refresh: Uppdateras automatiskt var 15 sekund.
     cannot_edit: Voteringen är öppen och kan därmed inte redigeras
     cannot_reset: Voteringen är öppen och kan därmed inte nollställas
-    closed: Stängd
-    closing_failed: Stängningen misslyckades
     confirm_reset: Är du helt säker på att du vill nollställa voteringen?
-    count: Antal
     current: Aktuell omröstning
     current_missing: Ingen omröstning öppen
     deleted: " [RADERAD]"
     do_close: Stäng
     do_open: Öppna
-    edit_vote: Redigera votering
     edit: Redigera
+    edit_vote: Redigera votering
     is_closed: Omröstningen är stängd
     made_closed: Stängdes
     made_open: Öppnades
-    manage: Hantera voteringar
-    no_votes_open: "Just nu finns det tyvärr ingen votering som är öppen."
+    no_votes_open: Just nu finns det tyvärr ingen votering som är öppen.
     number_of_votes: Röster / Injusterade
     open: Öppen
-    open_close: Öppna/stäng
     options: Alternativ
-    reopen: "Är du säker på att du vill öppna denna votering igen?\nDetta kommer att påverka statistiken över blanka röster."
+    reopen: |-
+      Är du säker på att du vill öppna denna votering igen?
+      Detta kommer att påverka statistiken över blanka röster.
     reset: Nollställ
     reset_failed: Det gick inte att nollställa voteringen
     reset_ok: Voteringen nollställdes
@@ -54,4 +50,4 @@ sv:
     sum_is_wrong: " Resultatet stämmer inte"
     sum_votes_blank: Σ röster / Σ blanka
     title: Voteringar
-    wrong_agenda: "Voteringen kan enbart öppnas under den valda dagordningspunkten"
+    wrong_agenda: Voteringen kan enbart öppnas under den valda dagordningspunkten

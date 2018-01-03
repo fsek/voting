@@ -47,7 +47,7 @@ module Admin
         expire_fragment('agenda_startpage')
         flash[:notice] = t('agenda.deleted_ok')
       else
-        flash[:alert] = @agenda.errors. full_messages_for(:destroy).to_sentence
+        flash[:alert] = @agenda.errors.full_messages_for(:destroy).to_sentence
       end
 
       redirect_to admin_agendas_path

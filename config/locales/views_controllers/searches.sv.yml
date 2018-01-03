@@ -1,7 +1,7 @@
+---
 sv:
   admin:
     searches:
       no_results: Inga användare hittades
-
       user_form:
         search: Sök

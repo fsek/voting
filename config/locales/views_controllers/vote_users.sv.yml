@@ -1,60 +1,39 @@
+---
 sv:
   admin:
     vote_users:
       index:
         attendance_list: Närvarolista
-        confirm_all_not_present: "Är du säker på att du vill justera ut ALLA användare?"
+        confirm_all_not_present: Är du säker på att du vill justera ut ALLA användare?
         make_all_not_present: Justera ut alla användare
         manage_agenda: Hantera dagordning
         manage_vote: Hantera voteringar
         quick_adjustments: Snabbjustering
         title: Administrera justeringar
-
-      table_rows:
-        reset: Nollställ
-        confirm_reset: "Vill du verkligen nollställa röstkoden?"
-
       table_header:
         change_state: Justera in/ut
         reset_votecode: Nollställ röstkod
-
-      attendance_list:
-        manage_agenda: Hantera dagordning
-        manage_users: Hantera användare
-        manage_vote: Hantera voteringar
-        title: Närvarolista
-
+      table_rows:
+        confirm_reset: Vill du verkligen nollställa röstkoden?
+        reset: Nollställ
   vote_user:
     administrate: Administrera justeringar
-    card_number_present: Kortnummer angivet
     card_number_not_present: Kortnummer ej angivet
+    card_number_present: Kortnummer angivet
     edit: Redigera användare
-    make_not_present: Justera ut
-    make_present: Justera in
-    new: Ny användare
-    present: Närvarande
-    present_count: Antal injusterade
-    presence_error: Användare kunde inte justeras in, har eposten bekräftats?
-    votecode: Röstkod
-    votecode_error: Ny röstkod kunde inte ges ut, har användare bekräftat sin epost?
-    votecode_error_short: Kunde inte nollställa
-    votecode_success: "%{u} fick en ny röstkod, som skickats via epost"
-
     mailer:
       votecode:
-        subject: Här är din röstkod
         description: Här kommer din röstkod, se till att du håller den för dig själv. Tror du att någon kommit över din kod? Kontakta justerare så får du en ny.
-        new_success: Ny röstkod skickades till användaren.
+        subject: Här är din röstkod
         title: Din röstkod
-
+    presence_error: Användare kunde inte justeras in, har eposten bekräftats?
+    present_count: Antal injusterade
     state:
       all_not_present: Utjustering av alla mötesdeltagare lyckades
       error_all_not_present: Utjustering av alla mötesdeltagare lyckades inte
-      error_not_present: "%{u} kunde inte justeras ut, är ett val öppet?"
-      error_present: "%{u} kunde inte justeras in, är ett val öppet?"
-      made_not_present: "%{u} justerades ut"
-      made_present: "%{u} justerades in"
       not_present: Utjusterad
       present: Injusterad
       short_error_not_present: Utjustering misslyckades
       short_error_present: Injustering misslyckades
+    votecode_error: Ny röstkod kunde inte ges ut, har användare bekräftat sin epost?
+    votecode_error_short: Kunde inte nollställa

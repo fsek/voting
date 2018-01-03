@@ -1,31 +1,27 @@
+---
 sv:
   terms:
-    title: Användarvillkor
-    general:
-      title: "1. Allmänt om villkoren"
-      text: Dessa villkor gäller för användning av webbplatsen rostsystem.se och dess innehåll. Dessa användarvillkor är bindande för alla besökare på webbplatsen rostsystem.se. Genom användandet av webbtjänsten godkänner och accepterar användaren dessa villkor. Om användaren inte godkänner villkoren ska denne upphöra att använda tjänsten och lämna webbplatsen. Operatören förbehåller sig rätten att omedelbart stänga webbplatsen för besökaren och/eller göra tjänsterna otillgängliga för besökaren och/eller på annat sätt förhindra fortsatt otillåtet förfarande i fall då dessa användarvillkor inte efterlevs. Brott mot dessa användarvillkor kan även vara brottsligt förfarande samt medföra skadeståndsskyldighet för besökaren. Med begreppet "operatören" avses rostsystem.se.
-
-    personal_information:
-      title: "2. Personuppgifter"
-      text_first: Besökaren är införstådd med och samtycker till att de personuppgifter som besökaren lämnar till operatören kommer att behandlas av operatören eller annat bolag med vilket operatören samarbetar, i syfte att
-      text_one: fullgöra avtalet med besökaren,
-      text_two: fullgöra avtal som besökaren med nyttjande av de tjänster som tillhandahålls av operatören ingår med samarbetspartners till operatören och
-      text_three: för statistiska ändamål.
-      text_last: Operatören åtar sig att vid varje tillfälle endast behandla personuppgifter i enlighet med personuppgiftslagen (1998:204). För det fall ett lämnat samtycke återkallas av besökaren, kan webbplatsen och tjänsterna inte användas.
-
-    visitors_responsibilities:
-      title: "3. Besökarens ansvar"
-      text: Besökaren ansvarar för de åtgärder som denne vidtar vid användandet av webbplatsen och tjänsterna, samt åtar sig att hålla operatören skadeslös för krav från tredje part på grund av användning som är i strid mot användarvillkoren.
-
-    links:
-      title: "4. Länkar"
-      text: Webbplatsen innehåller länkar till andra webbplatser. Sådana webbplatser kontrolleras inte av operatören och operatören är inte ansvarig för innehåll och funktioner hos sådana webbplatser.
-
-    limit_liability:
-      title: "5. Ansvarsbegränsning"
-      text: Alla ansträngningar har gjorts för att säkerställa att innehållet på rostsystem.se är korrekt, men operatören lämnar inga garantier beträffande innehåll, information, tjänster m m som tillhandahålls på eller genom webbplatsen. Operatören lämnar inte heller några garantier beträffande funktion, tillgänglighet, kvalitet, användbarhet eller säkerhet hos tjänsterna eller webbplatsen. Operatören ansvarar inte för direkt eller indirekt förlust eller skada såvida inte operatören handlat grovt vårdslöst eller uppsåtligt. Webbplatsen görs tillgänglig i "befintligt skick".
-
     changes:
-      title: "6. Ändringar av användarvillkoren"
       text: Operatören äger rätt att ändra i dessa användarvillkor och besökaren är skyldig att hålla sig uppdaterad om användarvillkoren och läsa igenom användarvillkoren regelbundet. Om besökaren fortsätter att använda webbplatsen och tjänsterna efter det att ändring gjorts av dessa användarvillkor anses besökaren ha accepterat ändringen. Om besökaren vid någon tidpunkt inte accepterar eller kan följa användarvillkoren får besökaren inte använda webbplatsen eller tjänsterna.
-    last_updated: "Uppdaterades: %{date}"
+      title: 6. Ändringar av användarvillkoren
+    general:
+      text: Dessa villkor gäller för användning av webbplatsen rostsystem.se och dess innehåll. Dessa användarvillkor är bindande för alla besökare på webbplatsen rostsystem.se. Genom användandet av webbtjänsten godkänner och accepterar användaren dessa villkor. Om användaren inte godkänner villkoren ska denne upphöra att använda tjänsten och lämna webbplatsen. Operatören förbehåller sig rätten att omedelbart stänga webbplatsen för besökaren och/eller göra tjänsterna otillgängliga för besökaren och/eller på annat sätt förhindra fortsatt otillåtet förfarande i fall då dessa användarvillkor inte efterlevs. Brott mot dessa användarvillkor kan även vara brottsligt förfarande samt medföra skadeståndsskyldighet för besökaren. Med begreppet "operatören" avses rostsystem.se.
+      title: 1. Allmänt om villkoren
+    last_updated: 'Uppdaterades: %{date}'
+    limit_liability:
+      text: Alla ansträngningar har gjorts för att säkerställa att innehållet på rostsystem.se är korrekt, men operatören lämnar inga garantier beträffande innehåll, information, tjänster m m som tillhandahålls på eller genom webbplatsen. Operatören lämnar inte heller några garantier beträffande funktion, tillgänglighet, kvalitet, användbarhet eller säkerhet hos tjänsterna eller webbplatsen. Operatören ansvarar inte för direkt eller indirekt förlust eller skada såvida inte operatören handlat grovt vårdslöst eller uppsåtligt. Webbplatsen görs tillgänglig i "befintligt skick".
+      title: 5. Ansvarsbegränsning
+    links:
+      text: Webbplatsen innehåller länkar till andra webbplatser. Sådana webbplatser kontrolleras inte av operatören och operatören är inte ansvarig för innehåll och funktioner hos sådana webbplatser.
+      title: 4. Länkar
+    personal_information:
+      text_first: Besökaren är införstådd med och samtycker till att de personuppgifter som besökaren lämnar till operatören kommer att behandlas av operatören eller annat bolag med vilket operatören samarbetar, i syfte att
+      text_last: Operatören åtar sig att vid varje tillfälle endast behandla personuppgifter i enlighet med personuppgiftslagen (1998:204). För det fall ett lämnat samtycke återkallas av besökaren, kan webbplatsen och tjänsterna inte användas.
+      text_one: fullgöra avtalet med besökaren,
+      text_three: för statistiska ändamål.
+      text_two: fullgöra avtal som besökaren med nyttjande av de tjänster som tillhandahålls av operatören ingår med samarbetspartners till operatören och
+      title: 2. Personuppgifter
+    title: Användarvillkor
+    visitors_responsibilities:
+      text: Besökaren ansvarar för de åtgärder som denne vidtar vid användandet av webbplatsen och tjänsterna, samt åtar sig att hålla operatören skadeslös för krav från tredje part på grund av användning som är i strid mot användarvillkoren.
+      title: 3. Besökarens ansvar

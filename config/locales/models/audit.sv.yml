@@ -1,13 +1,14 @@
+---
 sv:
   activerecord:
+    attributes:
+      audit:
+        Adjustment: Justering
+        User: Användare
+        Vote: Votering
+        VoteOption: Alternativ
+        VotePost: Röst
     models:
       audit:
         one: Granskning
         other: Granskningar
-    attributes:
-      audit:
-        Vote: Votering
-        VoteOption: Alternativ
-        VotePost: Röst
-        User: Användare
-        Adjustment: Justering

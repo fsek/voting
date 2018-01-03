@@ -1,8 +1,9 @@
+---
 sv:
   views:
     pagination:
       first: "&laquo;"
       last: "&raquo;"
-      previous: "&lsaquo;"
       next: "&rsaquo;"
+      previous: "&lsaquo;"
       truncate: "&hellip;"

@@ -1,15 +1,16 @@
+---
 sv:
   activerecord:
-    models:
-      document: Dokument
     attributes:
       document:
-        pdf: Pdf
-        title: Titel
-        public: Publik
-        category: Kategori
-        download: Nerladdning
-        user_id: Uppladdad av
-        created_at: Skapad
-        updated_at: Uppdaterad
         agenda: Dagordningspunkt
+        category: Kategori
+        created_at: Skapad
+        download: Nerladdning
+        pdf: Pdf
+        public: Publik
+        title: Titel
+        updated_at: Uppdaterad
+        user_id: Uppladdad av
+    models:
+      document: Dokument

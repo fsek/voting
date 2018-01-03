@@ -1,12 +1,10 @@
+---
 sv:
   simple_form:
-    "yes": 'Ja'
-    "no": 'Nej'
-    required:
-      text: 'obligatorisk'
-      mark: '*'
-      # You can uncomment the line below if you need to overwrite the whole required html.
-      # When using html, text and mark won't be used.
-      # html: '<abbr title="required">*</abbr>'
     error_notification:
-      default_message: "Se över felen nedan:"
+      default_message: 'Se över felen nedan:'
+    'no': Nej
+    required:
+      mark: "*"
+      text: obligatorisk
+    'yes': Ja

@@ -1,16 +1,16 @@
+---
 sv:
+  activerecord:
+    attributes:
+      vote_user:
+        name: Namn
+        present: Närvarande
+        votecode: Röstkod
+    models:
+      vote_user: mötesanvändare
   model:
     vote_user:
       presences:
         all: Alla
         not_present: Utjusterade
         present: Injusterade
-
-  activerecord:
-    models:
-      vote_user: mötesanvändare
-    attributes:
-      vote_user:
-        name: Namn
-        votecode: Röstkod
-        present: Närvarande

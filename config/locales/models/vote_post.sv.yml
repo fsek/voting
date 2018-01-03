@@ -1,10 +1,11 @@
+---
 sv:
   activerecord:
+    attributes:
+      vote_post:
+        vote_option_ids: Alternativ
+        votecode: Röstkod
     models:
       vote_post:
         one: Röst
         other: Röster
-    attributes:
-      vote_post:
-        votecode: Röstkod
-        vote_option_ids: Alternativ

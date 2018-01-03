@@ -1,30 +1,26 @@
+---
 sv:
-  admin:
-    adjustments:
-      index:
-        title: Justeringar
-        manage_vote_users: Hantera justeringar
-        manage_votes: Hantera omröstningar
-        manage_agenda: Hantera dagordning
-        manage_attendance_list: Hantera närvarolista
-      info:
-        symbols: Teckenförklaring
-        card: betyder att användaren har ett kortnummer.
-        key: betyder att användaren har en röstkod.
-        confirmed: betyder att användaren inte har bekräftat sitt konto.
-        observe: "Observera att det **inte** går att:"
-        obs1: Justera in en användare som är obekräftad.
-        obs2: Justera ut en användare när en votering är öppen.
-        obs3: Skicka en röstkod till en användare som inte är bekräftad.
-
   adjustment:
-    destroy: Förinta justering
     edit: Redigera justering
     in: " – kom in"
-    index: Snabbjustering
     new: Ny justering
-    no_results: Inga användare hittades
     not_present: Justerades ut
     out: " – gick ut"
     present: Justerades in
-    title: Justeringar
+  admin:
+    adjustments:
+      index:
+        manage_agenda: Hantera dagordning
+        manage_attendance_list: Hantera närvarolista
+        manage_vote_users: Hantera justeringar
+        manage_votes: Hantera omröstningar
+        title: Justeringar
+      info:
+        card: betyder att användaren har ett kortnummer.
+        confirmed: betyder att användaren inte har bekräftat sitt konto.
+        key: betyder att användaren har en röstkod.
+        obs1: Justera in en användare som är obekräftad.
+        obs2: Justera ut en användare när en votering är öppen.
+        obs3: Skicka en röstkod till en användare som inte är bekräftad.
+        observe: 'Observera att det **inte** går att:'
+        symbols: Teckenförklaring

@@ -1,12 +1,13 @@
+---
 sv:
   activerecord:
+    attributes:
+      contact:
+        email: E-post
+        name: Namn
+        slug: Snabbreferens
+        text: Beskrivning
     models:
       contact:
         one: Kontakt
         other: Kontakter
-    attributes:
-      contact:
-        name: Namn
-        email: E-post
-        text: Beskrivning
-        slug: Snabbreferens

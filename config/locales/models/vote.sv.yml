@@ -1,21 +1,22 @@
+---
 sv:
   activerecord:
+    attributes:
+      vote:
+        agenda: Dagordning
+        agenda_id: Dagordning
+        choices: Max alternativ per röst
+        closed: Avslutad
+        current: Aktuell
+        future: Framtida
+        open: Öppen
+        present_users: Injusterade användare
+        reset: Nollställdes
+        status: Status
+        title: Namn
     models:
       vote:
         one: Votering
         other: Voteringar
-    attributes:
-      vote:
-        title: Namn
-        open: Öppen
-        status: Status
-        choices: Max alternativ per röst
-        agenda: Dagordning
-        future: Framtida
-        current: Aktuell
-        closed: Avslutad
-        agenda_id: Dagordning
-        present_users: Injusterade användare
-        reset: Nollställdes
   vote:
     already_one_open: Det finns redan en öppen votering
