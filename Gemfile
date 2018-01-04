@@ -9,7 +9,7 @@ gem 'rails', '5.1.4'
 
 gem 'acts_as_list'
 gem 'bootsnap'
-gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.0.0.beta3'
 gem 'cancancan'
 gem 'carrierwave'
 gem 'carrierwave-aws'
