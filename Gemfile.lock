@@ -44,7 +44,7 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
     ast (2.3.0)
-    autoprefixer-rails (7.1.5)
+    autoprefixer-rails (7.2.4)
       execjs
     aws-partitions (1.25.0)
     aws-sdk-core (3.6.0)
@@ -67,9 +67,10 @@ GEM
     bindex (0.5.0)
     bootsnap (1.1.8)
       msgpack (~> 1.0)
-    bootstrap-sass (3.3.7)
-      autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
+    bootstrap (4.0.0.beta3)
+      autoprefixer-rails (>= 6.0.3)
+      popper_js (>= 1.12.3, < 2)
+      sass (>= 3.5.2)
     builder (3.2.3)
     bullet (5.7.1)
       activesupport (>= 3.0.0)
@@ -226,6 +227,7 @@ GEM
       capybara (~> 2.1)
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
+    popper_js (1.12.9)
     powerpack (0.1.1)
     pry (0.11.3)
       coderay (~> 1.1.0)
@@ -375,7 +377,7 @@ DEPENDENCIES
   acts_as_list
   better_errors
   bootsnap
-  bootstrap-sass
+  bootstrap (~> 4.0.0.beta3)
   bullet
   cancancan
   capybara

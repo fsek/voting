@@ -1,16 +1,18 @@
-<footer class="footer copyright">
-  <p>
-    <%= t('.developed_at') %>
-    <%= link_to('https://fsektionen.se') do %>
-      <%= image_tag('layout/small_f.png') %>
-    <% end %>
-    &nbsp;&nbsp;|&nbsp;&nbsp;
-    <%= link_to('https://github.com/fsek/voting', class: 'github') do %>
-      <%= fa_icon('github') %>
-    <% end %>
-    &nbsp;|&nbsp;&nbsp;
-    <%= Time.current.year %>
-    &copy;
-    <%= link_to('Röstsystem.se', 'https://rostsystem.se') %>
-  </p>
+<footer class="footer bg-dark text-light">
+  <div class="container p-2">
+    <p class="text-center">
+      <%= t('.developed_at') %>
+      <%= link_to('https://fsektionen.se') do %>
+        <%= image_tag('layout/small_f.png', height: '30px') %>
+      <% end %>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <%= link_to('https://github.com/fsek/voting', class: 'github') do %>
+        <%= fa_icon('github 2x', class: 'align-middle') %>
+      <% end %>
+      &nbsp;|&nbsp;&nbsp;
+      <%= Time.current.year %>
+      &copy;
+      <%= link_to('Röstsystem.se', 'https://rostsystem.se') %>
+    </p>
+  </div>
 </footer>
