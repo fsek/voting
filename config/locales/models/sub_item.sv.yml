@@ -1,0 +1,15 @@
+---
+sv:
+  activerecord:
+    attributes:
+      sub_item:
+        position: Ordning
+        title: Titel
+    models:
+      sub_item:
+        one: Underpunkt
+        other: Underpunkter
+  model:
+    sub_item:
+      errors:
+        count_not_allowed: Ej tillåtet att lägga till underpunkter
