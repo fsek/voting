@@ -1,0 +1,23 @@
+---
+sv:
+  activerecord:
+    attributes:
+      item:
+        position: Ordning
+        title: Titel
+        type: Typ
+    models:
+      item:
+        one: Dagordningspunkt
+        other: Dagordningspunkter
+  model:
+    item:
+      errors:
+        too_many_sub_items: Du måste ha 1 underpunkt för att kunna visa punkten som endast en huvudpunkt.
+      multiplicities:
+        multiple: Med underpunkter
+        single: Enskild
+      types:
+        announcement: Meddelande
+        decision: Beslut
+        election: Valärende
