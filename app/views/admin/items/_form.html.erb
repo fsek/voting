@@ -1,0 +1,6 @@
+<%= simple_form_for([:admin, item]) do |f| %>
+  <%= f.input(:title, autofocus: true) %>
+  <%= f.input(:type, collection: item_types, include_blank: false) %>
+  <%= f.input(:position, as: :integer, input_html: { min: '1'}) %>
+  <%= f.button(:submit) %>
+<% end %>

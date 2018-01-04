@@ -1,0 +1,29 @@
+---
+sv:
+  admin:
+    items:
+      create:
+        success: Dagordningspunkt skapades.
+      destroy:
+        success: Dagordningspunkt raderades (men kan återställas av administratör).
+      edit:
+        all_items: Alla punkter
+        allow_multiple: Tillåt underpunkter
+        allow_single: Tillåt inte underpunkter
+        confirm_remove_sub_item: Är du säker på att du vill ta bort %{title}?
+        destroy: Förinta punkt
+        new_sub_item: Ny underpunkt
+        sub_items: Underpunkter
+        title: Redigera dagordningspunkt
+      index:
+        change_status: Ändra status
+        confirm_remove: Är du säker på att du vill ta bort %{title}?
+        manage_vote_users: Hantera användare
+        manage_voting: Hantera röstning
+        new_item: Ny dagordningspunkt
+        title: Administrera dagordning
+      new:
+        all_items: Alla punkter
+        title: Ny dagordningspunkt
+      update:
+        success: Dagordningspunkten uppdaterades.

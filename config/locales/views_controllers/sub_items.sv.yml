@@ -1,0 +1,17 @@
+---
+sv:
+  admin:
+    sub_items:
+      create:
+        success: Underpunkten skapades.
+      destroy:
+        success: Underpunkten raderades (men kan återställas av administratörer).
+      edit:
+        destroy: Förinta underpunkt
+        edit_item: Redigera huvudpunkt
+        title_for: Redigera underpunkt till %{item}
+      new:
+        edit_item: Redigera huvudpunkt
+        title: Ny underpunkt
+      update:
+        success: Underpunkten uppdaterades.
