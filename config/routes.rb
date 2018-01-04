@@ -38,6 +38,10 @@ Rails.application.routes.draw do
         post :update_row_order, on: :collection
       end
 
+      resources :items, only: %i[create index new edit update destroy] do
+        resources :sub_items, only: %i[new edit create update destroy]
+      end
+
       resources :agendas, path: :dagordning, except: [:show]
       resources :current_agendas, path: 'aktuell-dagordning',
                                   only: %i[update destroy]

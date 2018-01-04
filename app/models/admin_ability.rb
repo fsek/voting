@@ -9,7 +9,7 @@ class AdminAbility
 
     if user.adjuster?
       can(:manage, Adjustment)
-      can(:manage, Agenda)
+      can(:manage, [Agenda, Item])
       can(:manage, :attendance)
       can(:manage, :search)
       can(:manage, :vote_user)

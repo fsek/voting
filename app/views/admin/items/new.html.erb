@@ -1,0 +1,11 @@
+<div class="headline">
+  <h1><%= t('.title') %></h1>
+</div>
+
+<div class="col-md-2 col-sm-12">
+  <%= link_to(t('.all_items'), admin_items_path, class: 'btn secondary') %>
+</div>
+
+<div class="col-md-10 col-sm-12">
+  <%= render('form', item: @item) %>
+</div>
