@@ -1,0 +1,11 @@
+var statusContainer = document.getElementById('item-status');
+<% if @success %>
+  var buttonContainer = document.getElementById('<%= dom_id(@sub_item) %>');
+  buttonContainer.innerHTML = "<%= j current_item_button(@sub_item) %>";
+  var itemStatusContainer = document.getElementById('<%= dom_id(@sub_item) %>-status');
+  itemStatusContainer.innerHTML = "<%= j item_status(@sub_item.status) %>";
+  statusContainer.style.display = 'none';
+<% else %>
+  statusContainer.innerHTML = "<%= @sub_item.errors.full_messages.to_sentence %>";
+  statusContainer.style.display = 'block';
+<% end %>

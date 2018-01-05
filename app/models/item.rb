@@ -19,8 +19,12 @@ class Item < ApplicationRecord
 
   scope(:position, -> { order(:position) })
 
+  def self.current
+    SubItem.current.first.try(:item)
+  end
+
   def current?
-    true
+    sub_items.current.any?
   end
 
   def to_s
