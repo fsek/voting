@@ -12,14 +12,14 @@ RSpec.describe('Handle sub items', as: :request) do
 
   describe 'create' do
     it 'correct attributes' do
-      attributes = { title: 'Motion 10', position: 10, type: :decision }
+      attributes = { title: 'Motion 10', position: 10 }
       sign_in(adjuster)
 
       get(new_admin_item_sub_item_url(item))
       expect(response).to have_http_status(200)
 
       expect do
-        post(admin_item_sub_items_url, params: { sub_item: attributes })
+        post(admin_item_sub_items_url(item), params: { sub_item: attributes })
       end.to change(SubItem, :count).by(1)
 
       sub_item = SubItem.last
@@ -34,11 +34,11 @@ RSpec.describe('Handle sub items', as: :request) do
 
     it 'incorrect attributes' do
       sign_in(adjuster)
-      attributes = { position: 10, type: :election }
+      attributes = { position: 10 }
 
       expect do
-        post(admin_items_url, params: { item: attributes })
-      end.to change(Item, :count).by(0)
+        post(admin_item_sub_items_url(item), params: { sub_item: attributes })
+      end.to change(SubItem, :count).by(0)
 
       expect(response).to have_http_status(422)
     end
@@ -47,39 +47,41 @@ RSpec.describe('Handle sub items', as: :request) do
   describe 'update' do
     it 'correct attributes' do
       sign_in(adjuster)
-      item = create(:item, type: :announcement)
-      attributes = { item: { type: :election } }
-      get(edit_admin_item_url(item))
+      sub_item = create(:sub_item, item: item, title: 'Motion om blaa')
+      attributes = { sub_item: { title: 'Proposition om blaa' } }
+      get(edit_admin_item_url(sub_item.item))
       expect(response).to have_http_status(200)
 
-      patch(admin_item_url(item), params: attributes)
-      item.reload
+      patch(admin_item_sub_item_url(item, sub_item),
+            params: attributes)
+      sub_item.reload
 
       expect(response).to redirect_to(edit_admin_item_url(item))
-      expect(item.election?).to be_truthy
+      expect(sub_item.title).to eq('Proposition om blaa')
     end
 
     it 'incorrect attributes' do
       sign_in(adjuster)
-      item = create(:item, title: 'NotChanged')
-      attributes = { item: { title: '' } }
+      sub_item = create(:sub_item, item: item, title: 'NotChanged')
+      attributes = { sub_item: { title: '' } }
 
-      patch(admin_item_url(item), params: attributes)
-      item.reload
+      patch(admin_item_sub_item_url(item, sub_item),
+            params: attributes)
+      sub_item.reload
 
       expect(response).to have_http_status(422)
-      expect(item.title).to eq('NotChanged')
+      expect(sub_item.title).to eq('NotChanged')
     end
   end
 
   it 'destroy' do
     sign_in(adjuster)
-    item = create(:item)
+    sub_item = create(:sub_item, item: item)
 
     expect do
-      delete(admin_item_url(item))
-    end.to change(Item, :count).by(-1)
+      delete(admin_item_sub_item_url(item, sub_item))
+    end.to change(SubItem, :count).by(-1)
 
-    expect(response).to redirect_to(admin_items_url)
+    expect(response).to redirect_to(edit_admin_item_url(item))
   end
 end
