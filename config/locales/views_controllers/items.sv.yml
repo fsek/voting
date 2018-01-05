@@ -10,7 +10,6 @@ sv:
         all_items: Alla punkter
         allow_multiple: Tillåt underpunkter
         allow_single: Tillåt inte underpunkter
-        confirm_remove_sub_item: Är du säker på att du vill ta bort %{title}?
         destroy: Förinta punkt
         new_sub_item: Ny underpunkt
         sub_items: Underpunkter

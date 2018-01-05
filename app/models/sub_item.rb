@@ -6,9 +6,16 @@ class SubItem < ApplicationRecord
   belongs_to(:item, inverse_of: :sub_items)
 
   validates(:title, presence: true)
+  validates(:status,
+            if: :current?,
+            uniqueness: {
+              message: I18n.t('model.sub_item.errors.already_one_current')
+            })
   validate(:number_of_sub_items, on: :create)
 
-  enum(status: { future: 0, current: 10, closed: 20 })
+  # There is a DB-constraint to assure uniqueness for status < 0,
+  # only set statuses that should be unique to values below 0.
+  enum(status: { current: -10, future: 0, closed: 10 })
   scope(:position, -> { order(:position) })
 
   def to_s

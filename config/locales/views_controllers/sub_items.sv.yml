@@ -13,5 +13,8 @@ sv:
       new:
         edit_item: Redigera huvudpunkt
         title: Ny underpunkt
+      table:
+        confirm_remove: Är du säker på att du vill ta bort %{title}?
+        update_status: Uppdatera status
       update:
         success: Underpunkten uppdaterades.

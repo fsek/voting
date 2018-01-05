@@ -11,5 +11,13 @@ sv:
         other: Underpunkter
   model:
     sub_item:
+      close: Stäng
       errors:
+        already_one_current: Det finns redan en öppen dagordningspunkt.
         count_not_allowed: Ej tillåtet att lägga till underpunkter
+      reopen: Öppna igen
+      set_current: Öppna
+      statuses:
+        closed: Stängd
+        current: Öppen
+        future: Framtida

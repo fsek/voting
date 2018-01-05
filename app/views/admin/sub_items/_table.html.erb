@@ -1,0 +1,32 @@
+<table class="table table-striped table-bordered admin-grid">
+  <thead>
+    <tr>
+      <th><%= SubItem.human_attribute_name(:title) %></th>
+      <th><%= t(:remove) %></th>
+      <th><%= SubItem.human_attribute_name(:status) %></th>
+      <th><%= t('.update_status') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% item.sub_items.each do |sub_item| %>
+      <tr>
+        <td>
+          <%= link_to(sub_item,
+                        edit_admin_item_sub_item_path(item, sub_item)) %>
+        </td>
+        <td>
+          <%= link_to(t(:remove), admin_item_sub_item_path(item, sub_item),
+                      method: :delete,
+                      data: { confirm: t('.confirm_remove',
+                                         title: sub_item.title) }) %>
+        </td>
+        <td id="<%= dom_id(sub_item) %>-status">
+          <%= item_status(sub_item.status) %>
+        </td>
+        <td id="<%= dom_id(sub_item) %>">
+          <%= current_item_button(sub_item) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
