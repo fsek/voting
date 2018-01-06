@@ -7,22 +7,22 @@ sv:
         confirm_remove: Är du säker på att du vill ta bort %{title}?
         manage_vote_users: Hantera deltagare
         manage_voting: Hantera voteringar
-        new_agenda: Ny dagordningspunkt
+        new_agenda: Ny punkt
         title: Administrera dagordning
   agenda:
     admin: Administrera dagordning
     all: Visa hela dagordningen
     children: Underpunkter
     close: Stäng
-    current: Aktuell dagordningspunkt
+    current: Aktuell punkt
     current_short: Aktuell punkt
     deleted: " [RADERAD]"
-    deleted_ok: Dagordningspunkten har raderas
+    deleted_ok: Punkten har raderas
     destroy: Förinta dagordning
     edit: Redigera punkt
     error_deleting: Öppna punkter kan ej raderas
     hint:
-      description: En längre beskrivning av dagordningspunkten för t.ex. de som inte deltagit eller missat en punkt
+      description: En längre beskrivning av punkten för t.ex. de som inte deltagit eller missat en punkt
       short: En kort beskrivning som syns bredvid punkten i dagordningen, t.ex. Bifall eller namnet på en vald person
     name: Dagordning
     new: Ny punkt

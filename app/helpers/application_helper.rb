@@ -29,12 +29,10 @@ module ApplicationHelper
   end
 
   def menu_dropdown_link(title)
-    link_to(safe_join([title, ' ', fa_icon('angle-down')]),
+    link_to(title,
             '#',
-            class: 'dropdown-toggle',
-            data: { toggle: 'dropdown',
-                    hover: 'dropdown',
-                    delay: '0',
-                    close_others: 'false' })
+            class: 'nav-link dropdown-toggle',
+            data: { toggle: 'dropdown' },
+            aria: { haspopup: true, expanded: false })
   end
 end

@@ -23,15 +23,13 @@ module DocumentsHelper
   end
 
   def document_collection(collection, page)
-    categories = [content_tag(:li, link_to(t('document.all_categories'),
-                                           documents_path))]
+    categories = [link_to(t('document.all_categories'), documents_path, class: 'dropdown-item')]
     collection.each { |c| categories << document_category_link(c, page) }
-    content_tag(:ul, safe_join(categories), class: 'dropdown-menu',
+    content_tag(:div, safe_join(categories), class: 'dropdown-menu',
                                             aria: { labelled_by: 'document_dropdown' })
   end
 
   def document_category_link(category, page)
-    content_tag(:li, link_to(category,
-                             documents_path(category: category, page: page)))
+    link_to(category, documents_path(category: category, page: page), class: 'dropdown-item')
   end
 end

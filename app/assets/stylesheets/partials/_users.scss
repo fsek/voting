@@ -14,11 +14,11 @@
     color: $white;
 
     &.green {
-      background: $unify-green;
+      background: $green;
     }
 
     &.red {
-      background: $unify-red;
+      background: $red;
     }
   }
 
@@ -41,7 +41,7 @@
       font-size: 18px;
 
       i {
-        color: $unify-red;
+        color: $red;
         font-size: 26px;
       }
     }
@@ -50,7 +50,7 @@
       font-size: 18px;
 
       i {
-        color: $unify-green;
+        color: $green;
         font-size: 26px;
       }
     }

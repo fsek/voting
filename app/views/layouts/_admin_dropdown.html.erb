@@ -1,17 +1,35 @@
-<li class="dropdown right">
-  <%= link_to("#", class: "dropdown-toggle", data: { toggle: "dropdown", "close-others" => "false" }) do %>
-    <%= fa_icon('cog') %>
-    <span>
-      <%= t(:administrate) %>
-    </span>
-  <% end %>
-  <ul class="dropdown-menu">
-    <li class="dropdown-submenu">
-        <%= link_to(models_name(User), admin_users_path) %>
-    </li>
-
-    <li class="dropdown-submenu">
-      <%= link_to models_name(News), admin_news_index_path %>
-    </li>
+<li class="nav-item dropdown">
+  <%= menu_dropdown_link(t('.administrate')) %>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-info">
+    <% if can_administrate? :modify, Vote %>
+      <li>
+        <%= link_to models_name(Vote), admin_votes_path, class: 'dropdown-item' %>
+      </li>
+    <% end %>
+    <% if can_administrate? :modify, :vote_user %>
+      <li>
+        <%= link_to t('user.vote_administration'), admin_vote_users_path, class: 'dropdown-item' %>
+      </li>
+    <% end %>
+    <% if can_administrate? :modify, Agenda %>
+      <li>
+        <%= link_to t('agenda.name'), admin_agendas_path, class: 'dropdown-item' %>
+      </li>
+    <% end %>
+    <% if can_administrate? :modify, Document %>
+      <li>
+        <%= link_to models_name(Document), admin_documents_path, class: 'dropdown-item' %>
+      </li>
+    <% end %>
+    <% if can_administrate? :modify, User %>
+      <li>
+        <%= link_to(models_name(User), admin_users_path, class: 'dropdown-item') %>
+      </li>
+    <% end %>
+    <% if can_administrate? :modify, News %>
+      <li>
+        <%= link_to(models_name(News), admin_news_index_path, class: 'dropdown-item') %>
+      </li>
+    <% end %>
   </ul>
 </li>

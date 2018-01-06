@@ -21,7 +21,7 @@
   <%= render '/admin/votes/status', vote_status_view: @vote_status_view %>
 </div>
 
-<div class="col-md-9 col-md-offset-3 col-sm-12">
+<div class="col-md-9 offset-md-3 col-sm-12">
   <%= simple_form_for(:search, url: card_admin_search_path, remote: true) do |f| %>
     <%= f.input(:card_number, required: false, autofocus: true,
                 label: User.human_attribute_name(:card_number),

@@ -23,13 +23,13 @@
   }
 
   &.gray {
-    background: $unify-grey;
-    border: 1px solid $unify-grey;
+    background: $grey;
+    border: 1px solid $grey;
     color: $white;
     margin: 0 10px 10px 0;
 
     &:hover {
-      background: $unify-grey-hover;
+      background: $grey-hover;
     }
   }
 
@@ -40,20 +40,20 @@
     margin: 0 10px 10px 0;
 
     &:hover {
-      background: $fsek-pi-silver;
-      border: 1px solid $fsek-pi-silver;
+      background: $silver;
+      border: 1px solid $silver;
       color: $white;
     }
   }
 
   &.danger {
-    background: $unify-red;
-    border: 1px solid $unify-red;
+    background: $red;
+    border: 1px solid $red;
     margin: 0 10px 10px 0;
 
     &:hover {
-      background: $unify-red-hover;
-      border: 1px solid $unify-red-hover;
+      background: $red-hover;
+      border: 1px solid $red-hover;
       color: $white;
     }
   }

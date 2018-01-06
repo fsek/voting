@@ -1,23 +1,23 @@
-@import 'colors';
+@import "colors";
 // Importing Bootstrap
-@import 'bootstrap';
+@import "bootstrap";
 
 // Include colors and mixins
-@import 'lth';
-@import 'mixins';
-@import 'fonts';
-@import 'media-queries';
+@import "lth";
+@import "mixins";
+@import "fonts";
+@import "media-queries";
 
 // Include partials
-// @import 'partials/*';
-// @import 'style/*';
+@import "partials/*";
+@import "style/*";
 
 // Include gems
-@import 'font-awesome';
-@import 'select2';
-@import 'select2-bootstrap';
-@import 'cookies_eu';
-@import 'pagedown_bootstrap';
+@import "font-awesome";
+@import "select2";
+@import "select2-bootstrap";
+@import "cookies_eu";
+@import "pagedown_bootstrap";
 
 .site {
   display: flex;
@@ -31,7 +31,10 @@
 
 body {
   color: $footer-gray;
-  font-size: 14px;
   line-height: 1.6;
   padding-top: 5rem;
+}
+
+html {
+  font-size: 14px;
 }
