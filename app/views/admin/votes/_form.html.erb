@@ -2,15 +2,17 @@
   <%= f.input :title %>
   <%= f.association :agenda, collection: Agenda.by_index, label_method: :to_s  %>
   <%= f.input :choices, as: :integer, input_html: { min: '1'} %>
-  <div class="panel">
-    <div class="panel-heading"><%= t('vote.options') %></div>
-    <div id="vote_options">
-      <%= f.simple_fields_for :vote_options do |v| %>
-        <%= render 'vote_option_fields', :f => v %>
-      <% end %>
-    </div>
-    <div class="panel-body" id="links">
-      <%= link_to_add_association t('vote.add_option'), f, :vote_options, class: 'btn secondary' %>
+  <div class="card">
+    <div class="card-header"><%= t('vote.options') %></div>
+    <div class="card-body">
+      <div id="vote_options">
+        <%= f.simple_fields_for :vote_options do |v| %>
+          <%= render 'vote_option_fields', :f => v %>
+        <% end %>
+      </div>
+      <div class="panel-body" id="links">
+        <%= link_to_add_association t('vote.add_option'), f, :vote_options, class: 'btn secondary' %>
+      </div>
     </div>
   </div>
   <div class="table">

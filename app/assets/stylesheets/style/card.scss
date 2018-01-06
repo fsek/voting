@@ -1,11 +1,12 @@
-.panel {
+.card {
   border-color: $main-color;
+  margin-bottom: 20px;
 
   .table {
     margin-bottom: 0;
   }
 
-  .panel-heading {
+  .card-header {
     background: $main-color;
     color: $white;
   }

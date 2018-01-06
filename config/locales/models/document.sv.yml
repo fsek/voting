@@ -3,7 +3,7 @@ sv:
   activerecord:
     attributes:
       document:
-        agenda: Dagordningspunkt
+        agenda: Punkt på dagordningen
         category: Kategori
         created_at: Skapad
         download: Nerladdning

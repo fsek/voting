@@ -1,15 +1,13 @@
 .pagination {
-  .active {
-    a,
-    span,
+  .page-item.active {
     a:focus,
-    span:focus {
+    .page-link {
       background-color: $main-color;
       border-color: $main-color;
     }
 
     a:hover {
-      background-color: $fsek-pi-silver;
+      background-color: $silver;
       border-color: $main-color;
     }
   }
@@ -20,10 +18,9 @@
     }
   }
 
-
   li a:hover {
-    background: $fsek-pi-silver;
-    border-color: $fsek-pi-silver;
+    background: $silver;
+    border-color: $silver;
     color: $black;
   }
   &_status {

@@ -2,13 +2,13 @@
   <h1><%= t('agenda.name') %></h1>
 </div>
 
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-8 offset-md-2">
   <ul class="agenda list-group">
     <% @agendas.each do |agenda| %>
     <li class="<%= "list-group-item #{agenda.current_status}" %>">
-      <h4 class="list-group-item-heading">
+      <h5 class="list-group-item-heading">
         <%= agenda_link(agenda) %>
-      </h4>
+      </h5>
       <span class="badge">
         <%= agenda_status_str(agenda.current_status) %>
       </span>
@@ -18,8 +18,6 @@
             <%= agenda_link(a) %>
             <br>
           <% end %>
-        <% else %>
-          <br>
         <% end %>
       </p>
     </li>

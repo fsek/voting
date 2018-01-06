@@ -3,30 +3,32 @@
   <h1><%= t('vote.title') %></h1>
 </div>
 
-<div class="col-md-3 col-sm-12 vote">
-  <%= user_presence_status(current_user) %>
-  <hr>
+<div class="row">
+  <div class="col-md-3 col-sm-12 vote">
+    <%= user_presence_status(current_user) %>
+    <hr>
 
-  <div class="headline">
-    <h3><%= t('agenda.current') %></h3>
+    <div class="headline">
+      <h3><%= t('agenda.current') %></h3>
+    </div>
+
+    <% if @vote_status.agenda.present? %>
+      <h5 class="vote agenda">
+        <%= @vote_status.agenda.to_s %>
+      </h5>
+
+      <% if @vote_status.agenda.votes.present? %>
+        <%= models_name(Vote) %>
+        <ul class="list">
+          <% @vote_status.agenda.votes.order(:id).each do |vote| %>
+            <li><%= vote.title %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
   </div>
 
-  <% if @vote_status.agenda.present? %>
-    <h5 class="vote agenda">
-      <%= @vote_status.agenda.to_s %>
-    </h5>
-
-    <% if @vote_status.agenda.votes.present? %>
-      <%= models_name(Vote) %>
-      <ul class="list">
-        <% @vote_status.agenda.votes.order(:id).each do |vote| %>
-          <li><%= vote.title %></li>
-        <% end %>
-      </ul>
-    <% end %>
-  <% end %>
-</div>
-
-<div class="col-md-9 col-ms-12 vote">
-  <%= user_vote_link(@vote_status)%>
+  <div class="col-md-9 col-ms-12 vote">
+    <%= user_vote_link(@vote_status)%>
+  </div>
 </div>

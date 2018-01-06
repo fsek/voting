@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-md bg-dark fixed-top navbar-dark border-bottom-1">
+  <%= link_to('Röstsystem', root_path, class: 'navbar-brand') %>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="mainMenu">
+    <%= render 'layouts/menu' %>
+
+    <ul class="navbar-nav">
+      <div class="my-2 my-lg-0">
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <%= menu_dropdown_link(current_user) %>
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-info">
+              <li><%= link_to t('.settings'), :user, class: 'dropdown-item' %></li>
+              <li><%= link_to t('devise.sign_out'), :destroy_user_session, method: :delete, class: 'dropdown-item' %></li>
+            </ul>
+          </li>
+        <% else %>
+          <%= link_to('Logga in', new_user_session_path, class: 'btn btn-outline-success my-2 my-sm-0') %>
+          <%= link_to('Registrera', new_user_registration_path, class: 'btn btn-outline-info my-2 my-sm-0') %>
+        <% end %>
+      </div>
+    </ul>
+  </div>
+</nav>

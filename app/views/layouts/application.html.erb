@@ -21,38 +21,7 @@
     <span class="cookies">
       <%= render 'cookies_eu/consent_banner', link: cookies_path %>
     </span>
-    <nav class="navbar navbar-expand-md bg-light fixed-top border-bottom-1">
-      <%= link_to('Röstsystem', root_path, class: 'navbar-brand') %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <%= link_to(root_path, class: 'nav-link') do %>
-              Hem <span class="sr-only">(current)</span>
-            <% end %>
-          </li>
-          <li class="nav-item dropdown">
-            <%= link_to('Information', '#', class: 'nav-link dropdown-toggle',
-                        id: 'dropdown-info', data: { toggle: 'dropdown' },
-                        aria: { haspopup: true, expanded: false }) %>
-            <div class="dropdown-menu" aria-labelledby="dropdown-info">
-              <%= link_to('Om', about_path, class: 'dropdown-item') %>
-              <%= link_to('Kontakta oss', contacts_path, class: 'dropdown-item') %>
-              <%= link_to('Dagordning', agendas_path, class: 'dropdown-item') %>
-              <%= link_to('Användarvillkor', terms_path, class: 'dropdown-item') %>
-            </div>
-          </li>
-        </ul>
-        <div class="my-2 my-lg-0">
-          <%= link_to('Logga in', new_user_session_path, class: 'btn btn-outline-success my-2 my-sm-0') %>
-          <%= link_to('Registrera', new_user_registration_path, class: 'btn btn-outline-info my-2 my-sm-0') %>
-        </div>
-      </div>
-    </nav>
-
+    <%= render 'layouts/navbar' %>
 
     <main role="main" class="container content pb-2">
       <%= yield :pre_content %>
