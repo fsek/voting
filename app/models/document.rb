@@ -2,27 +2,19 @@
 
 # Allows uploading a document for viewing
 class Document < ApplicationRecord
-  belongs_to :user, optional: true
-  belongs_to :agenda, optional: true
+  acts_as_list(scope: :sub_item)
+  belongs_to(:sub_item)
 
-  validates :title, :category, presence: true
+  validates(:title, :pdf, presence: true)
 
-  mount_uploader :pdf, DocumentUploader
+  mount_uploader(:pdf, DocumentUploader)
+  scope(:position, -> { order(:position) })
 
   # For caching pdf in form
   attr_accessor :pdf_cache
 
-  scope :publik, -> { where(public: true).order('category asc') }
-
   def to_s
     title || id
-  end
-
-  def self.categories
-    where.not(category: nil)
-         .where.not(category: '')
-         .order(:category)
-         .pluck(:category).uniq
   end
 
   def view
