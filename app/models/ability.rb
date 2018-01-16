@@ -8,7 +8,6 @@ class Ability
     user ||= User.new
 
     # Abilities that everyone get.
-    can :read, Document, public: true
     can :read, News
     can %i[mail read], :contact
     can %i[index about cookies_information terms], :static_pages
@@ -18,7 +17,7 @@ class Ability
     return unless user.id.present?
     can %i[edit show update set_card_number update_password
            update_account], User, id: user.id
-    can :read, Document
+    can :show, Document
     can :index, Vote
     can %i[new create], VotePost
   end

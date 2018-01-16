@@ -1,6 +1,10 @@
 ---
 sv:
-  document:
+  admin:
+    documents:
+      index:
+        title: Administrera dokument
+  documents:
     admin:
       index: Administrera dokument
     all_categories: Alla kategorier
