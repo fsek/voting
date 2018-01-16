@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 RSpec.describe Ability do
   standard = :read, :create, :update, :destroy
 
   ab_not_signed = {
-    Document.new(public: true) => { yes: [:read], no: [:create, :update, :destroy] },
-    News.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Document.new(public: true) => { yes: [:read], no: %i[create update destroy] },
+    News.new => { yes: [:read], no: %i[create update destroy] }
   }
 
   ab_signed = {
-    Document.new => { yes: [:read], no: [:create, :update, :destroy] },
-    News.new => { yes: [:read], no: [:create, :update, :destroy] },
+    Document.new => { yes: [:read], no: %i[create update destroy] },
+    News.new => { yes: [:read], no: %i[create update destroy] }
   }
 
   let(:signed) { build_stubbed(:user) }

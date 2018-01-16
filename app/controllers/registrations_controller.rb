@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RegistrationsController < Devise::RegistrationsController
   # This is a subclass of the devise registrations controller,
   # hence there is very little code here :)

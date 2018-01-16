@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MarkdownHelper
   require 'redcarpet/render_strip'
   def markdown(text)

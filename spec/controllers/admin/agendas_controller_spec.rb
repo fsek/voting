@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Admin::AgendasController, type: :controller do
@@ -177,5 +179,4 @@ RSpec.describe Admin::AgendasController, type: :controller do
       flash[:notice].should eq(I18n.t('agenda.deleted_ok'))
     end
   end
-
 end

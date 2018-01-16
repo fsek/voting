@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::AdjustmentsController < Admin::BaseController
   load_and_authorize_resource
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -5,7 +7,7 @@ Devise.setup do |config|
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
   # Moved to config/initializers/secrets.rb
-  #config.secret_key = 'edd7cb89bd1da5452a48235c45fa7d89a2572fe561fd5b7d0302b9db956ca1d48cba976d2744382121571f7f6cd353bc12706849b711578c00a3bb7bb36bba3f'
+  # config.secret_key = 'edd7cb89bd1da5452a48235c45fa7d89a2572fe561fd5b7d0302b9db956ca1d48cba976d2744382121571f7f6cd353bc12706849b711578c00a3bb7bb36bba3f'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -201,7 +203,6 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
-
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).

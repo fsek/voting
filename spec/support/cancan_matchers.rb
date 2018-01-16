@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # https://github.com/CanCanCommunity/cancancan/wiki/Testing-Abilities
 # https://gist.github.com/fotinakis/3a532a0929f64b4b5352
 # Custom rspec matcher for testing CanCan abilities.
@@ -30,15 +32,15 @@ RSpec::Matchers.define :have_abilities do |actions, obj|
 
   description do
     obj_name = @obj.class.name
-    obj_name = @obj.to_s.capitalize if [Class, Module, Symbol].
-      include?(@obj.class)
+    obj_name = @obj.to_s.capitalize if [Class, Module, Symbol]
+                                       .include?(@obj.class)
     "have abilities #{@expected_hash.keys.join(', ')} on #{obj_name}"
   end
 
   failure_message do
     obj_name = @obj.class.name
-    obj_name = @obj.to_s.capitalize if [Class, Module, Symbol].
-      include?(@obj.class)
+    obj_name = @obj.to_s.capitalize if [Class, Module, Symbol]
+                                       .include?(@obj.class)
     "expected user to have abilities: #{@expected_hash} for " \
     "#{obj_name}, but got #{@actual_hash}"
   end
@@ -50,7 +52,7 @@ RSpec::Matchers.define :not_have_abilities do |actions, obj|
   match do |ability|
     verify_ability_type(ability)
     if actions.is_a?(Hash)
-      fail ArgumentError, 'You cannot pass a hash to not_have_abilities. ' \
+      raise ArgumentError, 'You cannot pass a hash to not_have_abilities. ' \
         'Use have_abilities instead.'
     end
     @expected_hash = build_expected_hash(actions, default_expectation: false)
@@ -64,16 +66,18 @@ RSpec::Matchers.define :not_have_abilities do |actions, obj|
 
   description do
     obj_name = @obj.class.name
-    obj_name = @obj.to_s.capitalize if [Class, Module, Symbol].
-      include?(@obj.class)
-    "not have abilities #{@expected_hash.keys.join(', ')} " \
-      "on #{obj_name}" if @expected_hash.present?
+    obj_name = @obj.to_s.capitalize if [Class, Module, Symbol]
+                                       .include?(@obj.class)
+    if @expected_hash.present?
+      "not have abilities #{@expected_hash.keys.join(', ')} " \
+        "on #{obj_name}"
+    end
   end
 
   failure_message do
     obj_name = @obj.class.name
-    obj_name = @obj.to_s.capitalize if [Class, Module, Symbol].
-      include?(@obj.class)
+    obj_name = @obj.to_s.capitalize if [Class, Module, Symbol]
+                                       .include?(@obj.class)
     "expected user NOT to have abilities #{@expected_hash.keys.join(', ')} " \
       "for #{obj_name}, but got #{@actual_hash}"
   end
@@ -96,7 +100,7 @@ module HaveAbilitiesMixin
 
   def verify_ability_type(ability)
     return if ability.class.ancestors.include?(CanCan::Ability)
-    fail TypeError, 'subject must mixin CanCan::Ability, got a ' \
+    raise TypeError, 'subject must mixin CanCan::Ability, got a ' \
       "#{ability.class.name} class."
   end
 end

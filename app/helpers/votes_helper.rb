@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module VotesHelper
   def split_audit_hashes(input, model)
     values = []
@@ -9,26 +11,26 @@ module VotesHelper
 
   def split_hash(key, value, model)
     val = ''
-    case key
-    when 'user_id'
-      val = split_array(value)
-    when 'vote_id'
-      val = split_array(value)
-    when 'agenda_id'
-      val = split_agenda(value)
-    when 'presence'
-      val = split_presence(value)
-    when 'votecode'
-      val = split_votecode(value)
-    when 'status'
-      val = split_status(value)
-    when 'title'
-      val = split_votecode(value)
-    when 'present_users'
-      val = split_present_users(value)
-    else
-      val = value.to_s
-    end
+    val = case key
+          when 'user_id'
+            split_array(value)
+          when 'vote_id'
+            split_array(value)
+          when 'agenda_id'
+            split_agenda(value)
+          when 'presence'
+            split_presence(value)
+          when 'votecode'
+            split_votecode(value)
+          when 'status'
+            split_status(value)
+          when 'title'
+            split_votecode(value)
+          when 'present_users'
+            split_present_users(value)
+          else
+            value.to_s
+          end
 
     if val.present?
       content = model.human_attribute_name(key) + ': ' + val.to_s
@@ -49,9 +51,7 @@ module VotesHelper
   end
 
   def split_array(value)
-    unless value.is_a?(Array) && value.first.nil?
-      value.to_s
-    end
+    value.to_s unless value.is_a?(Array) && value.first.nil?
   end
 
   def split_presence(value)
@@ -172,9 +172,7 @@ module VotesHelper
     ocount = vote.vote_options.sum(:count)
     result = "#{pcount} / #{vote.vote_posts.count * vote.choices - pcount}"
 
-    if pcount != ocount
-      result += t('vote.sum_is_wrong')
-    end
+    result += t('vote.sum_is_wrong') if pcount != ocount
 
     result
   end

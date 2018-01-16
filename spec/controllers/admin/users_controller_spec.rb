@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 RSpec.describe Admin::UsersController, type: :controller do
   allow_user_to :manage, :all

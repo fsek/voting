@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 RSpec.feature 'User sign in' do
   let(:user) { create(:user) }

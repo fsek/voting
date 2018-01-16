@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module VoteUserHelper
   def vote_user_state_link(user)
     return unless user.present?

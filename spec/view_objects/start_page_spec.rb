@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe StartPage do
@@ -12,11 +14,11 @@ RSpec.describe StartPage do
 
       start = StartPage.new
 
-      start.news.map(&:title).should eq(['First',
-                                         'Second',
-                                         'Third',
-                                         'Fourth',
-                                         'Fifth'])
+      start.news.map(&:title).should eq(%w[First
+                                           Second
+                                           Third
+                                           Fourth
+                                           Fifth])
     end
   end
 end

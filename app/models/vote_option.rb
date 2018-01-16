@@ -20,9 +20,7 @@ class VoteOption < ApplicationRecord
   end
 
   def log_update
-    if log_changes.present?
-      log('update')
-    end
+    log('update') if log_changes.present?
   end
 
   def log_destroy
