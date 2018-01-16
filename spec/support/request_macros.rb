@@ -8,6 +8,10 @@ module RequestMacro
     base.after(:each) { Warden.test_reset! }
   end
 
+  def self.pdf
+    Rack::Test::UploadedFile.new('spec/assets/pdf.pdf')
+  end
+
   def sign_in(resource)
     login_as(resource, scope: warden_scope(resource))
   end
