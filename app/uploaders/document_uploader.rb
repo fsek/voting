@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DocumentUploader < CarrierWave::Uploader::Base
   if ENV['AWS']
     storage :aws
@@ -14,6 +16,6 @@ class DocumentUploader < CarrierWave::Uploader::Base
   end
 
   def extension_white_list
-    %w(pdf)
+    %w[pdf]
   end
 end

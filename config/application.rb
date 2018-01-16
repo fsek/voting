@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -16,9 +18,9 @@ module Voting
     config.i18n.default_locale = :sv
 
     config.time_zone = 'Stockholm'
-    config.filter_parameters += [:password,
-                                 :password_confirmation,
-                                 :vote_option_ids]
+    config.filter_parameters += %i[password
+                                   password_confirmation
+                                   vote_option_ids]
   end
 end
 

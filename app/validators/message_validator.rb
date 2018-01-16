@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MessageValidator
   def self.validate(message)
     message.present? &&
@@ -18,12 +20,12 @@ module MessageValidator
 
   def self.validate_email(message)
     state = true
-    if !message.email.present?
+    unless message.email.present?
       message.errors.add(:email, :blank)
       state = false
     end
 
-    if !message.email.match(Devise::email_regexp)
+    unless message.email.match?(Devise.email_regexp)
       message.errors.add(:email, :format)
       state = false
     end

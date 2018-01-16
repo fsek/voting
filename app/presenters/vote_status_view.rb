@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class VoteStatusView
   attr_accessor :vote_post
   attr_reader :adjusted, :agenda, :vote

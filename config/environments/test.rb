@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -40,7 +42,7 @@ Rails.application.configure do
   # Raises error for missing translations
   config.action_view.raise_on_missing_translations = true
 
-  PUBLIC_URL = 'localhost:3000'.freeze
+  PUBLIC_URL = 'localhost:3000'
   # Mailer asset
   config.action_mailer.default_url_options = { host: PUBLIC_URL }
   config.action_mailer.asset_host = PUBLIC_URL

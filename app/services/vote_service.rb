@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module VoteService
   def self.user_vote(post)
     VotePost.transaction do
@@ -14,7 +16,7 @@ module VoteService
       post.save!
     end
     true
-  rescue
+  rescue StandardError
     false
   end
 
@@ -25,7 +27,7 @@ module VoteService
       user.update!(presence: true)
       Adjustment.create!(user: user, agenda: Agenda.now, presence: true)
       state = true
-    rescue
+    rescue StandardError
       state = false
     end
     state
@@ -38,7 +40,7 @@ module VoteService
       user.update!(presence: false)
       Adjustment.create!(user: user, agenda: Agenda.now, presence: false)
       state = true
-    rescue
+    rescue StandardError
       state = false
     end
     state
@@ -61,7 +63,7 @@ module VoteService
       user.update!(votecode: votecode)
       VoteMailer.votecode(user).deliver_now
       return true
-    rescue => e
+    rescue StandardError => e
       return false
     end
   end
@@ -78,7 +80,7 @@ module VoteService
       vote.vote_options.update_all(count: 0)
       true
     end
-  rescue
+  rescue StandardError
     false
   end
 end

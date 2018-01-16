@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AgendasHelper
   def agenda_state_link(agenda)
     if agenda.current?

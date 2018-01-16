@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 module AdjustmentsHelper
   def split_adjustments(adjustments)
     val = ''
 
     adjustments.each do |a|
-      if a.agenda.present?
-        val += a.agenda.list_str + in_out(a.presence) + ', '
-      else
-        val += t('log.missing') + ', '
-      end
+      val += if a.agenda.present?
+               a.agenda.list_str + in_out(a.presence) + ', '
+             else
+               t('log.missing') + ', '
+             end
     end
 
     val.chomp(', ')

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module NewsHelper
   def news_user(news)
     if news.present? && news.user.present?

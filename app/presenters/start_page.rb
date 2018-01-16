@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StartPage
   attr_accessor :agendas, :news
 

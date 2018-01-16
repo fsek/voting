@@ -1,6 +1,8 @@
 ---
 sv:
   layouts:
+    admin_dropdown:
+      administrate: Administrera
     copyright:
       developed_at: Utvecklad vid
     email:
@@ -17,5 +19,3 @@ sv:
       voting: Röstning
     navbar:
       settings: Kontoinställningar
-    admin_dropdown:
-      administrate: Administrera

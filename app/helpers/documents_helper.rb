@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DocumentsHelper
   def document_button_text(category)
     if category.present?
@@ -26,7 +28,7 @@ module DocumentsHelper
     categories = [link_to(t('document.all_categories'), documents_path, class: 'dropdown-item')]
     collection.each { |c| categories << document_category_link(c, page) }
     content_tag(:div, safe_join(categories), class: 'dropdown-menu',
-                                            aria: { labelled_by: 'document_dropdown' })
+                                             aria: { labelled_by: 'document_dropdown' })
   end
 
   def document_category_link(category, page)
