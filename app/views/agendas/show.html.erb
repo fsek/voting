@@ -59,23 +59,6 @@
       <br>
     </div>
 
-    <% if @agenda.documents.present? %>
-      <div class="col-md-6 col-sm-12">
-        <div class="headline">
-          <h3><%= models_name(Document) %></h3>
-        </div>
-        <ul class="list">
-          <% @agenda.documents.each do |doc| %>
-            <li>
-              <%= link_to document_path(doc), target: '_blank' do %>
-                <%= fa_icon('paperclip') %><%= doc.to_s %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
     <% if @agenda.votes.present? %>
       <div class="col-md-6 col-sm-12">
         <div class="headline">

@@ -16,11 +16,6 @@
         <%= link_to t('agenda.name'), admin_agendas_path, class: 'dropdown-item' %>
       </li>
     <% end %>
-    <% if can_administrate? :modify, Document %>
-      <li>
-        <%= link_to models_name(Document), admin_documents_path, class: 'dropdown-item' %>
-      </li>
-    <% end %>
     <% if can_administrate? :modify, User %>
       <li>
         <%= link_to(models_name(User), admin_users_path, class: 'dropdown-item') %>

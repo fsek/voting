@@ -1,13 +1,9 @@
-<%= simple_form_for([:admin, @document]) do |f| %>
+<%= simple_form_for([:admin, sub_item, document], remote: true) do |f| %>
   <%= f.input :title %>
-  <%= f.input :category, collection: @categories, input_html: { class: 'select2-tags' },
-              include_blank: false %>
-  <%= f.association :agenda, collection: Agenda.by_index, label_method: :to_s, include_hidden: false,
-                             input_html: { class: 'select2-single' }, required: false %>
-  <% if @document.pdf.present? %>
-    <p><%= link_to(@document.pdf, @document)%></p>
+  <%= f.input :position %>
+  <% if document.pdf.present? %>
+    <p><%= link_to(document.pdf_identifier, document.view, target: :blank)%></p>
   <% end %>
-  <%= f.input :pdf, as: :file %>
-  <%= f.input :public, as: :boolean %>
+  <%= f.input :pdf, as: :file, required: !document.pdf.present? %>
   <%= f.button :submit %>
 <% end %>
