@@ -8,7 +8,7 @@ class DocumentsController < ApplicationController
     if document.view
       redirect_to(document.view)
     else
-      redirect_back(fallback_path: root_path, alert: t('.not_found'))
+      redirect_back(fallback_location: root_path, alert: t('.not_found'))
     end
   end
 end

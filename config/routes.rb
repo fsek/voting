@@ -40,6 +40,9 @@ Rails.application.routes.draw do
       resources :items, only: %i[create index new edit update destroy] do
         resources :sub_items, only: %i[new edit create update destroy]
       end
+      resources :sub_items, only: [] do
+        resources :documents, only: %i[create destroy edit update]
+      end
       resources :current_items, only: %i[update destroy]
 
       resources :agendas, path: :dagordning, except: [:show]
