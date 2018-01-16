@@ -1,0 +1,2 @@
+var form = document.getElementById('document-form');
+form.innerHTML = "<%= j render('/admin/documents/form', sub_item: @sub_item, document: @document) %>";

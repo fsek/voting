@@ -1,0 +1,4 @@
+var formTitle = document.getElementById('document-form-title');
+var form = document.getElementById('document-form');
+formTitle.innerHTML = "<%= t('.edit_document') %>";
+form.innerHTML = "<%= j render('/admin/documents/form', sub_item: @sub_item, document: @document) %>";
