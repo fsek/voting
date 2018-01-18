@@ -27,7 +27,7 @@
   <div class="headline">
     <h3><%= models_name(Adjustment) %></h3>
   </div>
-  <%= render 'adjustments', user: @user %>
+  <%= render 'adjustments', user: @user, adjustments: @adjustments %>
 
   <div class="headline">
     <h3><%= t('log.title') %></h3>

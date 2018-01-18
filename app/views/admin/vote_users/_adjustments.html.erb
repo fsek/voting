@@ -12,19 +12,21 @@
     </tr>
   </thead>
   <tbody id="adjustments-sortable">
-    <% @adjustments.each do |adjustment| %>
-      <tr data-item-id=<%= "#{adjustment.id}" %> class="item">
+    <% adjustments.each do |adjustment| %>
+      <tr data-item-id="<%= adjustment.id %>" class="item" id="<%= dom_id(adjustment) %>">
         <td>
           <%= in_out_table(adjustment.presence) %>
         </td>
         <td>
-          <%= adjustment.agenda %>
+          <%= adjustment.sub_item %>
         </td>
         <td>
           <%= link_to t('edit'), edit_admin_adjustment_path(adjustment) %>
         </td>
-        <td class='adjustments-deleterow'>
-          <%= fa_icon('times') %>
+        <td>
+          <%= link_to(fa_icon('times'), admin_adjustment_path(adjustment),
+                                        method: :delete,
+                                        remote: true) %>
         </td>
       </tr>
     <% end %>
