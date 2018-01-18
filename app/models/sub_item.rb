@@ -19,8 +19,26 @@ class SubItem < ApplicationRecord
   enum(status: { current: -10, future: 0, closed: 10 })
   scope(:position, -> { order(:position) })
 
+  def self.current
+    where(status: :current).first
+  end
+
   def to_s
-    "§#{item.position}.#{position} #{title}"
+    if item.multiple?
+      "§#{item.position}.#{position} #{title}"
+    else
+      item.to_s
+    end
+  end
+
+  def list
+    if item.multiple?
+      str = "§#{item.position}.#{position}"
+      str += I18n.t('model.item.deleted') if deleted?
+      str
+    else
+      item.list
+    end
   end
 
   def to_param

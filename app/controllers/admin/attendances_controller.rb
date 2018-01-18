@@ -11,16 +11,16 @@ module Admin
 
     def update
       @user = User.find(params[:id])
-      @success = VoteService.set_present(@user)
+      render(status: 422) unless (@success = VoteService.attends(@user))
     end
 
     def destroy
       @user = User.find(params[:id])
-      @success = VoteService.set_not_present(@user)
+      render(status: 422) unless (@success = VoteService.unattends(@user))
     end
 
     def destroy_all
-      if VoteService.set_all_not_present
+      if VoteService.unattend_all
         flash[:notice] = t('vote_user.state.all_not_present')
       else
         flash[:alert] = t('vote_user.state.error_all_not_present')
