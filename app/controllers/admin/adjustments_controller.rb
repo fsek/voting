@@ -24,10 +24,12 @@ class Admin::AdjustmentsController < Admin::BaseController
 
   def update
     @adjustment = Adjustment.find(params[:id])
+    user = @adjustment.user
 
     if @adjustment.update(adjustment_params)
       redirect_to edit_admin_adjustment_path(@adjustment), notice: t('.success')
     else
+      @adjustment.user = user
       render :edit, status: 422
     end
   end
