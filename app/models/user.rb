@@ -35,7 +35,7 @@ class User < ApplicationRecord
   scope :present, -> { where(presence: true) }
   scope :not_present, -> { where(presence: false) }
   scope :all_attended, (lambda do
-    includes(adjustments: :agenda).where.not(adjustments: { id: nil })
+    includes(adjustments: :sub_item).where.not(adjustments: { id: nil })
   end)
 
   def self.card_number(card_number)

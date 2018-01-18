@@ -14,9 +14,9 @@ module Admin
       @user = User.find(params[:id])
       @votes = Vote.with_deleted
       @adjustments = @user.adjustments
-                          .includes(agenda: :parent)
+                          .includes(sub_item: :item)
                           .rank(:row_order)
-      @audits = @user.audits.includes(:updater)
+      @audits = @user.audits.includes(:updater, :user)
     end
   end
 end

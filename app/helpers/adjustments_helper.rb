@@ -5,8 +5,8 @@ module AdjustmentsHelper
     val = ''
 
     adjustments.each do |a|
-      val += if a.agenda.present?
-               a.agenda.list_str + in_out(a.presence) + ', '
+      val += if a.sub_item.present?
+               "#{a.sub_item.list}#{in_out(a.presence)}, "
              else
                t('log.missing') + ', '
              end
@@ -16,15 +16,15 @@ module AdjustmentsHelper
   end
 
   def in_out(present)
-    present ? t('adjustment.in') : t('adjustment.out')
+    present ? t('model.adjustment.in') : t('model.adjustment.out')
   end
 
   def in_out_table(present)
-    present ? t('adjustment.present') : t('adjustment.not_present')
+    present ? t('model.adjustment.present') : t('model.adjustment.not_present')
   end
 
   def adjustment_collection
-    [[t('adjustment.present'), true],
-     [t('adjustment.not_present'), false]]
+    [[t('model.adjustment.present'), true],
+     [t('model.adjustment.not_present'), false]]
   end
 end

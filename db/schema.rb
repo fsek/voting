@@ -10,22 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180105115839) do
+ActiveRecord::Schema.define(version: 20180118104855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
 
   create_table "adjustments", id: :serial, force: :cascade do |t|
-    t.integer "agenda_id"
     t.integer "user_id"
     t.boolean "presence", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.integer "row_order"
-    t.index ["agenda_id"], name: "index_adjustments_on_agenda_id"
+    t.bigint "sub_item_id"
     t.index ["deleted_at"], name: "index_adjustments_on_deleted_at"
+    t.index ["sub_item_id"], name: "index_adjustments_on_sub_item_id"
     t.index ["user_id"], name: "index_adjustments_on_user_id"
   end
 
@@ -171,7 +171,7 @@ ActiveRecord::Schema.define(version: 20180105115839) do
     t.index ["deleted_at"], name: "index_votes_on_deleted_at"
   end
 
-  add_foreign_key "adjustments", "agendas"
+  add_foreign_key "adjustments", "sub_items"
   add_foreign_key "adjustments", "users"
   add_foreign_key "audits", "users"
   add_foreign_key "audits", "votes"

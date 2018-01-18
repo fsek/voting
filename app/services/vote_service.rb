@@ -20,52 +20,43 @@ module VoteService
     false
   end
 
-  def self.set_present(user)
-    return false unless Agenda.now.present?
-    state = false
-    begin
-      user.update!(presence: true)
-      Adjustment.create!(user: user, agenda: Agenda.now, presence: true)
-      state = true
-    rescue StandardError
-      state = false
-    end
-    state
-  end
-
-  def self.set_not_present(user)
-    state = false
-    return state if Vote.current.present? || Agenda.now.nil?
-    begin
-      user.update!(presence: false)
-      Adjustment.create!(user: user, agenda: Agenda.now, presence: false)
-      state = true
-    rescue StandardError
-      state = false
-    end
-    state
-  end
-
-  def self.set_all_not_present
-    agenda = Agenda.now
-    return if Vote.current.present? || agenda.nil?
+  def self.attends(user)
+    return false unless SubItem.current.present?
     User.transaction do
-      User.present.each do |u|
-        u.update!(presence: false)
-        Adjustment.create!(user: u, agenda: agenda, presence: false)
+      user.update!(presence: true)
+      Adjustment.create!(user: user, sub_item: SubItem.current, presence: true)
+    end
+  rescue StandardError
+    false
+  end
+
+  def self.unattends(user)
+    return false if Vote.current.present? || SubItem.current.nil?
+    User.transaction do
+      user.update!(presence: false)
+      Adjustment.create!(user: user, sub_item: SubItem.current, presence: false)
+    end
+  rescue StandardError
+    false
+  end
+
+  def self.unattend_all
+    return if Vote.current.present? || SubItem.current.nil?
+    User.transaction do
+      User.present.each do |user|
+        user.update!(presence: false)
+        Adjustment.create!(user: user, sub_item: SubItem.current,
+                           presence: false)
       end
     end
   end
 
   def self.set_votecode(user)
     votecode = votecode_generator
-    begin
-      user.update!(votecode: votecode)
-      VoteMailer.votecode(user).deliver_now
-      return true
-    rescue StandardError => e
-      return false
-    end
+    user.update!(votecode: votecode)
+    VoteMailer.votecode(user).deliver_now
+  rescue StandardError
+    false
   end
 
   def self.votecode_generator
@@ -78,7 +69,6 @@ module VoteService
       vote.update!(present_users: 0, reset: true)
       vote.vote_posts.destroy_all
       vote.vote_options.update_all(count: 0)
-      true
     end
   rescue StandardError
     false

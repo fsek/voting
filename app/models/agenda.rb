@@ -7,7 +7,6 @@ class Agenda < ApplicationRecord
   before_destroy :destroy_validation # Must be placed above has_many :children!
   before_save :set_sort_index
 
-  has_many :adjustments
   has_many :votes
   has_many :children, class_name: 'Agenda',
                       foreign_key: 'parent_id',

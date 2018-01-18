@@ -20,15 +20,21 @@ class Item < ApplicationRecord
   scope(:position, -> { order(:position) })
 
   def self.current
-    SubItem.current.first.try(:item)
+    SubItem.current.try(:item)
   end
 
   def current?
-    sub_items.current.any?
+    sub_items.current.present?
   end
 
   def to_s
     "§#{position} #{title}"
+  end
+
+  def list
+    str = "§#{position}"
+    str += I18n.t('model.item.deleted') if deleted?
+    str
   end
 
   def to_param
