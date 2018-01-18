@@ -29,8 +29,6 @@ sv:
     presence_error: Användare kunde inte justeras in, har eposten bekräftats?
     present_count: Antal injusterade
     state:
-      all_not_present: Utjustering av alla mötesdeltagare lyckades
-      error_all_not_present: Utjustering av alla mötesdeltagare lyckades inte
       not_present: Utjusterad
       present: Injusterad
       short_error_not_present: Utjustering misslyckades

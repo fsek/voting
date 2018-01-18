@@ -57,27 +57,4 @@ jQuery(function() {
       });
     }
   });
-  return $('.adjustments-deleterow').on('click', function() {
-    var $row;
-    if (confirm('Är du helt säker på att du vill ta bort justeringen?')) {
-      $row = $(this).parent('tr');
-      return $.ajax({
-        type: 'POST',
-        url: '/admin/justering/' + $row.data('item-id'),
-        dataType: 'json',
-        data: {
-          '_method': 'delete'
-        },
-        success: function() {
-          $row.addClass('danger');
-          return $row.fadeOut(3000, function() {
-            return $(this).remove();
-          });
-        },
-        error: function() {
-          return alert('Det gick inte att ta bort justeringen');
-        }
-      });
-    }
-  });
 });

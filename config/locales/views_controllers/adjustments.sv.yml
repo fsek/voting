@@ -1,12 +1,5 @@
 ---
 sv:
-  adjustment:
-    edit: Redigera justering
-    in: " – kom in"
-    new: Ny justering
-    not_present: Justerades ut
-    out: " – gick ut"
-    present: Justerades in
   admin:
     adjustments:
       index:
@@ -24,3 +17,15 @@ sv:
         obs3: Skicka en röstkod till en användare som inte är bekräftad.
         observe: 'Observera att det **inte** går att:'
         symbols: Teckenförklaring
+      new:
+        all_adjustments: Hantera justeringar
+        title: Ny justering
+        vote_user: Redigera användare
+      edit:
+        all_adjustments: Hantera justeringar
+        title: Redigera justering
+        vote_user: Redigera användare
+      create:
+        success: Justeringen skapades.
+      update:
+        success: Justeringen uppdaterades.

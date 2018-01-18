@@ -12,6 +12,7 @@ sv:
         other: Dagordningspunkter
   model:
     item:
+      deleted: " [RADERAD]"
       errors:
         too_many_sub_items: Du måste ha 1 underpunkt för att kunna visa punkten som endast en huvudpunkt.
       multiplicities:

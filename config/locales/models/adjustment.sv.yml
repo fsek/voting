@@ -3,9 +3,16 @@ sv:
   activerecord:
     attributes:
       adjustment:
-        agenda_id: Punkt
+        sub_item: Punkt
         presence: Närvaro
     models:
       adjustment:
         one: Justering
         other: Justeringar
+
+  model:
+    adjustment:
+      in: " – kom in"
+      not_present: Justerades ut
+      out: " – gick ut"
+      present: Justerades in
