@@ -9,7 +9,7 @@ RSpec.describe("Adjust presence of all user", type: :request) do
     sign_in(adjuster)
     create_list(:user, 4, presence: true)
     create(:vote, status: :future)
-    create(:agenda, status: :current)
+    create(:sub_item, status: :current)
 
     delete(admin_attendances_path)
     expect(response).to redirect_to(admin_vote_users_path)

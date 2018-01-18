@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :adjustment do
-    agenda
+    sub_item
     user
     presence true
   end
