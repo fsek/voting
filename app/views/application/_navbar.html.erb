@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-md bg-dark fixed-top navbar-dark border-bottom-1">
-  <%= link_to('Röstsystem', root_path, class: 'navbar-brand') %>
+  <%= link_to(t('.title'), root_path, class: 'navbar-brand') %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="mainMenu">
-    <%= render 'layouts/menu' %>
+    <%= render 'menu' %>
 
     <ul class="navbar-nav">
       <div class="my-2 my-lg-0">
@@ -19,8 +19,8 @@
             </ul>
           </li>
         <% else %>
-          <%= link_to('Logga in', new_user_session_path, class: 'btn btn-outline-success my-2 my-sm-0') %>
-          <%= link_to('Registrera', new_user_registration_path, class: 'btn btn-outline-info my-2 my-sm-0') %>
+          <%= link_to(t('.sign_in'), new_user_session_path, class: 'btn btn-outline-success my-2 my-sm-0') %>
+          <%= link_to(t('.sign_up'), new_user_registration_path, class: 'btn btn-outline-info my-2 my-sm-0') %>
         <% end %>
       </div>
     </ul>

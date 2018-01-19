@@ -1,6 +1,6 @@
 <ul class="navbar-nav mr-auto">
   <% if current_user.present? && !current_user.user? %>
-    <%= render 'layouts/admin_dropdown' %>
+    <%= render 'admin_dropdown' %>
   <% end %>
 
   <li class="nav-item dropdown">

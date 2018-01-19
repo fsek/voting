@@ -1,0 +1,24 @@
+---
+sv:
+  application:
+    admin_dropdown:
+      administrate: Administrera
+    copyright:
+      developed_at: Utvecklad vid
+    email:
+      footer:
+        why_email: Du får detta e-post eftersom du varit inne på Röstsystems webbplats och använt någon av våra tjänster.
+    menu:
+      about: Om
+      agenda: Dagordning
+      contact: Kontakt
+      documents: Dokument
+      info: Information
+      terms: Användarvillkor
+      votes: Voteringar
+      voting: Röstning
+    navbar:
+      settings: Kontoinställningar
+      sign_in: Logga in
+      sign_up: Registrera
+      title: Röstsystem

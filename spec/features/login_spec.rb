@@ -10,7 +10,7 @@ RSpec.feature 'User sign in' do
     page.fill_in 'user_password', with: '12345678'
     page.click_button I18n.t('devise.sign_in')
     page.should have_css('div.alert.alert-info')
-    find('div.alert.alert-info').text.should include(I18n.t('devise.sessions.signed_in'))
+    find('div.alert').text.should include(I18n.t('devise.sessions.signed_in'))
   end
 
   scenario 'sign in incorrect password' do
@@ -18,8 +18,8 @@ RSpec.feature 'User sign in' do
     page.fill_in 'user_email', with: user.email
     page.fill_in 'user_password', with: 'wrong'
     page.click_button I18n.t('devise.sign_in')
-    page.should have_css('div.alert.alert-danger')
-    find('div.alert.alert-danger').text.should include(I18n.t('devise.failure.invalid'))
+    page.should have_css('div.alert')
+    find('div.alert').text.should include(I18n.t('devise.failure.invalid'))
   end
 
   scenario 'sign in non existing email' do
@@ -27,8 +27,8 @@ RSpec.feature 'User sign in' do
     page.fill_in 'user_email', with: 'not-existing@email.com'
     page.fill_in 'user_password', with: 'wrong'
     page.click_button I18n.t('devise.sign_in')
-    page.should have_css('div.alert.alert-danger')
-    find('div.alert.alert-danger').text.should \
+    page.should have_css('div.alert')
+    find('div.alert').text.should \
       include(I18n.t('devise.failure.user.not_found_in_database'))
   end
 end
