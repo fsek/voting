@@ -2,6 +2,12 @@
 sv:
   admin:
     adjustments:
+      create:
+        success: Justeringen skapades.
+      edit:
+        all_adjustments: Hantera justeringar
+        title: Redigera justering
+        vote_user: Redigera användare
       index:
         manage_agenda: Hantera dagordning
         manage_attendance_list: Hantera närvarolista
@@ -21,11 +27,5 @@ sv:
         all_adjustments: Hantera justeringar
         title: Ny justering
         vote_user: Redigera användare
-      edit:
-        all_adjustments: Hantera justeringar
-        title: Redigera justering
-        vote_user: Redigera användare
-      create:
-        success: Justeringen skapades.
       update:
         success: Justeringen uppdaterades.

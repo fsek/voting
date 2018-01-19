@@ -2,13 +2,12 @@
 sv:
   admin:
     attendances:
+      destroy_all:
+        error: Utjustering av alla mötesdeltagare lyckades inte
+        success: Utjustering av alla mötesdeltagare lyckades
       index:
         export: Exportera CSV
         manage_agenda: Hantera dagordning
         manage_users: Hantera användare
         manage_voting: Hantera voteringar
         title: Närvarolista
-
-      destroy_all:
-        error: Utjustering av alla mötesdeltagare lyckades inte
-        success: Utjustering av alla mötesdeltagare lyckades

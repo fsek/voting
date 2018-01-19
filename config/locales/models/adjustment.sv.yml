@@ -3,13 +3,12 @@ sv:
   activerecord:
     attributes:
       adjustment:
-        sub_item: Punkt
         presence: Närvaro
+        sub_item: Punkt
     models:
       adjustment:
         one: Justering
         other: Justeringar
-
   model:
     adjustment:
       in: " – kom in"
