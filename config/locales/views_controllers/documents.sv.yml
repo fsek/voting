@@ -2,10 +2,9 @@
 sv:
   admin:
     documents:
-      success:
-        new_document: Nytt dokument
       edit:
         edit_document: Redigera dokument
-
+      success:
+        new_document: Nytt dokument
       table:
         confirm_remove: Vill du verkligent ta bort dokumentet %{title}?
