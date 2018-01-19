@@ -1,6 +1,5 @@
-<% provide(:title, t('vote.admin_votes')) %>
 <div class="headline">
-  <h1><%= t('.title') %></h1>
+  <h1><%= title(t('.title')) %></h1>
 </div>
 
 <div class="col-md-12">
@@ -8,8 +7,8 @@
   <% if can_administrate? :manage, User %>
     <%= link_to t('.manage_vote_users'), admin_vote_users_path, class: 'btn secondary' %>
   <% end %>
-  <% if can_administrate? :manage, Agenda %>
-    <%= link_to t('.manage_agenda'), admin_agendas_path, class: 'btn secondary' %>
+  <% if can_administrate? :manage, Item %>
+    <%= link_to t('.manage_agenda'), admin_items_path, class: 'btn secondary' %>
   <% end %>
   <hr>
 </div>
@@ -35,8 +34,8 @@
         <tr class="<%= vote.open? ? 'highlight' : 'no-highlight' %>">
           <td><%= link_to(vote.title, admin_vote_path(vote)) %></td>
           <td>
-            <%= if vote.agenda.present?
-              link_to("$#{vote.agenda.order}", edit_admin_agenda_path(vote.agenda))
+            <%= if vote.sub_item.present?
+              link_to("#{vote.sub_item}", edit_admin_item_path(vote.sub_item.item))
             end %>
           </td>
           <td><%= vote_status_str(vote.status) %></td>

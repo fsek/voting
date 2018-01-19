@@ -41,14 +41,14 @@ module VoteUserHelper
   end
 
   def user_presence_status(user)
+    content = []
     if user.present? && user.presence == true
-      content_tag(:span, class: 'present') do
-        safe_join([fa_icon('check-circle-o'), ' ', t('vote_user.state.present')])
-      end
+      content << fa_icon('check-circle-o', class: 'text-success text-4 mr-1')
+      content << t('model.vote_user.state.present')
     else
-      content_tag(:span, class: 'not-present') do
-        safe_join([fa_icon('times-circle-o'), ' ', t('vote_user.state.not_present')])
-      end
+      content << fa_icon('times-circle-o', class: 'text-danger text-4 mr-1')
+      content << t('model.vote_user.state.not_present')
     end
+    content_tag(:span, safe_join(content), class: 'text-3')
   end
 end
