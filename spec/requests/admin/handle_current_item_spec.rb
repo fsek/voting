@@ -43,10 +43,10 @@ RSpec.describe('Set current item', as: :request) do
       expect(Item.current).to_not eq(sub_item.item)
     end
 
-    it 'doesnt work if a associated vote is open', pending: true do
+    it 'doesnt work if a associated vote is open' do
       sign_in(adjuster)
       sub_item = create(:sub_item, status: :current)
-      # create(:vote, status: :open, sub_item: sub_item) Not implemented
+      create(:vote, status: :open, sub_item: sub_item)
 
       delete(admin_current_item_path(sub_item), xhr: true)
 

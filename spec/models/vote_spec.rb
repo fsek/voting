@@ -5,19 +5,19 @@ require 'rails_helper'
 RSpec.describe Vote, type: :model do
   describe 'validations' do
     it 'can only have one open vote' do
-      agenda = create(:agenda, status: :current)
-      create(:vote, status: :open, agenda: agenda)
+      sub_item = create(:sub_item, status: :current)
+      create(:vote, status: :open, sub_item: sub_item)
       vote = build(:vote, status: :open)
       vote.valid?
 
-      vote.errors[:status].should include I18n.t('vote.already_one_open')
+      vote.errors[:status].should include I18n.t('model.vote.already_one_open')
     end
 
     it 'updates present count on closing vote' do
       create(:user, presence: true)
       create(:user, presence: true)
-      agenda = create(:agenda, status: :current)
-      vote = create(:vote, status: :open, agenda: agenda)
+      sub_item = create(:sub_item, status: :current)
+      vote = create(:vote, status: :open, sub_item: sub_item)
       vote.present_users.should equal 0
 
       vote.update(status: :closed)
@@ -27,8 +27,8 @@ RSpec.describe Vote, type: :model do
     it 'does not update present count on opening vote' do
       create(:user, presence: true)
       create(:user, presence: true)
-      agenda = create(:agenda, status: :current)
-      vote = create(:vote, status: :future, agenda: agenda)
+      sub_item = create(:sub_item, status: :current)
+      vote = create(:vote, status: :future, sub_item: sub_item)
       vote.present_users.should equal 0
 
       vote.update(status: :open)

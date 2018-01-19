@@ -5,10 +5,10 @@ RSpec.describe VoteService do
   describe 'user_vote' do
     it 'votes' do
       user = create(:user, presence: true, votecode: 'abcd123')
-      agenda = create(:agenda, status: :current)
+      sub_item = create(:sub_item, status: :current)
       vote = create(:vote, :with_options, status: :open,
                                           choices: 1,
-                                          agenda: agenda)
+                                          sub_item: sub_item)
       vote_option = vote.vote_options.first
 
       vote_post = VotePost.new(user: user, vote: vote, votecode: 'abcd123')
@@ -29,10 +29,10 @@ RSpec.describe VoteService do
 
     it 'votes and trims votecode' do
       user = create(:user, presence: true, votecode: 'abcd123')
-      agenda = create(:agenda, status: :current)
+      sub_item = create(:sub_item, status: :current)
       vote = create(:vote, :with_options, status: :open,
                                           choices: 1,
-                                          agenda: agenda)
+                                          sub_item: sub_item)
       vote_option = vote.vote_options.first
 
       vote_post = VotePost.new(user: user, vote: vote, votecode: '   abcd123')
@@ -55,10 +55,10 @@ RSpec.describe VoteService do
 
     it 'votes multiple' do
       user = create(:user, presence: true, votecode: 'abcd123')
-      agenda = create(:agenda, status: :current)
+      sub_item = create(:sub_item, status: :current)
       vote = create(:vote, :with_options, status: :open,
                                           choices: 2,
-                                          agenda: agenda)
+                                          sub_item: sub_item)
       first_option = vote.vote_options.first
       second_option = vote.vote_options.second
 
@@ -80,10 +80,10 @@ RSpec.describe VoteService do
 
     it 'invalid vote' do
       user = create(:user, presence: true, votecode: 'abcd123')
-      agenda = create(:agenda, status: :current)
+      sub_item = create(:sub_item, status: :current)
       vote = create(:vote, :with_options, status: :open,
                                           choices: 1,
-                                          agenda: agenda)
+                                          sub_item: sub_item)
       # vote has 3 vote options when using :with_options
       first_option = vote.vote_options.first
       last_option = vote.vote_options.last
@@ -104,8 +104,8 @@ RSpec.describe VoteService do
 
     it 'blank vote' do
       user = create(:user, presence: true, votecode: 'abcd123')
-      agenda = create(:agenda, status: :current)
-      vote = create(:vote, status: :open, choices: 1, agenda: agenda)
+      sub_item = create(:sub_item, status: :current)
+      vote = create(:vote, status: :open, choices: 1, sub_item: sub_item)
 
       opt1 = create(:vote_option, vote: vote, count: 0)
       opt2 = create(:vote_option, vote: vote, count: 0)
@@ -161,7 +161,7 @@ RSpec.describe VoteService do
       user.presence.should be_falsey
     end
 
-    it 'attends works if a vote is open', pending: true do
+    it 'attends works if a vote is open' do
       user = create(:user, presence: false)
       sub_item = create(:sub_item, status: :current)
       create(:vote, status: :open, sub_item: sub_item)
@@ -186,8 +186,7 @@ RSpec.describe VoteService do
 
     it 'unattends fail if open vote' do
       user = create(:user, presence: true)
-      create(:sub_item, status: :current)
-      create(:vote, status: :open, agenda: create(:agenda, status: :current))
+      create(:vote, status: :open, sub_item: create(:sub_item, status: :current))
 
       result = VoteService.unattends(user)
       user.reload

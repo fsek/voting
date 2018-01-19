@@ -32,7 +32,7 @@ RSpec.describe("Adjust presence of user", type: :request) do
       expect(user.presence?).to be_truthy
     end
 
-    it 'works even if a vote is open', pending: true do
+    it 'works even if a vote is open' do
       sign_in(adjuster)
       user = create(:user, presence: false)
       sub_item = create(:sub_item, status: :current)
@@ -86,7 +86,7 @@ RSpec.describe("Adjust presence of user", type: :request) do
       expect(user.presence?).to be_falsey
     end
 
-    it 'doesnt work if a vote is open', pending: true do
+    it 'doesnt work if a vote is open' do
       sign_in(adjuster)
       user = create(:user, presence: true)
       sub_item = create(:sub_item, status: :current)

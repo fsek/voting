@@ -9,8 +9,8 @@ RSpec.describe("Open close reset votes", type: :request) do
 
   describe 'opening' do
     it 'opens the vote default to index' do
-      agenda = create(:agenda, status: :current)
-      vote = create(:vote, status: :future, agenda: agenda)
+      sub_item = create(:sub_item, status: :current)
+      vote = create(:vote, status: :future, sub_item: sub_item)
 
       post(admin_vote_opening_path(vote))
 
@@ -20,8 +20,8 @@ RSpec.describe("Open close reset votes", type: :request) do
     end
 
     it 'opens the vote with route show' do
-      agenda = create(:agenda, status: :current)
-      vote = create(:vote, status: :future, agenda: agenda)
+      sub_item = create(:sub_item, status: :current)
+      vote = create(:vote, status: :future, sub_item: sub_item)
 
       post(admin_vote_opening_path(vote),
            headers: { 'HTTP_REFERER': admin_vote_path(vote) })
@@ -32,9 +32,9 @@ RSpec.describe("Open close reset votes", type: :request) do
     end
 
     it 'cannot open the vote if another vote is open' do
-      agenda = create(:agenda, status: :current)
-      create(:vote, status: :open, agenda: agenda)
-      vote = create(:vote, status: :future, agenda: agenda)
+      sub_item = create(:sub_item, status: :current)
+      create(:vote, status: :open, sub_item: sub_item)
+      vote = create(:vote, status: :future, sub_item: sub_item)
 
       post(admin_vote_opening_path(vote))
 
@@ -43,10 +43,10 @@ RSpec.describe("Open close reset votes", type: :request) do
       expect(vote.open?).to be_falsey
     end
 
-    it 'cannot open the vote on the wrong agenda' do
-      create(:agenda, status: :current)
-      agenda = create(:agenda, status: :future)
-      vote = create(:vote, status: :future, agenda: agenda)
+    it 'cannot open the vote on the wrong sub_item' do
+      create(:sub_item, status: :current)
+      sub_item = create(:sub_item, status: :future)
+      vote = create(:vote, status: :future, sub_item: sub_item)
 
       post(admin_vote_opening_path(vote))
 
@@ -57,8 +57,8 @@ RSpec.describe("Open close reset votes", type: :request) do
   end
 
   it 'closes the vote' do
-    agenda = create(:agenda, status: :current)
-    vote = create(:vote, status: :open, agenda: agenda)
+    sub_item = create(:sub_item, status: :current)
+    vote = create(:vote, status: :open, sub_item: sub_item)
 
     delete(admin_vote_opening_path(vote))
 
@@ -85,8 +85,8 @@ RSpec.describe("Open close reset votes", type: :request) do
     end
 
     it 'fails if the vote is open' do
-      agenda = create(:agenda, status: :current)
-      vote = create(:vote, status: :open, agenda: agenda)
+      sub_item = create(:sub_item, status: :current)
+      vote = create(:vote, status: :open, sub_item: sub_item)
       create_list(:vote_option, 2, vote: vote, count: 1)
       create_list(:vote_post, 2, vote: vote)
 

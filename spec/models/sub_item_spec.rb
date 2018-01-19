@@ -24,4 +24,20 @@ RSpec.describe SubItem, type: :model do
       expect(sub_item).to be_valid
     end
   end
+
+  it 'can only have one open' do
+    create(:sub_item, status: :current)
+    sub_item = build(:sub_item, status: :current)
+    sub_item.valid?
+    expect(sub_item.errors[:status]).to \
+      include(I18n.t('model.sub_item.errors.already_one_current'))
+  end
+
+  it 'can not close if associated vote is open' do
+    sub_item = create(:sub_item, status: :current)
+    create(:vote, status: :open, sub_item: sub_item)
+    expect(sub_item.update(status: :closed)).to be_falsey
+    expect(sub_item.errors[:status]).to \
+      include(I18n.t('model.sub_item.errors.vote_open'))
+  end
 end

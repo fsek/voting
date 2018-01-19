@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.feature 'votes' do
   describe 'voting' do
     it 'manages to create new vote_post' do
-      agenda = create(:agenda, status: :current)
-      vote = create(:vote, :with_options, agenda: agenda)
+      sub_item = create(:sub_item, status: :current)
+      vote = create(:vote, :with_options, sub_item: sub_item)
       user = create(:user, presence: true, votecode: 'abcd123')
       vote.update!(status: :open)
       LoginPage.new.visit_page.login(user)
