@@ -13,7 +13,7 @@
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
-    <%= render 'layouts/favicon' %>
+    <%= render '/application/favicon' %>
   </head>
 
   <body class="site">
@@ -21,16 +21,15 @@
     <span class="cookies">
       <%= render 'cookies_eu/consent_banner', link: cookies_path %>
     </span>
-    <%= render 'layouts/navbar' %>
+    <%= render '/application/navbar' %>
 
     <main role="main" class="container content pb-2">
-      <%= yield :pre_content %>
-
       <div class="row">
-        <%= render 'layouts/content' %>
+        <%= render '/application/flashes' %>
+        <%= yield %>
       </div>
     </main>
 
-    <%= render 'layouts/copyright' %>
+    <%= render '/application/copyright' %>
   </body>
 </html>

@@ -1,14 +1,12 @@
-<div class="row">
-  <div class="col-sm">
-    <%= render '/users/confirm_information' %>
-    <% cache('agenda_startpage', skip_digest: true) do %>
-      <%= render '/agendas/start_page', agendas: @start_page.agendas %>
-    <% end %>
-  </div>
+<div class="col">
+  <%= render '/users/confirm_information' %>
+  <% cache('agenda_startpage', skip_digest: true) do %>
+    <%= render '/agendas/start_page', agendas: @start_page.agendas %>
+  <% end %>
+</div>
 
-  <div class="col-sm">
-    <% if @start_page.news.present? %>
-      <%= render @start_page.news %>
-    <% end %>
-  </div>
+<div class="col">
+  <% if @start_page.news.present? %>
+    <%= render @start_page.news %>
+  <% end %>
 </div>
