@@ -44,7 +44,7 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
     ast (2.3.0)
-    autoprefixer-rails (7.2.4)
+    autoprefixer-rails (7.2.5)
       execjs
     aws-partitions (1.25.0)
     aws-sdk-core (3.6.0)
@@ -67,9 +67,9 @@ GEM
     bindex (0.5.0)
     bootsnap (1.1.8)
       msgpack (~> 1.0)
-    bootstrap (4.0.0.beta3)
+    bootstrap (4.0.0)
       autoprefixer-rails (>= 6.0.3)
-      popper_js (>= 1.12.3, < 2)
+      popper_js (>= 1.12.9, < 2)
       sass (>= 3.5.2)
     builder (3.2.3)
     bullet (5.7.1)
@@ -307,7 +307,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.9.0)
-    sass (3.5.3)
+    sass (3.5.5)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -377,7 +377,7 @@ DEPENDENCIES
   acts_as_list
   better_errors
   bootsnap
-  bootstrap (~> 4.0.0.beta3)
+  bootstrap (~> 4.0.0)
   bullet
   cancancan
   capybara
