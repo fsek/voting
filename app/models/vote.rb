@@ -6,7 +6,7 @@ class Vote < ApplicationRecord
 
   has_many :audits, as: :auditable
 
-  belongs_to :agenda, optional: true
+  belongs_to :sub_item
   has_many :vote_options, dependent: :destroy
   has_many :vote_posts, dependent: :destroy
 
@@ -14,12 +14,13 @@ class Vote < ApplicationRecord
   validates :choices, presence: true,
                       numericality: { greater_than_or_equal_to: 1 }
   validate :only_one_open
-  validate :open_on_agenda
+  validate :open_on_sub_item
   accepts_nested_attributes_for :vote_options, reject_if: :all_blank,
                                                allow_destroy: true
 
   attr_accessor :reset
-  enum(status: { future: 0, open: 5, closed: 10 })
+  # Only open needs to be < 0 to work with database constraint
+  enum(status: { future: 0, open: -10, closed: 10 })
 
   before_update :update_present_users
 
@@ -28,7 +29,7 @@ class Vote < ApplicationRecord
   after_destroy :log_destroy
 
   def self.current
-    Vote.open.first
+    Vote.where(status: :open).first
   end
 
   def to_s
@@ -73,12 +74,12 @@ class Vote < ApplicationRecord
 
   def only_one_open
     return unless open? && Vote.current.present? && Vote.current != self
-    errors.add(:status, I18n.t('vote.already_one_open'))
+    errors.add(:status, I18n.t('model.vote.already_one_open'))
   end
 
-  def open_on_agenda
+  def open_on_sub_item
     return unless open?
-    return if agenda.present? && agenda.current?
-    errors.add(:status, I18n.t('vote.wrong_agenda'))
+    return if sub_item.present? && sub_item.current?
+    errors.add(:status, I18n.t('model.vote.wrong_sub_item'))
   end
 end

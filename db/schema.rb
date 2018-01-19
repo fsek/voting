@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180118104855) do
+ActiveRecord::Schema.define(version: 20180119082851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,11 +164,12 @@ ActiveRecord::Schema.define(version: 20180118104855) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.integer "choices", default: 1
-    t.integer "agenda_id"
     t.integer "present_users", default: 0, null: false
     t.integer "status", default: 0, null: false
-    t.index ["agenda_id"], name: "index_votes_on_agenda_id"
+    t.bigint "sub_item_id"
     t.index ["deleted_at"], name: "index_votes_on_deleted_at"
+    t.index ["status"], name: "index_votes_on_status", unique: true, where: "((status < 0) AND (deleted_at IS NULL))"
+    t.index ["sub_item_id"], name: "index_votes_on_sub_item_id"
   end
 
   add_foreign_key "adjustments", "sub_items"
@@ -180,5 +181,5 @@ ActiveRecord::Schema.define(version: 20180118104855) do
   add_foreign_key "vote_options", "votes"
   add_foreign_key "vote_posts", "users"
   add_foreign_key "vote_posts", "votes"
-  add_foreign_key "votes", "agendas"
+  add_foreign_key "votes", "sub_items"
 end

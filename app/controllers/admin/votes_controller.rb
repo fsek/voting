@@ -2,9 +2,10 @@
 
 module Admin
   class VotesController < Admin::BaseController
-    load_and_authorize_resource
+    authorize_resource
 
     def index
+      @votes = Vote.includes(:sub_item)
       @vote_status_view = VoteStatusView.new
     end
 
@@ -16,7 +17,7 @@ module Admin
     def create
       @vote = Vote.new(vote_params)
       if @vote.save
-        redirect_to edit_admin_vote_path(@vote), notice: alert_create(Vote)
+        redirect_to edit_admin_vote_path(@vote), notice: t('.success')
       else
         render :new, status: 422
       end
@@ -25,16 +26,16 @@ module Admin
     def edit
       @vote = Vote.find(params[:id])
 
-      redirect_to admin_votes_path, alert: t('vote.cannot_edit') if @vote.open?
+      redirect_to admin_votes_path, alert: t('.cannot_edit') if @vote.open?
     end
 
     def update
       @vote = Vote.find(params[:id])
 
       if @vote.open?
-        redirect_to admin_votes_path, alert: t('vote.cannot_edit')
+        redirect_to admin_votes_path, alert: t('.cannot_edit')
       elsif @vote.update(vote_params)
-        redirect_to edit_admin_vote_path(@vote), notice: alert_update(Vote)
+        redirect_to edit_admin_vote_path(@vote), notice: t('.success')
       else
         render :edit, status: 422
       end
@@ -43,7 +44,7 @@ module Admin
     def destroy
       Vote.find(params[:id]).destroy!
 
-      redirect_to admin_votes_path, notice: alert_destroy(Vote)
+      redirect_to admin_votes_path, notice: t('.success')
     end
 
     def show
@@ -61,7 +62,7 @@ module Admin
     private
 
     def vote_params
-      params.require(:vote).permit(:title, :choices, :agenda_id,
+      params.require(:vote).permit(:title, :choices, :sub_item_id,
                                    vote_options_attributes: %i[id
                                                                title
                                                                _destroy])
