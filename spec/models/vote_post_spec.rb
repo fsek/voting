@@ -5,33 +5,19 @@ require 'rails_helper'
 RSpec.describe VotePost, type: :model do
   let(:user) { create(:user) }
 
-  describe 'associations' do
-    it 'belongs_to vote' do
-      VotePost.new.should belong_to(:user)
-    end
-
-    it 'belongs_to user' do
-      VotePost.new.should belong_to(:user)
-    end
-
-    it 'has_many audits' do
-      VotePost.new.should have_many(:audits)
-    end
-  end
-
   describe 'validations' do
     context 'user' do
       it 'is present' do
-        agenda = create(:agenda, status: :current)
-        create(:vote, status: :open, agenda: agenda)
+        sub_item = create(:sub_item, status: :current)
+        create(:vote, status: :open, sub_item: sub_item)
         vote_post = build(:vote_post)
 
         vote_post.should validate_presence_of(:user_id)
       end
 
       it 'is unique to vote' do
-        agenda = create(:agenda, status: :current)
-        vote = create(:vote, status: :open, agenda: agenda)
+        sub_item = create(:sub_item, status: :current)
+        vote = create(:vote, status: :open, sub_item: sub_item)
         vote_post = build(:vote_post, user: user, vote: vote)
         vote_post.should validate_uniqueness_of(:user_id).scoped_to(:vote_id).with_message(I18n.t('vote_post.already_voted'))
       end
@@ -69,8 +55,8 @@ RSpec.describe VotePost, type: :model do
       end
 
       it 'is open' do
-        agenda = create(:agenda, status: :current)
-        vote = build(:vote, status: :open, agenda: agenda)
+        sub_item = create(:sub_item, status: :current)
+        vote = build(:vote, status: :open, sub_item: sub_item)
         vote_post = build(:vote_post, vote: vote)
         vote_post.valid?
 

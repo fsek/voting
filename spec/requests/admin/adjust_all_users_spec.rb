@@ -21,18 +21,18 @@ RSpec.describe("Adjust presence of all user", type: :request) do
     sign_in(adjuster)
     create_list(:user, 4, presence: true)
 
-    agenda = create(:agenda, status: :current)
-    create(:vote, status: :open, agenda: agenda)
+    sub_item = create(:sub_item, status: :current)
+    create(:vote, status: :open, sub_item: sub_item)
 
     delete(admin_attendances_path)
     expect(response).to redirect_to(admin_vote_users_path)
     expect(User.where(presence: true).count).to eq(4)
   end
 
-  it 'does not set users to not present without a current agenda' do
+  it 'does not set users to not present without a current sub_item' do
     sign_in(adjuster)
     create_list(:user, 4, presence: true)
-    create(:agenda, status: :future)
+    create(:sub_item, status: :future)
 
     delete(admin_attendances_path)
     expect(response).to redirect_to(admin_vote_users_path)
