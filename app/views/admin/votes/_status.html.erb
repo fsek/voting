@@ -1,48 +1,48 @@
 <% if vote_status_view.present? %>
-  <div class="row">
-    <div class="col-md-4 col-sm-12">
-      <%= fa_icon('users', class: 'large') %>
-      <span class="counter">
+  <div class="row text-center">
+    <div class="col-12 col-md-4">
+      <%= fa_icon('users 4x', class: 'text-primary d-block') %>
+      <span class="text-5 text-bold mb-2">
         <%= vote_status_view.adjusted %>
       </span>
       <h4>
-        <%= t('vote_user.present_count') %>
+        <%= t('.present_users') %>
       </h4>
     </div>
 
-    <div class="col-md-4 col-sm-12">
-      <%= fa_icon('agenda', class: 'large') %>
-      <span class="current">
-        <%= vote_status_view.agenda %>
+    <div class="col-12 col-md-4">
+      <%= fa_icon('agenda 4x', class: 'text-bold text-primary d-block') %>
+      <span class="d-block my-1 text-2 text-bold">
+        <%= vote_status_view.sub_item %>
       </span>
     </div>
 
-    <div class="col-md-4 col-sm-12">
-      <span class="refresh">
+    <div class="col-12 col-md-4">
+      <span class="position-absolute" style="right: 0; top: 0">
         <%= link_to(admin_votes_path, remote: true) do %>
-          <%= fa_icon('refresh') %>
+          <%= fa_icon('refresh 2x') %>
         <% end %>
       </span>
 
-      <%= fa_icon('envelope', class: 'large') %>
-      <span class="current">
+      <%= fa_icon('envelope 4x', class: 'text-primary d-block') %>
+      <span class="d-block my-1 text-2 text-bold">
         <% if vote_status_view.vote.present? %>
           <%= link_to(vote_status_view.vote, new_vote_vote_post_path(vote_status_view.vote)) %>
         <% else %>
-          <%= t('vote.current_missing') %>
+          <%= t('.current_vote_missing') %>
         <% end %>
       </span>
       <% if vote_status_view.vote.present? %>
         <h4>
-          <%= t('vote.current') %>
+          <%= t('.current_vote') %>
         </h4>
       <% end %>
     </div>
-    <div class="col-md-12">
+    <div class="col-12">
       <span class="updated-time">
         <%= fa_icon('clock-o') %>
         <%= l(Time.zone.now) %>.<br>
-        <%= t('vote.automatic_refresh') %>
+        <%= t('.automatic_refresh') %>
       </span>
       <hr class="devider devider-db">
     </div>

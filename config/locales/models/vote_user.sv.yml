@@ -14,3 +14,6 @@ sv:
         all: Alla
         not_present: Utjusterade
         present: Injusterade
+      state:
+        not_present: Utjusterad
+        present: Injusterad

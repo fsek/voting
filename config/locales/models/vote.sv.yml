@@ -3,8 +3,6 @@ sv:
   activerecord:
     attributes:
       vote:
-        agenda: Dagordning
-        agenda_id: Dagordning
         choices: Max alternativ per röst
         closed: Avslutad
         current: Aktuell
@@ -13,10 +11,14 @@ sv:
         present_users: Injusterade användare
         reset: Nollställdes
         status: Status
+        sub_item: Dagordning
+        sub_item_id: Dagordning
         title: Namn
     models:
       vote:
         one: Votering
         other: Voteringar
-  vote:
-    already_one_open: Det finns redan en öppen votering
+  model:
+    vote:
+      already_one_open: Det finns redan en öppen votering.
+      wrong_sub_item: Det går endast att öppna voteringen när den aktuella dagordningspunkten är öppen.

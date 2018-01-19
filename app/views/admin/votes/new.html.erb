@@ -1,7 +1,15 @@
-<% provide(:title, t('vote.admin_votes')) %>
-<div class="col-md-6 offset-md-3 col-sm-12 reg-page">
+<div class="col-12">
   <div class="headline">
-    <h1><%= t('.title') %></h1>
+    <h1><%= title(t('.title')) %></h1>
   </div>
-  <%= render 'form' %>
+</div>
+
+<div class="col-12 col-md-3">
+  <%= link_to(t('.all_votes'),
+              admin_votes_path, class: 'btn secondary') %>
+  <hr />
+</div>
+
+<div class="col-12 col-md-9">
+  <%= render 'form', vote: @vote %>
 </div>
