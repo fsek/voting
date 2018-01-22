@@ -22,18 +22,14 @@ sv:
       user: Användare
   model:
     user:
+      card_number_already_set: Har redan fyllts i, kontakta administratör för att ändra
+      card_number_format: Fel format på kortnumret, använd bindestreck mellan, t.ex. 6122-6122-6122-6122
+      email_format: Endast epost kopplad till skolan är godkänd, t.ex. tfy15hal@student.lu.se.
+      not_confirmed: Din e-postadress är inte bekräftad.
+      password_required_update: Nuvarande lösenord måste fyllas i för att byta lösenord
       roles:
         adjuster: Justerare
         admin: Administratör
         chairman: Mötesordförande
         secretary: Sekreterare
         user: Vanlig användare
-  user:
-    account_updated: Kontoinställningar uppdaterades
-    card_number_already_set: Har redan fyllts i, kontakta administratör för att ändra
-    card_number_format: Fel format på kortnumret, använd bindestreck mellan, t.ex. 6122-6122-6122-6122
-    password_required: Lösenord måste fyllas i för att ändra uppgifter
-    password_required_update: Nuvarande lösenord måste fyllas i för att byta lösenord
-    password_updated: Lösenordet uppdaterades.
-    submit_card_number: Spara kortnummer
-    vote_administration: Justeringar

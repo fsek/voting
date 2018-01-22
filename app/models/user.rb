@@ -10,13 +10,13 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true
   validates :email, format: { with: /\A\b[-A-Z0-9a-z]{6,10}+@student\.lu\.se\z/,
-                              message: I18n.t('user.email_format') }
+                              message: I18n.t('model.user.email_format') }
   validates :firstname, :lastname, presence: true
   validates :votecode, uniqueness: true, allow_nil: true
 
   validates :card_number, uniqueness: { allow_nil: true },
                           format: { with: /\A\b[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}\z/,
-                                    message: I18n.t('user.card_number_format'),
+                                    message: I18n.t('model.user.card_number_format'),
                                     allow_nil: true }
 
   validate :confirmed_to_vote

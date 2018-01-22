@@ -4,15 +4,15 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1><%= t('user.mailer.hello', user: @user.to_s) %></h1>
-    <%= simple_format(t('user.mailer.registered')) %>
-    <%= simple_format(t('user.mailer.before_starting')) %>
+    <h1><%= t('users.mailer.hello', user: @user.to_s) %></h1>
+    <%= simple_format(t('users.mailer.registered')) %>
+    <%= simple_format(t('users.mailer.before_starting')) %>
 
     <p>
-      <%= link_to(t('user.mailer.please_confirm'), user_confirmation_url(confirmation_token: @token)) %>
+      <%= link_to(t('users.mailer.please_confirm'), user_confirmation_url(confirmation_token: @token)) %>
     </p>
 
-    <%= simple_format(t('user.mailer.enjoy')) %>
-    <%= simple_format(t('user.mailer.problem')) %>
+    <%= simple_format(t('users.mailer.enjoy')) %>
+    <%= simple_format(t('users.mailer.problem')) %>
   </body>
 </html>

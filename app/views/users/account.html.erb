@@ -1,0 +1,69 @@
+<div class="col-12">
+  <div class="headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
+</div>
+<div class="col-12 col-md-3">
+  <%= render('sidebar', current: :account) %>
+</div>
+<div class="col-12 col-md-9">
+  <%= simple_form_for(current_user, url: account_user_path,
+                                    method: :patch) do |f| %>
+    <div class="headline">
+      <h2>
+        <%= fa_icon('envelope') %>
+        <%= User.human_attribute_name(:email) %>
+      </h2>
+    </div>
+
+    <% if current_user.unconfirmed_email.present? %>
+      <p class="control-label">
+        <%= fa_icon('close', class: 'text-danger') %>
+        <span>
+          <%= User.human_attribute_name('unconfirmed_email') %>
+        </span>
+        <strong>
+          <%= current_user.unconfirmed_email %>
+        </strong>
+      </p>
+      <p>
+      </p>
+    <% end %>
+
+    <% if current_user.confirmed? %>
+      <p class="control-label">
+        <%= fa_icon('check', class: 'text-success') %>
+        <span>
+          <%= User.human_attribute_name('confirmed_email') %>
+        </span>
+        <strong>
+          <%= current_user.email %>
+        </strong>
+      </p>
+    <% else %>
+      <p class="control-label">
+        <%= fa_icon('close', class: 'text-danger') %>
+        <span>
+          <%= User.human_attribute_name('unconfirmed_email') %>
+        </span>
+        <strong>
+          <%= current_user.email %>
+        </strong>
+      </p>
+      <br>
+      <p>
+        <%= t('.check_email_to_confirm', date: l(current_user.confirmation_sent_at)) %>
+        <%= link_to t('devise.not_receive_confirm'), new_confirmation_path(user) %>
+      </p>
+    <% end %>
+
+    <div class="headline">
+      <h4>
+        <%= t(:update) %>
+      </h4>
+    </div>
+    <%= f.input :email %>
+    <%= f.input :current_password, input_html: { class: 'account'} %>
+    <%= f.button :submit %>
+  <% end %>
+</div>
