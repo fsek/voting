@@ -1,0 +1,35 @@
+.fa-agenda {
+  &::before {
+    content: '§';
+  }
+}
+
+.round-icon {
+  border: 50px;
+  border-radius: 50%;
+  font-size: 18px;
+  height: 22px;
+  line-height: 22px;
+  text-align: center;
+  width: 22px;
+}
+
+.text-1 {
+  font-size: 1rem;
+}
+
+.text-2 {
+  font-size: 1.25rem;
+}
+
+.text-3 {
+  font-size: 1.5rem;
+}
+
+.text-4 {
+  font-size: 1.75rem;
+}
+
+.text-5 {
+  font-size: 2rem;
+}
