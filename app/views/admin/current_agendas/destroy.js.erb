@@ -1,8 +1,0 @@
-<% if @success %>
-  $('tr#<%= dom_id(@agenda) %> td.state').html('<%= j agenda_current_link(@agenda) %>');
-  $('tr#<%= dom_id(@agenda) %>').removeClass('highlight');
-  $('tr#<%= dom_id(@agenda) %> td.status').html('<%= j agenda_status_str(@agenda.status) %>');
-<% else %>
-  $('tr#<%= dom_id(@agenda) %> td.state').html('<%= j agenda_close_link(@agenda) %>');
-  $('tr#<%= dom_id(@agenda) %> td.state').append('<br><%= t('agenda.state.short_closed_error') %>');
-<% end %>

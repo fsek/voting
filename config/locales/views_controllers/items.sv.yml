@@ -26,3 +26,11 @@ sv:
         title: Ny dagordningspunkt
       update:
         success: Dagordningspunkten uppdaterades.
+  items:
+    show:
+      current_item: Aktuell punkt
+      edit_item: Redigera punkt
+      sub_items: Underpunkter
+    start_page:
+      all_items: Hela dagordningen
+      title: Dagordning

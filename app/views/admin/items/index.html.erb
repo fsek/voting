@@ -1,21 +1,26 @@
-<div class="headline">
-  <h1><%= t('.title') %></h1>
+<div class="col-12">
+  <div class="headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
 </div>
-<div class="col-md-12">
+
+<div class="col-12 col-md-3">
+  <%= render('/application/admin_sidebar', current: :items) %>
+  <hr />
   <%= link_to t('.new_item'), new_admin_item_path, class: 'btn primary' %>
-  <% if can_administrate? :manage, Vote %>
-    <%= link_to t('.manage_voting'), admin_votes_path, class: 'btn secondary' %>
-  <% end %>
-  <% if can_administrate? :manage_voting, User %>
-    <%= link_to t('.manage_vote_users'), admin_vote_users_path, class: 'btn secondary' %>
-  <% end %>
 </div>
-<div class="col-md-12">
+
+<div class="col-12 col-md-9" id="vote-status" data-position="adjustment-index">
+  <%= render '/admin/votes/status', vote_status_view: @vote_status_view %>
+</div>
+
+<div class="col-12 col-md-9 offset-md-3">
   <table class="table table-striped table-bordered admin-grid">
     <thead>
       <tr>
         <th><%= Item.human_attribute_name(:title) %></th>
         <th><%= Item.human_attribute_name(:type) %></th>
+        <th><%= Item.human_attribute_name(:status) %></th>
         <th><%= t(:remove) %></th>
       </tr>
     </thead>
@@ -25,6 +30,9 @@
             class="<%= item.current? ? 'highlight' : 'no-highlight' %>">
           <td><%= link_to(item, edit_admin_item_path(item)) %></td>
           <td><%= item_type(item.type) %></td>
+          <td>
+            <%= item_status(item.status) %>
+          </td>
           <td>
             <%= link_to(t(:remove), admin_item_path(item),
                         method: :delete,

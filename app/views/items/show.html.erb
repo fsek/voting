@@ -1,0 +1,53 @@
+<div class="col-12">
+  <div class="headline"><h1><%= @item.to_s %></h1></div>
+</div>
+
+<div class="col-12 col-md-3">
+
+  <%= user_presence_status(current_user) %>
+
+  <% if @current_item.present? %>
+    <div class="headline">
+      <h3><%= t('.current_item') %></h3>
+    </div>
+    <h5 class="vote item">
+      <%= link_to @current_item, item_path(@current_item) %>
+    </h5>
+    <br>
+  <% end %>
+
+
+  <% if can_administrate?(:edit, @item) %>
+    <hr>
+    <%= link_to(t('.edit_item'), edit_admin_item_path(@item), class: 'btn primary') %>
+  <% end %>
+</div>
+
+<div class="col-12 col-md-9">
+  <div class="row">
+    <% if @item.multiple? %>
+      <div class="col-6">
+        <div class="headline">
+          <h4><%= t('.sub_items') %></h4>
+        </div>
+        <ul class="list">
+          <% @item.sub_items.each do |item| %>
+            <li><%= link_to(item, item_path(@item, sub_item: item)) %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <% if @item.votes.present? %>
+      <div class="col-6">
+        <div class="headline">
+          <h3><%= models_name(Vote) %></h3>
+        </div>
+        <ul class="list">
+          <% @item.votes.each do |v| %>
+            <li><%= v.title %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>

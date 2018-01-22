@@ -1,0 +1,28 @@
+
+<div class="col">
+  <div class="headline">
+    <h1><%= t('agenda.name') %></h1>
+  </div>
+  <div class="list-group">
+    <% @items.each do |item| %>
+      <div class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= item_link(item) %></h5>
+          <span class="badge badge-pill badge-primary text-2">
+            <%= item_status(item.status) %>
+          </span>
+        </div>
+
+      <small><%= item_type(item.type) %></small>
+        <p class="list-group-item-text">
+          <% if item.multiple? %>
+            <% item.sub_items.each do |s| %>
+              <%= s %>
+              <br>
+            <% end %>
+          <% end %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>

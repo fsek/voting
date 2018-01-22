@@ -7,6 +7,7 @@ module Admin
 
     def index
       @items = Item.position
+      @vote_status_view = VoteStatusView.new
     end
 
     def new

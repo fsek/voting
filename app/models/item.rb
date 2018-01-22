@@ -10,6 +10,7 @@ class Item < ApplicationRecord
 
   has_many(:sub_items, -> { position }, dependent: :destroy,
                                         inverse_of: :item)
+  has_many(:votes, through: :sub_items)
 
   enum(type: { announcement: 0, decision: 5, election: 10 })
   enum(multiplicity: { single: 0, multiple: 10 })
@@ -25,6 +26,12 @@ class Item < ApplicationRecord
 
   def current?
     sub_items.current.present?
+  end
+
+  def status
+    return :current if current?
+    return :future if sub_items.future.any?
+    :closed
   end
 
   def to_s
