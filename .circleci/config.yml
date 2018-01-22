@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/voting
     docker:
-      - image: circleci/ruby:2.5.0-node
+      - image: circleci/ruby:2.5.0-node-browsers
         environment:
           PGHOST: 127.0.0.1
           PGUSER: user

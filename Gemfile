@@ -41,7 +41,6 @@ group :development, :test do
   gem 'capybara'
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
-  gem 'poltergeist'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rails-controller-testing'
@@ -56,5 +55,6 @@ end
 
 group :test do
   gem 'codeclimate-test-reporter', require: false
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers', require: false
 end
