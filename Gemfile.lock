@@ -93,7 +93,6 @@ GEM
       carrierwave (>= 0.7, < 2.0)
     childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
-    cliver (0.3.2)
     cocoon (1.2.11)
     codeclimate-test-reporter (1.0.8)
       simplecov (<= 0.13)
@@ -225,10 +224,6 @@ GEM
     parser (2.4.0.2)
       ast (~> 2.3)
     pg (0.21.0)
-    poltergeist (1.17.0)
-      capybara (~> 2.1)
-      cliver (~> 0.3.1)
-      websocket-driver (>= 0.2.0)
     popper_js (1.12.9)
     powerpack (0.1.1)
     pry (0.11.3)
@@ -404,7 +399,6 @@ DEPENDENCIES
   pagedown-bootstrap-rails
   paranoia (~> 2.4)
   pg
-  poltergeist
   pry-byebug
   pry-rails
   puma
