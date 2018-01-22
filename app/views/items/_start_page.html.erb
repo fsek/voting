@@ -1,0 +1,33 @@
+<% return unless items.present? %>
+<div class="headline">
+  <h3><%= t('.title') %></h3>
+</div>
+
+<div class="list-group">
+  <%= link_to(items_path, class: 'list-group-item list-group-item-action flex-column') do %>
+    <h5 class="mb-1">
+      <%= fa_icon('angle-double-up', text: t('.all_items')) %>
+    </h5>
+  <% end %>
+  <% items.each do |item| %>
+    <div class="list-group-item flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">
+          <%= item_link(item) %>
+        </h5>
+        <%= item_badge(item) %>
+      </div>
+      <small>
+        <%= fa_icon(item_type_icon(item.type)) %>
+        <%= item_type(item.type) %>
+      </small>
+    <% if item.multiple? %>
+      <dl>
+        <% item.sub_items.each do |s| %>
+          <dd><%= s %></dd>
+        <% end %>
+      </dl>
+    <% end %>
+    </div>
+  <% end %>
+</div>
