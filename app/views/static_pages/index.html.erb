@@ -1,12 +1,8 @@
 <div class="col">
-  <%= render '/users/confirm_information' %>
-  <% cache('agenda_startpage', skip_digest: true) do %>
-    <%= render '/agendas/start_page', agendas: @start_page.agendas %>
-  <% end %>
+  <%= render '/items/start_page', items: @start_page.items %>
 </div>
 
 <div class="col">
-  <% if @start_page.news.present? %>
-    <%= render @start_page.news %>
-  <% end %>
+  <%= render '/users/confirm_information' %>
+  <%= render(@start_page.news) if @start_page.news.present? %>
 </div>

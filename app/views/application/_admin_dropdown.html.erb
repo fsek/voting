@@ -8,12 +8,12 @@
     <% end %>
     <% if can_administrate? :modify, :vote_user %>
       <li>
-        <%= link_to t('user.vote_administration'), admin_vote_users_path, class: 'dropdown-item' %>
+        <%= link_to t('.vote_users'), admin_vote_users_path, class: 'dropdown-item' %>
       </li>
     <% end %>
-    <% if can_administrate? :modify, Agenda %>
+    <% if can_administrate? :modify, Item %>
       <li>
-        <%= link_to t('agenda.name'), admin_agendas_path, class: 'dropdown-item' %>
+        <%= link_to t('.agenda'), admin_items_path, class: 'dropdown-item' %>
       </li>
     <% end %>
     <% if can_administrate? :modify, User %>

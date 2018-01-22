@@ -2,8 +2,8 @@
   <%= f.input :title %>
   <%= f.association :sub_item, collection: SubItem.all, label_method: :to_s  %>
   <%= f.input :choices, as: :integer, input_html: { min: '1'} %>
-  <div class="card">
-    <div class="card-header"><%= t('.options') %></div>
+  <div class="card mb-4 border-primary">
+    <div class="card-header bg-primary text-white"><%= t('.options') %></div>
     <div class="card-body">
       <div id="vote_options">
         <%= f.simple_fields_for :vote_options do |v| %>
@@ -15,7 +15,5 @@
       </div>
     </div>
   </div>
-  <div class="table">
-    <%= f.button :submit, class: 'btn primary' %>
-  </div>
+  <%= f.button :submit, class: 'btn primary' %>
 <% end %>

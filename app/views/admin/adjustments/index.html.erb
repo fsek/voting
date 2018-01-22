@@ -1,27 +1,23 @@
-<%= provide(:title, t('.title')) %>
-<div class="headline">
-  <h1><%= t('.title') %></h1>
+<div class="col-12">
+  <div class="headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
 </div>
 
 <div class="col-md-3 col-sm-12">
+  <%= render('application/admin_sidebar', current: :adjustments) %>
+  <hr />
   <% if can_administrate? :manage, :vote_user %>
     <%= link_to t('.manage_attendance_list'), admin_attendances_path,
                 class: 'btn primary' %>
-    <%= link_to t('.manage_vote_users'), admin_vote_users_path, class: 'btn secondary' %>
-  <% end %>
-  <% if can_administrate? :manage, Vote %>
-    <%= link_to t('.manage_votes'), admin_votes_path, class: 'btn secondary' %>
-  <% end %>
-  <% if can_administrate? :manage, Agenda %>
-    <%= link_to t('.manage_agenda'), admin_agendas_path, class: 'btn secondary' %>
   <% end %>
 </div>
 
-<div class="col-md-9 col-sm-12 vote status" id="vote-status" data-position="adjustment-index">
+<div class="col-12 col-md-9" id="vote-status" data-position="adjustment-index">
   <%= render '/admin/votes/status', vote_status_view: @vote_status_view %>
 </div>
 
-<div class="col-md-9 offset-md-3 col-sm-12">
+<div class="col-12 col-md-9 offset-md-3">
   <%= simple_form_for(:search, url: card_admin_search_path, remote: true) do |f| %>
     <%= f.input(:card_number, required: false, autofocus: true,
                 label: User.human_attribute_name(:card_number),

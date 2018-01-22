@@ -1,0 +1,16 @@
+<footer class="footer bg-dark text-muted">
+  <div class="container p-3 text-center">
+    <%= t('.developed_at') %>
+    <%= link_to('https://fsektionen.se') do %>
+      <%= image_tag('layout/small_f.png', height: '30px') %>
+    <% end %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <%= link_to('https://github.com/fsek/voting', class: 'github') do %>
+      <%= fa_icon('github 2x', class: 'align-middle') %>
+    <% end %>
+    &nbsp;|&nbsp;&nbsp;
+    <%= Time.current.year %>
+    &copy;
+    <%= link_to('Röstsystem.se', 'https://rostsystem.se') %>
+  </div>
+</footer>
