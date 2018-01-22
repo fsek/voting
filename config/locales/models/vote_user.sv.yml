@@ -10,6 +10,8 @@ sv:
       vote_user: mötesanvändare
   model:
     vote_user:
+      make_not_present: Justera ut
+      make_present: Justera in
       presences:
         all: Alla
         not_present: Utjusterade

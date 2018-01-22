@@ -1,16 +1,8 @@
 # frozen_string_literal: true
 
 module UserHelper
-  def user_email_hint
-    simple_format(t('user.visibility.email') + '<br>' + t('user.email_format'))
-  end
-
   def user_roles
-    res = []
-    User.roles.keys.sort.each do |c|
-      res << [user_role(c), c]
-    end
-    res
+    User.roles.keys.sort.map { |c| [user_role(c), c] }
   end
 
   def user_role(role)

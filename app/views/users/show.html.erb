@@ -1,0 +1,29 @@
+<div class="col-12">
+  <div class="headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
+</div>
+<div class="col-12 col-md-3">
+  <%= render('sidebar', current: :user) %>
+</div>
+<div class="col-12 col-md-9">
+  <%= simple_form_for(current_user, url: user_path) do |f| %>
+    <table class="table border-0">
+      <tr class="border-0">
+        <td><%= User.human_attribute_name(:firstname) %></td>
+        <td><%= current_user.firstname %></td>
+      </tr>
+      <tr>
+        <td><%= User.human_attribute_name(:lastname) %></td>
+        <td><%= current_user.lastname %></td>
+      </tr>
+    </table>
+    <%= image_tag('img/mecenatkort.jpg', class: 'img-responsive') %>
+    <%= f.input(:card_number, input_html: { data: {mask: '9999-9999-9999-9999'},
+                                            autocomplete: 'off' },
+                              hint: markdown(t('.card_number_info'))) %>
+    <%= f.button(:submit, t('.submit_card_number'),
+                 id: 'user-card-number-submit',
+                 data: { confirm: t('.confirm_card_number') }) %>
+  <% end %>
+</div>

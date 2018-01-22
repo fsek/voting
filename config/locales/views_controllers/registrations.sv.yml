@@ -1,0 +1,11 @@
+---
+sv:
+  devise:
+    registrations:
+      new:
+        agree_to_terms: Genom att registrera ett konto accepterar du våra
+        email_visibility: Kan endast ses av administratörer.<br>
+        name_visibility: Kan ses av justerare, sekreterare, mötesordförande och administratörer. Syns även i mötesprotokollets närvarolista.
+        password_visibility: Lagras aldrig i klartext, kan inte ses av någon.
+        read_terms: Användarvillkoren kan alltid hittas under menyn Information.
+        terms: Användarvillkor

@@ -1,25 +1,25 @@
-<div class="col-md-6 offset-md-3 col-xs-12 reg-page">
+<div class="col-12 col-md-6 offset-md-3">
   <div class="headline">
     <h1><%= t('devise.sign_up') %></h1>
   </div>
   <%= simple_form_for(resource, as: resource_name,
                       url: registration_path(resource_name)) do |f| %>
-    <%= f.input :firstname, hint: t('user.visibility.name') %>
-    <%= f.input :lastname, hint: t('user.visibility.name') %>
-    <%= f.input :email, required: true, hint: user_email_hint %>
-    <%= f.input :password, required: true, hint: t('user.visibility.password') %>
+    <%= f.input :firstname, hint: t('.name_visibility') %>
+    <%= f.input :lastname, hint: t('.name_visibility') %>
+    <% hint = simple_format(t('.email_visibility') + t('model.user.email_format')) %>
+    <%= f.input :email, required: true, hint: hint %>
+    <%= f.input :password, required: true, hint: t('.password_visibility') %>
     <%= f.input :password_confirmation, required: true %>
 
-    <span class="user signup-terms">
-      <%= t('user.agree_to_terms' ) %>
-      <%= link_to(t('user.terms'), terms_path, target: :blank_p) %>.
-      <%= t('user.read_terms') %>
+    <span class="d-block mb-2">
+      <%= t('.agree_to_terms' ) %>
+      <%= link_to(t('.terms'), terms_path, target: :blank_p) %>.
+      <%= t('.read_terms') %>
     </span>
 
     <%= f.button :submit, id: 'user-submit' %>
     <hr>
 
     <%= render 'devise/shared/links' %>
-
   <% end %>
 </div>
