@@ -9,7 +9,7 @@ sv:
         manage_agenda: Hantera dagordning
         manage_vote: Hantera voteringar
         quick_adjustments: Snabbjustering
-        title: Administrera justeringar
+        title: Administrera mötesanvändare
       table_header:
         change_state: Justera in/ut
         reset_votecode: Nollställ röstkod
@@ -18,8 +18,6 @@ sv:
         reset: Nollställ
   vote_user:
     administrate: Administrera justeringar
-    card_number_not_present: Kortnummer ej angivet
-    card_number_present: Kortnummer angivet
     edit: Redigera användare
     mailer:
       votecode:

@@ -1,0 +1,22 @@
+<% current ||= :empty %>
+<% current = current.to_sym %>
+<% if can_administrate?(:manage, Vote) && current != :votes %>
+  <%= link_to(admin_votes_path, class: 'btn secondary') do %>
+    <%= fa_icon('hashtag', text: t('.manage_votes')) %>
+  <% end %>
+<% end %>
+<% if can_administrate?(:manage, Item) && current != :items %>
+  <%= link_to(admin_items_path, class: 'btn secondary') do %>
+    <%= fa_icon('list', text: t('.manage_agenda')) %>
+  <% end %>
+<% end %>
+<% if can_administrate?(:manage, User) && current != :vote_users %>
+  <%= link_to(admin_vote_users_path, class: 'btn secondary') do %>
+    <%= fa_icon('users', text: t('.manage_users')) %>
+  <% end %>
+<% end %>
+<% if can_administrate?(:manage, User) && current != :adjustments %>
+  <%= link_to(admin_adjustments_path, class: 'btn secondary') do %>
+    <%= fa_icon('user-plus', text: t('.quick_adjustments')) %>
+  <% end %>
+<% end %>

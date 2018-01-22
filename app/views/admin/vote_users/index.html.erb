@@ -1,29 +1,26 @@
-<div class="headline">
-  <h1><%= t('.title') %></h1>
+<div class="col-12">
+  <div class="headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
 </div>
 
-<div class="col-md-12">
+<div class="col-12 col-md-3 mb-3">
+  <%= render('application/admin_sidebar', current: :vote_users) %>
+  <hr />
+  <%= link_to(t('.make_all_not_present'), admin_attendances_path,
+              method: :delete, class: 'btn secondary',
+              data: {confirm: t('.confirm_all_not_present')}) %>
   <%= link_to t('.attendance_list'), admin_attendances_path,
               class: 'btn primary' %>
   <%= link_to t('.quick_adjustments'), admin_adjustments_path,
               class: 'btn primary' %>
-  <% if can? :manage, Vote %>
-    <%= link_to t('.manage_vote'), admin_votes_path, class: 'btn secondary' %>
-  <% end %>
-  <% if can? :manage, Agenda %>
-    <%= link_to t('.manage_agenda'), admin_agendas_path, class: 'btn secondary' %>
-  <% end %>
-  <%= link_to(t('.make_all_not_present'), admin_attendances_path,
-              method: :delete, class: 'btn secondary',
-              data: {confirm: t('.confirm_all_not_present')}) %>
-  <hr>
 </div>
 
-<div class="col-md-12 vote status" id="vote-status" data-position="vote-user-index">
+<div class="col-12 col-md-9" id="vote-status" data-position="vote-user-index">
   <%= render '/admin/votes/status', vote_status_view: @vote_status_view %>
 </div>
 
-<div class="col-md-12">
+<div class="col-12 col-md-9 offset-md-3">
   <%= render('admin/searches/user_form') %>
   <%= paginate(@vote_users) %>
   <table class="table table-striped table-bordered admin-grid">

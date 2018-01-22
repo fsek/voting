@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class StartPage
-  attr_accessor :agendas, :news
+  attr_accessor :items, :news
 
   def initialize
-    @agendas = Agenda.by_index.where(parent_id: nil).includes(:children) || []
+    @items = Item.includes(:sub_items).position || []
     @news = News.order(created_at: :desc).limit(5).includes(:user) || []
   end
 end

@@ -1,12 +1,13 @@
-<%= title(models_name(News)) %>
-<div class="headline">
-  <h1><%= models_name(News) %></h1>
+<div class="col-12">
+  <div class="headline">
+    <h1><%= title(models_name(News)) %></h1>
+  </div>
 </div>
-<div class="col-md-2 col-sm-12">
+<div class="col-12 col-md-2">
   <%= link_to t('news.new'), new_admin_news_path, class: 'btn primary' %>
 </div>
 
-<div class="col-md-10 col-sm-12">
+<div class="col-12 col-md-10">
   <table class="table table-striped table-bordered">
     <thead>
       <tr>

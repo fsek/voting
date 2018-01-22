@@ -4,10 +4,10 @@ module VoteUserHelper
   def vote_user_state_link(user)
     return unless user.present?
     if user.presence
-      link_to(t('user.make_not_present'), admin_attendance_path(user),
+      link_to(t('model.vote_user.make_not_present'), admin_attendance_path(user),
               method: :delete, remote: true)
     else
-      link_to(t('user.make_present'), admin_attendance_path(user),
+      link_to(t('model.vote_user.make_present'), admin_attendance_path(user),
               method: :patch, remote: true)
     end
   end
@@ -18,7 +18,7 @@ module VoteUserHelper
       I18n.l(user.confirmed_at)
     else
       content = safe_join([fa_icon('exclamation-circle'), ' ',
-                           I18n.t('user.not_confirmed')])
+                           I18n.t('model.user.not_confirmed')])
       content_tag(:span, content, class: 'danger')
     end
   end
