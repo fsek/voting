@@ -16,9 +16,6 @@ require 'devise'
 
 ActiveRecord::Migration.maintain_test_schema!
 
-# Loads page_objects which are used in feature test
-Dir[Rails.root.join('spec/page_objects/**/*.rb')].each { |f| require f }
-
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.use_transactional_fixtures = true
@@ -27,6 +24,14 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+  end
+
+  config.before(:each, type: :system, js: true) do
+    driven_by :selenium_chrome_headless
+  end
 
   config.include FactoryBot::Syntax::Methods
 

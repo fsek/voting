@@ -8,14 +8,14 @@ RSpec.describe VoteUserHelper do
       user = build_stubbed(:user, presence: true)
       result = helper.vote_user_state_link(user)
 
-      result.should include(I18n.t('user.make_not_present'))
+      result.should include(I18n.t('model.vote_user.make_not_present'))
     end
 
     it 'links to present if user not present' do
       user = build_stubbed(:user, presence: false)
       result = helper.vote_user_state_link(user)
 
-      result.should include(I18n.t('user.make_present'))
+      result.should include(I18n.t('model.vote_user.make_present'))
     end
   end
 end

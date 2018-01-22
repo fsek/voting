@@ -25,7 +25,7 @@ RSpec.describe UserService do
       user.reload
       result.should be_falsey
       user.card_number.should eq(old_card_number)
-      user.errors[:card_number].should include(I18n.t('user.card_number_already_set'))
+      user.errors[:card_number].should include(I18n.t('model.user.card_number_already_set'))
     end
 
     it 'returns other error if card_number is invalid' do
@@ -37,7 +37,7 @@ RSpec.describe UserService do
       user.reload
       result.should be_falsey
       user.card_number.should be_nil
-      user.errors[:card_number].should include(I18n.t('user.card_number_format'))
+      user.errors[:card_number].should include(I18n.t('model.user.card_number_format'))
     end
   end
 end
