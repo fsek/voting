@@ -5,15 +5,16 @@ source 'https://rubygems.org'
 # Do not forget to update in .ruby-version and .circleci/config.yml
 ruby '2.5.0'
 
-gem 'rails', '5.1.4'
+gem 'rails', git: 'https://github.com/rails/rails', branch: '5-2-stable'
 
-gem 'acts_as_list'
+gem 'acts_as_list', git: 'https://github.com/swanandp/acts_as_list'
 gem 'bootsnap'
 gem 'bootstrap', '~> 4.0.0'
 gem 'cancancan'
 gem 'carrierwave'
 gem 'carrierwave-aws'
 gem 'cocoon'
+gem 'coffee-rails' # Only required because of using 5-2-stable
 gem 'config'
 gem 'cookies_eu'
 gem 'devise'
