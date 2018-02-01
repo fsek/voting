@@ -9,7 +9,7 @@ module Admin
       begin
         @sub_item.documents.attach(document_params)
         render(:success)
-      rescue
+      rescue StandardError
         render(:error, status: 422)
       end
     end

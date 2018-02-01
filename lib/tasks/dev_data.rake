@@ -19,10 +19,10 @@ namespace :dev do
 
     puts 'Sign in with admin123@student.lu.se or user1234@student.lu.se and passpass.'
     News.find_or_create_by(title: 'Välkommen till Röstsystem',
-                            content: '**Skriv i Markdown, det är coole**',
-                            user: User.first)
+                           content: '**Skriv i Markdown, det är coole**',
+                           user: User.first)
     News.find_or_create_by(title: 'Nu börjar det roliga!',
-                            content: 'Waow!',
-                            user: User.first)
+                           content: 'Waow!',
+                           user: User.first)
   end
 end
