@@ -11,8 +11,6 @@ gem 'acts_as_list', git: 'https://github.com/swanandp/acts_as_list'
 gem 'bootsnap'
 gem 'bootstrap', '~> 4.0.0'
 gem 'cancancan'
-gem 'carrierwave'
-gem 'carrierwave-aws'
 gem 'cocoon'
 gem 'coffee-rails' # Only required because of using 5-2-stable
 gem 'config'

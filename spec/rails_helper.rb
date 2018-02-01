@@ -33,6 +33,10 @@ RSpec.configure do |config|
     driven_by :selenium_chrome_headless
   end
 
+  config.after(:each, type: :system) do
+    FileUtils.rm_rf("#{Rails.root}/storage_test")
+  end
+
   config.include FactoryBot::Syntax::Methods
 
   # Allow for I18n in tests
@@ -44,13 +48,6 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.extend ControllerMacros
   config.include RequestMacro, type: :request
-
-  # Clear uploaded files
-  config.after(:each) do
-    if Rails.env.test? || Rails.env.cucumber?
-      FileUtils.rm_rf(Dir["#{Rails.root}/spec/support/uploads"])
-    end
-  end
 end
 
 Shoulda::Matchers.configure do |config|
