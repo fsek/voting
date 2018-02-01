@@ -3,6 +3,7 @@ sv:
   activerecord:
     attributes:
       sub_item:
+        files: Dokument
         position: Ordning
         title: Titel
     models:

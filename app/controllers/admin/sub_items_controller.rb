@@ -17,8 +17,7 @@ module Admin
 
     def edit
       @item = Item.find(params[:item_id])
-      @sub_item = @item.sub_items.find(params[:id])
-      @document = Document.new(sub_item: @sub_item)
+      @sub_item = @item.sub_items.with_attached_documents.find(params[:id])
     end
 
     def create

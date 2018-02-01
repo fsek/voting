@@ -18,7 +18,6 @@ Rails.application.routes.draw do
     resources :contacts, path: :kontakt, only: [:index] do
       post :mail, on: :collection
     end
-    resources :documents, path: :dokument, only: %i[show]
     resource :user, path: :anvandare, only: %i[show update] do
       get :account, path: :konto
       patch :account, path: :konto, action: :update_account
@@ -43,7 +42,7 @@ Rails.application.routes.draw do
         resources :sub_items, only: %i[new edit create update destroy]
       end
       resources :sub_items, only: [] do
-        resources :documents, only: %i[create destroy edit update]
+        resources :documents, only: %i[create destroy]
       end
       resources :current_items, path: 'aktuell-dagordning',
                                 only: %i[update destroy]

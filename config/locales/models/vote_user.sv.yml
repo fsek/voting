@@ -19,5 +19,3 @@ sv:
       state:
         not_present: Utjusterad
         present: Injusterad
-      make_not_present: Justera ut
-      make_present: Justera in

@@ -1,9 +1,7 @@
 <table class="table table-striped table-bordered admin-grid">
   <thead>
     <tr>
-      <th><%= Document.human_attribute_name(:title) %></th>
-      <th><%= Document.human_attribute_name(:pdf) %></th>
-      <th><%= t(:edit) %></th>
+      <th><%= t('.document_title') %></th>
       <th><%= t(:remove) %></th>
     </tr>
   </thead>
@@ -12,20 +10,14 @@
      <% next unless doc.persisted? %>
       <tr>
         <td>
-          <%= doc %>
-        </td>
-        <td>
-          <%= link_to(doc.pdf_identifier, doc.view, target: :blank) %>
-        </td>
-        <td>
-          <%= link_to(t(:edit), edit_admin_sub_item_document_url(sub_item, doc),
-                                remote: true) %>
+          <%= link_to(doc.filename, url_for(doc), target: :blank) %>
         </td>
         <td>
           <%= link_to(t(:remove), admin_sub_item_document_path(sub_item, doc),
                       method: :delete,
+                      remote: true,
                       data: { confirm: t('.confirm_remove',
-                                         title: doc) }) %>
+                                         title: doc.filename) }) %>
         </td>
       </tr>
     <% end %>

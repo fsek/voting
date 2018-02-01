@@ -2,9 +2,13 @@
 sv:
   admin:
     documents:
-      edit:
-        edit_document: Redigera dokument
+      destroy:
+        success: Dokumentet raderades.
       success:
         new_document: Nytt dokument
       table:
+        document_title: Titel
         confirm_remove: Vill du verkligent ta bort dokumentet %{title}?
+      form:
+        allows_multiple_files: Det går bra att lägga upp flera filer samtidigt.
+        upload_document: Ladda upp

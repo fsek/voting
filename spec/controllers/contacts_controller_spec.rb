@@ -7,7 +7,7 @@ RSpec.describe ContactsController, type: :controller do
   describe 'GET #index' do
     it 'succeeds and assigns contacts' do
       get :index
-      response.should be_success
+      expect(response).to have_http_status(200)
     end
   end
 

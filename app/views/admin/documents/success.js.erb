@@ -1,6 +1,4 @@
-var formTitle = document.getElementById('document-form-title');
 var form = document.getElementById('document-form');
 var table = document.getElementById('documents');
-formTitle.innerHTML = "<%= t('.new_document') %>";
-form.innerHTML = "<%= j render('/admin/documents/form', sub_item: @sub_item, document: Document.new(sub_item: @sub_item)) %>";
+form.innerHTML = "<%= j render('/admin/documents/form', sub_item: @sub_item) %>";
 table.innerHTML = "<%= j render('/admin/documents/table', sub_item: @sub_item) %>";

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails
-  revision: 79cf5a2801ae403cb5f3ee7e7b0b2cd29ef500d7
+  revision: a14c83f26c34ef55a50de56778f328094b2ce5f2
   branch: 5-2-stable
   specs:
     actioncable (5.2.0.rc1)
@@ -80,6 +80,19 @@ GEM
     ast (2.4.0)
     autoprefixer-rails (7.2.5)
       execjs
+    aws-partitions (1.57.0)
+    aws-sdk-core (3.14.0)
+      aws-partitions (~> 1.0)
+      aws-sigv4 (~> 1.0)
+      jmespath (~> 1.0)
+    aws-sdk-kms (1.4.0)
+      aws-sdk-core (~> 3)
+      aws-sigv4 (~> 1.0)
+    aws-sdk-s3 (1.8.0)
+      aws-sdk-core (~> 3)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.0)
+    aws-sigv4 (1.0.2)
     bcrypt (3.1.11)
     better_errors (2.4.0)
       coderay (>= 1.0.0)
@@ -195,6 +208,7 @@ GEM
       rainbow (~> 2.2)
       terminal-table (>= 1.5.1)
     inflecto (0.0.2)
+    jmespath (1.3.1)
     jquery-rails (4.3.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -254,7 +268,7 @@ GEM
       pry (>= 0.10.4)
     public_suffix (3.0.1)
     puma (3.11.2)
-    rack (2.0.3)
+    rack (2.0.4)
     rack-test (0.8.2)
       rack (>= 1.0, < 3)
     rails-controller-testing (1.0.2)
@@ -374,6 +388,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_list!
+  aws-sdk-s3 (~> 1.8)
   better_errors
   bootsnap
   bootstrap (~> 4.0.0)
