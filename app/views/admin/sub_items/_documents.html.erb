@@ -1,0 +1,14 @@
+<% return unless sub_item %>
+<div class="col-12">
+  <div class="headline">
+    <h2><%= t('.documents') %></h2>
+  </div>
+</div>
+
+<div class="col-12 col-md-10 ml-auto" id="documents">
+  <%= render('/admin/documents/table', sub_item: sub_item) %>
+</div>
+
+<div class="col-12 col-md-10 ml-auto" id="document-form">
+  <%= render('/admin/documents/form', sub_item: sub_item) %>
+</div>

@@ -1,9 +1,10 @@
-<%= simple_form_for([:admin, sub_item, document], remote: true) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :position %>
-  <% if document.pdf.present? %>
-    <p><%= link_to(document.pdf_identifier, document.view, target: :blank)%></p>
-  <% end %>
-  <%= f.input :pdf, as: :file, required: !document.pdf.present? %>
-  <%= f.button :submit %>
+<%= form_with(model: sub_item, url: admin_sub_item_documents_path(sub_item),
+                               method: :post, remote: true) do |f| %>
+  <div class="form-group">
+    <%= f.label(:files) %>
+    <%= f.file_field(:files, id: :sub_item_files, multiple: true, 
+                            class: 'form-control-file') %>
+    <small class="form-text text-muted"><%= t('.allows_multiple_files') %></small>
+  </div>
+  <%= f.submit(t('.upload_document'), class: 'btn btn-primary') %>
 <% end %>

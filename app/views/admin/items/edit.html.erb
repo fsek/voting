@@ -26,6 +26,9 @@
   <%= render('form', item: @item) %>
 </div>
 
+<%= render('/admin/sub_items/documents', sub_item: @item.sub_items.first) if @item.single? %>
+
+
 <div class="col-12">
   <div class="headline">
     <h2><%= t('.sub_items') %></h2>
@@ -51,4 +54,5 @@
   <div class="col-12 col-md-10">
     <%= render('/admin/sub_items/table', item: @item) %>
   </div>
+<% else %>
 <% end %>

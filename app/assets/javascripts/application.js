@@ -18,6 +18,7 @@
 //= require select2
 //= require select2_locale_sv
 //= require turbolinks
+//= require activestorage
 //= require cookies_eu
 //= require cocoon
 //= require inputmask
