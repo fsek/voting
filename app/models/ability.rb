@@ -16,7 +16,6 @@ class Ability
     # Abilities all signed in users get
     return unless user.id.present?
     can %i[show update account update_account password update_password], User
-    can :show, Document
     can :index, Vote
     can %i[new create], VotePost
   end

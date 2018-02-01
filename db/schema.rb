@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_02_01_092419) do
+ActiveRecord::Schema.define(version: 2018_02_01_111529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -79,16 +79,6 @@ ActiveRecord::Schema.define(version: 2018_02_01_092419) do
     t.index ["updater_id"], name: "index_audits_on_updater_id"
     t.index ["user_id"], name: "index_audits_on_user_id"
     t.index ["vote_id"], name: "index_audits_on_vote_id"
-  end
-
-  create_table "documents", id: :serial, force: :cascade do |t|
-    t.string "pdf", limit: 255
-    t.string "title", limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer "position"
-    t.bigint "sub_item_id"
-    t.index ["sub_item_id"], name: "index_documents_on_sub_item_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -197,7 +187,6 @@ ActiveRecord::Schema.define(version: 2018_02_01_092419) do
   add_foreign_key "adjustments", "users"
   add_foreign_key "audits", "users"
   add_foreign_key "audits", "votes"
-  add_foreign_key "documents", "sub_items"
   add_foreign_key "sub_items", "items"
   add_foreign_key "vote_options", "votes"
   add_foreign_key "vote_posts", "users"
