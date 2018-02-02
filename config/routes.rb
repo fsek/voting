@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       resources :news, path: :nyheter, except: [:show]
 
       resources :adjustments, path: :justering, except: [:show] do
-        post :update_row_order, on: :collection
+        patch :update_order, path: :ordning, on: :collection
       end
 
       resources :items, path: :dagordning,

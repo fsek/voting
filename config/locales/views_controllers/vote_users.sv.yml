@@ -18,6 +18,9 @@ sv:
       table_rows:
         confirm_reset: Vill du verkligen nollställa röstkoden?
         reset: Nollställ
+      show:
+        title: Hantera mötesanvändare
+        all_vote_users: Alla mötesanvändare
   vote_user:
     administrate: Administrera justeringar
     edit: Redigera användare

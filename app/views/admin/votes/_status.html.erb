@@ -27,7 +27,7 @@
       <%= fa_icon('envelope 4x', class: 'text-primary d-block') %>
       <span class="d-block my-1 text-2 text-bold">
         <% if vote_status_view.vote.present? %>
-          <%= link_to(vote_status_view.vote, new_vote_vote_post_path(vote_status_view.vote)) %>
+          <%= link_to(vote_status_view.vote, vote_vote_posts_path(vote_status_view.vote)) %>
         <% else %>
           <%= t('.current_vote_missing') %>
         <% end %>

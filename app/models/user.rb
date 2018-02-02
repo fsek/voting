@@ -25,7 +25,7 @@ class User < ApplicationRecord
 
   # Associations
   has_many :audits, as: :auditable
-  has_many :adjustments
+  has_many :adjustments, -> { position }
 
   after_create :log_create
   after_update :log_update

@@ -83,14 +83,16 @@ RSpec.describe("Handle adjustments manually", type: :request) do
   end
 
   it 'updates ordering of adjustments' do
+    sign_in(adjuster)
     user = create(:user)
     a1 = create(:adjustment, user: user)
     a2 = create(:adjustment, user: user)
     a3 = create(:adjustment, user: user)
-    attributes = { adjustment: { row_order_position: 0 } }
-    post(update_row_order_admin_adjustments_path(a3), params: attributes)
+    attributes = { id: a3.to_param, adjustment: { position: 1 } }
+    patch(update_order_admin_adjustments_path, params: attributes, xhr: true)
+    expect(response).to have_http_status(200)
 
     user.reload
-    expect(user.adjustments.rank(:row_order)).to eq([a1, a2, a3])
+    expect(user.adjustments.map(&:id)).to eq([a3, a1, a2].map(&:id))
   end
 end

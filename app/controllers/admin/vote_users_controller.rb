@@ -15,7 +15,6 @@ module Admin
       @votes = Vote.with_deleted
       @adjustments = @user.adjustments
                           .includes(sub_item: :item)
-                          .rank(:row_order)
       @audits = @user.audits.includes(:updater, :user)
     end
   end

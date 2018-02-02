@@ -33,15 +33,15 @@ jQuery(function() {
     update: function(e, ui) {
       var item_id, position;
       item_id = ui.item.data('item-id');
-      position = ui.item.index();
+      position = ui.item.index() + 1;
       return $.ajax({
-        type: 'POST',
-        url: '/admin/justering/update_row_order',
+        type: 'PATCH',
+        url: '/admin/justering/ordning',
         dataType: 'json',
         data: {
           id: item_id,
           adjustment: {
-            row_order_position: position
+            position: position
           }
         },
         success: function() {

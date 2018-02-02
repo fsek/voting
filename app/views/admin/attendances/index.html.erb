@@ -20,7 +20,7 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= link_to(user, admin_vote_user_path(user)) %></td>
-          <td><%= split_adjustments(user.adjustments.rank(:row_order)) %></td>
+          <td><%= split_adjustments(user.adjustments) %></td>
         </tr>
       <% end %>
     </tbody>

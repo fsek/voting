@@ -15,7 +15,7 @@ RSpec.describe Adjustment, type: :model do
       adjustment2 = create(:adjustment, user: user, sub_item: sub_item2)
       adjustment3 = create(:adjustment, user: user, sub_item: sub_item3)
 
-      user.adjustments.rank(:row_order).should eq [adjustment1, adjustment2, adjustment3]
+      expect(user.adjustments).to eq([adjustment1, adjustment2, adjustment3])
     end
 
     it 'moves the last adjustment to the top' do
@@ -29,9 +29,9 @@ RSpec.describe Adjustment, type: :model do
       adjustment2 = create(:adjustment, user: user, sub_item: sub_item2)
       adjustment3 = create(:adjustment, user: user, sub_item: sub_item3)
 
-      adjustment3.update(row_order_position: 0)
+      adjustment3.update(position: 1)
 
-      user.adjustments.rank(:row_order).should eq [adjustment3, adjustment1, adjustment2]
+      expect(user.adjustments).to eq([adjustment3, adjustment1, adjustment2])
     end
 
     it 'deletes an adjustment' do
@@ -45,9 +45,9 @@ RSpec.describe Adjustment, type: :model do
       adjustment2 = create(:adjustment, user: user, sub_item: sub_item2)
       adjustment3 = create(:adjustment, user: user, sub_item: sub_item3)
 
-      adjustment2.destroy
+      adjustment2.destroy!
 
-      user.adjustments.rank(:row_order).should eq [adjustment1, adjustment3]
+      expect(user.adjustments).to eq([adjustment1, adjustment3])
     end
 
     it 'moves up an adjustment' do
@@ -61,9 +61,10 @@ RSpec.describe Adjustment, type: :model do
       a4 = create(:adjustment, user: user, sub_item: sub_item)
       a5 = create(:adjustment, user: user, sub_item: sub_item)
 
-      a4.update(row_order_position: 1)
+      a4.update!(position: 2)
+      user.reload
 
-      user.adjustments.rank(:row_order).should eq [a1, a4, a2, a3, a5]
+      expect(user.adjustments.map(&:id)).to eq([a1, a4, a2, a3, a5].map(&:id))
     end
   end
 end
