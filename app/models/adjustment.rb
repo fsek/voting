@@ -3,7 +3,7 @@
 # Presence adjustment for Voters
 class Adjustment < ApplicationRecord
   acts_as_paranoid
-  include RankedModel
+  acts_as_list(scope: :user)
   paginates_per(100)
 
   belongs_to :sub_item, -> { with_deleted }
@@ -12,7 +12,7 @@ class Adjustment < ApplicationRecord
   after_update :log_update
   after_destroy :log_destroy
 
-  ranks :row_order, with_same: :user_id
+  scope(:position, -> { order(:position) })
 
   private
 
