@@ -23,4 +23,5 @@
 //= require cocoon
 //= require inputmask
 //= require pagedown_bootstrap
+//= require tui-editor/dist/tui-editor-Editor
 //= require_tree .
