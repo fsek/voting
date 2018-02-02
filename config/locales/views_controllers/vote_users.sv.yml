@@ -2,6 +2,8 @@
 sv:
   admin:
     vote_users:
+      adjustments:
+        new_adjustment: Ny justering
       index:
         attendance_list: Närvarolista
         confirm_all_not_present: Är du säker på att du vill justera ut ALLA användare?

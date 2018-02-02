@@ -1,5 +1,5 @@
-<%= link_to new_admin_adjustment_path(user_id: user.id) do %>
-    <%= fa_icon('plus') %> <%= t('adjustment.new') %>
+<%= link_to(new_admin_adjustment_path(user_id: user.id)) do %>
+    <%= fa_icon('plus') %> <%= t('.new_adjustment') %>
 <% end %>
 
 <table class="table table-bordered">
@@ -7,8 +7,8 @@
     <tr>
       <th><%= t('log.type') %></th>
       <th><%= model_name(Agenda) %></th>
-      <th><%= t('edit') %></th>
-      <th><%= t('remove') %></th>
+      <th><%= t(:edit) %></th>
+      <th><%= t(:remove) %></th>
     </tr>
   </thead>
   <tbody id="adjustments-sortable">
@@ -21,7 +21,7 @@
           <%= adjustment.sub_item %>
         </td>
         <td>
-          <%= link_to t('edit'), edit_admin_adjustment_path(adjustment) %>
+          <%= link_to(t(:edit), edit_admin_adjustment_path(adjustment)) %>
         </td>
         <td>
           <%= link_to(fa_icon('times'), admin_adjustment_path(adjustment),
