@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Used for signing in in feature specs
+# Used for signing in in system specs
 class LoginPage
   include Capybara::DSL
 

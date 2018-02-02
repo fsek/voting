@@ -15,9 +15,7 @@ Rails.application.routes.draw do
 
   # Scope to change urls to swedish
   scope path_names: { new: 'ny', edit: 'redigera' } do
-    resources :contacts, path: :kontakt, only: [:index] do
-      post :mail, on: :collection
-    end
+    resource :message, path: :kontakt, only: %i[show create]
     resource :user, path: :anvandare, only: %i[show update] do
       get :account, path: :konto
       patch :account, path: :konto, action: :update_account
@@ -27,7 +25,7 @@ Rails.application.routes.draw do
 
     resources :items, path: :dagordning, only: %i[index show]
     resources :votes, path: :voteringar, only: :index do
-      resources :vote_posts, only: %i[new create]
+      resource :vote_posts, path: :rost, only: %i[show create]
     end
 
     namespace :admin do
