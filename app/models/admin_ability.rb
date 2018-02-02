@@ -8,20 +8,20 @@ class AdminAbility
     return if user.nil?
 
     if user.adjuster?
-      can(:manage, Adjustment)
-      can(:manage, [Agenda, Item])
       can(:manage, :attendance)
       can(:manage, :search)
       can(:manage, :vote_user)
       can(:manage, :votecode)
+      can(:manage, [Agenda, Item])
+      can(:manage, Adjustment)
     elsif user.secretary?
+      can(:manage, :attendance)
+      can(:manage, :search)
+      can(:manage, :vote_user)
+      can(:manage, :votecode)
       can(:manage, Adjustment)
       can(:manage, Agenda)
-      can(:manage, Document)
-      can(:manage, :attendance)
-      can(:manage, :search)
-      can(:manage, :vote_user)
-      can(:manage, :votecode)
+      can(:manage, News)
     elsif user.chairman?
       can(:manage, Agenda)
       can(:manage, Vote)
