@@ -22,7 +22,6 @@ Feel free to open **pull requests** with any changes or use the application on y
 
 ## Status
 [![Code Climate](https://codeclimate.com/github/fsek/voting/badges/gpa.svg)](https://codeclimate.com/github/fsek/voting)
-[![Dependency Status](https://gemnasium.com/fsek/voting.svg)](https://gemnasium.com/fsek/voting)
 [![security](https://hakiri.io/github/fsek/voting/master.svg)](https://hakiri.io/github/fsek/voting/master)
 [![CircleCI](https://circleci.com/gh/fsek/voting/tree/master.svg?style=shield&circle-token=:circle-ci-badge-token)](https://circleci.com/gh/fsek/voting/tree/master)
 
@@ -35,4 +34,4 @@ The development of Röstsytem started in the end of 2015, [Jakob](https://github
 - [David Wessman](https://github.com/davidwessman)
 
 ## License
-This project is published under a MIT-license, for more information check out the [license file](/LICENSE)
+This project is published under a MIT-license, for more information check out the [license file](/LICENSE).
