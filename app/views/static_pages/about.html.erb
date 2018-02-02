@@ -1,35 +1,36 @@
-<% provide(:title, t('about.title')) %>
-<div class="headline">
-  <h1><%= t('about.title') %></h1>
+<div class="col-12">
+  <div class="headline">
+    <h1><%= title(t('.title')) %></h1>
+  </div>
 </div>
 
 <div class="col-md-8 offset-md-2 col-sm-12">
-  <h3><%= t('about.what_is.title') %></h3>
-  <%= simple_format(t('about.what_is.text')) %>
+  <h3><%= t('.what_is.title') %></h3>
+  <%= simple_format(t('.what_is.text')) %>
 
-  <h3><%= t('about.how_start.title') %></h3>
+  <h3><%= t('.how_start.title') %></h3>
   <ol>
-    <li><%= t('about.how_start.first') %></li>
-    <li><%= t('about.how_start.second') %></li>
-    <li><%= t('about.how_start.third') %></li>
+    <li><%= t('.how_start.first') %></li>
+    <li><%= t('.how_start.second') %></li>
+    <li><%= t('.how_start.third') %></li>
   </ol>
 
 
-  <h3><%= t('about.adjustment.title') %></h3>
-  <%= simple_format(t('about.adjustment.text')) %>
+  <h3><%= t('.adjustment.title') %></h3>
+  <%= simple_format(t('.adjustment.text')) %>
 
-  <h3><%= t('about.votes.title') %></h3>
-  <%= simple_format(t('about.votes.text')) %>
+  <h3><%= t('.votes.title') %></h3>
+  <%= simple_format(t('.votes.text')) %>
 
-  <h3><%= t('about.votecode.title') %></h3>
-  <%= simple_format(t('about.votecode.text')) %>
+  <h3><%= t('.votecode.title') %></h3>
+  <%= simple_format(t('.votecode.text')) %>
 
-  <h3><%= t('about.anonymity.title') %></h3>
-  <%= simple_format(t('about.anonymity.text')) %>
+  <h3><%= t('.anonymity.title') %></h3>
+  <%= simple_format(t('.anonymity.text')) %>
 
-  <h3><%= t('about.by.title') %></h3>
-  <%= simple_format(t('about.by.text')) %>
-  <p><strong><%= t('about.by.developers') %></strong></p>
+  <h3><%= t('.by.title') %></h3>
+  <%= simple_format(t('.by.text')) %>
+  <p><strong><%= t('.by.developers') %></strong></p>
   <ul class="list">
     <li>
       <%= link_to('https://github.com/navro', target: :blank_p) do %>
@@ -43,8 +44,8 @@
     </li>
   </ul>
 
-  <h3><%= t('about.questions') %></h3>
-  <%= link_to(contacts_path, class: 'btn primary') do %>
+  <h3><%= t('.questions') %></h3>
+  <%= link_to(message_path, class: 'btn primary') do %>
     <%= fa_icon('envelope-o') %>&nbsp; Röstiga
   <% end %>
 </div>

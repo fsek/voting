@@ -1,0 +1,30 @@
+---
+sv:
+  static_pages:
+    about:
+      adjustment:
+        text: Vid injustering och utjustering visar du ID-kort och mecenatkort för justeraren. Mecenatkortet dras i en kortläsare och du blir justerad!
+        title: Justering
+      anonymity:
+        text: För att man inte ska kunna rösta flera gånger behöver vi spara information om vem som har deltagit i en votering. Det sparas dock ingen information om vad någon har röstat på.
+        title: Anonymitet
+      by:
+        developers: Utvecklat av
+        text: Utvecklingen av Röstsystem påbörjades vid årsskiftet 2015/2016 av Jakob och har fortsatt under hela våren. Tillsammans med engagerade medlemmar har systemet utvecklats för att kunna göra deltagande vid sektionsmöten enklare och effektivare, men också förenkla styrelsens arbete före och efter mötet.
+        title: Hur har Röstsystem utvecklats?
+      how_start:
+        first: Registrera dig på rostsystem.se och bekräfta din e-postadress.
+        second: Logga in och lägg till ditt mecenatkortsnummer.
+        third: Ta med mecenatkortet (helst inte digitalt), ID-handling och en dator, mobil eller surfplatta till mötet.
+        title: Hur förbereder jag mig inför mötet?
+      questions: Frågor?
+      title: Om webbplatsen
+      votecode:
+        text: För att ingen annan ska kunna rösta via ditt konto kommer du att få en specifik röstkod. Denna skickas till din e-postadress och används vid samtliga voteringar. Notera att din röstkod enbart går att använda på din egen inloggning. Om du tror att någon har kommit över din röstkod kan du kontakta justerare, sekreterare eller administratörer för att få en ny.
+        title: Röstkod
+      votes:
+        text: För slutna voteringar kommer Röstsystem att användas. Du behöver vara inloggad, injusterad och ha din röstkod (se nedan) tillgänglig för att kunna rösta. På röstsidan knappar du in din röstkod och väljer det alternativ du vill rösta på. Efter att du har skickat in din röst blir det omöjligt att ändra den, så se till att du väljer rätt alternativ.
+        title: Voteringar
+      what_is:
+        text: Röstsystem är ett digitalt verktyg för att hantera voteringar och justeringar under sektionsmöten. Systemet har skapats för att göra sektionsmötena snabbare och smidigare.
+        title: Vad är Röstsystem?
