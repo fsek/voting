@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class VotePostsController < ApplicationController
-  load_and_authorize_resource
+  authorize_resource
 
-  def new
+  def show
     @vote = Vote.find(params[:vote_id])
     if !@vote.open?
-      redirect_to votes_path, alert: I18n.t('vote.is_closed')
+      redirect_to(votes_path, alert: t('.is_closed'))
     else
       @vote_post = VotePost.new
     end
@@ -18,9 +18,9 @@ class VotePostsController < ApplicationController
     @vote_post.user = current_user
 
     if VoteService.user_vote(@vote_post)
-      redirect_to votes_path, notice: alert_create(VotePost)
+      redirect_to(votes_path, notice: t('.success'))
     else
-      render :new, status: 422
+      render(:show, status: 422)
     end
   end
 

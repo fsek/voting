@@ -1,5 +1,10 @@
 ---
 sv:
+  vote_posts:
+    show:
+      is_closed: Voteringen är tyvärr stängd.
+    create:
+      success: Din röst har sparats.
   vote_post:
     already_voted: Du har redan röstat i omröstningen
     bad_votecode_or_presence: är inte din röstkod, eller så är du inte injusterad
