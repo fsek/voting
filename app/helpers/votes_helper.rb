@@ -163,7 +163,7 @@ module VotesHelper
     if vote_status.vote_post.present?
       safe_join([t('vote.already_voted'), ': ', l(vote_status.vote_post.created_at)])
     else
-      link_to(t('vote.submit'), new_vote_vote_post_path(vote_status.vote), class: 'btn primary')
+      link_to(t('vote.submit'), vote_vote_posts_path(vote_status.vote), class: 'btn primary')
     end
   end
 
@@ -186,12 +186,11 @@ module VotesHelper
   end
 
   def number_of_votes(vote)
-    if vote.present?
-      if vote.closed?
-        "#{vote.vote_posts.count} / #{vote.present_users}"
-      elsif vote.open?
-        "#{vote.vote_posts.count} / #{User.present.count}"
-      end
+    return unless vote.present?
+    if vote.closed?
+      "#{vote.vote_posts.count} / #{vote.present_users}"
+    elsif vote.open?
+      "#{vote.vote_posts.count} / #{User.present.count}"
     end
   end
 end
