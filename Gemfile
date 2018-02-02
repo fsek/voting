@@ -43,7 +43,6 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'rails-controller-testing'
   gem 'rspec-rails'
 end
 
@@ -54,7 +53,6 @@ group :development do
 end
 
 group :test do
-  gem 'codeclimate-test-reporter', require: false
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', require: false
 end
