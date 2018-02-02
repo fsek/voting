@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class StaticPagesController < ApplicationController
-  load_and_authorize_resource class: :static_pages
 
   def about; end
 
