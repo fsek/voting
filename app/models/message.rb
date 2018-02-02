@@ -14,7 +14,7 @@ class Message
     @email = attributes[:email]
   end
 
-  def send!
+  def create
     if MessageValidator.validate(self)
       MessageMailer.email(self).deliver_now
       true
