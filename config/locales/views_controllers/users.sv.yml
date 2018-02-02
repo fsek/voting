@@ -2,10 +2,16 @@
 sv:
   admin:
     users:
+      edit:
+        all: Alla användare
+        title: Redigera användare
       index:
         all: Alla användare
         paginated: Begränsat
         show_vote_user: Visa mötesanvändare
+        title: Administrera användare
+      update:
+        success: Användaren uppdaterades.
   users:
     account:
       check_email_to_confirm: Vänlig kontrollera om du fått ett epost %{date} med en länk för att bekräfta din e-postadress.

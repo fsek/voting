@@ -17,9 +17,9 @@ class Admin::UsersController < Admin::BaseController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      redirect_to(edit_admin_user_path(@user), notice: alert_update(User))
+      redirect_to(edit_admin_user_path(@user), notice: t('.success'))
     else
-      render :edit, status: 422
+      render(:edit, status: 422)
     end
   end
 

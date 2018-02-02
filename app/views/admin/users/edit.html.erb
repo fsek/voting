@@ -1,10 +1,13 @@
-<%= provide(:title, @user.to_s) %>
-<div class="col-md-8 offset-md-2 col-sm-12 reg-page">
+<div class="col-12">
   <div class="headline">
-    <h1><%= "#{t(:edit)} - #{@user.to_s}" %></h1>
+    <h1><%= title(t('.title')) %></h1>
   </div>
+</div>
 
+<div class="col-12 col-sm-2">
+  <%= link_to(t('.all'), admin_users_path, class: 'btn primary') %>
+</div>
+
+<div class="col-12 col-sm-10 user">
   <%= render('form', user: @user) %>
-  <hr>
-  <%= link_to(t('user.admin_index'), admin_users_path, class: 'btn secondary') %>
 </div>
