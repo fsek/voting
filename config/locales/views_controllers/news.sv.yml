@@ -2,12 +2,19 @@
 sv:
   admin:
     news:
+      create:
+        success: Nyheten skapades.
+      destroy:
+        success: Nyheten raderades.
       edit:
         all_news: Alla nyheter
         destroy: Förinta nyhet
         title: Redigera nyhet
+      index:
+        new: Ny nyhet
+        title: Nyheter
       new:
         all_news: Alla nyheter
         title: Ny nyhet
-  news:
-    new: Ny nyhet
+      update:
+        success: Nyheten uppdaterades.

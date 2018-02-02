@@ -1,10 +1,10 @@
 <div class="col-12">
   <div class="headline">
-    <h1><%= title(models_name(News)) %></h1>
+    <h1><%= title(t('.title')) %></h1>
   </div>
 </div>
 <div class="col-12 col-md-2">
-  <%= link_to t('news.new'), new_admin_news_path, class: 'btn primary' %>
+  <%= link_to t('.new'), new_admin_news_path, class: 'btn primary' %>
 </div>
 
 <div class="col-12 col-md-10">
