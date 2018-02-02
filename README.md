@@ -5,7 +5,7 @@ The system helps handling presence and adjustment of election registering, the a
 
 
 ## Getting started
-The application is written in Ruby on Rails, download the repository and run the `bin/setup` script to get started. It requires [Postgres](https://www.postgresql.org/) and [Bundler](http://bundler.io/).
+The application is written in Ruby on Rails, download the repository and run the `bin/setup` script to get started. It requires [Postgres](https://www.postgresql.org/), [Bundler](http://bundler.io/) and [Yarn][https://yarnpkg.com/lang/en/].
 
 ## Tests
 The application uses [RSpec](http://rspec.info/) for all tests, they are run with the command `rspec`.
