@@ -21,24 +21,24 @@ module Admin
       @news = News.new(news_params)
       @news.user = current_user
       if @news.save
-        redirect_to admin_news_index_path, notice: alert_create(News)
+        redirect_to(admin_news_index_path, notice: t('.success'))
       else
-        render :new, status: 422
+        render(:new, status: 422)
       end
     end
 
     def update
       @news = News.find(params[:id])
       if @news.update(news_params)
-        redirect_to admin_news_index_path, notice: alert_update(News)
+        redirect_to(admin_news_index_path, notice: t('.success'))
       else
-        render :edit, status: 422
+        render(:edit, status: 422)
       end
     end
 
     def destroy
       News.find(params[:id]).destroy!
-      redirect_to(admin_news_index_path, notice: alert_destroy(News))
+      redirect_to(admin_news_index_path, notice: t('.success'))
     end
 
     private

@@ -1,14 +1,16 @@
-<div class="headline">
-  <h1><%= t('.title') %></h1>
+<div class="col-12">
+  <div class="headline">
+    <h1><%= t('.title') %></h1>
+  </div>
 </div>
 
-<div class="col-md-2 col-sm-12">
+<div class="col-12 col-sm-2">
   <%= link_to(t('.all_news'),
               admin_news_index_path, class: 'btn secondary') %>
   <%= link_to(t('.destroy'),
               admin_news_path(@news), method: :delete,  class: 'btn danger') %>
 </div>
 
-<div class="col-md-10 col-sm-12">
+<div class="col-12 col-sm-10">
   <%= render 'form', news: @news %>
 </div>
