@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_02_01_111529) do
+ActiveRecord::Schema.define(version: 2018_02_02_102049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2018_02_01_111529) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
-    t.integer "row_order"
+    t.integer "position"
     t.bigint "sub_item_id"
     t.index ["deleted_at"], name: "index_adjustments_on_deleted_at"
     t.index ["sub_item_id"], name: "index_adjustments_on_sub_item_id"
