@@ -2,9 +2,9 @@
 sv:
   activemodel:
     attributes:
-      contact_message:
+      message:
         email: E-post
         message: Meddelande
         name: Namn
     models:
-      contact_message: Meddelande
+      message: Meddelande

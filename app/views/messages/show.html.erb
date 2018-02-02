@@ -1,14 +1,15 @@
-<%= provide(:title, t('.title')) %>
-<div class='headline'>
-  <h1 id='contacts_title'><%= t('.title') %></h1>
+<div class="col-12">
+  <div class='headline'>
+    <h1><%= title(t('.title')) %></h1>
+  </div>
 </div>
 
-<div class="col-md-6 offset-md-3 col-sm-12">
+<div class="col-12 col-md-6 offset-md-3">
   <%= simple_format(t('.description')) %>
 
   <%= simple_form_for(@message,
                       method: :post,
-                      url: mail_contacts_path) do |f| %>
+                      url: message_path) do |f| %>
     <%= f.input :name, required: true %>
     <%= f.input :email, required: true %>
     <%= f.input :message, as: :text %>
