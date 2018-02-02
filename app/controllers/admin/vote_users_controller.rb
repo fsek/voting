@@ -3,7 +3,7 @@
 module Admin
   # Handles vote users displaying
   class VoteUsersController < Admin::BaseController
-    authorize_resource class: false
+    authorize_resource(class: false)
 
     def index
       @vote_status_view = VoteStatusView.new
