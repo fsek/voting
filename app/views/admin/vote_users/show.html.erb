@@ -1,8 +1,20 @@
-<div class="col-md-10 offset-md-1 col-sm-12 reg-page">
+<div class="col-12">
   <div class="headline">
-    <h1><%= model_name(User) %></h1>
+    <h1><%= title(t('.title')) %></h1>
   </div>
-  <table class="table">
+</div>
+
+<div class="col-12 col-md-3 mb-3">
+  <%= render('application/admin_sidebar', current: :vote_users) %>
+  <hr />
+  <%= link_to t('.all_vote_users'), admin_vote_users_path,
+              class: 'btn secondary' %>
+</div>
+<div class="col-12 col-md-9">
+  <div class="headline">
+    <h3><%= models_name(User) %></h3>
+  </div>
+  <table class="table table-striped table-bordered">
     <tr>
       <td><%= User.human_attribute_name(:name) %></td>
       <td><%= @user.to_s %></td>
@@ -21,7 +33,6 @@
     </tr>
   </table>
 
-  <%= link_to t('vote_user.administrate'), admin_vote_users_path, class: 'btn secondary' %>
   <hr />
 
   <div class="headline">

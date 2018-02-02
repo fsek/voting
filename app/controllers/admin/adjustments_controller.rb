@@ -34,13 +34,13 @@ class Admin::AdjustmentsController < Admin::BaseController
     end
   end
 
-  def update_row_order
+  def update_order
     adjustment = Adjustment.find(params[:id])
 
     if adjustment.update(order_params)
-      render json: nil, status: :ok
+      render(json: nil, status: :ok)
     else
-      render json: nil, status: :error
+      render(json: nil, status: :error)
     end
   end
 
@@ -61,6 +61,6 @@ class Admin::AdjustmentsController < Admin::BaseController
   end
 
   def order_params
-    params.require(:adjustment).permit(:row_order_position)
+    params.require(:adjustment).permit(:position)
   end
 end
