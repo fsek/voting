@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails
-  revision: 95b2cb8644166283c41082744f05a1d0cfdd3636
+  revision: 8e6890a134bbbc5abf45467f6ea92457be30a47a
   branch: 5-2-stable
   specs:
     actioncable (5.2.0.rc1)
@@ -349,7 +349,7 @@ GEM
     turbolinks (5.1.0)
       turbolinks-source (~> 5.1)
     turbolinks-source (5.1.0)
-    tzinfo (1.2.4)
+    tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (4.1.5)
       execjs (>= 0.3.0, < 3)
