@@ -45,6 +45,5 @@ RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers
 
   config.include Devise::Test::ControllerHelpers, type: :controller
-  config.extend ControllerMacros
   config.include RequestMacro, type: :request
 end
