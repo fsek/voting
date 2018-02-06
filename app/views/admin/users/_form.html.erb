@@ -1,8 +1,0 @@
-<%= simple_form_for([:admin, user]) do |f| %>
-  <%= f.input :firstname %>
-  <%= f.input :lastname %>
-  <%= f.input :role, collection: user_roles, include_blank: false %>
-  <%= f.input(:card_number, input_html: {data: {mask: '9999-9999-9999-9999'},
-                                         autocomplete: 'off'}) %>
-  <%= f.button :submit %>
-<% end %>

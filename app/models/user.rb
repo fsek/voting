@@ -14,10 +14,10 @@ class User < ApplicationRecord
   validates :firstname, :lastname, presence: true
   validates :votecode, uniqueness: true, allow_nil: true
 
-  validates :card_number, uniqueness: { allow_nil: true },
+  validates :card_number, uniqueness: { allow_blank: true },
                           format: { with: /\A\b[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}\z/,
                                     message: I18n.t('model.user.card_number_format'),
-                                    allow_nil: true }
+                                    allow_blank: true }
 
   validate :presence_require_confirmation, :votecode_require_confirmation
 

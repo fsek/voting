@@ -45,7 +45,7 @@ RSpec.describe('Handle users', type: :request) do
       sign_in(admin)
       user = create(:user, firstname: 'Hilbert',
                            card_number: '1234-1234-1234-1234')
-      attributes = { card_number: '' }
+      attributes = { card_number: 'wrong-format' }
 
       patch(admin_user_path(user),
             params: { user: attributes })
