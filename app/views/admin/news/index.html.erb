@@ -4,7 +4,7 @@
   </div>
 </div>
 <div class="col-12 col-md-2">
-  <%= link_to t('.new'), new_admin_news_path, class: 'btn primary' %>
+  <%= link_to t('.new'), new_admin_news_path, class: 'btn btn-primary' %>
 </div>
 
 <div class="col-12 col-md-10">
@@ -16,18 +16,16 @@
         <th><%= News.human_attribute_name(:created_at) %></th>
         <th><%= News.human_attribute_name(:user) %></th>
         <th><%= News.human_attribute_name(:updated_at) %></th>
-        <th><%= t(:edit) %></th>
       </tr>
     </thead>
     <tbody>
       <% @news.each do |n| %>
         <tr>
-          <td><%= n.title %></td>
+          <td><%= link_to(n.title, edit_admin_news_path(n)) %></td>
           <td><%= n.url %></td>
           <td><%= l(n.created_at) %></td>
           <td><%= n.user %></td>
           <td><%= l(n.updated_at) %></td>
-          <td><%= link_to(t(:edit), edit_admin_news_path(n)) %></td>
         </tr>
       <% end %>
     </tbody>

@@ -16,14 +16,14 @@
     <%= render '/application/favicon' %>
   </head>
 
-  <body class="site">
+  <body class="d-flex flex-column min-height-vh">
 
     <span class="cookies">
       <%= render 'cookies_eu/consent_banner', link: cookies_path %>
     </span>
     <%= render '/application/navbar' %>
 
-    <main role="main" class="container content pb-2">
+    <main role="main" class="container flex-1 pb-2">
       <div class="row">
         <%= render '/application/flashes' %>
         <%= yield %>
