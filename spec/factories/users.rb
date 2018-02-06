@@ -14,6 +14,10 @@ FactoryBot.define do
     end
   end
 
+  trait :votecode do
+    votecode { |n| "#{n}abcdefg" }
+  end
+
   trait :unconfirmed do
     confirmed_at nil
     confirmation_token 'confirmmyaccount'

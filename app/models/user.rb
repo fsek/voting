@@ -19,7 +19,7 @@ class User < ApplicationRecord
                                     message: I18n.t('model.user.card_number_format'),
                                     allow_nil: true }
 
-  validate :confirmed_to_vote
+  validate :presence_require_confirmation, :votecode_require_confirmation
 
   enum(role: { user: 0, adjuster: 1, secretary: 2, chairman: 3, admin: 4 })
 
@@ -31,7 +31,6 @@ class User < ApplicationRecord
   after_update :log_update
   after_destroy :log_destroy
 
-  scope :all_firstname, -> { order(firstname: :asc) }
   scope :present, -> { where(presence: true) }
   scope :not_present, -> { where(presence: false) }
   scope :all_attended, (lambda do
@@ -58,14 +57,6 @@ class User < ApplicationRecord
 
   def to_s
     %(#{firstname} #{lastname})
-  end
-
-  def print_id
-    %(#{self} (Id: #{id}))
-  end
-
-  def print_email
-    %(#{self} <#{email}>)
   end
 
   def log_create
@@ -103,12 +94,13 @@ class User < ApplicationRecord
 
   private
 
-  def confirmed_to_vote
-    return if confirmed?
+  def presence_require_confirmation
+    return unless !confirmed? && presence_changed?(to: true)
+    errors.add(:presence, I18n.t('model.user.errors.presence'))
+  end
 
-    errors.add(:presence, I18n.t('vote_user.presence_error')) if presence
-
-    return unless votecode.present?
-    errors.add(:votecode, I18n.t('vote_user.votecode_error'))
+  def votecode_require_confirmation
+    return unless !confirmed? && votecode_changed?(from: nil)
+    errors.add(:votecode, I18n.t('model.user.errors.votecode'))
   end
 end

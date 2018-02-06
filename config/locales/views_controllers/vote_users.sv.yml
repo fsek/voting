@@ -12,15 +12,15 @@ sv:
         manage_vote: Hantera voteringar
         quick_adjustments: Snabbjustering
         title: Administrera mötesanvändare
+      show:
+        all_vote_users: Alla mötesanvändare
+        title: Hantera mötesanvändare
       table_header:
         change_state: Justera in/ut
         reset_votecode: Nollställ röstkod
       table_rows:
         confirm_reset: Vill du verkligen nollställa röstkoden?
         reset: Nollställ
-      show:
-        title: Hantera mötesanvändare
-        all_vote_users: Alla mötesanvändare
   vote_user:
     administrate: Administrera justeringar
     edit: Redigera användare
@@ -29,12 +29,10 @@ sv:
         description: Här kommer din röstkod, se till att du håller den för dig själv. Tror du att någon kommit över din kod? Kontakta justerare så får du en ny.
         subject: Här är din röstkod
         title: Din röstkod
-    presence_error: Användare kunde inte justeras in, har eposten bekräftats?
     present_count: Antal injusterade
     state:
       not_present: Utjusterad
       present: Injusterad
       short_error_not_present: Utjustering misslyckades
       short_error_present: Injustering misslyckades
-    votecode_error: Ny röstkod kunde inte ges ut, har användare bekräftat sin epost?
     votecode_error_short: Kunde inte nollställa
