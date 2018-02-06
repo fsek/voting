@@ -2,29 +2,15 @@
   .page-item.active {
     a:focus,
     .page-link {
-      background-color: $main-color;
-      border-color: $main-color;
+      background-color: theme-color('primary');
+      border-color: theme-color('primary');
+      color: theme-color('white');
     }
 
     a:hover {
-      background-color: $silver;
-      border-color: $main-color;
+      background-color: theme-color('secondary');
+      border-color: theme-color('primary');
+      color: color('white');
     }
-  }
-
-  li {
-    a {
-      color: $gray-headline;
-    }
-  }
-
-  li a:hover {
-    background: $silver;
-    border-color: $silver;
-    color: $black;
-  }
-  &_status {
-    display: inline-block;
-    padding: 7px;
   }
 }

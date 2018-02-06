@@ -52,8 +52,8 @@
     margin: 0 10px 10px 0;
 
     &:hover {
-      background: $red-hover;
-      border: 1px solid $red-hover;
+      background: theme-color-level('danger', 10);
+      border: 1px solid theme-color-level(danger, 10);
       color: $white;
     }
   }

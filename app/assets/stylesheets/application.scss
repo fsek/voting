@@ -1,12 +1,6 @@
 @import "colors";
 // Importing Bootstrap
 @import "bootstrap";
-
-// Include colors and mixins
-@import "lth";
-@import "mixins";
-@import "fonts";
-
 @import "style/*";
 
 // Include gems
@@ -16,18 +10,15 @@
 @import "cookies_eu";
 @import "pagedown_bootstrap";
 
-.site {
-  display: flex;
-  flex-direction: column;
+.min-height-vh {
   min-height: 100vh;
 }
 
-.content {
+.flex-1 {
   flex: 1;
 }
 
 body {
-  color: $footer-gray;
   line-height: 1.6;
   padding-top: 5rem;
 }
