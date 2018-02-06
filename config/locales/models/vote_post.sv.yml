@@ -9,3 +9,11 @@ sv:
       vote_post:
         one: Röst
         other: Röster
+  model:
+    vote_post:
+      already_voted: Du har redan röstat i omröstningen
+      bad_votecode_or_presence: är inte din röstkod, eller så är du inte injusterad
+      same_option_twice: varje alternativ kan väljas max en gång
+      too_many_options: för många alternativ valda
+      unallowed_options: alternativet tillhör ej denna votering
+      vote_closed: Voteringen är tyvärr stängd

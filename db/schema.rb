@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_02_02_102049) do
+ActiveRecord::Schema.define(version: 2018_02_06_121023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -158,13 +158,14 @@ ActiveRecord::Schema.define(version: 2018_02_02_102049) do
   end
 
   create_table "vote_posts", id: :serial, force: :cascade do |t|
-    t.integer "vote_id"
+    t.integer "vote_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.integer "selected", default: 0, null: false
     t.index ["deleted_at"], name: "index_vote_posts_on_deleted_at"
+    t.index ["user_id", "vote_id"], name: "index_vote_posts_on_user_id_and_vote_id", unique: true, where: "(deleted_at IS NULL)"
     t.index ["user_id"], name: "index_vote_posts_on_user_id"
     t.index ["vote_id"], name: "index_vote_posts_on_vote_id"
   end
