@@ -34,3 +34,5 @@ sv:
     start_page:
       all_items: Hela dagordningen
       title: Dagordning
+    index:
+      title: Dagordning
