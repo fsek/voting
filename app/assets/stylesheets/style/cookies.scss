@@ -1,12 +1,12 @@
 .cookies {
   .cookies-eu {
-    background: $light-gray;
+    background: gray('100');
 
     .cookies-eu-button-holder {
       .cookies-eu-ok {
-        background-color: $main-color;
+        background-color: theme-color('primary');
         background-image: none;
-        border: 1px solid $main-color;
+        border: 1px solid theme-color('primary');
       }
     }
   }

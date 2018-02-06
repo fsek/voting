@@ -4,7 +4,7 @@
       td,
       &.even td,
       &.odd td {
-        background-color: $highlight-color;
+        background-color: theme-colors('highligh'); 
       }
     }
   }
