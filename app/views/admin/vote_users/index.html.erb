@@ -7,13 +7,19 @@
 <div class="col-12 col-md-3 mb-3">
   <%= render('application/admin_sidebar', current: :vote_users) %>
   <hr />
-  <%= link_to(t('.make_all_not_present'), admin_attendances_path,
-              method: :delete, class: 'btn secondary',
-              data: {confirm: t('.confirm_all_not_present')}) %>
-  <%= link_to t('.attendance_list'), admin_attendances_path,
-              class: 'btn primary' %>
-  <%= link_to t('.quick_adjustments'), admin_adjustments_path,
-              class: 'btn primary' %>
+  <div class="mb-2">
+    <%= link_to(t('.make_all_not_present'), admin_attendances_path,
+                method: :delete, class: 'btn btn-secondary',
+                data: {confirm: t('.confirm_all_not_present')}) %>
+  </div>
+  <div class="mb-2">
+    <%= link_to t('.attendance_list'), admin_attendances_path,
+                class: 'btn btn-primary' %>
+  </div>
+  <div class="mb-2">
+    <%= link_to t('.quick_adjustments'), admin_adjustments_path,
+                class: 'btn btn-primary' %>
+  </div>
 </div>
 
 <div class="col-12 col-md-9" id="vote-status" data-position="vote-user-index">

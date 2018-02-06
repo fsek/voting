@@ -47,4 +47,10 @@ module ApplicationHelper
             data: { toggle: 'dropdown' },
             aria: { haspopup: true, expanded: false })
   end
+
+  def admin_sidebar_link(link_path, current: false)
+    path = current ? '#' : link_path
+    cls = current ? 'btn btn-primary' : 'btn btn-secondary'
+    link_to(path, class: cls) { yield }
+  end
 end

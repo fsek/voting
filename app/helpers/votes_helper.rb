@@ -163,7 +163,7 @@ module VotesHelper
     if vote_status.vote_post.present?
       safe_join([t('vote.already_voted'), ': ', l(vote_status.vote_post.created_at)])
     else
-      link_to(t('vote.submit'), vote_vote_posts_path(vote_status.vote), class: 'btn primary')
+      link_to(t('vote.submit'), vote_vote_posts_path(vote_status.vote), class: 'btn btn-primary')
     end
   end
 

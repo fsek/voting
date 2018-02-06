@@ -34,15 +34,15 @@ module ItemsHelper
     when 'future'
       button_to(t('model.sub_item.set_current'),
                 admin_current_item_path(sub_item),
-                method: :patch, remote: true, class: 'btn primary')
+                method: :patch, remote: true, class: 'btn btn-primary')
     when 'current'
       button_to(t('model.sub_item.close'),
                 admin_current_item_path(sub_item),
-                method: :delete, remote: true, class: 'btn danger')
+                method: :delete, remote: true, class: 'btn btn-danger')
     when 'closed'
       button_to(t('model.sub_item.reopen'),
                 admin_current_item_path(sub_item),
-                method: :patch, remote: true, class: 'btn secondary')
+                method: :patch, remote: true, class: 'btn btn-secondary')
     end
   end
 

@@ -77,20 +77,20 @@
   </div>
 
   <div class="col-md-1 col-sm-12 vote my-3">
-    <%= vote_state_link(@vote, type: 'btn primary vote button') %>
+    <%= vote_state_link(@vote, type: 'btn btn-primary vote button') %>
 
     <% unless @vote.open? %>
       <%= link_to(t('.edit_vote'), edit_admin_vote_path(@vote),
-                  class: 'btn secondary vote button') %>
+                  class: 'btn btn-secondary vote button') %>
       <%= button_to(t('.reset_vote'), admin_vote_reset_path(@vote),
-                  class: 'btn danger vote button',
+                  class: 'btn btn-danger vote button',
                   data: { confirm: t('.confirm_reset') }) %>
     <% end %>
   </div>
 
   <div class="col md-12 col-sm-12 vote my-3">
     <%= link_to(t('.all_votes'), admin_votes_path,
-                                 class: 'btn primary') %>
+                                 class: 'btn btn-primary') %>
   </div>
 
   <div class="col-md-12 col-sm-12">

@@ -1,22 +1,32 @@
 <% current ||= :empty %>
 <% current = current.to_sym %>
-<% if can_administrate?(:manage, Vote) && current != :votes %>
-  <%= link_to(admin_votes_path, class: 'btn secondary') do %>
-    <%= fa_icon('hashtag', text: t('.manage_votes')) %>
-  <% end %>
+<% if can_administrate?(:manage, Vote) %>
+  <div class="mb-2">
+    <%= admin_sidebar_link(admin_votes_path, current: current == :votes) do %>
+      <%= fa_icon('hashtag', text: t('.manage_votes')) %>
+    <% end %>
+  </div>
 <% end %>
-<% if can_administrate?(:manage, Item) && current != :items %>
-  <%= link_to(admin_items_path, class: 'btn secondary') do %>
-    <%= fa_icon('list', text: t('.manage_agenda')) %>
-  <% end %>
+<% if can_administrate?(:manage, Item) %>
+  <div class="mb-2">
+    <%= admin_sidebar_link(admin_items_path, current: current == :items) do %>
+      <%= fa_icon('list', text: t('.manage_agenda')) %>
+    <% end %>
+  </div>
 <% end %>
-<% if can_administrate?(:manage, User) && current != :vote_users %>
-  <%= link_to(admin_vote_users_path, class: 'btn secondary') do %>
-    <%= fa_icon('users', text: t('.manage_users')) %>
-  <% end %>
+<% if can_administrate?(:manage, User) %>
+  <div class="mb-2">
+    <%= admin_sidebar_link(admin_vote_users_path,
+                           current: current == :vote_users) do %>
+      <%= fa_icon('users', text: t('.manage_users')) %>
+    <% end %>
+  </div>
 <% end %>
-<% if can_administrate?(:manage, User) && current != :adjustments %>
-  <%= link_to(admin_adjustments_path, class: 'btn secondary') do %>
-    <%= fa_icon('user-plus', text: t('.quick_adjustments')) %>
-  <% end %>
+<% if can_administrate?(:manage, User) %>
+  <div class="mb-2">
+    <%= admin_sidebar_link(admin_adjustments_path,
+                           current: current == :adjustments) do %>
+      <%= fa_icon('user-plus', text: t('.quick_adjustments')) %>
+    <% end %>
+  </div>
 <% end %>
