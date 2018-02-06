@@ -11,9 +11,9 @@ class VotePost < ApplicationRecord
 
   attr_accessor :vote_option_ids, :votecode
 
-  validates :user_id, :vote_id, :votecode, presence: true
+  validates :votecode, presence: true
   validates :user_id, uniqueness: { scope: :vote_id,
-                                    message: I18n.t('vote_post.already_voted') }
+                                    message: I18n.t('model.vote_post.already_voted') }
   validate :vote_open, :user_details, :option_details
 
   after_create :log_create
@@ -59,28 +59,25 @@ class VotePost < ApplicationRecord
   private
 
   def user_details
-    unless User.exists?(id: user_id, votecode: votecode, presence: true)
-      errors.add(:votecode, I18n.t('vote_post.bad_votecode_or_presence'))
-    end
+    return if User.exists?(id: user_id, votecode: votecode, presence: true)
+    errors.add(:votecode, I18n.t('model.vote_post.bad_votecode_or_presence'))
   end
 
   def vote_open
-    unless vote.present? && vote.open?
-      errors.add(:votecode, I18n.t('vote_post.vote_closed'))
-    end
+    return if vote.present? && vote.open?
+    errors.add(:votecode, I18n.t('model.vote_post.vote_closed'))
   end
 
   def option_details
-    if vote_option_ids.present?
-      unless vote_option_ids.count <= vote.choices
-        errors.add(:vote_option_ids, I18n.t('vote_post.too_many_options'))
-      end
-      unless vote_option_ids.uniq.count == vote_option_ids.count
-        errors.add(:vote_option_ids, I18n.t('vote_post.same_option_twice'))
-      end
-      unless (vote_option_ids.map(&:to_i) - vote.vote_option_ids).empty?
-        errors.add(:vote_option_ids, I18n.t('vote_post.unallowed_options'))
-      end
+    return unless vote_option_ids.present?
+    unless vote_option_ids.count <= vote.choices
+      errors.add(:vote_option_ids, I18n.t('model.vote_post.too_many_options'))
+    end
+    unless vote_option_ids.uniq.count == vote_option_ids.count
+      errors.add(:vote_option_ids, I18n.t('model.vote_post.same_option_twice'))
+    end
+    unless (vote_option_ids.map(&:to_i) - vote.vote_option_ids).empty?
+      errors.add(:vote_option_ids, I18n.t('model.vote_post.unallowed_options'))
     end
   end
 end
