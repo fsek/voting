@@ -40,4 +40,12 @@ RSpec.describe SubItem, type: :model do
     expect(sub_item.errors[:status]).to \
       include(I18n.t('model.sub_item.errors.vote_open'))
   end
+
+  it 'can print even when parent item was deleted' do
+    sub_item = create(:sub_item)
+    str = sub_item.to_s
+    sub_item.item.destroy!
+    sub_item.reload
+    expect(sub_item.to_s).to eq(str)
+  end
 end
