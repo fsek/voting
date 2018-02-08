@@ -14,17 +14,17 @@ RSpec.describe VoteService do
       vote_post = VotePost.new(user: user, vote: vote, votecode: 'abcd123')
       vote_post.vote_option_ids = [vote_option.id]
 
-      vote_post.should be_valid
+      expect(vote_post).to be_valid
       result = false
 
-      lambda do
+      expect do
         result = VoteService.user_vote(vote_post)
         vote_option.reload
-      end.should change(vote_option, :count).by(1)
+      end.to change(vote_option, :count).by(1)
 
-      result.should be_truthy
+      expect(result).to be_truthy
       vote_post.reload
-      vote_post.selected.should eq(1)
+      expect(vote_post.selected).to eq(1)
     end
 
     it 'votes and trims votecode' do
@@ -40,17 +40,17 @@ RSpec.describe VoteService do
       vote_post.vote_option_ids = [vote_option.id]
 
       # Wrong format on vote_code
-      vote_post.should be_invalid
+      expect(vote_post).to be_invalid
       result = false
 
-      lambda do
+      expect do
         result = VoteService.user_vote(vote_post)
         vote_option.reload
-      end.should change(vote_option, :count).by(1)
+      end.to change(vote_option, :count).by(1)
 
-      result.should be_truthy
+      expect(result).to be_truthy
       vote_post.reload
-      vote_post.selected.should eq(1)
+      expect(vote_post.selected).to eq(1)
     end
 
     it 'votes multiple' do
@@ -65,17 +65,17 @@ RSpec.describe VoteService do
       vote_post = VotePost.new(user: user, vote: vote, votecode: 'abcd123')
       vote_post.vote_option_ids = [first_option.id, second_option.id]
 
-      vote_post.should be_valid
+      expect(vote_post).to be_valid
       result = false
 
-      lambda do
+      expect do
         result = VoteService.user_vote(vote_post)
         first_option.reload
-      end.should change(first_option, :count).by(1)
+      end.to change(first_option, :count).by(1)
 
-      result.should be_truthy
+      expect(result).to be_truthy
       vote_post.reload
-      vote_post.selected.should eq(2)
+      expect(vote_post.selected).to eq(2)
     end
 
     it 'invalid vote' do
@@ -91,15 +91,15 @@ RSpec.describe VoteService do
       vote_post = VotePost.new(user: user, vote: vote, votecode: 'abcd123')
       vote_post.vote_option_ids = [first_option.id, last_option.id]
 
-      vote_post.should_not be_valid
+      expect(vote_post).to_not be_valid
       result = true
 
-      lambda do
+      expect do
         result = VoteService.user_vote(vote_post)
         first_option.reload
-      end.should change(first_option, :count).by(0)
+      end.to change(first_option, :count).by(0)
 
-      result.should be_falsey
+      expect(result).to be_falsey
     end
 
     it 'blank vote' do
@@ -112,7 +112,7 @@ RSpec.describe VoteService do
       opt3 = create(:vote_option, vote: vote, count: 0)
 
       vote_post = VotePost.new(user: user, vote: vote, votecode: 'abcd123')
-      vote_post.should be_valid
+      expect(vote_post).to be_valid
 
       result = VoteService.user_vote(vote_post)
       opt1.reload
@@ -120,11 +120,11 @@ RSpec.describe VoteService do
       opt3.reload
       vote_post.reload
 
-      result.should be_truthy
-      opt1.count.should be(0)
-      opt2.count.should be(0)
-      opt3.count.should be(0)
-      vote_post.selected.should be(0)
+      expect(result).to be_truthy
+      expect(opt1.count).to be(0)
+      expect(opt2.count).to be(0)
+      expect(opt3.count).to be(0)
+      expect(vote_post.selected).to be(0)
     end
   end
 
@@ -136,8 +136,8 @@ RSpec.describe VoteService do
       result = VoteService.attends(user)
       user.reload
 
-      result.should be_truthy
-      user.presence.should be_truthy
+      expect(result).to be_truthy
+      expect(user.presence).to be_truthy
     end
 
     it 'attends fail if no sub_items' do
@@ -146,8 +146,8 @@ RSpec.describe VoteService do
       result = VoteService.attends(user)
       user.reload
 
-      result.should be_falsey
-      user.presence.should be_falsey
+      expect(result).to be_falsey
+      expect(user.presence).to be_falsey
     end
 
     it 'attends fail if no current sub_item' do
@@ -155,10 +155,12 @@ RSpec.describe VoteService do
       create(:sub_item)
 
       result = VoteService.attends(user)
+      expect(user.errors[:base]).to \
+        include(t('model.user.errors.attend_no_item'))
       user.reload
 
-      result.should be_falsey
-      user.presence.should be_falsey
+      expect(result).to be_falsey
+      expect(user.presence).to be_falsey
     end
 
     it 'attends works if a vote is open' do
@@ -169,8 +171,8 @@ RSpec.describe VoteService do
       result = VoteService.attends(user)
       user.reload
 
-      result.should be_truthy
-      user.presence.should be_truthy
+      expect(result).to be_truthy
+      expect(user.presence).to be_truthy
     end
 
     it 'unattends' do
@@ -180,19 +182,35 @@ RSpec.describe VoteService do
       result = VoteService.unattends(user)
       user.reload
 
-      result.should be_truthy
-      user.presence.should be_falsey
+      expect(result).to be_truthy
+      expect(user.presence).to be_falsey
     end
 
-    it 'unattends fail if open vote' do
+    it 'unattends fail if current vote' do
       user = create(:user, presence: true)
-      create(:vote, status: :open, sub_item: create(:sub_item, status: :current))
+      create(:vote, status: :open,
+                    sub_item: create(:sub_item, status: :current))
 
       result = VoteService.unattends(user)
+      expect(user.errors[:base]).to \
+        include(I18n.t('model.user.errors.unattend_vote_current'))
+
+      user.reload
+      expect(result).to be_falsey
+      expect(user.presence).to be_truthy
+    end
+
+    it 'unattends fail if no current item' do
+      user = create(:user, presence: true)
+      create(:sub_item, status: :closed)
+
+      result = VoteService.unattends(user)
+      expect(user.errors[:base]).to \
+        include(I18n.t('model.user.errors.unattend_no_item'))
       user.reload
 
-      result.should be_falsey
-      user.presence.should be_truthy
+      expect(result).to be_falsey
+      expect(user.presence).to be_truthy
     end
 
     it 'returns false if no user' do
@@ -202,8 +220,9 @@ RSpec.describe VoteService do
       present = VoteService.attends(user)
       not_present = VoteService.unattends(user)
 
-      present.should be_falsey
-      not_present.should be_falsey
+      expect(present).to be_falsey
+      expect(not_present).to be_falsey
+      expect(user.presence).to be_falsey
     end
   end
 
@@ -214,8 +233,8 @@ RSpec.describe VoteService do
       result = VoteService.set_votecode(user)
       user.reload
 
-      result.should be_truthy
-      user.votecode.should_not eq('abcd123')
+      expect(result).to be_truthy
+      expect(user.votecode).to_not eq('abcd123')
     end
 
     it 'handles nil user' do
@@ -228,14 +247,14 @@ RSpec.describe VoteService do
       result = VoteService.set_votecode(user)
       user.reload
 
-      result.should be_falsey
-      user.votecode.should be_nil
+      expect(result).to be_falsey
+      expect(user.votecode).to be_blank
     end
   end
 
   describe 'votecode generator' do
     it 'creates good format' do
-      VoteService.votecode_generator.should match(/\A[a-z0-9]+\z/)
+      expect(VoteService.votecode_generator).to match(/\A[a-z0-9]+\z/)
     end
   end
 
@@ -248,8 +267,8 @@ RSpec.describe VoteService do
       create(:sub_item, status: :current)
 
       result = VoteService.unattend_all
-      result.should be_truthy
-      User.where(presence: true).count.should eq(0)
+      expect(result).to be_truthy
+      expect(User.where(presence: true).any?).to be_falsey
     end
   end
 end

@@ -11,3 +11,6 @@ sv:
         manage_users: Hantera användare
         manage_voting: Hantera voteringar
         title: Närvarolista
+      success:
+        attends: "%{user} justerades in."
+        unattends: "%{user} justerades ut."

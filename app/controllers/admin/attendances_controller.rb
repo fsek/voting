@@ -11,12 +11,20 @@ module Admin
 
     def update
       @user = User.find(params[:id])
-      render(status: 422) unless (@success = VoteService.attends(@user))
+      if VoteService.attends(@user)
+        render(:success)
+      else
+        render(:error, status: 422)
+      end
     end
 
     def destroy
       @user = User.find(params[:id])
-      render(status: 422) unless (@success = VoteService.unattends(@user))
+      if VoteService.unattends(@user)
+        render(:success)
+      else
+        render(:error, status: 422)
+      end
     end
 
     def destroy_all

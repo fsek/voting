@@ -18,11 +18,13 @@
 </div>
 
 <div class="col-12 col-md-9 offset-md-3">
+  <div id="status-display" class="d-none border border-success rounded text-3 p-3 mb-3"></div>
+  <div id="error-display" class="d-none border border-danger rounded text-3 p-3 mb-3"></div>
   <%= simple_form_for(:search, url: card_admin_search_path, remote: true) do |f| %>
     <%= f.input(:card_number, required: false, autofocus: true,
                 label: User.human_attribute_name(:card_number),
-                input_html: {data: {mask: '9999-9999-9999-9999'},
-                             autocomplete: 'off'}) %>
+                input_html: { data: { mask: '9999-9999-9999-9999' },
+                             autocomplete: 'off', id: 'search-card' }) %>
   <% end %>
 
   <p id=adjustment-status>

@@ -8,13 +8,13 @@ sv:
         current: Aktuell
         future: Framtida
         open: Öppen
+        position: Ordning
         present_users: Injusterade användare
         reset: Nollställdes
         status: Status
         sub_item: Dagordning
         sub_item_id: Dagordning
         title: Namn
-        position: Ordning
     models:
       vote:
         one: Votering
