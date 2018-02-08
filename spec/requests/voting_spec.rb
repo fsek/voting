@@ -51,10 +51,11 @@ RSpec.describe('Voting', type: :request) do
       sign_in(user)
 
       expect do
-        post(vote_vote_posts_path(vote), params: { vote_post: attributes })
+        post(vote_vote_posts_path(vote), params: { vote_post: attributes },
+                                         xhr: true)
       end.to change(VotePost, :count).by(1)
 
-      expect(response).to redirect_to(votes_path)
+      expect(response).to redirect_to(item_path(sub_item.item))
     end
 
     it 'allows blank votes' do
@@ -65,10 +66,11 @@ RSpec.describe('Voting', type: :request) do
       sign_in(user)
 
       expect do
-        post(vote_vote_posts_path(vote), params: { vote_post: attributes })
+        post(vote_vote_posts_path(vote), params: { vote_post: attributes },
+                                         xhr: true)
       end.to change(VotePost, :count).by(1)
 
-      response.should redirect_to(votes_path)
+      expect(response).to redirect_to(item_path(sub_item.item))
     end
 
     it 'invalid parameters' do
@@ -81,7 +83,8 @@ RSpec.describe('Voting', type: :request) do
       sign_in(user)
 
       expect do
-        post(vote_vote_posts_path(vote), params: { vote_post: attributes })
+        post(vote_vote_posts_path(vote), params: { vote_post: attributes },
+                                         xhr: true)
       end.to change(VotePost, :count).by(0)
 
       expect(response).to have_http_status(422)

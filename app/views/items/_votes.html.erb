@@ -1,0 +1,35 @@
+<div class="col-12 col-sm-6 mb-4">
+  <div class="p-2 border-bottom border-secondary">
+    <h3><%= fa_icon('hashtag', text: t('.title')) %></h3>
+    <% any = false %>
+    <% sub_items.each do |sub_item| %>
+      <% next if sub_item.votes.empty? %>
+      <% any = true %>
+      <div class="list-group">
+        <% if item.multiple? %>
+          <div class="list-group-item">
+            <div class="w-100">
+              <h4 class="mb-1"> <%= sub_item %> </h4>
+            </div>
+          </div>
+        <% end %>
+        <% sub_item.votes.each do |vote| %>
+          <div class="list-group-item">
+            <div class="w-100">
+              <h5 class="<% 'text-primary' if vote.open? %>">
+                <%= vote.title %> - <%= vote_status_str(vote.status) %>
+              </h5>
+            </div>
+            <% if vote.open? %>
+              <div id="<%= dom_id(vote) %>-form">
+                <%= render('vote_posts/form', vote: vote, vote_post: VotePost.new) %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= simple_format(t('.no_votes')) unless any %>
+  </div>
+</div>

@@ -7,20 +7,21 @@
       <div class="list-group-item flex-column align-items-start">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1"><%= item_link(item) %></h5>
-          <span class="badge badge-pill badge-primary text-2">
-            <%= item_status(item.status) %>
-          </span>
+          <%= item_badge(item) %>
         </div>
 
-      <small><%= item_type(item.type) %></small>
-        <p class="list-group-item-text">
+        <small>
+          <%= fa_icon(item_type_icon(item.type), text: item_type(item.type)) %>
+        </small>
+        <dl class="list-group-item-text">
           <% if item.multiple? %>
             <% item.sub_items.each do |s| %>
-              <%= s %>
-              <br>
+              <dd class="<%= 'primary' if s.current? %>">
+                <%= s %>
+              </dd>
             <% end %>
           <% end %>
-        </p>
+        </dl>
       </div>
     <% end %>
   </div>

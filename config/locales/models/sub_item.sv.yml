@@ -14,12 +14,12 @@ sv:
     sub_item:
       close: Stäng
       errors:
-        already_one_current: Det finns redan en öppen dagordningspunkt.
+        already_one_current: Det finns redan en aktuell dagordningspunkt.
         count_not_allowed: Ej tillåtet att lägga till underpunkter
         vote_open: Dagordningspunkten har en öppen omröstning.
-      reopen: Öppna igen
-      set_current: Öppna
+      reopen: Gör aktuell igen
+      set_current: Gör aktuell
       statuses:
         closed: Stängd
-        current: Öppen
+        current: Aktuell
         future: Framtida

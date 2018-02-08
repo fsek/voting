@@ -1,21 +1,34 @@
-<div class="col-12">
-  <div class="headline"><h1><%= @item.to_s %></h1></div>
+<div class="col-12 mb-3 border-bottom border-primary">
+  <div class="d-flex flex-wrap justify-content-between">
+    <div class="d-flex flex-wrap justify-content-start">
+      <h1 class="d-flex mr-4">
+        <%= title(@item.to_s) %>
+      </h1>
+    </div>
+    <div class="d-flex">
+      <% if @current_item.present? && @current_item != @item %>
+          <p class="text-3 mr-3"><%= t('.current_item') %>:</p>
+          <%= link_to(@current_item, item_path(@current_item), class: 'text-3') %>
+      <% else %>
+        <%= item_badge(@item) %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
-<div class="col-12 col-md-3">
-
+<div class="col-12 col-md-3 mb-4">
   <%= user_presence_status(current_user) %>
-
-  <% if @current_item.present? %>
-    <div class="headline">
-      <h3><%= t('.current_item') %></h3>
-    </div>
-    <h5 class="vote item">
-      <%= link_to @current_item, item_path(@current_item) %>
-    </h5>
-    <br>
+  <% if @item.multiple? %>
+    <h4 class="align-center"><%= fa_icon('agenda', text: t('.sub_items')) %></h4>
+    <dl>
+      <% @item.sub_items.each do |item| %>
+        <dd class="ml-3 <%= 'text-primary' if item.current? %>">
+          <%= item %>
+          <%= fa_icon('arrow-left', text: t('.current')) if item.current? %>
+        </dd>
+      <% end %>
+    </dl>
   <% end %>
-
 
   <% if can_administrate?(:edit, @item) %>
     <hr>
@@ -25,29 +38,7 @@
 
 <div class="col-12 col-md-9">
   <div class="row">
-    <% if @item.multiple? %>
-      <div class="col-6">
-        <div class="headline">
-          <h4><%= t('.sub_items') %></h4>
-        </div>
-        <ul class="list">
-          <% @item.sub_items.each do |item| %>
-            <li><%= link_to(item, item_path(@item, sub_item: item)) %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <% if @item.votes.present? %>
-      <div class="col-6">
-        <div class="headline">
-          <h3><%= models_name(Vote) %></h3>
-        </div>
-        <ul class="list">
-          <% @item.votes.each do |v| %>
-            <li><%= v.title %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+    <%= render('votes', item: @item, sub_items: @sub_items) %>
+    <%= render('documents', item: @item, sub_items: @sub_items) %>
   </div>
 </div>

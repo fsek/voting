@@ -8,7 +8,8 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.includes(sub_items: :votes).find(params[:id])
+    @item = Item.find(params[:id])
+    @sub_items = @item.sub_items.includes(:votes).with_attached_documents
     @current_item = Item.current
   end
 end
