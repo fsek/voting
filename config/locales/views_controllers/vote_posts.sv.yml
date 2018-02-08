@@ -3,9 +3,10 @@ sv:
   vote_posts:
     create:
       success: Din röst har sparats.
-    show:
+    form:
       confirm: Vill du skicka din röst?
-      is_closed: Voteringen är tyvärr stängd.
       max_choices: Du kan maximalt välja %{choices} alternativ
       submit: Rösta!
+    show:
+      is_closed: Voteringen är tyvärr stängd.
       title: Rösta

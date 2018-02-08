@@ -18,8 +18,7 @@
         <%= item_badge(item) %>
       </div>
       <small>
-        <%= fa_icon(item_type_icon(item.type)) %>
-        <%= item_type(item.type) %>
+        <%= fa_icon(item_type_icon(item.type), text: item_type(item.type)) %>
       </small>
     <% if item.multiple? %>
       <dl>

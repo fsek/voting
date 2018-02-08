@@ -27,12 +27,19 @@ sv:
       update:
         success: Dagordningspunkten uppdaterades.
   items:
+    documents:
+      no_documents: Inga dokument för denna dagordningspunkt.
+      title: Dokument
+    index:
+      title: Dagordning
     show:
+      current: Aktuell
       current_item: Aktuell punkt
       edit_item: Redigera punkt
       sub_items: Underpunkter
     start_page:
       all_items: Hela dagordningen
       title: Dagordning
-    index:
-      title: Dagordning
+    votes:
+      no_votes: Inga voteringar för denna dagordningspunkt.
+      title: Voteringar

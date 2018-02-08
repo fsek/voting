@@ -4,10 +4,12 @@ module VoteUserHelper
   def vote_user_state_link(user)
     return unless user.present?
     if user.presence
-      link_to(t('model.vote_user.make_not_present'), admin_attendance_path(user),
+      link_to(t('model.vote_user.make_not_present'),
+              admin_attendance_path(user),
               method: :delete, remote: true)
     else
-      link_to(t('model.vote_user.make_present'), admin_attendance_path(user),
+      link_to(t('model.vote_user.make_present'),
+              admin_attendance_path(user),
               method: :patch, remote: true)
     end
   end
@@ -41,14 +43,17 @@ module VoteUserHelper
   end
 
   def user_presence_status(user)
-    content = []
-    if user.present? && user.presence == true
-      content << fa_icon('check-circle-o', class: 'text-success text-4 mr-1')
-      content << t('model.vote_user.state.present')
-    else
-      content << fa_icon('times-circle-o', class: 'text-danger text-4 mr-1')
-      content << t('model.vote_user.state.not_present')
+    return unless user.present?
+    content_tag(:div, class: 'text-3 mb-2') do
+      if user.presence
+        fa_icon('check-circle-o',
+                class: 'text-success text-4 mr-1',
+                text: t('model.vote_user.state.present'))
+      else
+        fa_icon('times-circle-o',
+                class: 'text-danger text-4 mr-1',
+                text: t('model.vote_user.state.not_present'))
+      end
     end
-    content_tag(:span, safe_join(content), class: 'text-3')
   end
 end

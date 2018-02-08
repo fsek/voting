@@ -18,9 +18,9 @@ class VotePostsController < ApplicationController
     @vote_post.user = current_user
 
     if VoteService.user_vote(@vote_post)
-      redirect_to(votes_path, notice: t('.success'))
+      redirect_to(@vote.sub_item.item, notice: t('.success'))
     else
-      render(:show, status: 422)
+      render(:error, status: 422)
     end
   end
 

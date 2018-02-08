@@ -1,28 +1,9 @@
 <div class="col-md-6 offset-md-3 col-sm-12 reg-page form">
   <div class="headline">
-    <h1><%= t('.title') %></h1>
+    <h1><%= title(@vote.title) %></h1>
   </div>
 
-  <%= simple_form_for [@vote, @vote_post] do |f| %>
-    <h3><%= @vote.title %></h3>
-    <p><i><%= t('.max_choices', choices: @vote.choices) %></i></p>
-
-    <% if @vote_post.errors[:user_id].present? %>
-      <% @vote_post.errors[:user_id].each do |error| %>
-        <span class="error">
-          <%= fa_icon('exclamation-circle') %>
-          <%= error.to_s %>
-        </span>
-      <% end %>
-    <% end %>
-
-    <%= f.input :votecode, input_html: { autocomplete: 'off' } %>
-    <%= f.input :vote_option_ids, collection: @vote.vote_options.order(:title), include_blank: false,
-      input_html: { class: 'select2-single', multiple: true }, include_hidden: false, required: true %>
-    <div class="table">
-      <%= f.button :submit, t('.submit'), id: 'vote_post_submit',
-                    data: { confirm: t('.confirm') } %>
-      <%= link_to t('actions.back'), votes_path, class: 'btn secondary' %>
-    </div>
-  <% end %>
+  <div id="<%= dom_id(@vote) %>-form">
+    <%= render('form', vote: @vote, vote_post: VotePost.new) %>
+  </div>
 </div>

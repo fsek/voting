@@ -1,0 +1,3 @@
+var form = document.getElementById('<%= dom_id(@vote) %>-form');
+form.innerHTML = "<%= j render('form', vote: @vote, vote_post: @vote_post) %>";
+loadSelect2(); // Call the load select method.

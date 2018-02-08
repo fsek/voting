@@ -5,7 +5,7 @@
     </div>
     <%= user_presence_status(current_user) %>
 
-    <span class="text-3 d-block">
+    <div class="text-3">
       <% if current_user.card_number.present? %>
         <%= fa_icon('check-circle-o', class: 'text-success text-4 mr-1') %>
         <%= t('.card_number_present') %>
@@ -13,6 +13,6 @@
         <%= fa_icon('times-circle-o', class: 'text-danger text-4 mr-1') %>
         <%= link_to(t('.card_number_not_present'), user_path) %>
       <% end %>
-    </span>
+    </div>
   </div>
 <% end %>
