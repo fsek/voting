@@ -1,7 +1,12 @@
 .fa-agenda {
   &::before {
     content: '§';
+    font-weight: bold;
   }
+}
+
+.select2-container {
+  max-width: 100%;
 }
 
 .round-icon {
