@@ -5,17 +5,19 @@ module Admin
     authorize_resource
 
     def index
-      @votes = Vote.includes(:sub_item)
+      @votes = Vote.includes(:sub_item).order(:sub_item_id, :position)
       @vote_status_view = VoteStatusView.new
     end
 
     def new
       @vote = Vote.new
       @vote.vote_options.build
+      @sub_items = SubItem.includes(:item)
     end
 
     def create
       @vote = Vote.new(vote_params)
+      @sub_items = SubItem.includes(:item)
       if @vote.save
         redirect_to edit_admin_vote_path(@vote), notice: t('.success')
       else
@@ -25,12 +27,14 @@ module Admin
 
     def edit
       @vote = Vote.find(params[:id])
+      @sub_items = SubItem.includes(:item)
 
       redirect_to admin_votes_path, alert: t('.cannot_edit') if @vote.open?
     end
 
     def update
       @vote = Vote.find(params[:id])
+      @sub_items = SubItem.includes(:item)
 
       if @vote.open?
         redirect_to admin_votes_path, alert: t('.cannot_edit')
@@ -62,7 +66,7 @@ module Admin
     private
 
     def vote_params
-      params.require(:vote).permit(:title, :choices, :sub_item_id,
+      params.require(:vote).permit(:title, :choices, :sub_item_id, :position,
                                    vote_options_attributes: %i[id
                                                                title
                                                                _destroy])

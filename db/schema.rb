@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_02_06_121023) do
+ActiveRecord::Schema.define(version: 2018_02_08_092752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -179,6 +179,7 @@ ActiveRecord::Schema.define(version: 2018_02_06_121023) do
     t.integer "present_users", default: 0, null: false
     t.integer "status", default: 0, null: false
     t.bigint "sub_item_id"
+    t.integer "position"
     t.index ["deleted_at"], name: "index_votes_on_deleted_at"
     t.index ["status"], name: "index_votes_on_status", unique: true, where: "((status < 0) AND (deleted_at IS NULL))"
     t.index ["sub_item_id"], name: "index_votes_on_sub_item_id"

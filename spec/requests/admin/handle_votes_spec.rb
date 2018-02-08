@@ -59,7 +59,7 @@ RSpec.describe('Handle votes', as: :request) do
     end
 
     it 'correct attributes' do
-      attributes = { vote: { title: 'Better title' } }
+      attributes = { vote: { title: 'Better title', position: 1 } }
       patch(admin_vote_url(@vote), params: attributes)
 
       @vote.reload

@@ -1,19 +1,23 @@
-<%= simple_form_for [:admin, vote] do |f| %>
-  <%= f.input :title %>
-  <%= f.association :sub_item, collection: SubItem.all, label_method: :to_s  %>
-  <%= f.input :choices, as: :integer, input_html: { min: '1'} %>
+<%= simple_form_for([:admin, vote]) do |f| %>
+  <%= f.input(:title) %>
+  <%= f.association(:sub_item, collection: sub_items,
+                               label_method: :to_s,
+                               include_blank: false) %>
+  <%= f.input(:position) %>
+  <%= f.input(:choices, as: :integer, input_html: { min: '1' }) %>
   <div class="card mb-4 border-primary">
     <div class="card-header bg-primary text-white"><%= t('.options') %></div>
     <div class="card-body">
       <div id="vote_options">
-        <%= f.simple_fields_for :vote_options do |v| %>
-          <%= render 'vote_option_fields', f: v %>
+        <%= f.simple_fields_for(:vote_options) do |v| %>
+          <%= render('vote_option_fields', f: v) %>
         <% end %>
       </div>
       <div class="panel-body mt-2" id="links">
-        <%= link_to_add_association t('.add_option'), f, :vote_options, class: 'btn secondary' %>
+        <%= link_to_add_association(t('.add_option'), f, :vote_options,
+                                    class: 'btn secondary') %>
       </div>
     </div>
   </div>
-  <%= f.button :submit, class: 'btn primary' %>
+  <%= f.button(:submit) %>
 <% end %>
