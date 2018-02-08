@@ -58,7 +58,6 @@ RSpec.describe User, type: :model do
       user.valid?
       expect(user.errors[:email]).to \
         include(t('model.user.email_format'))
-
     end
   end
 end
