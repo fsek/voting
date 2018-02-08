@@ -3,10 +3,10 @@
 # Represent a specific voting round
 class Vote < ApplicationRecord
   acts_as_paranoid
-
-  has_many :audits, as: :auditable
+  acts_as_list(scope: :sub_item)
 
   belongs_to :sub_item
+  has_many :audits, as: :auditable
   has_many :vote_options, dependent: :destroy
   has_many :vote_posts, dependent: :destroy
 
@@ -21,6 +21,7 @@ class Vote < ApplicationRecord
   attr_accessor :reset
   # Only open needs to be < 0 to work with database constraint
   enum(status: { future: 0, open: -10, closed: 10 })
+  scope(:position, -> { order(position: :asc) })
 
   before_update :update_present_users
 

@@ -14,6 +14,7 @@ sv:
         sub_item: Dagordning
         sub_item_id: Dagordning
         title: Namn
+        position: Ordning
     models:
       vote:
         one: Votering
