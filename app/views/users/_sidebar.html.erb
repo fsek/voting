@@ -1,10 +1,15 @@
 <% current ||= :user %>
-<%= link_to(t('.user'), user_path,
-            class: "btn btn-#{current == :user ? 'primary' : 'secondary'} d-block mb-2") %>
-<%= link_to(t('.account'), account_user_path,
-            class: "btn btn-#{current == :account ? 'primary' : 'secondary'} d-block mb-2") %>
-<%= link_to(t('.password'), password_user_path,
-            class: "btn btn-#{current == :password ? 'primary' : 'secondary'} d-block") %>
-
+<div class="mb-2">
+  <%= link_to(t('.user'), user_path,
+              class: "btn btn-#{current == :user ? 'primary' : 'secondary'}") %>
+</div>
+<div class="mb-2">
+  <%= link_to(t('.account'), account_user_path,
+              class: "btn btn-#{current == :account ? 'primary' : 'secondary'}") %>
+</div>
+<div class="mb-2">
+  <%= link_to(t('.password'), password_user_path,
+              class: "btn btn-#{current == :password ? 'primary' : 'secondary'}") %>
+</div>
 <hr />
 <%= link_to(t('.root'), root_url, class: 'btn btn-secondary') %>
