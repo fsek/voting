@@ -15,12 +15,11 @@ sv:
       show:
         all_vote_users: Alla mötesanvändare
         title: Hantera mötesanvändare
-      table_header:
+      table:
         change_state: Justera in/ut
-        reset_votecode: Nollställ röstkod
-      table_rows:
         confirm_reset: Vill du verkligen nollställa röstkoden?
         reset: Nollställ
+        reset_votecode: Nollställ röstkod
   vote_user:
     administrate: Administrera justeringar
     edit: Redigera användare

@@ -1,13 +1,19 @@
 var errorDisplay = document.getElementById('error-display');
 var statusDisplay = document.getElementById('status-display');
 var attendanceCell = document.querySelector('<%= "tr##{dom_id(@user)} td.adjust" %>');
+var searchField = document.getElementById('search-card');
+var userRow = document.getElementById('<%= dom_id(@user) %>');
 attendanceCell.innerHTML = "<%= j vote_user_state_link(@user) %>";
 statusDisplay.classList.replace('d-none', 'd-flex');
 <% if @user.presence %>
   statusDisplay.innerHTML = "<%= t('.attends', user: @user) %>";
+  userRow.classList.add('highlight');
 <% else %>
   statusDisplay.innerHTML = "<%= t('.unattends', user: @user) %>";
+  userRow.classList.remove('highlight');
 <% end %>
 errorDisplay.innerHTML = "";
 errorDisplay.classList.replace('d-flex', 'd-none');
-document.getElementById('search-card').focus();
+if (searchField != null) {
+  searchField.focus();
+}
