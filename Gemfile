@@ -14,7 +14,6 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'cancancan'
 gem 'cocoon'
 gem 'coffee-rails' # Only required because of using 5-2-stable
-gem 'config'
 gem 'cookies_eu'
 gem 'devise'
 gem 'font-awesome-rails'
