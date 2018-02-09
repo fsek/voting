@@ -1,5 +1,4 @@
 var errorDisplay = document.getElementById('error-display');
 var attendanceCell = document.querySelector('<%= "tr##{dom_id(@user)} td.adjust" %>');
-attendanceCell.innerHTML = "<%= j vote_user_state_link(@user) %>"
 errorDisplay.innerHTML = "<%= j render('errors', user: @user) %>"
 errorDisplay.classList.replace('d-none', 'd-flex');

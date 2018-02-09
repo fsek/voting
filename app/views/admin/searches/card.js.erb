@@ -1,9 +1,10 @@
-<% if @vote_users.present? %>
-  $('#adjustment-status').html('');
-  $('#adjustment-thead').html('<%= j render('/admin/vote_users/table_header') %>');
-  $('#adjustment-tbody').html('<%= j render('/admin/vote_users/table_rows', vote_users: @vote_users) %>');
+var table = document.getElementById('vote-users-table')
+table.innerHTML = "<%= j render('admin/vote_users/table', vote_users: @vote_users) %>"
+var statusDisplay = document.getElementById('status-display');
+<% if @vote_users.any? %>
+  statusDisplay.innerHTML = "";
+  statusDisplay.classList.replace('d-flex', 'd-none');
 <% else %>
-  $('#adjustment-status').html('<%= t('admin.searches.no_results') %>');
-  $('#adjustment-thead').html('');
-  $('#adjustment-tbody').html('');
+  statusDisplay.classList.replace('d-none', 'd-flex');
+  statusDisplay.innerHTML = "<%= j t('admin.searches.no_results') %>";
 <% end %>

@@ -28,16 +28,9 @@
 
 <div class="col-12 col-md-9 offset-md-3">
   <%= render('admin/searches/user_form') %>
-  <%= paginate(@vote_users) %>
-  <table class="table table-striped table-bordered admin-grid">
-    <thead>
-      <%= render('table_header') %>
-      <tbody id="user-table-body">
-        <%= render('table_rows', vote_users: @vote_users) %>
-      </tbody>
-    </thead>
-  </table>
-  <%= paginate(@vote_users) %>
+  <div id="vote-users-table">
+    <%= render('table', vote_users: @vote_users, pagination: true) %>
+  </div>
   <hr>
   <%= render '/admin/adjustments/info' %>
 </div>

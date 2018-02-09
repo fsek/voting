@@ -29,7 +29,6 @@ module VoteService
       Adjustment.create!(user: user, sub_item: SubItem.current, presence: true)
     end
   rescue StandardError => e
-    user.errors.add(:base, e.to_s) if user.present?
     false
   end
 
@@ -42,7 +41,6 @@ module VoteService
       Adjustment.create!(user: user, sub_item: SubItem.current, presence: false)
     end
   rescue StandardError => e
-    user.errors.add(:base, e.to_s) if user.present?
     false
   end
 

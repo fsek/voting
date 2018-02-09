@@ -1,5 +1,10 @@
-$('#user-table-body').html('<%= j render('/admin/vote_users/table_rows', vote_users: @vote_users) %>');
-$('#user-search-status').html('');
-<% if @vote_users.none? %>
-  $('#user-search-status').html('<%= t('admin.searches.no_results') %>');
+var table = document.getElementById('vote-users-table')
+table.innerHTML = "<%= j render('admin/vote_users/table', vote_users: @vote_users) %>"
+var statusDisplay = document.getElementById('status-display');
+<% if @vote_users.any? %>
+  statusDisplay.innerHTML = "";
+  statusDisplay.classList.replace('d-flex', 'd-none');
+<% else %>
+  statusDisplay.classList.replace('d-none', 'd-flex');
+  statusDisplay.innerHTML = "<%= t('admin.searches.no_results') %>";
 <% end %>
