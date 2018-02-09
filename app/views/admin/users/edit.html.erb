@@ -5,7 +5,22 @@
 </div>
 
 <div class="col-12 col-sm-2">
-  <%= link_to(t('.all'), admin_users_path, class: 'btn btn-primary') %>
+  <div class="mb-2">
+    <%= link_to(t('.all'), admin_users_path, class: 'btn btn-primary') %>
+  </div>
+  <div class="mb-2">
+    <%= link_to(t('.destroy'), admin_user_path(@user), class: 'btn btn-danger',
+                               data: { confirm: t('.confirm_destroy') },
+                               method: :delete) %>
+  </div>
+
+  <% unless @user.confirmed? %>
+    <div class="mb-2">
+      <%= button_to(t('.resend_confirmation'), admin_user_path(@user),
+                    class: 'btn btn-secondary', method: :patch,
+                    params: { user: { resend_confirmation: true } }) %>
+    </div>
+  <% end %>
 </div>
 
 <div class="col-12 col-sm-10 user">
@@ -13,8 +28,9 @@
     <%= f.input :firstname %>
     <%= f.input :lastname %>
     <%= f.input :role, collection: user_roles, include_blank: false %>
-    <%= f.input(:card_number, input_html: {data: {mask: '9999-9999-9999-9999'},
-                                           autocomplete: 'off'}) %>
+    <%= f.input(:card_number,
+                input_html: { data: { mask: '9999-9999-9999-9999' },
+                              autocomplete: 'off' }) %>
     <%= f.button :submit %>
   <% end %>
 </div>

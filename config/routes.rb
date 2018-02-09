@@ -49,7 +49,7 @@ Rails.application.routes.draw do
         delete('', action: :destroy_all, on: :collection)
       end
 
-      resources :users, path: :anvandare, only: %i[index edit update]
+      resources :users, path: :anvandare, only: %i[index edit update destroy]
       resources :votes, path: :voteringar, controller: :votes do
         resource :reset, only: :create, path: :aterstall
         resource :opening, only: %i[create destroy], path: :oppna

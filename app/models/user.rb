@@ -5,7 +5,7 @@ class User < ApplicationRecord
   acts_as_paranoid
   paginates_per(40)
   devise(:database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable,
+         :recoverable, :rememberable,
          :validatable, :confirmable)
 
   validates :email, uniqueness: true
