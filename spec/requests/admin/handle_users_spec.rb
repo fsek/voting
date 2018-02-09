@@ -55,4 +55,13 @@ RSpec.describe('Handle users', type: :request) do
       expect(user.firstname).to eq('Hilbert')
     end
   end
+
+  it 'destroys user' do
+    sign_in(admin)
+    user = create(:user)
+    expect do
+      delete(admin_user_path(user))
+    end.to change(User, :count).by(-1)
+    expect(response).to redirect_to(admin_users_path)
+  end
 end

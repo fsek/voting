@@ -2,8 +2,13 @@
 sv:
   admin:
     users:
+      destroy:
+        success: Användaren raderades - men kan återställas från console.
       edit:
         all: Alla användare
+        confirm_destroy: Är du säker på att du vill radera användaren? Användaren kan återställas från console.
+        destroy: Förinta användaren
+        resend_confirmation: Skicka bekräftelse
         title: Redigera användare
       index:
         all: Alla användare
