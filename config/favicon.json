@@ -1,6 +1,5 @@
-
 {
-    "master_picture": "app/assets/images/layout/f.svg",
+    "master_picture": "app/assets/images/logo.svg",
     "favicon_design": {
         "ios": {
             "picture_aspect": "background_and_margin",
@@ -17,8 +16,8 @@
 
         ],
         "windows": {
-            "picture_aspect": "no_change",
-            "background_color": "#2b5797",
+            "picture_aspect": "white_silhouette",
+            "background_color": "#2d89ef",
             "on_conflict": "override",
             "assets": {
                 "windows_80_ie_10_tile": false,
@@ -31,10 +30,11 @@
             }
         },
         "android_chrome": {
-            "picture_aspect": "no_change",
+            "picture_aspect": "background_and_margin",
+            "margin": "17%",
+            "background_color": "#ffffff",
             "theme_color": "#ffffff",
             "manifest": {
-                "name": "R\u00f6stsystem",
                 "display": "standalone",
                 "orientation": "not_set",
                 "on_conflict": "override",
@@ -47,11 +47,14 @@
         },
         "safari_pinned_tab": {
             "picture_aspect": "silhouette",
-            "theme_color": "#eb7125"
+            "theme_color": "#5bbad5"
         }
     },
     "settings": {
         "scaling_algorithm": "Mitchell",
-        "error_on_image_too_small": false
+        "error_on_image_too_small": false,
+        "readme_file": false,
+        "html_code_file": false,
+        "use_path_as_is": false
     }
 }
