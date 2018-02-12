@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails
-  revision: 6dde7b56d4be3968a9f45efb6028fb45e2c1c226
+  revision: 2264062048761516b74ea8eada77378292a6b376
   branch: 5-2-stable
   specs:
     actioncable (5.2.0.rc1)
@@ -193,7 +193,7 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
-    loofah (2.1.1)
+    loofah (2.2.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.0)
