@@ -21,9 +21,13 @@
               </h5>
             </div>
             <% if vote.open? %>
-              <div id="<%= dom_id(vote) %>-form">
-                <%= render('vote_posts/form', vote: vote, vote_post: VotePost.new) %>
-              </div>
+              <% if signed_in? %>
+                <div id="<%= dom_id(vote) %>-form">
+                  <%= render('vote_posts/form', vote: vote, vote_post: VotePost.new) %>
+                </div>
+              <% else %>
+                <%= link_to(t('.sign_in'), new_user_session_path, class: 'btn btn-outline-success my-2 my-sm-0') %>
+              <% end %>
             <% end %>
           </div>
         <% end %>
