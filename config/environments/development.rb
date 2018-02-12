@@ -68,7 +68,7 @@ Rails.application.configure do
 
   PUBLIC_URL = 'localhost:3000'
   config.action_mailer.default_url_options = { host: PUBLIC_URL }
-  config.action_mailer.asset_host = PUBLIC_URL
+  config.action_mailer.asset_host = "http://#{PUBLIC_URL}"
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: '127.0.0.1', port: 1025 }
 end

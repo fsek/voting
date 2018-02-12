@@ -3,9 +3,10 @@
 # General class for mailers
 class ApplicationMailer < ActionMailer::Base
   require 'digest/sha2'
-
-  default from: 'Röstsystem <rostiga@rostsystem.se>'
-  layout 'email'
+  include Roadie::Rails::Automatic
+  default(from: 'Röstsystem <rostiga@rostsystem.se>')
+  layout('email')
+  helper(EmailHelper)
 
   protected
 

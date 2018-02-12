@@ -1,0 +1,6 @@
+sv:
+  vote_mailer:
+    votecode:
+      hello: Hej %{user} - din röstkod!
+      description: "Här kommer din röstkod, se till att du håller den för dig själv.\r Tror du att någon kommit över din kod? \rKontakta justerare så får du en ny."
+      title: Din röstkod

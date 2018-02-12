@@ -25,9 +25,7 @@ sv:
     edit: Redigera användare
     mailer:
       votecode:
-        description: Här kommer din röstkod, se till att du håller den för dig själv. Tror du att någon kommit över din kod? Kontakta justerare så får du en ny.
         subject: Här är din röstkod
-        title: Din röstkod
     present_count: Antal injusterade
     state:
       not_present: Utjusterad

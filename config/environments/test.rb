@@ -49,5 +49,5 @@ Rails.application.configure do
   PUBLIC_URL = 'localhost:3000'
   # Mailer asset
   config.action_mailer.default_url_options = { host: PUBLIC_URL }
-  config.action_mailer.asset_host = PUBLIC_URL
+  config.action_mailer.asset_host = "http://#{PUBLIC_URL}"
 end
