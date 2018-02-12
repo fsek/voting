@@ -1,18 +1,22 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1><%= t('users.mailer.hello', user: @user.to_s) %></h1>
-    <%= simple_format(t('users.mailer.registered')) %>
-    <%= simple_format(t('users.mailer.before_starting')) %>
+<% content_for(:title) do %>
+  <%= t('.hello', user: @user.to_s) %>
+<% end %>
 
-    <p>
-      <%= link_to(t('users.mailer.please_confirm'), user_confirmation_url(confirmation_token: @token)) %>
-    </p>
+<%= simple_format(t('.registered')) %>
+<%= simple_format(t('.before_starting')) %>
 
-    <%= simple_format(t('users.mailer.enjoy')) %>
-    <%= simple_format(t('users.mailer.problem')) %>
-  </body>
-</html>
+<br />
+
+<div style="text-align: center;">
+  <%= link_to(t('.please_confirm'), user_confirmation_url(confirmation_token: @token), class: 'btn btn-primary') %>
+</div>
+<br />
+<%= simple_format(t('.or_copy', link: user_confirmation_url(confirmation_token: @token))) %>
+<br />
+
+<hr />
+<br />
+<br />
+
+<%= simple_format(t('.enjoy')) %>
+<%= simple_format(t('.problem')) %>

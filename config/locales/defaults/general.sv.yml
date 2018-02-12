@@ -10,6 +10,8 @@ sv:
   destroy: Förinta
   edit: Redigera
   'no': Nej
+  general:
+    title: Röstsystem
   remove: Ta bort
   sent: Skickat
   show: Visa

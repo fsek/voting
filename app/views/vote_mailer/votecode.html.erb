@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1><%= t('vote_user.mailer.votecode.title') %></h1>
-    <%= simple_format(t('vote_user.mailer.votecode.description')) %>
-    <%= @user.votecode %>
-  </body>
-</html>
+<% content_for(:title) do %>
+  <%= t('.hello', user: @user.to_s) %>
+<% end %>
+
+<%= simple_format(t('.description')) %>
+<div style="text-align: center; font-size: 32px; padding: 16px; border: 2px solid black; border-radius: 16px;">
+  <%= @user.votecode %>
+</div>
