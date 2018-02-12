@@ -9,14 +9,14 @@ class UserMailer < Devise::Mailer
 
   def confirmation_instructions(record, token, opts = {})
     set_message_id
-    opts[:subject] = t('users_mailer.subject_confirm', title: t('general.title'))
+    opts[:subject] = t('user_mailer.subject_confirm', title: t('general.title'))
     @user = record
     super
   end
 
   def reset_password_instructions(record, token, opts = {})
     set_message_id
-    opts[:subject] = t('users_mailer.subject_password', title: t('general.title'))
+    opts[:subject] = t('user_mailer.subject_password', title: t('general.title'))
     @user = record
     super
   end
