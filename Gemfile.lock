@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails
-  revision: 2264062048761516b74ea8eada77378292a6b376
+  revision: 2f6a43b9d1bff7c99f6066ddb22b716099f12494
   branch: 5-2-stable
   specs:
     actioncable (5.2.0.rc1)
@@ -161,7 +161,7 @@ GEM
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     highline (1.7.10)
-    i18n (0.9.4)
+    i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     i18n-tasks (0.9.20)
       activesupport (>= 4.0.2)
