@@ -20,6 +20,9 @@ class SubItem < ApplicationRecord
   # only set statuses that should be unique to values below 0.
   enum(status: { current: -10, future: 0, closed: 10 })
   scope(:position, -> { order(:position) })
+  scope(:full_order, lambda do
+    joins(:item).order('items.position ASC, sub_items.position ASC')
+  end)
 
   def self.current
     where(status: :current).first

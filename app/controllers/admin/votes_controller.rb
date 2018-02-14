@@ -12,12 +12,12 @@ module Admin
     def new
       @vote = Vote.new
       @vote.vote_options.build
-      @sub_items = SubItem.includes(:item)
+      @sub_items = SubItem.full_order
     end
 
     def create
       @vote = Vote.new(vote_params)
-      @sub_items = SubItem.includes(:item)
+      @sub_items = SubItem.full_order
       if @vote.save
         redirect_to edit_admin_vote_path(@vote), notice: t('.success')
       else
@@ -27,14 +27,14 @@ module Admin
 
     def edit
       @vote = Vote.find(params[:id])
-      @sub_items = SubItem.includes(:item)
+      @sub_items = SubItem.full_order
 
       redirect_to admin_votes_path, alert: t('.cannot_edit') if @vote.open?
     end
 
     def update
       @vote = Vote.find(params[:id])
-      @sub_items = SubItem.includes(:item)
+      @sub_items = SubItem.full_order
 
       if @vote.open?
         redirect_to admin_votes_path, alert: t('.cannot_edit')
