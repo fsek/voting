@@ -12,7 +12,7 @@ function refresh() {
     $voteStatus = $('#vote-status');
     if ($voteStatus.length && $voteStatus.data('position') == position) {
       $.ajax({
-        url: '/admin/voteringar',
+        url: '/admin/voteringar.js',
         method: 'GET'
       })
     } else {
