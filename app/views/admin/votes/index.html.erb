@@ -10,7 +10,7 @@
   <%= link_to t('.new_vote'), new_admin_vote_path, class: 'btn btn-primary' %>
 </div>
 
-<div class="col-12 col-md-9" id="vote-status">
+<div class="col-12 col-md-9" id="vote-status" data-position="vote-index">
   <%= render '/admin/votes/status', vote_status_view: @vote_status_view %>
 </div>
 
