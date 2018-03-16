@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails
-  revision: 793c11daa180a53f006fcd8e9bfb720e665bc56e
+  revision: 4b2fcaf9d3da2998cabb074eba4210352225eb53
   branch: 5-2-stable
   specs:
     actioncable (5.2.0.rc1)
@@ -208,7 +208,7 @@ GEM
     minitest (5.11.3)
     msgpack (1.2.4)
     multi_json (1.13.1)
-    nio4r (2.2.0)
+    nio4r (2.3.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
