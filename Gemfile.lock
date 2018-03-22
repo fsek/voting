@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails
-  revision: 3bbb66c37b687f639a17827132144d4b0a238167
+  revision: 7c5cb86dd7e440aabf82548f8a3f0e74f290b1ee
   branch: 5-2-stable
   specs:
     actioncable (5.2.0.rc1)
@@ -233,7 +233,7 @@ GEM
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     rainbow (3.0.0)
-    rake (12.3.0)
+    rake (12.3.1)
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
