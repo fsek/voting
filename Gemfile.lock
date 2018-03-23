@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails
-  revision: 7c5cb86dd7e440aabf82548f8a3f0e74f290b1ee
+  revision: e2a6ef4c5c7b9f3e4023da5f9b2092a442c50574
   branch: 5-2-stable
   specs:
     actioncable (5.2.0.rc1)
@@ -189,7 +189,7 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
-    loofah (2.2.1)
+    loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.0)
@@ -230,8 +230,8 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.0.3)
-      loofah (~> 2.0)
+    rails-html-sanitizer (1.0.4)
+      loofah (~> 2.2, >= 2.2.2)
     rainbow (3.0.0)
     rake (12.3.1)
     rb-fsevent (0.10.2)
