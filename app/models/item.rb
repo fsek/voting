@@ -19,6 +19,9 @@ class Item < ApplicationRecord
   validate(:number_of_sub_items, on: :update)
 
   scope(:position, -> { order(:position) })
+  scope(:not_closed, lambda do
+    joins(:sub_items).includes(:sub_items).merge(SubItem.not_closed)
+  end)
 
   def self.current
     SubItem.current.try(:item)

@@ -23,6 +23,7 @@ class SubItem < ApplicationRecord
   scope(:full_order, lambda do
     joins(:item).order('items.position ASC, sub_items.position ASC')
   end)
+  scope(:not_closed, -> { where(status: %i[current future]) })
 
   def self.current
     where(status: :current).first

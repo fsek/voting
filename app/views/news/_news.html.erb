@@ -4,7 +4,11 @@
   </div>
 
   <div>
-    <%= news_user(news) %>
+    <% if news.user.present? %>
+      <span class="link">
+        <%= link_to(fa_icon('user', text: news.user), target: :blank) %>
+      </span>
+    <% end %>
     <span class="d-inline font-italic ml-2">
       <%= l(news.created_at) %>
     </span>
