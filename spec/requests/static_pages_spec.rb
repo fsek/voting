@@ -12,7 +12,7 @@ RSpec.describe('Static pages', type: :request) do
     expect(response).to have_http_status(200)
   end
 
-  it 'renders tems' do
+  it 'renders terms' do
     get(terms_path)
     expect(response).to have_http_status(200)
   end
