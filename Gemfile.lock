@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails
-  revision: 5f539ce5bc1425f86b8a1b0373de1c3df6ce2808
+  revision: b65ccfb27ddc3414d14ba83b76389975cbbdae02
   branch: 5-2-stable
   specs:
     actioncable (5.2.0.rc1)
@@ -225,7 +225,7 @@ GEM
     public_suffix (3.0.2)
     puma (3.11.3)
     rack (2.0.4)
-    rack-test (0.8.3)
+    rack-test (1.0.0)
       rack (>= 1.0, < 3)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
