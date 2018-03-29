@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<div class="col-md-3 col-sm-12">
+<div class="col-12 col-md-3">
   <%= render('application/admin_sidebar', current: :adjustments) %>
   <hr />
   <% if can_administrate? :manage, :vote_user %>
@@ -13,11 +13,12 @@
   <% end %>
 </div>
 
-<div class="col-12 col-md-9" id="vote-status" data-position="adjustment-index">
-  <%= render '/admin/votes/status', vote_status_view: @vote_status_view %>
-</div>
-
-<div class="col-12 col-md-9 offset-md-3">
+<div class="col-12 col-md-9">
+  <div id="vote-status" data-position="adjustment-index">
+    <%= render '/admin/votes/status', vote_status_view: @vote_status_view %>
+  </div>
+  <div id="status-display" class="d-none border border-success rounded text-3 p-3 mb-3"></div>
+  <div id="error-display" class="d-none border border-danger rounded text-3 p-3 mb-3"></div>
   <%= simple_form_for(:search, url: card_admin_search_path, remote: true) do |f| %>
     <%= f.input(:card_number, required: false, autofocus: true,
                 label: User.human_attribute_name(:card_number),
@@ -25,8 +26,7 @@
                              autocomplete: 'off', id: 'search-card' }) %>
   <% end %>
 
-  <div id="vote-users-table">
-    <%= render('/admin/vote_users/table') %>
+  <div id="vote-user">
   </div>
 
   <hr>

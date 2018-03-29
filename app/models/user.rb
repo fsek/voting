@@ -2,6 +2,7 @@
 
 # Model for allowing users to identify and sign in
 class User < ApplicationRecord
+  EMPTY_CARD = '____-____-____-____'
   acts_as_paranoid
   paginates_per(40)
   devise(:database_authenticatable, :registerable,
@@ -14,10 +15,11 @@ class User < ApplicationRecord
   validates :firstname, :lastname, presence: true
   validates :votecode, uniqueness: true, allow_nil: true
 
-  validates :card_number, uniqueness: { allow_blank: true },
-                          format: { with: /\A\b[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}\z/,
-                                    message: I18n.t('model.user.card_number_format'),
-                                    allow_blank: true }
+  validates :card_number,
+            uniqueness: { allow_blank: true },
+            format: { with: /\A\b[0-9]{4}\-[0-9]{4}\-[0-9]{4}\-[0-9]{4}\z/,
+                      message: I18n.t('model.user.card_number_format'),
+                      allow_blank: true }
 
   validate :presence_require_confirmation, :votecode_require_confirmation
 
@@ -38,12 +40,13 @@ class User < ApplicationRecord
   end)
 
   def self.card_number(card_number)
-    return if card_number == '____-____-____-____'
-    User.where('card_number LIKE ?', "%#{card_number}%")
+    return if card_number == EMPTY_CARD
+    User.where(card_number: card_number).first
   end
 
   def self.search(options)
     return User.all if options.empty?
+    options = options.reject! { |_, v| v.blank? || v == EMPTY_CARD }
     User.fuzzy_search(options.to_h)
   end
 

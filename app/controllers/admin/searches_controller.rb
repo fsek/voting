@@ -5,7 +5,8 @@ module Admin
     authorize_resource(class: false)
 
     def card
-      @vote_users = User.card_number(card_params)
+      card_number = params.require(:search).permit(:card_number)
+      @vote_user = User.card_number(card_number.fetch(:card_number, ''))
     end
 
     def user
@@ -14,10 +15,6 @@ module Admin
 
     private
 
-    def card_params
-      params.require(:search).permit(:card_number).fetch(:card_number, '')
-    end
-
     def presence
       res = params.require(:search).fetch(:presence, '')
       return [true, false] if res.blank?
@@ -25,7 +22,7 @@ module Admin
     end
 
     def user_params
-      params.require(:search).permit(:firstname, :lastname)
+      params.require(:search).permit(:firstname, :lastname, :card_number)
             .reject { |_, v| v.blank? }
     end
   end

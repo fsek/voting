@@ -1,0 +1,24 @@
+<div class="bg-info rounded p-3">
+  <h3>
+    <%= vote_user.to_s %>
+  </h3>
+  <div class="mb-2">
+    <%= vote_user.card_number %>
+  </div>
+
+  <div class="mb-2">
+    <% if vote_user.presence %>
+      <%= link_to(t('model.vote_user.make_not_present'),
+              admin_attendance_path(vote_user),
+              method: :delete, remote: true,
+              class: 'btn btn-primary',
+              id: 'adjust') %>
+    <% else %>
+      <%= link_to(t('model.vote_user.make_present'),
+              admin_attendance_path(vote_user),
+              method: :patch, remote: true,
+              class: 'btn btn-primary',
+              id: 'adjust') %>
+    <% end %>
+  </div>
+</div>
