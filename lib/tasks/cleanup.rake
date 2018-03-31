@@ -3,7 +3,7 @@
 namespace :cleanup do
   desc('Clean up system after a meeting')
   task(keep_users: :environment) do
-    Audit.all.each(&:delete!)
+    Audit.all.each(&:delete)
     Adjustment.with_deleted.each(&:really_delete)
     VoteOption.with_deleted.each(&:really_delete)
     VotePost.with_deleted.each(&:really_delete)
