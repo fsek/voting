@@ -9,7 +9,7 @@ module RequestMacro
   end
 
   def self.pdf
-    Rack::Test::UploadedFile.new('spec/assets/pdf.pdf')
+    Rack::Test::UploadedFile.new('spec/support/pdf.pdf')
   end
 
   def sign_in(resource)
