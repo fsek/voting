@@ -8,7 +8,7 @@ ruby '2.5.1'
 gem 'rails', git: 'https://github.com/rails/rails', branch: '5-2-stable'
 
 gem 'acts_as_list', '~> 0.9'
-gem 'aws-sdk-s3', '~> 1.8'
+gem 'aws-sdk-s3', '~> 1.9'
 gem 'bootsnap'
 gem 'bootstrap', '~> 4.0.0'
 gem 'cancancan'
