@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails
-  revision: ac4b334c66d1e521a89087eeba6b454a7908409a
+  revision: da3db5c7310e07dc3baa99d4281d1b7f655ea8b4
   branch: 5-2-stable
   specs:
     actioncable (5.2.0.rc1)
@@ -126,7 +126,7 @@ GEM
     concurrent-ruby (1.0.5)
     cookies_eu (1.6.3)
       js_cookie_rails
-    crass (1.0.3)
+    crass (1.0.4)
     css_parser (1.6.0)
       addressable
     devise (4.4.3)
