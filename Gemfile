@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 # Do not forget to update in .ruby-version and .circleci/config.yml
 ruby '2.5.1'
 
-gem 'rails', git: 'https://github.com/rails/rails', branch: '5-2-stable'
+gem 'rails', '~> 5.2'
 
 gem 'acts_as_list', '~> 0.9'
 gem 'aws-sdk-s3', '~> 1.9'
@@ -13,7 +13,6 @@ gem 'bootsnap'
 gem 'bootstrap', '~> 4.0.0'
 gem 'cancancan'
 gem 'cocoon'
-gem 'coffee-rails' # Only required because of using 5-2-stable
 gem 'cookies_eu'
 gem 'devise'
 gem 'font-awesome-rails'
@@ -30,7 +29,8 @@ gem 'rollbar'
 gem 'sass-rails'
 gem 'select2-rails'
 gem 'simple_form'
-gem 'textacular'
+gem 'textacular', git: 'https://github.com/textacular/textacular',
+                  branch: 'master'
 gem 'turbolinks'
 gem 'uglifier'
 
