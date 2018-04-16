@@ -6,6 +6,7 @@ source 'https://rubygems.org'
 ruby '2.5.1'
 
 gem 'rails', '~> 5.2'
+gem 'coffee-rails'
 
 gem 'acts_as_list', '~> 0.9'
 gem 'aws-sdk-s3', '~> 1.9'
