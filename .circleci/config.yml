@@ -5,6 +5,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.5-node-browsers
         environment:
+          BUNDLE_PATH: vendor/bundle
           PGHOST: 127.0.0.1
           PGUSER: user
           RAILS_ENV: test
@@ -15,6 +16,9 @@ jobs:
           POSTGRES_PASSWORD: ""
     steps:
       - checkout
+      - run:
+          name: Which bundler?
+          command: bundle -v
 
       - restore_cache:
           keys:
@@ -22,7 +26,9 @@ jobs:
             - gem-cache-{{ .Branch }}
             - gem-cache
 
-      - run: bundle install --path vendor/bundle
+      - run:
+          name: Bundle install
+          command: bundle check || bundle install
 
       - save_cache:
           key: gem-cache-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
