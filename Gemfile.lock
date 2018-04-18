@@ -1,10 +1,10 @@
 GIT
   remote: https://github.com/textacular/textacular
-  revision: 21ec56375b659fac3879b30abaf99651af5d74f2
+  revision: bf108fc39b0ed760d299e3b74bb7125ea68436b9
   branch: master
   specs:
     textacular (5.0.1)
-      activerecord (>= 5.0, < 5.3)
+      activerecord (>= 5.0, < 6.0)
 
 GEM
   remote: https://rubygems.org/
@@ -139,7 +139,7 @@ GEM
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     highline (1.7.10)
-    i18n (1.0.0)
+    i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     i18n-tasks (0.9.21)
       activesupport (>= 4.0.2)
