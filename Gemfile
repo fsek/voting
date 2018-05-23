@@ -9,7 +9,7 @@ gem 'rails', '~> 5.2'
 gem 'coffee-rails'
 
 gem 'acts_as_list', '~> 0.9'
-gem 'aws-sdk-s3', '~> 1.12'
+gem 'aws-sdk-s3', '~> 1.13'
 gem 'bootsnap'
 gem 'bootstrap', '~> 4.1.1'
 gem 'cancancan'
