@@ -109,7 +109,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
-    cookies_eu (1.7.1)
+    cookies_eu (1.7.3)
       js_cookie_rails (~> 2.2.0)
     crass (1.0.4)
     css_parser (1.6.0)
@@ -190,7 +190,7 @@ GEM
     msgpack (1.2.4)
     multi_json (1.13.1)
     nio4r (2.3.0)
-    nokogiri (1.8.2)
+    nokogiri (1.8.3)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
     pagedown-bootstrap-rails (2.1.4)
