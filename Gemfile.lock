@@ -68,7 +68,7 @@ GEM
     aws-sdk-kms (1.6.0)
       aws-sdk-core (~> 3)
       aws-sigv4 (~> 1.0)
-    aws-sdk-s3 (1.16.1)
+    aws-sdk-s3 (1.17.0)
       aws-sdk-core (~> 3, >= 3.21.2)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.0)
@@ -340,7 +340,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_list (~> 0.9)
-  aws-sdk-s3 (~> 1.16)
+  aws-sdk-s3 (~> 1.17)
   better_errors
   bootsnap
   bootstrap (~> 4.1.1)
