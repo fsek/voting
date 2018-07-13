@@ -252,7 +252,7 @@ GEM
     roadie-rails (1.3.0)
       railties (>= 3.0, < 5.3)
       roadie (~> 3.1)
-    rollbar (2.16.2)
+    rollbar (2.16.3)
       multi_json
     rspec-core (3.7.1)
       rspec-support (~> 3.7.0)
