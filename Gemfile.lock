@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/textacular/textacular
-  revision: 16c0076d5bf3e92dbff5190c18fe42145ac8cc05
+  revision: 5b13b7dc55ca0684afa250fdcdccec322378cebe
   branch: master
   specs:
     textacular (5.1.0)
