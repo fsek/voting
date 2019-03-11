@@ -59,17 +59,17 @@ GEM
     autoprefixer-rails (9.0.0)
       execjs
     aws-eventstream (1.0.1)
-    aws-partitions (1.102.0)
-    aws-sdk-core (3.25.0)
+    aws-partitions (1.143.0)
+    aws-sdk-core (3.46.2)
       aws-eventstream (~> 1.0)
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-kms (1.7.0)
-      aws-sdk-core (~> 3)
+    aws-sdk-kms (1.13.0)
+      aws-sdk-core (~> 3, >= 3.39.0)
       aws-sigv4 (~> 1.0)
-    aws-sdk-s3 (1.17.1)
-      aws-sdk-core (~> 3, >= 3.21.2)
+    aws-sdk-s3 (1.31.0)
+      aws-sdk-core (~> 3, >= 3.39.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.0)
     aws-sigv4 (1.0.3)
@@ -335,7 +335,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_list (~> 0.9)
-  aws-sdk-s3 (~> 1.17)
+  aws-sdk-s3 (~> 1.31)
   better_errors
   bootsnap
   bootstrap (~> 4.1.3)
