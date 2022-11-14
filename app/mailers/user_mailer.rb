@@ -25,6 +25,6 @@ class UserMailer < Devise::Mailer
 
   def set_message_id
     str = Time.zone.now.to_i.to_s
-    headers['Message-ID'] = "<#{Digest::SHA2.hexdigest(str)}@rostsystem.se>"
+    headers['Message-ID'] = "<#{Digest::SHA2.hexdigest(str)}@fsektionen.se>"
   end
 end

@@ -8,7 +8,7 @@ class MessageMailer < ApplicationMailer
     return unless message.present?
     sender = "#{message.name} <#{message.email}>"
 
-    mail(to: 'Röstiga <rostsystem@rostsystem.se',
+    mail(to: 'Röstiga <rostsystem@fsektionen.se',
          subject: t('message_mailer.email.sent_via'),
          cc: sender,
          reply_to: sender)
