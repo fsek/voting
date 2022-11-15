@@ -4,7 +4,7 @@
 class ApplicationMailer < ActionMailer::Base
   require 'digest/sha2'
   include Roadie::Rails::Automatic
-  default(from: 'Röstsystem <rostiga@fsektionen.se>')
+  default(from: 'Röstsystem <rostiga@rostsystem.se>')
   layout('email')
   helper(EmailHelper)
 
@@ -12,6 +12,6 @@ class ApplicationMailer < ActionMailer::Base
 
   def set_message_id
     str = Time.zone.now.to_i.to_s
-    headers['Message-ID'] = "<#{Digest::SHA2.hexdigest(str)}@fsektionen.se>"
+    headers['Message-ID'] = "<#{Digest::SHA2.hexdigest(str)}@rostsystem.se>"
   end
 end
